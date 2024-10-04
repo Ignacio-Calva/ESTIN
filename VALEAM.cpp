@@ -5,6 +5,7 @@
 using namespace std;
 
 #include "puntoH.h"
+void elegirVideojuego();
 
 void setConsoleColor(int textColor, int backgroundColor)
 {
@@ -22,15 +23,15 @@ void mostrarTitulo(const string &titulo)
 }
 
 
-void grabarRegistros()
-{
-    videoJuego obj;
-    FILE *P;
-    obj.cargar();
-    P = fopen("archivos/videoJuego.dat", "ab");
-    fwrite(&obj, sizeof (videoJuego),1,P);
-    fclose(P);
-}
+//void grabarRegistros()
+//{
+//    videoJuego obj;
+//    FILE *P;
+//    obj.cargar();
+//    P = fopen("archivos/videoJuego.dat", "ab");
+//    fwrite(&obj, sizeof (videoJuego),1,P);
+//    fclose(P);
+//}
 
 void listarVideojuegos()
 {
@@ -116,23 +117,8 @@ int main()
         switch (opcion)
         {
         case 1:
-            while (numJuego!=0)
-            {
-                system("CLS");
-                listarVideojuegos();
-                setConsoleColor(4, 0);
-                cout<<"0 - ATRAS" << endl;
-                setConsoleColor(8, 0);
-                cin>>numJuego;
-                if (numJuego == 0)
-                {
-                    break;
-                }
-                caracteristicasVideojuego(numJuego);
-                system("PAUSE");
-            }
+            elegirVideojuego();
             break;
-
         case 2:
             system("CLS");
             setConsoleColor(14, 0);
@@ -141,11 +127,33 @@ int main()
             cargarCadena(titJuego, 49);
             buscarPorNombre(titJuego);
             system("PAUSE");
-
+            break;
         default:
             break;
         }
     }
 
     return 0;
+}
+
+
+void elegirVideojuego(){
+    int numJuego=1;
+    archivoVideoJuego archJuego("archivos/videoJuego.dat");
+    int tam = archJuego.contarRegistros();
+    while (numJuego!=0)
+    {
+        system("CLS");
+        listarVideojuegos();
+        setConsoleColor(4, 0);
+        cout<<endl<<"0 - ATRAS" << endl;
+        setConsoleColor(8, 0);
+        cout<<endl<<"INGRESE EL NUMERO DEL JUEGO DESEADO: ";
+        cin>>numJuego;
+        if(numJuego >= 0 && numJuego <= tam){
+            if (numJuego == 0){break;}
+        }
+        caracteristicasVideojuego(numJuego);
+        system("PAUSE");
+    }
 }
