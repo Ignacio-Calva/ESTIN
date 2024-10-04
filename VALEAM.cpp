@@ -27,14 +27,14 @@ void grabarRegistros()
     videoJuego obj;
     FILE *P;
     obj.cargar();
-    P = fopen("videoJuego.dat", "ab");
+    P = fopen("archivos/videoJuego.dat", "ab");
     fwrite(&obj, sizeof (videoJuego),1,P);
     fclose(P);
 }
 
 void listarVideojuegos()
 {
-    archivoVideoJuego arcV("videoJuego.dat");
+    archivoVideoJuego arcV("archivos/videoJuego.dat");
     videoJuego game;
 
     int cantReg = arcV.contarRegistros();
@@ -51,7 +51,7 @@ void listarVideojuegos()
 
 void caracteristicasVideojuego(int j)
 {
-    archivoVideoJuego arcV("videoJuego.dat");
+    archivoVideoJuego arcV("archivos/videoJuego.dat");
     videoJuego game;
 
     game = arcV.leerRegistros(j-1);
@@ -65,7 +65,7 @@ void caracteristicasVideojuego(int j)
 
 void buscarPorNombre(const char *n)
 {
-    archivoVideoJuego arcV("videoJuego.dat");
+    archivoVideoJuego arcV("archivos/videoJuego.dat");
     videoJuego game;
 
     int cantReg = arcV.contarRegistros();
