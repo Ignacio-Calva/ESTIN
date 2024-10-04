@@ -30,3 +30,23 @@
 1728069515 d:\facultad\tecnicatura programación\programación\estin\clases.h
 	"funciones.h"
 
+1728078771 source:c:\users\admin\documents\github\estin\funciones.cpp
+	<iostream>
+	<cstring>
+	"funciones.h"
+	"clases.h"
+	<windows.h>
+
+1728078773 c:\users\admin\documents\github\estin\funciones.h
+	<cstring>
+
+1728078769 c:\users\admin\documents\github\estin\clases.h
+	"funciones.h"
+
+1728078783 source:c:\users\admin\documents\github\estin\valeam.cpp
+	<iostream>
+	<string.h>
+	<windows.h>
+	"funciones.h"
+	"clases.h"
+
