@@ -1,0 +1,17 @@
+#ifndef FUNCIONES_H_INCLUDED
+#define FUNCIONES_H_INCLUDED
+#include <cstring>
+using namespace std;
+///COLORES
+void setConsoleColor(int textColor, int backgroundColor);
+///FUNCIONES COMUNES
+void elegirVideojuego();
+void mostrarTitulo(const string &titulo);
+void listarVideojuegos();
+void caracteristicasVideojuego(int j);
+void buscarPorNombre(const char *n);
+void cargarCadena(char *pal, int tam);
+
+
+
+#endif // FUNCIONES_H_INCLUDED

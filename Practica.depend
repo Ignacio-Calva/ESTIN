@@ -7,11 +7,26 @@
 
 1728004313 c:\users\admin\desktop\practica\puntoh.h
 
-1728009471 source:d:\facultad\tecnicatura programación\programación\estin\valeam.cpp
+1728066895 source:d:\facultad\tecnicatura programación\programación\estin\valeam.cpp
 	<iostream>
 	<string.h>
 	<windows.h>
-	"puntoH.h"
+	"funciones.h"
+	"clases.h"
 
-1728008302 d:\facultad\tecnicatura programación\programación\estin\puntoh.h
+1728066782 d:\facultad\tecnicatura programación\programación\estin\puntoh.h
+	"funciones.h"
+
+1728066782 d:\facultad\tecnicatura programación\programación\estin\funciones.h
+	<cstring>
+
+1728066894 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
+	<iostream>
+	<cstring>
+	"funciones.h"
+	"clases.h"
+	<windows.h>
+
+1728066782 d:\facultad\tecnicatura programación\programación\estin\clases.h
+	"funciones.h"
 
