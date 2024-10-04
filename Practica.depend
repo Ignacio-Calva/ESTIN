@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1728002592 source:c:\users\admin\desktop\practica\valeam.cpp
+	<iostream>
+	<string.h>
+	<windows.h>
+	"puntoH.h"
+
+1728004313 c:\users\admin\desktop\practica\puntoh.h
+
