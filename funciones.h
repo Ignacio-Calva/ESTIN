@@ -2,8 +2,10 @@
 #define FUNCIONES_H_INCLUDED
 #include <cstring>
 using namespace std;
+
 ///COLORES
 void setConsoleColor(int textColor, int backgroundColor);
+
 ///FUNCIONES COMUNES
 void elegirVideojuego();
 void mostrarTitulo(const string &titulo);

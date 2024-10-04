@@ -50,11 +50,9 @@ void listarVideojuegos()
 {
     archivoVideoJuego arcV("archivos/videoJuego.dat");
     videoJuego game;
-
     int cantReg = arcV.contarRegistros();
     setConsoleColor(11, 0);
     cout<<"VideoJuegos: " << endl << endl;
-
     for (int i = 0; i < cantReg; i++)
     {
         game = arcV.leerRegistros(i);
@@ -67,7 +65,6 @@ void caracteristicasVideojuego(int j)
 {
     archivoVideoJuego arcV("archivos/videoJuego.dat");
     videoJuego game;
-
     game = arcV.leerRegistros(j-1);
     system("CLS");
     setConsoleColor(15, 0);
@@ -81,9 +78,7 @@ void buscarPorNombre(const char *n)
 {
     archivoVideoJuego arcV("archivos/videoJuego.dat");
     videoJuego game;
-
     int cantReg = arcV.contarRegistros();
-
     for (int i = 0; i < cantReg; i++)
     {
         game = arcV.leerRegistros(i);

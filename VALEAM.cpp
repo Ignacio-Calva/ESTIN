@@ -12,10 +12,7 @@ int main()
 
     while (opcion!=0)
     {
-
-        int numJuego = 100;
         char titJuego[50];
-
         system("CLS");
         setConsoleColor(15, 1);
         cout<<"VALEAM"<<endl;
@@ -27,7 +24,6 @@ int main()
         cout<<"5 - Cuenta"<<endl;
         cout<<"0 - cerrar"<<endl;
         cin>>opcion;
-
         switch (opcion)
         {
         case 1:
@@ -49,5 +45,3 @@ int main()
 
     return 0;
 }
-
-
