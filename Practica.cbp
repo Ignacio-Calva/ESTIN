@@ -32,6 +32,9 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="VALEAM.cpp" />
+		<Unit filename="clases.h" />
+		<Unit filename="funciones.cpp" />
+		<Unit filename="funciones.h" />
 		<Unit filename="puntoH.h" />
 		<Extensions />
 	</Project>
