@@ -138,10 +138,10 @@ int main()
 
 
 void elegirVideojuego(){
-    int numJuego=1;
+    int numJuego;
     archivoVideoJuego archJuego("archivos/videoJuego.dat");
     int tam = archJuego.contarRegistros();
-    while (numJuego!=0)
+    while (true)
     {
         system("CLS");
         listarVideojuegos();
@@ -150,8 +150,14 @@ void elegirVideojuego(){
         setConsoleColor(8, 0);
         cout<<endl<<"INGRESE EL NUMERO DEL JUEGO DESEADO: ";
         cin>>numJuego;
-        if(numJuego >= 0 && numJuego <= tam){
-            if (numJuego == 0){break;}
+        if(numJuego >= 0){
+            if (numJuego == 0 ){break;}
+            else if (numJuego > tam)
+                {
+                    cout << "NUMERO DE JUEGO NO ENCONTRADO."<<endl;
+                    system("pause");
+                    break;
+                }
         }
         caracteristicasVideojuego(numJuego);
         system("PAUSE");
