@@ -12,7 +12,6 @@ int main()
 
     while (opcion!=0)
     {
-        char titJuego[50];
         system("CLS");
         setConsoleColor(15, 1);
         cout<<"VALEAM"<<endl;
@@ -30,14 +29,7 @@ int main()
             elegirVideojuego();
             break;
         case 2:
-            system("CLS");
-            setConsoleColor(14, 0);
-            cout<< "BUSCADOR: ";
-            setConsoleColor(8, 0);
-            cargarCadena(titJuego, 49);
-            buscarPorNombre(titJuego);
-            system("PAUSE");
-            break;
+            buscarVideojuego();
         default:
             break;
         }

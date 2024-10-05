@@ -8,6 +8,7 @@ void setConsoleColor(int textColor, int backgroundColor);
 
 ///FUNCIONES COMUNES
 void elegirVideojuego();
+void buscarVideojuego();
 void mostrarTitulo(const string &titulo);
 void listarVideojuegos();
 void caracteristicasVideojuego(int j);

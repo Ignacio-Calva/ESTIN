@@ -5,7 +5,8 @@ using namespace std;
 #include "clases.h"
 #include <windows.h>
 
-void elegirVideojuego(){
+void elegirVideojuego()
+{
     int numJuego;
     archivoVideoJuego archJuego("archivos/videoJuego.dat");
     int tam = archJuego.contarRegistros();
@@ -18,17 +19,33 @@ void elegirVideojuego(){
         setConsoleColor(8, 0);
         cout<<endl<<"INGRESE EL NUMERO DEL JUEGO DESEADO: ";
         cin>>numJuego;
-        if(numJuego >= 0){
-            if (numJuego == 0 ){break;}
+        if(numJuego >= 0)
+        {
+            if (numJuego == 0 )
+            {
+                break;
+            }
             else if (numJuego > tam)
-                {
-                    cout << "NUMERO DE JUEGO NO ENCONTRADO."<<endl;
-                    system("pause");
-                }
+            {
+                cout << "NUMERO DE JUEGO NO ENCONTRADO."<<endl;
+                system("pause");
+            }
         }
         caracteristicasVideojuego(numJuego);
         system("PAUSE");
     }
+}
+
+void buscarVideojuego()
+{
+    system("CLS");
+    char titJuego[50];
+    setConsoleColor(14, 0);
+    cout<< "BUSCADOR: ";
+    setConsoleColor(8, 0);
+    cargarCadena(titJuego, 49);
+    buscarPorNombre(titJuego);
+    system("PAUSE");
 }
 
 void setConsoleColor(int textColor, int backgroundColor)

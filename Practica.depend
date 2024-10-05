@@ -30,18 +30,29 @@
 1728069515 d:\facultad\tecnicatura programación\programación\estin\clases.h
 	"funciones.h"
 
-<<<<<<< HEAD
+1728078771 D
+
 1728091878 source:c:\users\user\desktop\estin-main\estin\funciones.cpp
-=======
-1728078771 source:c:\users\admin\documents\github\estin\funciones.cpp
->>>>>>> parent of 4d2d326 (Revert "SoluciÃ³n compilador")
+
+1728148644 source:c:\users\admin\documents\github\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
 	"clases.h"
 	<windows.h>
 
-<<<<<<< HEAD
+1728078783 ent of 4d2d326 (Revert "SoluciÃ³n compilador")
+	<iostream>
+	<cstring>
+	"funciones.h"
+	"clases.h"
+	<windows.h>
+	<iostream>
+	<string.h>
+	<windows.h>
+	"funciones.h"
+	"clases.h"
+
 1728091878 c:\users\user\desktop\estin-main\estin\funciones.h
 	<cstring>
 
@@ -49,15 +60,14 @@
 	"funciones.h"
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\valeam.cpp
-=======
-1728078773 c:\users\admin\documents\github\estin\funciones.h
+
+1728148698 c:\users\admin\documents\github\estin\funciones.h
 	<cstring>
 
-1728078769 c:\users\admin\documents\github\estin\clases.h
+1728082970 c:\users\admin\documents\github\estin\clases.h
 	"funciones.h"
 
-1728078783 source:c:\users\admin\documents\github\estin\valeam.cpp
->>>>>>> parent of 4d2d326 (Revert "SoluciÃ³n compilador")
+1728148662 source:c:\users\admin\documents\github\estin\valeam.cpp
 	<iostream>
 	<string.h>
 	<windows.h>

@@ -44,7 +44,10 @@ public:
         cout<< "Edad: " << "+" << restriccionEdad <<endl << endl;
     }
 
-    string getTitulo(){return titulo;}
+    string getTitulo()
+    {
+        return titulo;
+    }
 
 
 };
