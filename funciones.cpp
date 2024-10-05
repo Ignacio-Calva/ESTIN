@@ -3,6 +3,7 @@ using namespace std;
 #include <cstring>
 #include "funciones.h"
 #include "clases.h"
+#include "USUARIO.h"
 #include <windows.h>
 
 void elegirVideojuego()
@@ -61,7 +62,6 @@ void mostrarTitulo(const string &titulo)
     cout << "----- " << titulo << " -----" << endl;
     setConsoleColor(8, 0);
 }
-
 
 void listarVideojuegos()
 {
@@ -124,4 +124,72 @@ void cargarCadena(char *pal, int tam)
     }
     pal[i]='\0';
     fflush(stdin);
+}
+
+void grabarRegistroUsuario()
+{
+    usuario obj;
+    FILE *P;
+    obj.cargarDatos();
+    P = fopen("Usuario.dat", "ab");
+    fwrite(&obj, sizeof (videoJuego),1,P);
+    fclose(P);
+}
+
+void inicioSesion()
+{
+    archivoUsuario arcU("Usuario.dat");
+    usuario usu;
+
+    char nombre[30];
+    char contrasenia[20];
+
+    cout<<"Ingrese el nombre y la contraseña: " << endl;
+    cargarCadena(nombre, 29);
+    cout<<endl;
+    cargarCadena(contrasenia, 19);
+
+    int cantReg = arcU.contarRegistros();
+
+    for (int i = 0; i < cantReg; i++)
+    {
+        usu = arcU.leerRegistros(i);
+
+        if (usu.getNombre() == nombre && usu.getContrasenia() == contrasenia)
+        {
+            int opcion = 1;
+
+            while (opcion!=0)
+            {
+                system("CLS");
+                setConsoleColor(15, 1);
+                cout<<"VALEAM"<<endl;
+                setConsoleColor(8, 0);
+                cout<<"1 - Listar VideoJuegos"<<endl;
+                cout<<"2 - Buscar VideoJuego"<<endl;
+                cout<<"3 - Categorias"<<endl;
+                cout<<"4 - Biblioteca"<<endl;
+                cout<<"5 - Cuenta"<<endl;
+                cout<<"0 - cerrar"<<endl;
+                cin>>opcion;
+                switch (opcion)
+                {
+                case 1:
+                    elegirVideojuego();
+                    break;
+                case 2:
+                    buscarVideojuego();
+                    break;
+                case 4:
+
+                    break;
+
+                default:
+                    break;
+                }
+            }
+        }
+
+    }
+
 }

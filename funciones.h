@@ -14,7 +14,7 @@ void listarVideojuegos();
 void caracteristicasVideojuego(int j);
 void buscarPorNombre(const char *n);
 void cargarCadena(char *pal, int tam);
-
-
+void grabarRegistroUsuario();
+void inicioSesion();
 
 #endif // FUNCIONES_H_INCLUDED

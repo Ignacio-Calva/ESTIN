@@ -4,36 +4,38 @@
 using namespace std;
 #include "funciones.h"
 #include "clases.h"
-
+#include "USUARIO.h"
 
 int main()
 {
-    int opcion = 1;
 
-    while (opcion!=0)
+
+    int opcion1 = 1;
+
+    while (opcion1 != 0)
     {
         system("CLS");
-        setConsoleColor(15, 1);
-        cout<<"VALEAM"<<endl;
-        setConsoleColor(8, 0);
-        cout<<"1 - Listar VideoJuegos"<<endl;
-        cout<<"2 - Buscar VideoJuego"<<endl;
-        cout<<"3 - Categorias"<<endl;
-        cout<<"4 - Biblioteca"<<endl;
-        cout<<"5 - Cuenta"<<endl;
-        cout<<"0 - cerrar"<<endl;
-        cin>>opcion;
-        switch (opcion)
+        cout<<"VALEAM" << endl;
+        cout<<"1 - REGISTRARSE" << endl;
+        cout<<"2- INICIAR SESION" << endl;
+        cout<<"0 - SALIR" << endl;
+        cin>>opcion1;
+
+        switch (opcion1)
         {
         case 1:
-            elegirVideojuego();
+            grabarRegistroUsuario();
             break;
         case 2:
-            buscarVideojuego();
+            inicioSesion();
+            break;
+
         default:
             break;
         }
+
     }
+
 
     return 0;
 }
