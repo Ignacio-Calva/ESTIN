@@ -3,8 +3,9 @@
 #include <windows.h>
 using namespace std;
 #include "funciones.h"
-#include "clases.h"
+#include "VIDEOJUEGO.h"
 #include "USUARIO.h"
+#include "BIBLIOTECA.h"
 
 int main()
 {
@@ -17,7 +18,7 @@ int main()
         system("CLS");
         cout<<"VALEAM" << endl;
         cout<<"1 - REGISTRARSE" << endl;
-        cout<<"2- INICIAR SESION" << endl;
+        cout<<"2 - INICIAR SESION" << endl;
         cout<<"0 - SALIR" << endl;
         cin>>opcion1;
 

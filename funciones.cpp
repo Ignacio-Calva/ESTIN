@@ -2,7 +2,7 @@
 using namespace std;
 #include <cstring>
 #include "funciones.h"
-#include "clases.h"
+#include "VIDEOJUEGO.h"
 #include "USUARIO.h"
 #include <windows.h>
 
@@ -128,25 +128,30 @@ void cargarCadena(char *pal, int tam)
 
 void grabarRegistroUsuario()
 {
+//    usuario obj;
+//    FILE *P;
+//    obj.cargarDatos();
+//    P = fopen("Usuario.dat", "ab");
+//    fwrite(&obj, sizeof (videoJuego),1,P);
+//    fclose(P); ///COMENTE ESTA FUNCION PORQUE EL GRABAR UN REGISTRO SE USA DESDE EL METODO DE LA CLASE
+///BORRAR ESA PARTE COMENTADA (LA DEJE PARA QUE SE VEAN LOS CAMBIOS)
     usuario obj;
-    FILE *P;
+    archivoUsuario archivo("archivos/Usuario.dat");
     obj.cargarDatos();
-    P = fopen("Usuario.dat", "ab");
-    fwrite(&obj, sizeof (videoJuego),1,P);
-    fclose(P);
+    archivo.grabarRegistros(obj);
 }
 
 void inicioSesion()
 {
-    archivoUsuario arcU("Usuario.dat");
+    archivoUsuario arcU("archivos/Usuario.dat");
     usuario usu;
 
     char nombre[30];
     char contrasenia[20];
 
-    cout<<"Ingrese el nombre y la contraseña: " << endl;
+    cout<<"INGRESE EL NOMBRE DE USUARIO: " ;
     cargarCadena(nombre, 29);
-    cout<<endl;
+    cout << "INGRESE LA CONTRASENIA: " ;
     cargarCadena(contrasenia, 19);
 
     int cantReg = arcU.contarRegistros();
@@ -155,7 +160,7 @@ void inicioSesion()
     {
         usu = arcU.leerRegistros(i);
 
-        if (usu.getNombre() == nombre && usu.getContrasenia() == contrasenia)
+        if ( (strcmp(usu.getNombre(),nombre) == 0) && (strcmp(usu.getContrasenia(),contrasenia) == 0) ) ///SE USA STRCMP PARA COMPARAR CADENAS DE CARACTERES. SI SON IGUALES DEVUELVE 0
         {
             int opcion = 1;
 
@@ -188,6 +193,9 @@ void inicioSesion()
                     break;
                 }
             }
+        } else{
+            cout << "USUARIO O CONTRASENIA INCORRECTOS." << endl;
+            system("pause");
         }
 
     }

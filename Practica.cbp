@@ -31,6 +31,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="BIBLIOTECA.h" />
+		<Unit filename="TROFEO.h" />
 		<Unit filename="USUARIO.h" />
 		<Unit filename="VALEAM.cpp" />
 		<Unit filename="clases.h" />

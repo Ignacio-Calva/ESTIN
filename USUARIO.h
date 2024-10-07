@@ -12,8 +12,11 @@ private:
 public:
     void cargarDatos()
     {
+        cout << "INGRESE LA ID DEL USUARIO: ";
         cin>> ID_Usuario;
+        cout << "INGRESE EL NOMBRE DE USUARIO: ";
         cargarCadena(NombreUsuario, 29);
+        cout << "INGRESE LA CONTRASENIA DEL USUARIO: ";
         cargarCadena(Contrasenia, 19);
     }
 
@@ -29,8 +32,8 @@ public:
     void setContrasenia(const char *c){strcpy(Contrasenia, c);}
 
     int getID (){return ID_Usuario;}
-    string getNombre(){return NombreUsuario;}
-    string getContrasenia(){return Contrasenia;}
+    const char* getNombre(){return NombreUsuario;}
+    const char* getContrasenia(){return Contrasenia;}
 };
 
 class archivoUsuario
@@ -61,123 +64,29 @@ public:
     {
         FILE *P=fopen(nombre, "rb");
         if (P==NULL) return -1;
-
         fseek(P, 0, 2);
-        int cant=ftell(P)/sizeof(videoJuego);
+        int cant=ftell(P)/sizeof(usuario);
         fclose(P);
         return cant;
     }
 
-    bool grabarRegistros(videoJuego obj)
+    bool grabarRegistros(usuario obj)
     {
         FILE *P=fopen(nombre, "ab");
         if(P==NULL) return false;
-
         int info=fwrite(&obj, sizeof obj, 1, P);
         fclose(P);
         return info;
     }
-};
-class biblioteca
-{
-private:
-    int ID_Usuario;
-    int idVideojuego;
-    int idTrofeo;
-    int cantVideojuegos = 0;
-    float horasRegistradas;
-public:
-    void Cargar()
+
+    void borrarArchivo()
     {
-        cout << "INGRESE ID DE VIDEOJUEGO: " ;
-        cin >> idVideojuego ;
-        cout << "INGRESE ID DE TROFEO: " ;
-        cin >> idTrofeo ;
-        cout<< "INGRESE CANTIDAD DE VIDEOJUEGOS: ";
-        cin>> cantVideojuegos;
-        horasRegistradas = 0;
-        cout << "JUEGO CARGADO EN LA BIBLIOTECA CORRECTAMENTE. " << endl;
-    }
-    void Mostrar()
-    {
-        cout << "ID DE VIDEOJUEGO: " << idVideojuego << endl;
-        cout << "ID DE TROFEO: " << idTrofeo << endl;
-                cout<< "Videojuegos: " << cantVideojuegos << endl;
-        cout << "HORAS REGISTRADAS: " << horasRegistradas<< endl;
-    }
-    void setIdVideojuego(int id)
-    {
-        idVideojuego = id;
-    }
-    void setIdTrofeo(int id)
-    {
-        idTrofeo = id;
-    }
-    void setHorasRegistradas(float horas)
-    {
-        horasRegistradas = horas;
-    }
-    int getIdVideojuego()
-    {
-        return idVideojuego;
-    }
-    int getIdTrofeo()
-    {
-        return idTrofeo;
-    }
-    float getHorasRegistradas()
-    {
-        return horasRegistradas;
+        FILE *p = fopen(nombre, "wb");
+        if (p == nullptr) return;
+        fclose(p);
     }
 };
 
-class trofeo
-{
-private:
-    int idTrofeo;
-    char nombre[31];
-    char categoria[31];
-public:
-    void Cargar()
-    {
-        cout << "INGRESE LA ID DEL TROFEO: " ;
-        cin >> idTrofeo;
-        cout << "INGRESE EL NOMBRE DEL TROFEO: " ;
-        cargarCadena(nombre,30);
-        cout << "INGRESE LA CATEGORIA DEL TROFEO: " ;
-        cargarCadena(categoria,30);
-        cout << "TROFEO CARGADO EN JUEGO CORRECTAMENTE. " << endl;
-    }
-    void Mostrar()
-    {
-        cout << "ID DEL TROFEO: " << idTrofeo << endl;
-        cout << "NOMBRE DEL TROFEO: " << nombre << endl;
-        cout << "CATEGORIA: " << categoria << endl;
-    }
-    void setIdTrofeo(int id)
-    {
-        idTrofeo = id;
-    }
-    void setNombre(char* _nombre)
-    {
-        strcpy(nombre,_nombre);
-    }
-    void setCategoria(char* _cat)
-    {
-        strcpy(categoria,_cat);
-    }
-    int getIdTrofeo()
-    {
-        return idTrofeo;
-    }
-    char* getNombre()
-    {
-        return nombre;
-    }
-    char* getCategoria()
-    {
-        return categoria;
-    }
-};
+
 
 #endif // USUARIO_H_INCLUDED
