@@ -12,8 +12,6 @@ private:
 public:
     void cargarDatos()
     {
-        cout << "INGRESE LA ID DEL USUARIO: ";
-        cin>> ID_Usuario;
         cout << "INGRESE EL NOMBRE DE USUARIO: ";
         cargarCadena(NombreUsuario, 29);
         cout << "INGRESE LA CONTRASENIA DEL USUARIO: ";
@@ -85,6 +83,7 @@ public:
         if (p == nullptr) return;
         fclose(p);
     }
+
 };
 
 

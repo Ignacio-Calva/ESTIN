@@ -16,5 +16,7 @@ void buscarPorNombre(const char *n);
 void cargarCadena(char *pal, int tam);
 void grabarRegistroUsuario();
 void inicioSesion();
+void menuPrincipal();
+bool buscarNombre(const char* _nombre, int &posicion);
 
 #endif // FUNCIONES_H_INCLUDED

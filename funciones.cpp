@@ -135,9 +135,29 @@ void grabarRegistroUsuario()
 //    fwrite(&obj, sizeof (videoJuego),1,P);
 //    fclose(P); ///COMENTE ESTA FUNCION PORQUE EL GRABAR UN REGISTRO SE USA DESDE EL METODO DE LA CLASE
 ///BORRAR ESA PARTE COMENTADA (LA DEJE PARA QUE SE VEAN LOS CAMBIOS)
-    usuario obj;
+    usuario obj, objAux;
     archivoUsuario archivo("archivos/Usuario.dat");
+    bool existe ;
     obj.cargarDatos();
+    int tam=archivo.contarRegistros();
+    objAux = archivo.leerRegistros(tam-1); //CARGA LOS DATOS DEL ULTIMO REGISTRO
+    obj.setID(objAux.getID()+1); //AUTOMATICAMENTE ASIGNA COMO ID EL NUMERO SIGUIENTE
+    for (int i = 0 ; i < tam ; i++)
+    {
+        objAux = archivo.leerRegistros(i);
+        if (strcmp(obj.getNombre(),objAux.getNombre())!=0)
+        {
+            existe = false;
+        } else {existe = true;}
+    }
+    if (existe)
+    {
+        cout << "USUARIO EXISTENTE." << endl;
+        system("pause");
+        return;
+    }
+    cout << "ID DEL NUEVO USUARIO SETEADA COMO: " << obj.getID() << endl;
+    system("pause");
     archivo.grabarRegistros(obj);
 }
 
@@ -151,53 +171,78 @@ void inicioSesion()
 
     cout<<"INGRESE EL NOMBRE DE USUARIO: " ;
     cargarCadena(nombre, 29);
-    cout << "INGRESE LA CONTRASENIA: " ;
-    cargarCadena(contrasenia, 19);
+
 
     int cantReg = arcU.contarRegistros();
-
-    for (int i = 0; i < cantReg; i++)
+    int pos=0; ///USADA POR REFERENCIA PARA GUARDAR DONDE FUE ENCONTRADO EL NOMBRE EN LA FUNCION buscarNombre()
+    if (buscarNombre(nombre, pos))
     {
-        usu = arcU.leerRegistros(i);
-
-        if ( (strcmp(usu.getNombre(),nombre) == 0) && (strcmp(usu.getContrasenia(),contrasenia) == 0) ) ///SE USA STRCMP PARA COMPARAR CADENAS DE CARACTERES. SI SON IGUALES DEVUELVE 0
+        usu = arcU.leerRegistros(pos);
+        cout << "USUARIO CORRECTO." << endl;
+        cout << "INGRESE LA CONTRASENIA: " ;
+        cargarCadena(contrasenia, 19);
+        if (strcmp(usu.getContrasenia(),contrasenia) == 0){
+            cout << "SESION INICIADA CORRECTAMENTE." << endl;
+            system("pause");
+            system("cls");
+            menuPrincipal();
+        } else
         {
-            int opcion = 1;
-
-            while (opcion!=0)
-            {
-                system("CLS");
-                setConsoleColor(15, 1);
-                cout<<"VALEAM"<<endl;
-                setConsoleColor(8, 0);
-                cout<<"1 - Listar VideoJuegos"<<endl;
-                cout<<"2 - Buscar VideoJuego"<<endl;
-                cout<<"3 - Categorias"<<endl;
-                cout<<"4 - Biblioteca"<<endl;
-                cout<<"5 - Cuenta"<<endl;
-                cout<<"0 - cerrar"<<endl;
-                cin>>opcion;
-                switch (opcion)
-                {
-                case 1:
-                    elegirVideojuego();
-                    break;
-                case 2:
-                    buscarVideojuego();
-                    break;
-                case 4:
-
-                    break;
-
-                default:
-                    break;
-                }
-            }
-        } else{
-            cout << "USUARIO O CONTRASENIA INCORRECTOS." << endl;
+            cout << "CONTRASENIA INCORRECTA." << endl;
             system("pause");
         }
-
+    } else
+    {
+        cout << "NOMBRE DE USUARIO INCORRECTO." << endl;
+        system("pause");
     }
+}
 
+void menuPrincipal(){
+    int opcion = 1;
+    while (opcion!=0)
+    {
+        system("CLS");
+        setConsoleColor(15, 1);
+        cout<<"VALEAM"<<endl;
+        setConsoleColor(8, 0);
+        cout<<"1 - Listar VideoJuegos"<<endl;
+        cout<<"2 - Buscar VideoJuego"<<endl;
+        cout<<"3 - Categorias"<<endl;
+        cout<<"4 - Biblioteca"<<endl;
+        cout<<"5 - Cuenta"<<endl;
+        cout<<"0 - cerrar"<<endl;
+        cin>>opcion;
+        switch (opcion)
+        {
+        case 1:
+            elegirVideojuego();
+            break;
+        case 2:
+            buscarVideojuego();
+            break;
+        case 4:
+
+            break;
+
+        default:
+            break;
+        }
+    }
+}
+
+bool buscarNombre(const char *_nombre, int &posicion)
+{
+    archivoUsuario archivo("archivos/Usuario.dat");
+    usuario obj;
+    int tam = archivo.contarRegistros();
+    for (int i = 0 ; i < tam ; i++){
+        obj = archivo.leerRegistros(i);
+        if (strcmp(obj.getNombre(),_nombre) == 0)
+        {
+            posicion = i;
+            return true;
+        }
+    }
+    return false;
 }
