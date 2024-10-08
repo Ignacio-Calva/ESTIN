@@ -37,11 +37,11 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\funciones.cpp
 
-1728159185 source:c:\users\admin\documents\github\estin\funciones.cpp
+1728314754 source:c:\users\admin\documents\github\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
-	"clases.h"
+	"VIDEOJUEGO.h"
 	"USUARIO.h"
 	<windows.h>
 
@@ -65,21 +65,22 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\valeam.cpp
 
-1728158647 c:\users\admin\documents\github\estin\funciones.h
+1728314754 c:\users\admin\documents\github\estin\funciones.h
 	<cstring>
 
 1728148751 c:\users\admin\documents\github\estin\clases.h
 	"funciones.h"
 
-1728159311 source:c:\users\admin\documents\github\estin\valeam.cpp
+1728416608 source:c:\users\admin\documents\github\estin\valeam.cpp
 	<iostream>
 	<string.h>
 	<windows.h>
 	"funciones.h"
-	"clases.h"
+	"VIDEOJUEGO.h"
 	"USUARIO.h"
+	"BIBLIOTECA.h"
 
-1728158950 c:\users\admin\documents\github\estin\usuario.h
+1728417315 c:\users\admin\documents\github\estin\usuario.h
 	"funciones.h"
 
 1728313296 d:\facultad\tecnicatura programación\programación\estin\usuario.h
@@ -93,5 +94,11 @@
 
 1728313149 d:\facultad\tecnicatura programación\programación\estin\archivousuario.h
 	"USUARIO.h"
+	"funciones.h"
+
+1728314754 c:\users\admin\documents\github\estin\videojuego.h
+	"funciones.h"
+
+1728314754 c:\users\admin\documents\github\estin\biblioteca.h
 	"funciones.h"
 

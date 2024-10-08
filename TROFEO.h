@@ -51,4 +51,57 @@ public:
     }
 };
 
+class archivoTrofeo
+{
+private:
+       char nombre[30];
+public:
+    archivoTrofeo(const char *n)
+    {
+        strcpy(nombre, n);
+    }
+
+    trofeo leerRegistros(int pos)
+    {
+        trofeo obj;
+        FILE *P=fopen(nombre, "rb");
+        if (P==NULL)
+        {
+            return obj;
+        }
+        fseek(P, pos * sizeof obj, 0);
+        fread(&obj, sizeof obj, 1, P);
+        fclose(P);
+        return obj;
+    }
+
+    int contarRegistros()
+    {
+        FILE *P=fopen(nombre, "rb");
+        if (P==NULL) return -1;
+
+        fseek(P, 0, 2);
+        int cant=ftell(P)/sizeof(trofeo);
+        fclose(P);
+        return cant;
+    }
+
+    bool grabarRegistros(trofeo obj)
+    {
+        FILE *P=fopen(nombre, "ab");
+        if(P==NULL) return false;
+
+        int info=fwrite(&obj, sizeof obj, 1, P);
+        fclose(P);
+        return info;
+    }
+
+    void borrarArchivo()
+    {
+        FILE *p = fopen(nombre, "wb");
+        if (p == nullptr) return;
+        fclose(p);
+    }
+};
+
 #endif // TROFEO_H_INCLUDED
