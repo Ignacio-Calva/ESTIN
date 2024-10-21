@@ -9,7 +9,7 @@ using namespace std;
 
 int main()
 {
-
+  //LOL XD
 
     int opcion1 = 1;
 
