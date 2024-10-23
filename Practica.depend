@@ -7,7 +7,7 @@
 
 1728004313 c:\users\admin\desktop\practica\puntoh.h
 
-1728263613 source:d:\facultad\tecnicatura programación\programación\estin\valeam.cpp
+1729694790 source:d:\facultad\tecnicatura programación\programación\estin\valeam.cpp
 	<iostream>
 	<string.h>
 	<windows.h>
@@ -22,7 +22,7 @@
 1728310515 d:\facultad\tecnicatura programación\programación\estin\funciones.h
 	<cstring>
 
-1728310855 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
+1729694790 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -83,14 +83,15 @@
 1729650598 c:\users\admin\documents\github\estin\usuario.h
 	"funciones.h"
 
-1728313296 d:\facultad\tecnicatura programación\programación\estin\usuario.h
+1729697545 d:\facultad\tecnicatura programación\programación\estin\usuario.h
 	"funciones.h"
 
-1728263170 d:\facultad\tecnicatura programación\programación\estin\videojuego.h
+1729696353 d:\facultad\tecnicatura programación\programación\estin\videojuego.h
 	"funciones.h"
 
-1728265691 d:\facultad\tecnicatura programación\programación\estin\biblioteca.h
+1729697545 d:\facultad\tecnicatura programación\programación\estin\biblioteca.h
 	"funciones.h"
+	"FECHA.h"
 
 1728313149 d:\facultad\tecnicatura programación\programación\estin\archivousuario.h
 	"USUARIO.h"
