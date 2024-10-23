@@ -7,8 +7,6 @@ using namespace std;
 #include "USUARIO.h"
 #include "BIBLIOTECA.h"
 
-//VAL
-
 
 int main()
 {
