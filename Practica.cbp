@@ -34,9 +34,11 @@
 		<Unit filename="ArchivoUSUARIO.h" />
 		<Unit filename="BIBLIOTECA.h" />
 		<Unit filename="ClaseUSUARIO.h" />
+		<Unit filename="FECHA.h" />
 		<Unit filename="TROFEO.h" />
 		<Unit filename="USUARIO.h" />
 		<Unit filename="VALEAM.cpp" />
+		<Unit filename="VIDEOJUEGO.h" />
 		<Unit filename="clases.h" />
 		<Unit filename="funciones.cpp" />
 		<Unit filename="funciones.h" />
