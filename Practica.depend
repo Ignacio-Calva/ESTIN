@@ -7,6 +7,7 @@
 
 1728004313 c:\users\admin\desktop\practica\puntoh.h
 
+<<<<<<< Updated upstream
 1729694790 source:d:\facultad\tecnicatura programación\programación\estin\valeam.cpp
 	<iostream>
 	<string.h>
@@ -51,12 +52,16 @@
 	"funciones.h"
 	"clases.h"
 	<windows.h>
+=======
+1728069615 source:d:\facultad\tecnicatura programación\programación\estin\valeam.cpp
+>>>>>>> Stashed changes
 	<iostream>
 	<string.h>
 	<windows.h>
 	"funciones.h"
 	"clases.h"
 
+<<<<<<< Updated upstream
 1728091878 c:\users\user\desktop\estin-main\estin\funciones.h
 	<cstring>
 
@@ -72,6 +77,15 @@
 	"funciones.h"
 
 1729650598 source:c:\users\admin\documents\github\estin\valeam.cpp
+=======
+1728066782 d:\facultad\tecnicatura programación\programación\estin\puntoh.h
+	"funciones.h"
+
+1728069550 d:\facultad\tecnicatura programación\programación\estin\funciones.h
+	<cstring>
+
+1728069568 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
+>>>>>>> Stashed changes
 	<iostream>
 	<string.h>
 	<windows.h>
@@ -80,6 +94,7 @@
 	"USUARIO.h"
 	"BIBLIOTECA.h"
 
+<<<<<<< Updated upstream
 1729650598 c:\users\admin\documents\github\estin\usuario.h
 	"funciones.h"
 
@@ -101,5 +116,8 @@
 	"funciones.h"
 
 1729650403 c:\users\admin\documents\github\estin\biblioteca.h
+=======
+1728069614 d:\facultad\tecnicatura programación\programación\estin\clases.h
+>>>>>>> Stashed changes
 	"funciones.h"
 
