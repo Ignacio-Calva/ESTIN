@@ -9,6 +9,10 @@ class Fecha{
     Fecha();
     Fecha(int dia, int mes, int anio);
 
+    void mostrar()
+    {
+        cout << _dia << "/" << _mes << _anio << endl;
+    }
     int getDia();
     int getMes();
     int getAnio();

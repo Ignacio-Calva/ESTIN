@@ -51,16 +51,18 @@ class Biblioteca{
             cout << "IDS de Videojuegos comprados: " << endl;
             while (idVideojuego[i] != 0)
             {
-                cout << i+1 << ") " << idVideojuego[i] << ", Fecha de adquisicion: " << fechaCompra[i].mostrar() << endl;
+                cout << i+1 << ") " << idVideojuego[i] << ", Fecha de adquisicion: ";
+                fechaCompra[i].mostrar();
+                i++;
             }
         }
 
         void setIdUsuario(int _id){idUsuario = _id;}
-        void setIdVideojuego(int _id){idVideojuego = _id;}
-        void setFechaCompra(Fecha _fechaCompra){fechaCompra = _fechaCompra;}
+        void setIdVideojuego(int _id, int pos){idVideojuego[pos] = _id;}
+        void setFechaCompra(Fecha _fechaCompra, int pos){fechaCompra[pos] = _fechaCompra;}
         int getIdUsuario(){return idUsuario;}
-        int getIdVideojuego(){return idVideojuego;}
-        Fecha getFechaCompra(){return fechaCompra;}
+        int getIdVideojuego(int pos){return idVideojuego[pos];}
+        Fecha getFechaCompra(int pos){return fechaCompra[pos];}
 };
 
 class archivoBiblioteca{
@@ -69,13 +71,13 @@ class archivoBiblioteca{
     public:
         archivoBiblioteca(const char* _nombre){strcpy(nombre,_nombre);}
 
-        biblioteca leerBiblioteca(int pos)
+        Biblioteca leerBiblioteca(int pos)
         {
-            biblioteca obj;
+            Biblioteca obj;
             FILE *p = fopen (nombre, "rb");
             if (p == nullptr){return obj;}
-            fseek(p, pos * sizeof (biblioteca), 0);
-            fread(&obj, sizeof (biblioteca), 1, p);
+            fseek(p, pos * sizeof (Biblioteca), 0);
+            fread(&obj, sizeof (Biblioteca), 1, p);
             fclose(p);
             return obj;
         }
@@ -84,12 +86,12 @@ class archivoBiblioteca{
             FILE *P=fopen(nombre, "rb");
             if (P==NULL) return -1;
             fseek(P, 0, 2);
-            int cant=ftell(P)/sizeof(biblioteca);
+            int cant=ftell(P)/sizeof(Biblioteca);
             fclose(P);
             return cant;
         }
 
-        bool grabarRegistros(biblioteca obj)
+        bool grabarRegistros(Biblioteca obj)
         {
             FILE *P=fopen(nombre, "ab");
             if(P==NULL) return false;

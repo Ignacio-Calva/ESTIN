@@ -21,7 +21,6 @@ public:
         cargarCadena(genero, 29);
         cin>>precio;
         cin>>calificacion;
-        cargarCadena(modoDeJuego, 29);
         cargarCadena(idioma, 29);
         cargarCadena(desarrollador, 29);
         cin>>peso;
@@ -34,22 +33,21 @@ public:
         cout<< "Genero: " << genero <<endl;
         cout<< "Precio: " << "$" <<precio <<endl;
         cout<< "Calificacion: " << calificacion << "/100" <<endl;
-        cout<< "Modo de juego: " << modoDeJuego <<endl;
         cout<< "Idioma: " << idioma << endl;
         cout<< "Desarrolladora: " << desarrollador <<endl;
         cout<< "Almacenamiento requerido: " << peso << "GB" <<endl;
         cout<< "Edad: " << "+" << restriccionEdad <<endl << endl;
     }
 
-    void setTitulo(string _titulo){strcpy(titulo,_titulo);}
-    void setGenero(string _genero){strcpy(genero,_genero);}
+    void setTitulo(char* _titulo){strcpy(titulo,_titulo);}
+    void setGenero(char* _genero){strcpy(genero,_genero);}
     void setPrecio(int _precio){precio = _precio;}
     void setCalificacion(float _calificacion){calificacion = _calificacion;}
-    void setIdioma(string _idioma){strcpy(idioma,_idioma);}
-    void setDesarrollador(string _desarrollador){strcpy(desarrollador,_desarrollador);}
+    void setIdioma(char* _idioma){strcpy(idioma,_idioma);}
+    void setDesarrollador(char* _desarrollador){strcpy(desarrollador,_desarrollador);}
     void setPeso(int _peso){peso = _peso;}
     void setRestriccionEdad(int _restriccion){restriccionEdad = _restriccion;}
-    string getTitulo(){return titulo;}
+    char* getTitulo(){return titulo;}
 };
 
 class archivoVideoJuego
