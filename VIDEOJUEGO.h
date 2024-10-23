@@ -5,11 +5,11 @@
 class videoJuego
 {
 private:
-    char titulo[50];
+    int idVideojuego;
+    char titulo[30];
     char genero[30];
     int precio;
-    int calificacion;
-    char modoDeJuego [30];
+    float calificacion;
     char idioma[30];
     char desarrollador[30];
     int peso;
@@ -17,7 +17,7 @@ private:
 public:
     void cargar()
     {
-        cargarCadena(titulo, 49);
+        cargarCadena(titulo, 29);
         cargarCadena(genero, 29);
         cin>>precio;
         cin>>calificacion;
@@ -41,6 +41,14 @@ public:
         cout<< "Edad: " << "+" << restriccionEdad <<endl << endl;
     }
 
+    void setTitulo(string _titulo){strcpy(titulo,_titulo);}
+    void setGenero(string _genero){strcpy(genero,_genero);}
+    void setPrecio(int _precio){precio = _precio;}
+    void setCalificacion(float _calificacion){calificacion = _calificacion;}
+    void setIdioma(string _idioma){strcpy(idioma,_idioma);}
+    void setDesarrollador(string _desarrollador){strcpy(desarrollador,_desarrollador);}
+    void setPeso(int _peso){peso = _peso;}
+    void setRestriccionEdad(int _restriccion){restriccionEdad = _restriccion;}
     string getTitulo(){return titulo;}
 };
 
