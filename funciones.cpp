@@ -22,10 +22,7 @@ void elegirVideojuego()
         cin>>numJuego;
         if(numJuego >= 0)
         {
-            if (numJuego == 0 )
-            {
-                break;
-            }
+            if (numJuego == 0 ){break;}
             else if (numJuego > tam)
             {
                 cout << "NUMERO DE JUEGO NO ENCONTRADO."<<endl;
@@ -88,7 +85,6 @@ void caracteristicasVideojuego(int j)
     game.mostrar();
     setConsoleColor(8, 0);
     return;
-
 }
 
 void buscarPorNombre(const char *n)
@@ -128,13 +124,6 @@ void cargarCadena(char *pal, int tam)
 
 void grabarRegistroUsuario()
 {
-//    usuario obj;
-//    FILE *P;
-//    obj.cargarDatos();
-//    P = fopen("Usuario.dat", "ab");
-//    fwrite(&obj, sizeof (videoJuego),1,P);
-//    fclose(P); ///COMENTE ESTA FUNCION PORQUE EL GRABAR UN REGISTRO SE USA DESDE EL METODO DE LA CLASE
-///BORRAR ESA PARTE COMENTADA (LA DEJE PARA QUE SE VEAN LOS CAMBIOS)
     usuario obj, objAux;
     archivoUsuario archivo("archivos/Usuario.dat");
     bool existe ;
@@ -145,10 +134,8 @@ void grabarRegistroUsuario()
     for (int i = 0 ; i < tam ; i++)
     {
         objAux = archivo.leerRegistros(i);
-        if (strcmp(obj.getNombre(),objAux.getNombre())!=0)
-        {
-            existe = false;
-        } else {existe = true;}
+        if (strcmp(obj.getNombre(),objAux.getNombre())!=0){existe = false;}
+        else{existe = true;}
     }
     if (existe)
     {
@@ -172,7 +159,6 @@ void inicioSesion()
     cout<<"INGRESE EL NOMBRE DE USUARIO: " ;
     cargarCadena(nombre, 29);
 
-
     int cantReg = arcU.contarRegistros();
     int pos=0; ///USADA POR REFERENCIA PARA GUARDAR DONDE FUE ENCONTRADO EL NOMBRE EN LA FUNCION buscarNombre()
     if (buscarNombre(nombre, pos))
@@ -181,24 +167,28 @@ void inicioSesion()
         cout << "USUARIO CORRECTO." << endl;
         cout << "INGRESE LA CONTRASENIA: " ;
         cargarCadena(contrasenia, 19);
-        if (strcmp(usu.getContrasenia(),contrasenia) == 0){
+        if (strcmp(usu.getContrasenia(),contrasenia) == 0)
+        {
             cout << "SESION INICIADA CORRECTAMENTE." << endl;
             system("pause");
             system("cls");
             menuPrincipal();
-        } else
+        }
+        else
         {
             cout << "CONTRASENIA INCORRECTA." << endl;
             system("pause");
         }
-    } else
+    }
+    else
     {
         cout << "NOMBRE DE USUARIO INCORRECTO." << endl;
         system("pause");
     }
 }
 
-void menuPrincipal(){
+void menuPrincipal()
+{
     int opcion = 1;
     while (opcion!=0)
     {
@@ -215,17 +205,13 @@ void menuPrincipal(){
         cin>>opcion;
         switch (opcion)
         {
-        case 1:
-            elegirVideojuego();
-            break;
-        case 2:
-            buscarVideojuego();
-            break;
-        case 4:
-
-            break;
-
+        case 1: elegirVideojuego(); break;
+        case 2: buscarVideojuego(); break;
+        case 4:   break;
+        case 5:   break;
         default:
+            cout<< "Opcion invalida." << endl;
+            system("PAUSE");
             break;
         }
     }
@@ -236,7 +222,8 @@ bool buscarNombre(const char *_nombre, int &posicion)
     archivoUsuario archivo("archivos/Usuario.dat");
     usuario obj;
     int tam = archivo.contarRegistros();
-    for (int i = 0 ; i < tam ; i++){
+    for (int i = 0 ; i < tam ; i++)
+    {
         obj = archivo.leerRegistros(i);
         if (strcmp(obj.getNombre(),_nombre) == 0)
         {

@@ -39,19 +39,13 @@ class archivoUsuario
 private:
     char nombre[30];
 public:
-    archivoUsuario(const char *n)
-    {
-        strcpy(nombre, n);
-    }
+    archivoUsuario(const char *n){strcpy(nombre, n);}
 
     usuario leerRegistros(int pos)
     {
         usuario obj;
         FILE *P=fopen(nombre, "rb");
-        if (P==NULL)
-        {
-            return obj;
-        }
+        if (P==NULL)return obj;
         fseek(P, pos * sizeof obj, 0);
         fread(&obj, sizeof obj, 1, P);
         fclose(P);
@@ -83,9 +77,6 @@ public:
         if (p == nullptr) return;
         fclose(p);
     }
-
 };
-
-
 
 #endif // USUARIO_H_INCLUDED

@@ -2,9 +2,6 @@
 #define PUNTOH_H_INCLUDED
 #include "funciones.h"
 
-
-
-
 class videoJuego
 {
 private:
@@ -35,7 +32,7 @@ public:
     {
         cout<< "- " << titulo << " -" <<endl;
         cout<< "Genero: " << genero <<endl;
-        cout<< "PRECIO (SOL PERUANO): " << "$" <<precio <<endl;
+        cout<< "Precio: " << "$" <<precio <<endl;
         cout<< "Calificacion: " << calificacion << "/100" <<endl;
         cout<< "Modo de juego: " << modoDeJuego <<endl;
         cout<< "Idioma: " << idioma << endl;
@@ -44,12 +41,7 @@ public:
         cout<< "Edad: " << "+" << restriccionEdad <<endl << endl;
     }
 
-    string getTitulo()
-    {
-        return titulo;
-    }
-
-
+    string getTitulo(){return titulo;}
 };
 
 class archivoVideoJuego
@@ -57,10 +49,7 @@ class archivoVideoJuego
 private:
     char nombre[30];
 public:
-    archivoVideoJuego(const char *n)
-    {
-        strcpy(nombre, n);
-    }
+    archivoVideoJuego(const char *n){strcpy(nombre, n);}
 
     videoJuego leerRegistros(int pos)
     {
@@ -104,10 +93,5 @@ public:
         fclose(p);
     }
 };
-
-
-
-
-
 
 #endif // PUNTOH_H_INCLUDED

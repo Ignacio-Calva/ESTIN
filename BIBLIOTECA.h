@@ -29,40 +29,20 @@ public:
         cout<< "VIDEOJUEGOS: " << cantVideojuegos << endl;
         cout << "HORAS REGISTRADAS: " << horasRegistradas<< endl;
     }
-    void setIdVideojuego(int id)
-    {
-        idVideojuego = id;
-    }
-    void setIdTrofeo(int id)
-    {
-        idTrofeo = id;
-    }
-    void setHorasRegistradas(float horas)
-    {
-        horasRegistradas = horas;
-    }
-    int getIdVideojuego()
-    {
-        return idVideojuego;
-    }
-    int getIdTrofeo()
-    {
-        return idTrofeo;
-    }
-    float getHorasRegistradas()
-    {
-        return horasRegistradas;
-    }
+    void setIdVideojuego(int id){idVideojuego = id;}
+    void setIdTrofeo(int id){idTrofeo = id;}
+    void setHorasRegistradas(float horas){horasRegistradas = horas;}
+
+    int getIdVideojuego(){return idVideojuego;}
+    int getIdTrofeo(){return idTrofeo;}
+    float getHorasRegistradas(){return horasRegistradas;}
 };
 
 class archivoBiblioteca{
     private:
         char nombre[50];
     public:
-        archivoBiblioteca(const char* _nombre)
-        {
-            strcpy(nombre,_nombre);
-        }
+        archivoBiblioteca(const char* _nombre){strcpy(nombre,_nombre);}
 
         biblioteca leerBiblioteca(int pos)
         {
