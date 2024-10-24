@@ -17,13 +17,21 @@ private:
 public:
     void cargar()
     {
+        cout<<"Nombre: ";
         cargarCadena(titulo, 29);
+        cout<<"Genero: ";
         cargarCadena(genero, 29);
+        cout<<"Precio: ";
         cin>>precio;
+        cout<<"Calificacion: ";
         cin>>calificacion;
+        cout<<"Idioma: ";
         cargarCadena(idioma, 29);
+        cout<<"Desarroladora: ";
         cargarCadena(desarrollador, 29);
+        cout<<"Peso en GB: ";
         cin>>peso;
+        cout<<"Restriccion de edad: ";
         cin>>restriccionEdad;
     }
 

@@ -210,7 +210,8 @@ void menuPrincipal()
         case 1: elegirVideojuego(); break;
         case 2: buscarVideojuego(); break;
         case 4:   break;
-        case 5:  infoCuenta(); break; //AGREGO LA FUNCION AL MENU
+        case 5: infoCuenta(); break; //AGREGO LA FUNCION AL MENU
+        case 0: break;
         default:
             cout<< "Opcion invalida." << endl;
             system("PAUSE");
@@ -243,7 +244,7 @@ void infoCuenta() //nueva funcion
                    switch (opcion)
                    {
                    case 1: cout<<"PROXIMAMENTE" << endl; system("PAUSE"); break;
-                   case 0: system("CLS"); cout<<"Saliendo" << endl; system("PAUSE"); break;
+                   case 0: break;
                    default: system("CLS"); cout<<"Opcion invalida" <<endl;
                        break;
                    }
