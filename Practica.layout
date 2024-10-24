@@ -2,37 +2,35 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="VIDEOJUEGO.h" open="1" top="1" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="funciones.cpp" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1655" topLine="29" />
-		</Cursor>
-	</File>
-	<File name="funciones.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3209" topLine="30" />
+			<Cursor1 position="6296" topLine="98" />
 		</Cursor>
 		<Folding>
-			<Collapse line="9" />
-			<Collapse line="37" />
-			<Collapse line="49" />
-			<Collapse line="56" />
-			<Collapse line="63" />
-			<Collapse line="78" />
-			<Collapse line="90" />
-			<Collapse line="112" />
-			<Collapse line="151" />
-			<Collapse line="190" />
-			<Collapse line="220" />
+			<Collapse line="11" />
+			<Collapse line="39" />
+			<Collapse line="51" />
+			<Collapse line="58" />
+			<Collapse line="65" />
+			<Collapse line="80" />
+			<Collapse line="92" />
+			<Collapse line="114" />
+			<Collapse line="127" />
 		</Folding>
 	</File>
 	<File name="VALEAM.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="668" topLine="6" />
+			<Cursor1 position="668" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="TROFEO.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="USUARIO.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1089" topLine="3" />
+			<Cursor1 position="575" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="funciones.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="549" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="clases.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -44,14 +42,24 @@
 			<Collapse line="55" />
 		</Folding>
 	</File>
-	<File name="funciones.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="VIDEOJUEGO.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="569" topLine="0" />
+			<Cursor1 position="1655" topLine="29" />
 		</Cursor>
 	</File>
-	<File name="USUARIO.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="TROFEO.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="123" topLine="0" />
+			<Cursor1 position="1089" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="FECHA.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="390" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="BIBLIOTECA.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3379" topLine="68" />
 		</Cursor>
 	</File>
 	<File name="puntoH.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -63,16 +71,6 @@
 			<Collapse line="99" />
 			<Collapse line="107" />
 		</Folding>
-	</File>
-	<File name="FECHA.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="390" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="BIBLIOTECA.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3379" topLine="69" />
-		</Cursor>
 	</File>
 	<Target name="Debug" top="clases.h">
 		<File name="VALEAM.cpp" />

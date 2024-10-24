@@ -6,6 +6,8 @@ using namespace std;
 #include "USUARIO.h"
 #include <windows.h>
 
+int idIniciada; //declaro variable global (WENNER DIJO QUE SE PUEDE, NO MUCHO, PERO UNA O DOS VECES SES)
+
 void elegirVideojuego()
 {
     int numJuego;
@@ -159,7 +161,6 @@ void inicioSesion()
     cout<<"INGRESE EL NOMBRE DE USUARIO: " ;
     cargarCadena(nombre, 29);
 
-    int cantReg = arcU.contarRegistros();
     int pos=0; ///USADA POR REFERENCIA PARA GUARDAR DONDE FUE ENCONTRADO EL NOMBRE EN LA FUNCION buscarNombre()
     if (buscarNombre(nombre, pos))
     {
@@ -169,6 +170,7 @@ void inicioSesion()
         cargarCadena(contrasenia, 19);
         if (strcmp(usu.getContrasenia(),contrasenia) == 0)
         {
+            idIniciada = usu.getID(); //asignar ID iniciada
             cout << "SESION INICIADA CORRECTAMENTE." << endl;
             system("pause");
             system("cls");
@@ -208,13 +210,46 @@ void menuPrincipal()
         case 1: elegirVideojuego(); break;
         case 2: buscarVideojuego(); break;
         case 4:   break;
-        case 5:   break;
+        case 5:  infoCuenta(); break; //AGREGO LA FUNCION AL MENU
         default:
             cout<< "Opcion invalida." << endl;
             system("PAUSE");
             break;
         }
     }
+}
+
+void infoCuenta() //nueva funcion
+{
+    int opcion = 1;
+
+    usuario usu;
+    archivoUsuario arcU("archivos/Usuario.dat");
+
+    int cantReg = arcU.contarRegistros();
+
+    for (int i = 0; i < cantReg; i++)
+        {
+            usu = arcU.leerRegistros(i);
+            if (usu.getID() == idIniciada)
+                {
+                   while (opcion != 0){
+                   system("CLS");
+                   usu.mostrarDatos();
+
+                   cout<<"1 - ELIMINAR CUENTA!"<<endl;
+                   cout<<"0 - Salir"<<endl;
+                   cin>>opcion;
+                   switch (opcion)
+                   {
+                   case 1: cout<<"PROXIMAMENTE" << endl; system("PAUSE"); break;
+                   case 0: system("CLS"); cout<<"Saliendo" << endl; system("PAUSE"); break;
+                   default: system("CLS"); cout<<"Opcion invalida" <<endl;
+                       break;
+                   }
+                   }
+                }
+        }
 }
 
 bool buscarNombre(const char *_nombre, int &posicion)

@@ -22,7 +22,6 @@ public:
     {
         cout<< "Nombre usuario: " << NombreUsuario << endl;
         cout<< "ID: " << ID_Usuario << endl;
-        cout<<"Contrasenia: " << Contrasenia << endl;
     }
 
     void setID(int id){ID_Usuario=id;}
