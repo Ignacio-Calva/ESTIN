@@ -28,4 +28,7 @@ int main()
     return 0;
 }
 
-//Una cuenta es... Nombre: Chorizo, Contraseña: lol
+/*Cuentas... Nombre: Chorizo, Contraseña: lol
+             Nombre: cande, Contraseña: cande
+             Nombre: nacho, Contraseña: nacho
+             Nombre: valen, Contraseña: valen*/

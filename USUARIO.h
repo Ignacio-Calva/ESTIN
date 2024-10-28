@@ -13,6 +13,7 @@ private:
     char Mail[30] = {};
     int IDPais;
     bool admin = false;
+    bool activo = true;
 public:
     void cargarDatos() //expandí los métodos y añadí SETTERS y GETTERS con las nuevas variables
     {
