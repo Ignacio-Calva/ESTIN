@@ -158,3 +158,36 @@
 1729969264 c:\users\user\desktop\estin\fecha.h
 	<string>
 
+1730146952 source:c:\users\user\desktop\facultad\estin-main\estin\funciones.cpp
+	<iostream>
+	<cstring>
+	"funciones.h"
+	"VIDEOJUEGO.h"
+	"USUARIO.h"
+	<windows.h>
+
+1730145164 c:\users\user\desktop\facultad\estin-main\estin\funciones.h
+	<cstring>
+
+1730145164 c:\users\user\desktop\facultad\estin-main\estin\videojuego.h
+	"funciones.h"
+
+1730145164 c:\users\user\desktop\facultad\estin-main\estin\usuario.h
+	"funciones.h"
+
+1729706531 source:c:\users\user\desktop\facultad\estin-main\estin\valeam.cpp
+	<iostream>
+	<string.h>
+	<windows.h>
+	"funciones.h"
+	"VIDEOJUEGO.h"
+	"USUARIO.h"
+	"BIBLIOTECA.h"
+
+1730145164 c:\users\user\desktop\facultad\estin-main\estin\biblioteca.h
+	"funciones.h"
+	"FECHA.h"
+
+1730145164 c:\users\user\desktop\facultad\estin-main\estin\fecha.h
+	<string>
+

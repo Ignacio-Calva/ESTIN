@@ -211,11 +211,9 @@ void menuPrincipal()
         case 2: buscarVideojuego(); break;
         case 4:   break;
         case 5: infoCuenta(); break; //AGREGO LA FUNCION AL MENU
-        case 0: break;
-        default:
-            cout<< "Opcion invalida." << endl;
-            system("PAUSE");
-            break;
+        case 0: ;break;
+        default: cout<< "Opcion invalida."; break;
+
         }
     }
 }
@@ -238,7 +236,6 @@ while(opcion != 0){
     {
     case 1: elegirVideojuego(); break;
     case 2: listarPorGenero(); break;
-    case 0: menuPrincipal(); break;
     default: cout<< "Opcion invalida."; break;
     }
   }
@@ -296,19 +293,19 @@ bool buscarNombre(const char *_nombre, int &posicion)
 
 void listarPorGenero() //nueva funcion xdddddd (todavia esta en proceso)
 {
+    system("CLS");
     archivoVideoJuego arcV ("archivos/videojuego.dat");
     videoJuego game;
     char genero[30];
-
     cout<<"INGRESE EL GENERO QUE DESEA BUSCAR"<<endl;
     cargarCadena(genero, 29);
-
     int cantReg =arcV.contarRegistros();
-
-    for (int i = 0; i< cantReg ; i++ ){
+    system("CLS");
+    cout<<"FILTRO: "<< genero <<endl;
+    for (int i = 0; i< cantReg ; i++ )
+    {
     game = arcV.leerRegistros(i);
     if(strcmp(game.getGenero(), genero) == 0){ cout<< i+1<< " - "<< game.getTitulo() <<endl; }
     }
     system("PAUSE");
   }
-
