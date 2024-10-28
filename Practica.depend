@@ -40,7 +40,7 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\funciones.cpp
 
-1729790387 source:c:\users\admin\documents\github\estin\funciones.cpp
+1730135650 source:c:\users\admin\documents\github\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -80,13 +80,13 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\valeam.cpp
 
-1729736164 c:\users\admin\documents\github\estin\funciones.h
+1730133467 c:\users\admin\documents\github\estin\funciones.h
 	<cstring>
 
 1728148751 c:\users\admin\documents\github\estin\clases.h
 	"funciones.h"
 
-1729790605 source:c:\users\admin\documents\github\estin\valeam.cpp
+1729790887 source:c:\users\admin\documents\github\estin\valeam.cpp
 	<iostream>
 	<string.h>
 	<windows.h>
@@ -112,7 +112,7 @@
 	"USUARIO.h"
 	"funciones.h"
 
-1729790887 c:\users\admin\documents\github\estin\videojuego.h
+1730133467 c:\users\admin\documents\github\estin\videojuego.h
 	"funciones.h"
 
 1729701420 c:\users\admin\documents\github\estin\biblioteca.h

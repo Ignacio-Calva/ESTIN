@@ -232,20 +232,16 @@ while(opcion != 0){
     cout<<"ELEGIR FITROS" <<endl;
     cout<< "2- Listar por genero"<<endl;
     cout<< "3- Proximamente"<<endl;
-
     cout<< "0- ATRAS"<<endl;
     cin>> opcion;
-
     switch (opcion)
     {
     case 1: elegirVideojuego(); break;
     case 2: listarPorGenero(); break;
     case 0: menuPrincipal(); break;
-
     default: cout<< "Opcion invalida."; break;
     }
-    system("PAUSE");
-}
+  }
 }
 
 void infoCuenta() //nueva funcion
@@ -280,6 +276,7 @@ void infoCuenta() //nueva funcion
                 }
         }
 }
+
 bool buscarNombre(const char *_nombre, int &posicion)
 {
     archivoUsuario archivo("archivos/Usuario.dat");
@@ -304,18 +301,14 @@ void listarPorGenero() //nueva funcion xdddddd (todavia esta en proceso)
     char genero[30];
 
     cout<<"INGRESE EL GENERO QUE DESEA BUSCAR"<<endl;
-    cin>> genero;
+    cargarCadena(genero, 29);
 
     int cantReg =arcV.contarRegistros();
 
     for (int i = 0; i< cantReg ; i++ ){
     game = arcV.leerRegistros(i);
-    if(strcmp(game.getGenero(), genero)== 1){ cout<< i+1<< "-"<< game.getTitulo() <<endl; }
-    else
-    {
-    cout<<"GENERO NO ENCONTRADO"<<endl;
-    system("PAUSE");
+    if(strcmp(game.getGenero(), genero) == 0){ cout<< i+1<< " - "<< game.getTitulo() <<endl; }
     }
-
+    system("PAUSE");
   }
-}
+
