@@ -207,7 +207,7 @@ void menuPrincipal()
         cin>>opcion;
         switch (opcion)
         {
-        case 1: elegirVideojuego(); break;
+        case 1: menuFiltro(); break;
         case 2: buscarVideojuego(); break;
         case 4:   break;
         case 5: infoCuenta(); break; //AGREGO LA FUNCION AL MENU
@@ -218,6 +218,34 @@ void menuPrincipal()
             break;
         }
     }
+}
+
+void menuFiltro(){
+int opcion = 1;
+while(opcion != 0){
+
+    system("CLS");
+    setConsoleColor(8, 0);
+    cout<<"Listar videojuegos"<<endl;
+    cout<<"-----------------------------------------"<<endl;
+    cout<<"1- Listar todos los videojuegos"<<endl;
+    cout<<"ELEGIR FITROS" <<endl;
+    cout<< "2- Listar por genero"<<endl;
+    cout<< "3- Proximamente"<<endl;
+
+    cout<< "0- ATRAS"<<endl;
+    cin>> opcion;
+
+    switch (opcion)
+    {
+    case 1: elegirVideojuego(); break;
+    case 2: listarPorGenero(); break;
+    case 0: menuPrincipal(); break;
+
+    default: cout<< "Opcion invalida."; break;
+    }
+    system("PAUSE");
+}
 }
 
 void infoCuenta() //nueva funcion
@@ -252,7 +280,6 @@ void infoCuenta() //nueva funcion
                 }
         }
 }
-
 bool buscarNombre(const char *_nombre, int &posicion)
 {
     archivoUsuario archivo("archivos/Usuario.dat");
@@ -268,4 +295,27 @@ bool buscarNombre(const char *_nombre, int &posicion)
         }
     }
     return false;
+}
+
+void listarPorGenero() //nueva funcion xdddddd (todavia esta en proceso)
+{
+    archivoVideoJuego arcV ("archivos/videojuego.dat");
+    videoJuego game;
+    char genero[30];
+
+    cout<<"INGRESE EL GENERO QUE DESEA BUSCAR"<<endl;
+    cin>> genero;
+
+    int cantReg =arcV.contarRegistros();
+
+    for (int i = 0; i< cantReg ; i++ ){
+    game = arcV.leerRegistros(i);
+    if(strcmp(game.getGenero(), genero)== 1){ cout<< i+1<< "-"<< game.getTitulo() <<endl; }
+    else
+    {
+    cout<<"GENERO NO ENCONTRADO"<<endl;
+    system("PAUSE");
+    }
+
+  }
 }

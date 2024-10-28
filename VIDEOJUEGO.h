@@ -56,6 +56,7 @@ public:
     void setPeso(int _peso){peso = _peso;}
     void setRestriccionEdad(int _restriccion){restriccionEdad = _restriccion;}
     char* getTitulo(){return titulo;}
+    char* getGenero(){return genero;}
 };
 
 class archivoVideoJuego
