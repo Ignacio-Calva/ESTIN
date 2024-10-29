@@ -344,7 +344,7 @@ void listarPorCreador() {
     }
     system("PAUSE");
     if (contgame == 0) {
-        cout << "no hay juegos con esa desarrolladora :(" << endl;
+        cout << "No hay juegos con esa desarrolladora :(" << endl;
     }
 }
 
