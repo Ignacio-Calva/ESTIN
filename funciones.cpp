@@ -240,13 +240,14 @@ while(opcion != 0){
     cout<<"1- Listar todos los videojuegos"<<endl;
     cout<<"ELEGIR FITROS" <<endl;
     cout<< "2- Listar por genero"<<endl;
-    cout<< "3- Proximamente"<<endl;
+    cout<< "3- Listar por creador"<<endl;
     cout<< "0- ATRAS"<<endl;
     cin>> opcion;
     switch (opcion)
     {
     case 1: elegirVideojuego(); break;
     case 2: listarPorGenero(); break;
+    case 3: listarPorCreador();break;
     default: cout<< "Opcion invalida."; break;
     }
   }
@@ -320,6 +321,32 @@ void listarPorGenero() //nueva funcion xdddddd (todavia esta en proceso)
     }
     system("PAUSE");
   }
+
+void listarPorCreador() {
+    system("CLS");
+    archivoVideoJuego arcV("archivos/videojuego.dat");
+    videoJuego game;
+    int tam = arcV.contarRegistros();
+    char desarrolladora[30];
+    int contgame = 0;
+
+    cout << "Ingrese la desarrolladora a buscar: ";
+    cargarCadena(desarrolladora, 29);
+    system("CLS");
+    cout << "Filtro aplicado: " << desarrolladora << endl;
+
+    for (int i = 0; i < tam; i++) {
+        game = arcV.leerRegistros(i);
+        if (strcmp(game.getDesarrollador(), desarrolladora) == 0) {
+            cout << i + 1 << " - " << game.getTitulo() << endl;
+            contgame++;
+        }
+    }
+    system("PAUSE");
+    if (contgame == 0) {
+        cout << "no hay juegos con esa desarrolladora :(" << endl;
+    }
+}
 
 int datosUsuarioIniciado()
 {

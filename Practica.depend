@@ -133,16 +133,16 @@
 	"USUARIO.h"
 	<windows.h>
 
-1730085741 c:\users\user\desktop\estin\funciones.h
+1730236379 c:\users\user\desktop\estin\funciones.h
 	<cstring>
 
-1730082756 c:\users\user\desktop\estin\videojuego.h
+1730235905 c:\users\user\desktop\estin\videojuego.h
 	"funciones.h"
 
-1729969264 c:\users\user\desktop\estin\usuario.h
+1730235905 c:\users\user\desktop\estin\usuario.h
 	"funciones.h"
 
-1729969264 source:c:\users\user\desktop\estin\valeam.cpp
+1730210729 source:c:\users\user\desktop\estin\valeam.cpp
 	<iostream>
 	<string.h>
 	<windows.h>

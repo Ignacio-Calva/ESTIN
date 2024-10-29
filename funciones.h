@@ -20,6 +20,7 @@ void menuPrincipal();
 void listarPorGenero();
 void menuFiltro();
 void infoCuenta(); //nueva funcion
+void listarPorCreador();
 bool buscarNombre(const char* _nombre, int &posicion);
 int datosUsuarioIniciado();
 
