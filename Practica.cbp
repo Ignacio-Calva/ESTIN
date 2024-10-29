@@ -31,10 +31,12 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="ADMIN.h" />
 		<Unit filename="ArchivoUSUARIO.h" />
 		<Unit filename="BIBLIOTECA.h" />
 		<Unit filename="ClaseUSUARIO.h" />
 		<Unit filename="FECHA.h" />
+		<Unit filename="PERSONA.h" />
 		<Unit filename="TROFEO.h" />
 		<Unit filename="USUARIO.h" />
 		<Unit filename="VALEAM.cpp" />
