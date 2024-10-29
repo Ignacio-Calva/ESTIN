@@ -104,5 +104,4 @@ public:
         fclose(p);
     }
 };
-
 #endif // USUARIO_H_INCLUDED

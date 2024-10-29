@@ -66,14 +66,24 @@ void listarVideojuegos()
 {
     archivoVideoJuego arcV("archivos/videoJuego.dat");
     videoJuego game;
+
+    usuario usu;
+    archivoUsuario arcU("archivos/Usuario.dat");
+
+    usu = arcU.leerRegistros(datosUsuarioIniciado());
+
     int cantReg = arcV.contarRegistros();
     setConsoleColor(11, 0);
     cout<<"VideoJuegos: " << endl << endl;
     for (int i = 0; i < cantReg; i++)
     {
         game = arcV.leerRegistros(i);
-        setConsoleColor(15, 0);
-        cout<< i+1 << " - " << game.getTitulo() << endl;
+
+        if (usu.getEdad() >= game.getRestriccion())
+        {
+            setConsoleColor(15, 0);
+            cout<< i+1 << " - " << game.getTitulo() << endl;
+        }
     }
 }
 
@@ -218,7 +228,8 @@ void menuPrincipal()
     }
 }
 
-void menuFiltro(){
+void menuFiltro()
+{
 int opcion = 1;
 while(opcion != 0){
 
@@ -309,3 +320,20 @@ void listarPorGenero() //nueva funcion xdddddd (todavia esta en proceso)
     }
     system("PAUSE");
   }
+
+int datosUsuarioIniciado()
+{
+    usuario usu;
+    archivoUsuario arcU("archivos/Usuario.dat");
+
+    int cantReg = arcU.contarRegistros();
+
+    for (int i = 0; i < cantReg; i++)
+    {
+        usu = arcU.leerRegistros(i);
+        if (usu.getID() == idIniciada)
+        {
+            return i;
+        }
+    }
+}

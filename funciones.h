@@ -21,5 +21,6 @@ void listarPorGenero();
 void menuFiltro();
 void infoCuenta(); //nueva funcion
 bool buscarNombre(const char* _nombre, int &posicion);
+int datosUsuarioIniciado();
 
 #endif // FUNCIONES_H_INCLUDED

@@ -57,6 +57,12 @@ public:
     void setRestriccionEdad(int _restriccion){restriccionEdad = _restriccion;}
     char* getTitulo(){return titulo;}
     char* getGenero(){return genero;}
+    int getPrecio(){return precio;}
+    float getCalificacion(){return calificacion;}
+    char* getIdioma(){return idioma;}
+    char* getDesarrollador(){return desarrollador;}
+    int getPeso(){return peso;}
+    int getRestriccion(){return restriccionEdad;}
 };
 
 class archivoVideoJuego
