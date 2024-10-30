@@ -169,6 +169,7 @@ void inicioSesion()
         cout << "================================" << endl;
         cout << "1- Iniciar sesion como Usuario" << endl;
         cout << "2- Iniciar sesion como Admin" << endl;
+        cout << "0- Volver" << endl;
         cout << "================================" << endl<<endl;
         cout << "Elija una opcion: ";
         cin >> eleccion;
@@ -180,6 +181,7 @@ void inicioSesion()
 
                     char nombre[30];
                     char contrasenia[20];
+                    system("cls");
                     cout << "INICIO DE SESION COMO USUARIO" << endl;
                     cout << "=============================" << endl << endl;
                     cout<<"Ingrese su nombre de usuario: " ;
@@ -217,6 +219,8 @@ void inicioSesion()
                 ///inicioSesionAdmin(); <---- desarrollar xd jaja xd
                 cout << "EN DESARROLLO XD" << endl;
                 system("pause");
+                return;
+            case 0:
                 return;
             default:
                 cout << "Por favor, ingrese una opcion valida." << endl;
@@ -466,6 +470,7 @@ void bajaUsuario(int idIniciada){
     int pos = buscarUsuarioPorID(idIniciada);
     if(pos<0){
         cout<<"Error al modificar usuario."<<endl;
+        cout << "Codigo de error: " << pos << endl;
         system("pause");
         return;
     }
@@ -482,4 +487,3 @@ void bajaUsuario(int idIniciada){
     cout << "La cuenta ha sido deshabilitada." << endl;
     system("pause");
 }
-
