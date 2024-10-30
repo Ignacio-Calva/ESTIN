@@ -162,40 +162,67 @@ void grabarRegistroUsuario()
 
 void inicioSesion()
 {
-    archivoUsuario arcU("archivos/Usuario.dat");
-    usuario usu;
+    int eleccion;
+    while (true){
+        system("cls");
+        cout << "         INICIO DE SESION       " << endl;
+        cout << "================================" << endl;
+        cout << "1- Iniciar sesion como Usuario" << endl;
+        cout << "2- Iniciar sesion como Admin" << endl;
+        cout << "================================" << endl<<endl;
+        cout << "Elija una opcion: ";
+        cin >> eleccion;
+        switch(eleccion){
+            case 1:
+                {
+                    archivoUsuario arcU("archivos/Usuario.dat");
+                    usuario usu;
 
-    char nombre[30];
-    char contrasenia[20];
+                    char nombre[30];
+                    char contrasenia[20];
+                    cout << "INICIO DE SESION COMO USUARIO" << endl;
+                    cout << "=============================" << endl << endl;
+                    cout<<"Ingrese su nombre de usuario: " ;
+                    cargarCadena(nombre, 29);
 
-    cout<<"INGRESE EL NOMBRE DE USUARIO: " ;
-    cargarCadena(nombre, 29);
-
-    int pos=0; ///USADA POR REFERENCIA PARA GUARDAR DONDE FUE ENCONTRADO EL NOMBRE EN LA FUNCION buscarNombre()
-    if (buscarNombre(nombre, pos))
-    {
-        usu = arcU.leerRegistros(pos);
-        cout << "USUARIO CORRECTO." << endl;
-        cout << "INGRESE LA CONTRASENIA: " ;
-        cargarCadena(contrasenia, 19);
-        if (strcmp(usu.getContrasenia(),contrasenia) == 0)
-        {
-            idIniciada = usu.getID(); //asignar ID iniciada
-            cout << "SESION INICIADA CORRECTAMENTE." << endl;
-            system("pause");
-            system("cls");
-            menuPrincipal();
+                    int pos=0; ///USADA POR REFERENCIA PARA GUARDAR DONDE FUE ENCONTRADO EL NOMBRE EN LA FUNCION buscarNombre()
+                    if (buscarNombre(nombre, pos))
+                    {
+                        usu = arcU.leerRegistros(pos);
+                        cout << "Usuario encontrado." << endl;
+                        cout << "Ingrese su contrasenia: " ;
+                        cargarCadena(contrasenia, 19);
+                        if (strcmp(usu.getContrasenia(),contrasenia) == 0)
+                        {
+                            idIniciada = usu.getID(); //asignar ID iniciada
+                            cout << "Sesion iniciada correctamente!" << endl;
+                            system("pause");
+                            system("cls");
+                            menuPrincipal();
+                        }
+                        else
+                        {
+                            cout << "La contrasenia es incorrecta. Vuelva a intentarlo." << endl;
+                            system("pause");
+                        }
+                    }
+                    else
+                    {
+                        cout << "Nombre de usuario no encontrado." << endl;
+                        system("pause");
+                    }
+                    return;
+                }
+            case 2:
+                ///inicioSesionAdmin(); <---- desarrollar xd jaja xd
+                cout << "EN DESARROLLO XD" << endl;
+                system("pause");
+                return;
+            default:
+                cout << "Por favor, ingrese una opcion valida." << endl;
+                system("pause");
+                break;
         }
-        else
-        {
-            cout << "CONTRASENIA INCORRECTA." << endl;
-            system("pause");
-        }
-    }
-    else
-    {
-        cout << "NOMBRE DE USUARIO INCORRECTO." << endl;
-        system("pause");
     }
 }
 
@@ -206,8 +233,8 @@ void menuPrincipal()
     {
         system("CLS");
         setConsoleColor(15, 1);
-        cout<<"VALEAM"<<endl;
-        setConsoleColor(8, 0);
+        cout<<"VALEAM"<<endl<<endl;
+        setConsoleColor(3, 0);
         cout<<"1 - Listar VideoJuegos"<<endl;
         cout<<"2 - Buscar VideoJuego"<<endl;
         cout<<"3 - Categorias"<<endl;
@@ -273,6 +300,7 @@ void infoCuenta() //nueva funcion
                    system("CLS");
                    usu.mostrarDatos();
                    if (usu.getActivo() == false){cout << "-----------CUENTA DESHABILITADA-----------" << endl;}
+                   cout << endl;
                    cout<<"1 - Deshabilitar cuenta"<<endl;
                    cout<<"0 - Salir"<<endl;
                    cin>>opcion;
