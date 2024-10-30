@@ -390,20 +390,28 @@ system("PAUSE");
 
 void listarPorAnio()
 {
-archivoVideoJuego arcV("archivos/videojuego.dat");
-videoJuego game;
-int tam = arcV.contarRegistros();
-int anio;
-int contGame;
-cout<< "Ingrese el año con el cual filtrar: "<<endl;
-cin>>anio;
-system("CLS");
-cout<<"Filtro aplicado : Año -"<<anio<<endl;
-for (int i =0;i<tam ;i++ )
-{
- game = arcV.leerRegistros(i);
- if(game.getAnio == anio){cout<<i+1 << "-"<< game.getTitulo<<endl;contGame++}
-}
-system("PAUSE");
-if (contGame == 0){cout<< "No existen juegos con ese año"}
+    archivoVideoJuego arcV("archivos/videojuego.dat");
+    videoJuego game;
+    int tam = arcV.contarRegistros();
+    int anio;
+    int contGame;
+    cout<< "Ingrese el año con el cual filtrar: "<<endl;
+    cin>>anio;
+    system("CLS");
+    cout<<"Filtro aplicado : Año -"<<anio<<endl;
+    for (int i =0; i<tam ; i++ )
+    {
+        game = arcV.leerRegistros(i);
+
+        if(game.getAnio() == anio)
+        {
+            cout<<i+1 << "-"<< game.getTitulo()<<endl;
+            contGame++;
+        }
+    }
+    system("PAUSE");
+    if (contGame == 0)
+    {
+        cout<< "No existen juegos con ese año";
+    }
 }

@@ -14,6 +14,7 @@ private:
     char desarrollador[30];
     int peso;
     int restriccionEdad;
+    int anio;
 
 public:
     void cargar()
@@ -34,6 +35,8 @@ public:
         cin>>peso;
         cout<<"Restriccion de edad: ";
         cin>>restriccionEdad;
+        cout<<"Anio de lanzamiento";
+        cin>>anio;
     }
 
     void mostrar()
@@ -46,6 +49,7 @@ public:
         cout<< "Desarrolladora: " << desarrollador <<endl;
         cout<< "Almacenamiento requerido: " << peso << "GB" <<endl;
         cout<< "Edad: " << "+" << restriccionEdad <<endl << endl;
+        cout<< "Anio de lanzamiento:" << anio <<endl;
     }
 
     void setTitulo(char* _titulo){strcpy(titulo,_titulo);}
@@ -56,6 +60,7 @@ public:
     void setDesarrollador(char* _desarrollador){strcpy(desarrollador,_desarrollador);}
     void setPeso(int _peso){peso = _peso;}
     void setRestriccionEdad(int _restriccion){restriccionEdad = _restriccion;}
+    void setAnio(int _anio){anio = _anio;}
     char* getTitulo(){return titulo;}
     char* getGenero(){return genero;}
     int getPrecio(){return precio;}
@@ -64,6 +69,7 @@ public:
     char* getDesarrollador(){return desarrollador;}
     int getPeso(){return peso;}
     int getRestriccion(){return restriccionEdad;}
+    int getAnio(){return anio; }
 };
 
 class archivoVideoJuego
