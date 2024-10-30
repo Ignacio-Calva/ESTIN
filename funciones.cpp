@@ -265,7 +265,7 @@ int opcion = 1;
 while(opcion != 0){
 
     system("CLS");
-    setConsoleColor(8, 0);
+    setConsoleColor(9, 0);
     cout<<"Listar videojuegos"<<endl;
     cout<<"-----------------------------------------"<<endl;
     cout<<"1- Listar todos los videojuegos"<<endl;
@@ -273,14 +273,17 @@ while(opcion != 0){
     cout<< "2- Listar por genero"<<endl;
     cout<< "3- Listar por creador"<<endl;
     cout<< "4- Listar por precio"<<endl;
+    cout<< "5- Listar por anio"<<endl;
     cout<< "0- ATRAS"<<endl;
     cin>> opcion;
+    setConsoleColor(15, 0);
     switch (opcion)
     {
     case 1: elegirVideojuego(); break;
     case 2: listarPorGenero(); break;
     case 3: listarPorCreador();break;
     case 4: mostrarPorPrecio();break;
+    case 5: listarPorAnio();break;
     default: cout<< "Opcion invalida."; break;
     }
   }
@@ -303,8 +306,8 @@ void infoCuenta() //nueva funcion
                    while (opcion != 0){
                    system("CLS");
                    usu.mostrarDatos();
-                   if (usu.getActivo() == false){cout << "-----------CUENTA DESHABILITADA-----------" << endl;}
-                   cout << endl;
+                   if (usu.getActivo() == false){setConsoleColor(4, 0);cout << "-----------CUENTA DESHABILITADA-----------" << endl;}
+                   cout << endl; setConsoleColor(15, 0);
                    cout<<"1 - Deshabilitar cuenta"<<endl;
                    cout<<"0 - Salir"<<endl;
                    cin>>opcion;
@@ -314,7 +317,7 @@ void infoCuenta() //nueva funcion
                        bajaUsuario(idIniciada);
                        break;
                    case 0: break;
-                   default: system("CLS"); cout<<"Opcion invalida" <<endl;
+                   default: system("CLS");setConsoleColor(4, 0); cout<<"Opcion invalida" <<endl;
                        break;
                    }
                    }
@@ -381,6 +384,7 @@ void listarPorCreador()
     }
     system("PAUSE");
     if (contgame == 0) {
+            setConsoleColor(4, 0);
         cout << "No hay juegos con esa desarrolladora :(" << endl;
     }
 }
@@ -409,7 +413,9 @@ videoJuego game;
 int tam = arcV.contarRegistros();
 int montoMax = 0;
 int contGame= 0;
-cout<<"Ingrese el monto maximo (no se mostraran videojuegos que salgan mas que el monto que ingresas)"<<endl;
+system("CLS");
+setConsoleColor(15, 0);
+cout<<"Ingrese el monto maximo (no se mostraran videojuegos que salgan mas que el monto que ingresas): "<<endl;
 cin>>montoMax;
 system("CLS");
 cout<<"El filtro aplicado es: " << montoMax << "$"<<endl;
@@ -418,7 +424,7 @@ for (int i= 0;i< tam ; i++)
     game= arcV.leerRegistros(i);
     if (game.getPrecio() <= montoMax){ cout<< i+1 <<"-"<< game.getTitulo()<<endl; contGame++;}
 }
-if(contGame== 0){cout<< "No hay ningun juego con ese monto pobre de mierda"<<endl;}
+if(contGame== 0){system("CLS");setConsoleColor(4, 0);cout<< "No hay ningun juego con ese monto."<<endl;setConsoleColor(15, 0);}
 system("PAUSE");
 }
 
@@ -428,11 +434,11 @@ void listarPorAnio()
     videoJuego game;
     int tam = arcV.contarRegistros();
     int anio;
-    int contGame;
-    cout<< "Ingrese el año con el cual filtrar: "<<endl;
+    int contGame = 0;
+    cout<< "Ingrese el anio con el cual filtrar: "<<endl;
     cin>>anio;
     system("CLS");
-    cout<<"Filtro aplicado : Año -"<<anio<<endl;
+    cout<<"Filtro anio: "<<anio<<endl;
     for (int i =0; i<tam ; i++ )
     {
         game = arcV.leerRegistros(i);
@@ -443,11 +449,12 @@ void listarPorAnio()
             contGame++;
         }
     }
-    system("PAUSE");
     if (contGame == 0)
     {
-        cout<< "No existen juegos con ese año";
+        setConsoleColor(4, 0);
+        cout<< "No existen juegos con ese anio" << endl; setConsoleColor(15, 0);
     }
+    system("PAUSE");
 }
 
 ///FUNCIONES PARA DAR DE BAJA UN USUARIO

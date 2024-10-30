@@ -7,6 +7,18 @@ using namespace std;
 #include "USUARIO.h"
 #include "BIBLIOTECA.h"
 
+
+/*
+void añadirVideojuegos()
+{
+    videoJuego obj;
+    FILE *P;
+    obj.cargar();
+    P = fopen("archivos/videoJuego.dat", "ab");
+    fwrite(&obj, sizeof (videoJuego),1,P);
+    fclose(P);
+}
+*/
 int main()
 {
     int opcion1 = 1;

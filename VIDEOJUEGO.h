@@ -35,7 +35,7 @@ public:
         cin>>peso;
         cout<<"Restriccion de edad: ";
         cin>>restriccionEdad;
-        cout<<"Anio de lanzamiento";
+        cout<<"Anio de lanzamiento: ";
         cin>>anio;
     }
 
@@ -48,8 +48,8 @@ public:
         cout<< "Idioma: " << idioma << endl;
         cout<< "Desarrolladora: " << desarrollador <<endl;
         cout<< "Almacenamiento requerido: " << peso << "GB" <<endl;
-        cout<< "Edad: " << "+" << restriccionEdad <<endl << endl;
-        cout<< "Anio de lanzamiento:" << anio <<endl;
+        cout<< "Edad: " << "+" << restriccionEdad <<endl;
+        cout<< "Anio de lanzamiento: " << anio <<endl << endl;
     }
 
     void setTitulo(char* _titulo){strcpy(titulo,_titulo);}
