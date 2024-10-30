@@ -241,6 +241,7 @@ while(opcion != 0){
     cout<<"ELEGIR FITROS" <<endl;
     cout<< "2- Listar por genero"<<endl;
     cout<< "3- Listar por creador"<<endl;
+    cout<< "4- Listar por precio"<<endl;
     cout<< "0- ATRAS"<<endl;
     cin>> opcion;
     switch (opcion)
@@ -248,6 +249,7 @@ while(opcion != 0){
     case 1: elegirVideojuego(); break;
     case 2: listarPorGenero(); break;
     case 3: listarPorCreador();break;
+    case 4: mostrarPorPrecio();break;
     default: cout<< "Opcion invalida."; break;
     }
   }
@@ -322,7 +324,8 @@ void listarPorGenero() //nueva funcion xdddddd (todavia esta en proceso)
     system("PAUSE");
   }
 
-void listarPorCreador() {
+void listarPorCreador()
+{
     system("CLS");
     archivoVideoJuego arcV("archivos/videojuego.dat");
     videoJuego game;
@@ -364,3 +367,27 @@ int datosUsuarioIniciado()
         }
     }
 }
+
+void mostrarPorPrecio ()
+{
+archivoVideoJuego arcV("archivos/videojuego.dat");
+videoJuego game;
+int tam = arcV.contarRegistros();
+int montoMax = 0;
+int contGame= 0;
+cout<<"Ingrese el monto maximo (no se mostraran videojuegos que salgan mas que el monto que ingresas)"<<endl;
+cin>>montoMax;
+system("CLS");
+
+cout<<"El filtro aplicado es: " << montoMax <<endl;
+
+for (int i= 0;i< tam ; i++)
+{
+    game= arcV.leerRegistros(i);
+    if (game.getPrecio() <= montoMax){ cout<< i+1 <<"-"<< game.getTitulo()<<endl; contGame++;}
+
+}
+if(contGame== 0){cout<< "No hay ningun juego con ese monto pobre de mierda"<<endl;}
+system("PAUSE");
+}
+

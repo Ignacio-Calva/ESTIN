@@ -23,5 +23,6 @@ void infoCuenta(); //nueva funcion
 void listarPorCreador();
 bool buscarNombre(const char* _nombre, int &posicion);
 int datosUsuarioIniciado();
+void mostrarPorPrecio();
 
 #endif // FUNCIONES_H_INCLUDED
