@@ -40,7 +40,7 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\funciones.cpp
 
-1730329950 source:c:\users\admin\documents\github\estin\funciones.cpp
+1730147793 source:c:\users\admin\documents\github\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -80,13 +80,13 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\valeam.cpp
 
-1730318105 c:\users\admin\documents\github\estin\funciones.h
+1730223154 c:\users\admin\documents\github\estin\funciones.h
 	<cstring>
 
 1728148751 c:\users\admin\documents\github\estin\clases.h
 	"funciones.h"
 
-1730328559 source:c:\users\admin\documents\github\estin\valeam.cpp
+1730157217 source:c:\users\admin\documents\github\estin\valeam.cpp
 	<iostream>
 	<string.h>
 	<windows.h>
@@ -95,9 +95,8 @@
 	"USUARIO.h"
 	"BIBLIOTECA.h"
 
-1730318105 c:\users\admin\documents\github\estin\usuario.h
+1730223059 c:\users\admin\documents\github\estin\usuario.h
 	"funciones.h"
-	"PERSONA.h"
 
 1730317489 d:\facultad\tecnicatura programación\programación\estin\usuario.h
 	"funciones.h"
@@ -114,7 +113,7 @@
 	"USUARIO.h"
 	"funciones.h"
 
-1730330002 c:\users\admin\documents\github\estin\videojuego.h
+1730222516 c:\users\admin\documents\github\estin\videojuego.h
 	"funciones.h"
 
 1729701420 c:\users\admin\documents\github\estin\biblioteca.h
@@ -124,7 +123,7 @@
 1729698513 d:\facultad\tecnicatura programación\programación\estin\fecha.h
 	<string>
 
-1730318526 c:\users\admin\documents\github\estin\fecha.h
+1729701420 c:\users\admin\documents\github\estin\fecha.h
 	<string>
 
 1730254925 source:c:\users\user\desktop\estin\funciones.cpp
@@ -202,8 +201,5 @@
 	"funciones.h"
 
 1730251479 c:\users\user\desktop\facultad\estin-main\estin\persona.h
-	"funciones.h"
-
-1730307548 c:\users\admin\documents\github\estin\persona.h
 	"funciones.h"
 
