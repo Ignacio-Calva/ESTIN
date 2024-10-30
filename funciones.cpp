@@ -378,16 +378,32 @@ int contGame= 0;
 cout<<"Ingrese el monto maximo (no se mostraran videojuegos que salgan mas que el monto que ingresas)"<<endl;
 cin>>montoMax;
 system("CLS");
-
-cout<<"El filtro aplicado es: " << montoMax <<endl;
-
+cout<<"El filtro aplicado es: " << montoMax << "$"<<endl;
 for (int i= 0;i< tam ; i++)
 {
     game= arcV.leerRegistros(i);
     if (game.getPrecio() <= montoMax){ cout<< i+1 <<"-"<< game.getTitulo()<<endl; contGame++;}
-
 }
 if(contGame== 0){cout<< "No hay ningun juego con ese monto pobre de mierda"<<endl;}
 system("PAUSE");
 }
 
+void listarPorAnio()
+{
+archivoVideoJuego arcV("archivos/videojuego.dat");
+videoJuego game;
+int tam = arcV.contarRegistros();
+int anio;
+int contGame;
+cout<< "Ingrese el año con el cual filtrar: "<<endl;
+cin>>anio;
+system("CLS");
+cout<<"Filtro aplicado : Año -"<<anio<<endl;
+for (int i =0;i<tam ;i++ )
+{
+ game = arcV.leerRegistros(i);
+ if(game.getAnio == anio){cout<<i+1 << "-"<< game.getTitulo<<endl;contGame++}
+}
+system("PAUSE");
+if (contGame == 0){cout<< "No existen juegos con ese año"}
+}

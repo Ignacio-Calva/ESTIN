@@ -14,6 +14,7 @@ private:
     char desarrollador[30];
     int peso;
     int restriccionEdad;
+
 public:
     void cargar()
     {

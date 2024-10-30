@@ -21,6 +21,7 @@ void listarPorGenero();
 void menuFiltro();
 void infoCuenta(); //nueva funcion
 void listarPorCreador();
+void listarPorAnio();
 bool buscarNombre(const char* _nombre, int &posicion);
 int datosUsuarioIniciado();
 void mostrarPorPrecio();
