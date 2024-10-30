@@ -25,5 +25,7 @@ void listarPorAnio();
 bool buscarNombre(const char* _nombre, int &posicion);
 int datosUsuarioIniciado();
 void mostrarPorPrecio();
+void bajaUsuario(int idIniciada);
+void bajaUsuario(int idIniciada);
 
 #endif // FUNCIONES_H_INCLUDED

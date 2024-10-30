@@ -15,7 +15,7 @@ private:
     int IDPais;
     bool admin = false;*/ //PASO EL BOOL DE ADMIN A LA CLASE DE PERSONA PORQUE ES
                           //UN ATRIBUTO EN COMUN ENTRE LAS DOS, CAMBIO EN QUE SE SETEA AL USAR cargarDatos()
-    bool activo = true;
+    bool activo;
 public:
     void cargarDatos() //expandí los métodos y añadí SETTERS y GETTERS con las nuevas variables
     {
@@ -33,6 +33,7 @@ public:
         cout<< "INGRESE EL ID DE SU PAIS: ";
         cin>> IDPais;*/
         setAdmin(false);
+        activo = true;
     }
 
     void mostrarDatos()
@@ -109,6 +110,19 @@ public:
         FILE *p = fopen(nombre, "wb");
         if (p == nullptr) return;
         fclose(p);
+    }
+
+    bool modificarUsuario(usuario obj, int pos)
+    {
+        FILE *p=fopen(nombre,"rb+");
+        //p=fopen(nombre,"rb+");
+        if(p==NULL){
+            return false;
+        }
+        fseek(p, pos * sizeof obj, 0);
+        fwrite(&obj, sizeof obj, 1, p);
+        fclose(p);
+        return true;
     }
 };
 #endif // USUARIO_H_INCLUDED

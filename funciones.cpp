@@ -272,13 +272,15 @@ void infoCuenta() //nueva funcion
                    while (opcion != 0){
                    system("CLS");
                    usu.mostrarDatos();
-
-                   cout<<"1 - ELIMINAR CUENTA!"<<endl;
+                   if (usu.getActivo() == false){cout << "-----------CUENTA DESHABILITADA-----------" << endl;}
+                   cout<<"1 - Deshabilitar cuenta"<<endl;
                    cout<<"0 - Salir"<<endl;
                    cin>>opcion;
                    switch (opcion)
                    {
-                   case 1: cout<<"PROXIMAMENTE" << endl; system("PAUSE"); break;
+                   case 1:
+                       bajaUsuario(idIniciada);
+                       break;
                    case 0: break;
                    default: system("CLS"); cout<<"Opcion invalida" <<endl;
                        break;
@@ -416,5 +418,40 @@ void listarPorAnio()
     }
 }
 
+///FUNCIONES PARA DAR DE BAJA UN USUARIO
+int buscarUsuarioPorID(int id)
+{
+    archivoUsuario arcU("archivos/Usuario.dat");
+    usuario obj;
+    int tam = arcU.contarRegistros();
+    for (int i = 0 ; i < tam ; i++)
+    {
+        obj = arcU.leerRegistros(i);
+        if (id == obj.getID()){return i;}
+    }
+    return -1;
+}
 
+void bajaUsuario(int idIniciada){
+    usuario obj;
+    archivoUsuario arcU("archivos/Usuario.dat");
+    int pos = buscarUsuarioPorID(idIniciada);
+    if(pos<0){
+        cout<<"Error al modificar usuario."<<endl;
+        system("pause");
+        return;
+    }
+    cout << "REGISTRO: " << pos << endl;
+    cout << "ID SELECCIONADA: " << idIniciada << endl;
+    obj = arcU.leerRegistros(pos);
+    if(obj.getActivo()==false){
+        cout<<"El usuario ya se encontraba deshabilitado" << endl;
+        system("pause");
+        return;
+    }
+    obj.setActivo(false);
+    arcU.modificarUsuario(obj,pos);
+    cout << "La cuenta ha sido deshabilitada." << endl;
+    system("pause");
+}
 
