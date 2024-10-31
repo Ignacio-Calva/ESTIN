@@ -25,10 +25,15 @@ int main()
     while (opcion1 != 0)
     {   setConsoleColor(15, 0);
         system("CLS");
-        cout<<"VALEAM" << endl;
-        cout<<"1 - REGISTRARSE" << endl;
-        cout<<"2 - INICIAR SESION" << endl;
-        cout<<"0 - SALIR" << endl;
+        cout << "===============================" << endl;
+        cout << "         STIM                 " << endl;
+        cout << "===============================" << endl;
+        setConsoleColor(15, 0);
+        cout << "1 - REGISTRARSE              " << endl;
+        cout << "2 - INICIAR SESION           " << endl;
+        cout << "0 - SALIR                    " << endl;
+        cout << "===============================" << endl;
+        cout << "Seleccione una opcion:        " << endl;
         cin>>opcion1;
         switch (opcion1)
         {

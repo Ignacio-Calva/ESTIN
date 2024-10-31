@@ -61,6 +61,7 @@ public:
     void setPeso(int _peso){peso = _peso;}
     void setRestriccionEdad(int _restriccion){restriccionEdad = _restriccion;}
     void setAnio(int _anio){anio = _anio;}
+    void setidVideojuego(int _idVideojuego){idVideojuego = _idVideojuego;}
     char* getTitulo(){return titulo;}
     char* getGenero(){return genero;}
     int getPrecio(){return precio;}
@@ -70,6 +71,7 @@ public:
     int getPeso(){return peso;}
     int getRestriccion(){return restriccionEdad;}
     int getAnio(){return anio; }
+    int getidVideojuego(){return idVideojuego; }
 };
 
 class archivoVideoJuego

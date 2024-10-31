@@ -6,21 +6,26 @@ using namespace std;
 #include "USUARIO.h"
 #include <windows.h>
 
-int idIniciada; //declaro variable global (WENNER DIJO QUE SE PUEDE, NO MUCHO, PERO UNA O DOS VECES SES)
+int idIniciada;
 
 void elegirVideojuego()
 {
+    archivoVideoJuego arcV("archivos/videoJuego.dat");
+    int tam = arcV.contarRegistros();
     int numJuego;
-    archivoVideoJuego archJuego("archivos/videoJuego.dat");
-    int tam = archJuego.contarRegistros();
+
     while (true)
     {
         system("CLS");
         listarVideojuegos();
+
         setConsoleColor(4, 0);
         cout<<endl<<"0 - ATRAS" << endl;
         setConsoleColor(8, 0);
+        cout<<"-------------------------------------------------------------------"<<endl;
         cout<<endl<<"INGRESE EL NUMERO DEL JUEGO DESEADO: ";
+        cout<<"-------------------------------------------------------------------"<<endl;
+
         cin>>numJuego;
         if(numJuego >= 0)
         {
@@ -64,7 +69,7 @@ void mostrarTitulo(const string &titulo)
 
 void listarVideojuegos()
 {
-    archivoVideoJuego arcV("archivos/videoJuego.dat");
+    archivoVideoJuego arcV("archivos/videojuego.dat");
     videoJuego game;
 
     usuario usu;
@@ -78,12 +83,9 @@ void listarVideojuegos()
     for (int i = 0; i < cantReg; i++)
     {
         game = arcV.leerRegistros(i);
+        setConsoleColor(15, 0);
+        cout<< i+1 << " - " << game.getTitulo() << endl;
 
-        if (usu.getEdad() >= game.getRestriccion())
-        {
-            setConsoleColor(15, 0);
-            cout<< i+1 << " - " << game.getTitulo() << endl;
-        }
     }
 }
 
@@ -217,7 +219,7 @@ void inicioSesion()
                 }
             case 2:
                 ///inicioSesionAdmin(); <---- desarrollar xd jaja xd
-                cout << "EN DESARROLLO XD" << endl;
+                cargarVideojuego();
                 system("pause");
                 return;
             case 0:
@@ -266,15 +268,27 @@ while(opcion != 0){
 
     system("CLS");
     setConsoleColor(9, 0);
-    cout<<"Listar videojuegos"<<endl;
-    cout<<"-----------------------------------------"<<endl;
-    cout<<"1- Listar todos los videojuegos"<<endl;
-    cout<<"ELEGIR FITROS" <<endl;
-    cout<< "2- Listar por genero"<<endl;
-    cout<< "3- Listar por creador"<<endl;
-    cout<< "4- Listar por precio"<<endl;
-    cout<< "5- Listar por anio"<<endl;
-    cout<< "0- ATRAS"<<endl;
+    cout << "==========================================" << endl;
+    cout << "  <<<  Menu para buscar videojuegos   <<<           " << endl;
+    cout << "==========================================" << endl;
+    cout << endl;  // Espacio para separación
+    cout << "======== Seleccione una opcion:  =======" << endl;
+
+    cout << endl;  // Espacio para separación
+    cout << "----------------------------------------------------------" << endl;
+    cout << "     1. Listar todos los videojuegos                                         " << endl;
+    cout << "     2. Listar por genero                                                       " << endl;
+    cout << "     3. Listar por creador                                                       " << endl;
+    cout << "     4. Listar por precio                                                         " << endl;
+    setConsoleColor(4, 0);
+    cout << "     0. ATRAS                                                                     " << endl;
+    setConsoleColor(8, 0);
+    cout << "-----------------------------------------------------------" << endl;
+    cout << endl;
+    cout << "======== Gracias por utilizar el sistema  ===========" << endl;
+    cout << "=================================================" << endl;
+
+
     cin>> opcion;
     setConsoleColor(15, 0);
     switch (opcion)
@@ -352,7 +366,9 @@ void listarPorGenero() //nueva funcion xdddddd (todavia esta en proceso)
     cargarCadena(genero, 29);
     int cantReg =arcV.contarRegistros();
     system("CLS");
-    cout<<"FILTRO: "<< genero <<endl;
+    cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
+    cout<<"Filtro aplicado: "<< genero <<endl;
+    cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
     for (int i = 0; i< cantReg ; i++ )
     {
     game = arcV.leerRegistros(i);
@@ -373,7 +389,9 @@ void listarPorCreador()
     cout << "Ingrese la desarrolladora a buscar: ";
     cargarCadena(desarrolladora, 29);
     system("CLS");
+    cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
     cout << "Filtro aplicado: " << desarrolladora << endl;
+    cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
 
     for (int i = 0; i < tam; i++) {
         game = arcV.leerRegistros(i);
@@ -412,17 +430,22 @@ archivoVideoJuego arcV("archivos/videojuego.dat");
 videoJuego game;
 int tam = arcV.contarRegistros();
 int montoMax = 0;
+int montoMin= 0;
 int contGame= 0;
 system("CLS");
 setConsoleColor(15, 0);
-cout<<"Ingrese el monto maximo (no se mostraran videojuegos que salgan mas que el monto que ingresas): "<<endl;
+cout<<"Ingrese el monto maximo "<<endl;
 cin>>montoMax;
+cout<<"Ingrese el monto minimo "<<endl;
+cin>>montoMin;
 system("CLS");
-cout<<"El filtro aplicado es: " << montoMax << "$"<<endl;
+cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
+cout<<"El filtro aplicado es: " <<" desde : " <<montoMin<< "$"<<" hasta : "<< montoMax<< "$"<<endl;
+cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
 for (int i= 0;i< tam ; i++)
 {
     game= arcV.leerRegistros(i);
-    if (game.getPrecio() <= montoMax){ cout<< i+1 <<"-"<< game.getTitulo()<<endl; contGame++;}
+    if (montoMin<=game.getPrecio() <= montoMax){ cout<< i+1 <<"-"<< game.getTitulo()<<endl; contGame++;}
 }
 if(contGame== 0){system("CLS");setConsoleColor(4, 0);cout<< "No hay ningun juego con ese monto."<<endl;setConsoleColor(15, 0);}
 system("PAUSE");
@@ -438,7 +461,9 @@ void listarPorAnio()
     cout<< "Ingrese el anio con el cual filtrar: "<<endl;
     cin>>anio;
     system("CLS");
-    cout<<"Filtro anio: "<<anio<<endl;
+    cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
+    cout<<"Filtro aplicado: "<<anio<<endl;
+    cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
     for (int i =0; i<tam ; i++ )
     {
         game = arcV.leerRegistros(i);
@@ -471,7 +496,8 @@ int buscarUsuarioPorID(int id)
     return -1;
 }
 
-void bajaUsuario(int idIniciada){
+void bajaUsuario(int idIniciada)
+{
     usuario obj;
     archivoUsuario arcU("archivos/Usuario.dat");
     int pos = buscarUsuarioPorID(idIniciada);
@@ -493,4 +519,20 @@ void bajaUsuario(int idIniciada){
     arcU.modificarUsuario(obj,pos);
     cout << "La cuenta ha sido deshabilitada." << endl;
     system("pause");
+}
+
+void cargarVideojuego()
+{
+    archivoVideoJuego arcV("archivos/videoJuego.dat");
+    videoJuego game;
+    videoJuego gameAnt;
+    game.cargar();
+
+    int tam=arcV.contarRegistros();
+    gameAnt = arcV.leerRegistros(tam-1); //CARGA LOS DATOS DEL ULTIMO REGISTRO
+    game.setidVideojuego(gameAnt.getidVideojuego()+1);
+
+     cout << "ID del nuevo videojuego seteada como : " << game.getidVideojuego() << endl;
+    arcV.grabarRegistros(game);
+
 }

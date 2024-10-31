@@ -161,7 +161,7 @@
 1729969264 c:\users\user\desktop\estin\fecha.h
 	<string>
 
-1730326212 source:c:\users\user\desktop\facultad\estin-main\estin\funciones.cpp
+1730356862 source:c:\users\user\desktop\facultad\estin-main\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -169,17 +169,17 @@
 	"USUARIO.h"
 	<windows.h>
 
-1730325577 c:\users\user\desktop\facultad\estin-main\estin\funciones.h
+1730354984 c:\users\user\desktop\facultad\estin-main\estin\funciones.h
 	<cstring>
 
-1730325845 c:\users\user\desktop\facultad\estin-main\estin\videojuego.h
+1730354644 c:\users\user\desktop\facultad\estin-main\estin\videojuego.h
 	"funciones.h"
 
-1730251479 c:\users\user\desktop\facultad\estin-main\estin\usuario.h
+1730331538 c:\users\user\desktop\facultad\estin-main\estin\usuario.h
 	"funciones.h"
 	"PERSONA.h"
 
-1730178693 source:c:\users\user\desktop\facultad\estin-main\estin\valeam.cpp
+1730358377 source:c:\users\user\desktop\facultad\estin-main\estin\valeam.cpp
 	<iostream>
 	<string.h>
 	<windows.h>
