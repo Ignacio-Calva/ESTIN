@@ -41,9 +41,11 @@
 
 class Biblioteca{
     private:
-        int idUsuario;
+        int idBiblioteca;
         int idVideojuego[150]={};
         Fecha fechaCompra[150];
+
+
     public:
         void mostrar()
         {
@@ -57,10 +59,10 @@ class Biblioteca{
             }
         }
 
-        void setIdUsuario(int _id){idUsuario = _id;}
+        void setIdBiblioteca(int _id){idBiblioteca = _id;}
         void setIdVideojuego(int _id, int pos){idVideojuego[pos] = _id;}
         void setFechaCompra(Fecha _fechaCompra, int pos){fechaCompra[pos] = _fechaCompra;}
-        int getIdUsuario(){return idUsuario;}
+        int getIdBiblioteca(){return idBiblioteca;}
         int getIdVideojuego(int pos){return idVideojuego[pos];}
         Fecha getFechaCompra(int pos){return fechaCompra[pos];}
 };

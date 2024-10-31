@@ -6,8 +6,8 @@ class Fecha{
     int _dia, _mes, _anio;
 
     public:
-    Fecha();
-    Fecha(int dia, int mes, int anio);
+    //Fecha();
+    //Fecha(int dia=0, int mes=0, int anio=0);
 
     void mostrar()
     {

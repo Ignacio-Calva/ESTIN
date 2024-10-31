@@ -127,7 +127,7 @@
 1730318526 c:\users\admin\documents\github\estin\fecha.h
 	<string>
 
-1730377768 source:c:\users\user\desktop\estin\funciones.cpp
+1730382001 source:c:\users\user\desktop\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -136,7 +136,7 @@
 	"USUARIO.h"
 	<windows.h>
 
-1730377184 c:\users\user\desktop\estin\funciones.h
+1730381047 c:\users\user\desktop\estin\funciones.h
 	<cstring>
 
 1730374168 c:\users\user\desktop\estin\videojuego.h
@@ -155,11 +155,11 @@
 	"USUARIO.h"
 	"BIBLIOTECA.h"
 
-1730378443 c:\users\user\desktop\estin\biblioteca.h
+1730382393 c:\users\user\desktop\estin\biblioteca.h
 	"funciones.h"
 	"FECHA.h"
 
-1730378050 c:\users\user\desktop\estin\fecha.h
+1730382393 c:\users\user\desktop\estin\fecha.h
 	<string>
 
 1730358711 source:c:\users\user\desktop\facultad\estin-main\estin\funciones.cpp

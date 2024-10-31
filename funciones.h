@@ -29,5 +29,7 @@ void bajaUsuario(int idIniciada);
 void bajaUsuario(int idIniciada);
 void cargarVideojuego();
 void designarBiblioteca(int idIniciada);
+void listarPorGratuito();
+
 
 #endif // FUNCIONES_H_INCLUDED

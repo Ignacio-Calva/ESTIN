@@ -423,6 +423,7 @@ int datosUsuarioIniciado()
             return i;
         }
     }
+    return -1;
 }
 
 void mostrarPorPrecio ()
@@ -439,6 +440,7 @@ cout<<"Ingrese el monto maximo "<<endl;
 cin>>montoMax;
 cout<<"Ingrese el monto minimo "<<endl;
 cin>>montoMin;
+
 system("CLS");
 cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
 cout<<"El filtro aplicado es: " <<" desde : " <<montoMin<< "$"<<" hasta : "<< montoMax<< "$"<<endl;
@@ -446,7 +448,8 @@ cout<<"-------------------------------------------------------------------------
 for (int i= 0;i< tam ; i++)
 {
     game= arcV.leerRegistros(i);
-    if (montoMin<=game.getPrecio() <= montoMax){ cout<< i+1 <<"-"<< game.getTitulo()<<endl; contGame++;}
+
+    if (montoMin <= game.getPrecio() && montoMax<= game.getPrecio()){ cout<< i+1 <<"-"<< game.getTitulo()<<endl; contGame++;}
 }
 if(contGame== 0){system("CLS");setConsoleColor(4, 0);cout<< "No hay ningun juego con ese monto."<<endl;setConsoleColor(15, 0);}
 system("PAUSE");
@@ -537,6 +540,21 @@ void cargarVideojuego()
     arcV.grabarRegistros(game);
 }
 
+
+void listarPorGratuito()
+{
+    archivoVideoJuego arcV("archivos/videojuego.dat");
+    videoJuego game;
+
+    int tam = arcV.contarRegistros();
+
+    for (int i = 0; i<tam ; i++ )
+    {
+        game = arcV.leerRegistros(i);
+    if(game.getPrecio()== 0) {cout<<i+1<<"-"<< game.getTitulo() <<endl;}
+
+    }
+}
 
 void designarBiblioteca(int idIniciada)
 {
