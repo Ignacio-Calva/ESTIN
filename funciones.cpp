@@ -30,7 +30,10 @@ void elegirVideojuego()
         cin>>numJuego;
         if(numJuego >= 0)
         {
-            if (numJuego == 0 ){break;}
+            if (numJuego == 0 )
+            {
+                break;
+            }
             else if (numJuego > tam)
             {
                 cout << "NUMERO DE JUEGO NO ENCONTRADO."<<endl;
@@ -149,8 +152,14 @@ void grabarRegistroUsuario()
     for (int i = 0 ; i < tam ; i++)
     {
         objAux = archivo.leerRegistros(i);
-        if (strcmp(obj.getNombre(),objAux.getNombre())!=0){existe = false;}
-        else{existe = true;}
+        if (strcmp(obj.getNombre(),objAux.getNombre())!=0)
+        {
+            existe = false;
+        }
+        else
+        {
+            existe = true;
+        }
     }
     if (existe)
     {
@@ -166,7 +175,8 @@ void grabarRegistroUsuario()
 void inicioSesion()
 {
     int eleccion;
-    while (true){
+    while (true)
+    {
         system("cls");
         cout << "         INICIO DE SESION       " << endl;
         cout << "================================" << endl;
@@ -176,59 +186,60 @@ void inicioSesion()
         cout << "================================" << endl<<endl;
         cout << "Elija una opcion: ";
         cin >> eleccion;
-        switch(eleccion){
-            case 1:
+        switch(eleccion)
+        {
+        case 1:
+        {
+            archivoUsuario arcU("archivos/Usuario.dat");
+            usuario usu;
+
+            char nombre[30];
+            char contrasenia[20];
+            system("cls");
+            cout << "INICIO DE SESION COMO USUARIO" << endl;
+            cout << "=============================" << endl << endl;
+            cout<<"Ingrese su nombre de usuario: " ;
+            cargarCadena(nombre, 29);
+
+            int pos=0; ///USADA POR REFERENCIA PARA GUARDAR DONDE FUE ENCONTRADO EL NOMBRE EN LA FUNCION buscarNombre()
+            if (buscarNombre(nombre, pos))
+            {
+                usu = arcU.leerRegistros(pos);
+                cout << "Usuario encontrado." << endl;
+                cout << "Ingrese su contrasenia: " ;
+                cargarCadena(contrasenia, 19);
+                if (strcmp(usu.getContrasenia(),contrasenia) == 0)
                 {
-                    archivoUsuario arcU("archivos/Usuario.dat");
-                    usuario usu;
-
-                    char nombre[30];
-                    char contrasenia[20];
+                    idIniciada = usu.getID(); //asignar ID iniciada
+                    cout << "Sesion iniciada correctamente!" << endl;
+                    system("pause");
                     system("cls");
-                    cout << "INICIO DE SESION COMO USUARIO" << endl;
-                    cout << "=============================" << endl << endl;
-                    cout<<"Ingrese su nombre de usuario: " ;
-                    cargarCadena(nombre, 29);
-
-                    int pos=0; ///USADA POR REFERENCIA PARA GUARDAR DONDE FUE ENCONTRADO EL NOMBRE EN LA FUNCION buscarNombre()
-                    if (buscarNombre(nombre, pos))
-                    {
-                        usu = arcU.leerRegistros(pos);
-                        cout << "Usuario encontrado." << endl;
-                        cout << "Ingrese su contrasenia: " ;
-                        cargarCadena(contrasenia, 19);
-                        if (strcmp(usu.getContrasenia(),contrasenia) == 0)
-                        {
-                            idIniciada = usu.getID(); //asignar ID iniciada
-                            cout << "Sesion iniciada correctamente!" << endl;
-                            system("pause");
-                            system("cls");
-                            menuPrincipal();
-                        }
-                        else
-                        {
-                            cout << "La contrasenia es incorrecta. Vuelva a intentarlo." << endl;
-                            system("pause");
-                        }
-                    }
-                    else
-                    {
-                        cout << "Nombre de usuario no encontrado." << endl;
-                        system("pause");
-                    }
-                    return;
+                    menuPrincipal();
                 }
-            case 2:
-                ///inicioSesionAdmin(); <---- desarrollar xd jaja xd
-                cargarVideojuego();
+                else
+                {
+                    cout << "La contrasenia es incorrecta. Vuelva a intentarlo." << endl;
+                    system("pause");
+                }
+            }
+            else
+            {
+                cout << "Nombre de usuario no encontrado." << endl;
                 system("pause");
-                return;
-            case 0:
-                return;
-            default:
-                cout << "Por favor, ingrese una opcion valida." << endl;
-                system("pause");
-                break;
+            }
+            return;
+        }
+        case 2:
+            ///inicioSesionAdmin(); <---- desarrollar xd jaja xd
+            cargarVideojuego();
+            system("pause");
+            return;
+        case 0:
+            return;
+        default:
+            cout << "Por favor, ingrese una opcion valida." << endl;
+            system("pause");
+            break;
         }
     }
 }
@@ -251,12 +262,23 @@ void menuPrincipal()
         cin>>opcion;
         switch (opcion)
         {
-        case 1: menuFiltro(); break;
-        case 2: buscarVideojuego(); break;
-        case 4:   break;
-        case 5: infoCuenta(); break; //AGREGO LA FUNCION AL MENU
-        case 0: ;break;
-        default: cout<< "Opcion invalida."; break;
+        case 1:
+            menuFiltro();
+            break;
+        case 2:
+            buscarVideojuego();
+            break;
+        case 4:
+            break;
+        case 5:
+            infoCuenta();
+            break; //AGREGO LA FUNCION AL MENU
+        case 0:
+            ;
+            break;
+        default:
+            cout<< "Opcion invalida.";
+            break;
 
         }
     }
@@ -264,44 +286,57 @@ void menuPrincipal()
 
 void menuFiltro()
 {
-int opcion = 1;
-while(opcion != 0){
-
-    system("CLS");
-    setConsoleColor(9, 0);
-    cout << "==========================================" << endl;
-    cout << "  <<<  Menu para buscar videojuegos   <<<           " << endl;
-    cout << "==========================================" << endl;
-    cout << endl;  // Espacio para separación
-    cout << "======== Seleccione una opcion:  =======" << endl;
-
-    cout << endl;  // Espacio para separación
-    cout << "----------------------------------------------------------" << endl;
-    cout << "     1. Listar todos los videojuegos                                         " << endl;
-    cout << "     2. Listar por genero                                                       " << endl;
-    cout << "     3. Listar por creador                                                       " << endl;
-    cout << "     4. Listar por precio                                                         " << endl;
-    setConsoleColor(4, 0);
-    cout << "     0. ATRAS                                                                     " << endl;
-    setConsoleColor(8, 0);
-    cout << "-----------------------------------------------------------" << endl;
-    cout << endl;
-    cout << "======== Gracias por utilizar el sistema  ===========" << endl;
-    cout << "=================================================" << endl;
-
-
-    cin>> opcion;
-    setConsoleColor(15, 0);
-    switch (opcion)
+    int opcion = 1;
+    while(opcion != 0)
     {
-    case 1: elegirVideojuego(); break;
-    case 2: listarPorGenero(); break;
-    case 3: listarPorCreador();break;
-    case 4: mostrarPorPrecio();break;
-    case 5: listarPorAnio();break;
-    default: cout<< "Opcion invalida."; break;
+
+        system("CLS");
+        setConsoleColor(9, 0);
+        cout << "==========================================" << endl;
+        cout << "  <<<  Menu para buscar videojuegos   <<<           " << endl;
+        cout << "==========================================" << endl;
+        cout << endl;  // Espacio para separación
+        cout << "======== Seleccione una opcion:  =======" << endl;
+
+        cout << endl;  // Espacio para separación
+        cout << "----------------------------------------------------------" << endl;
+        cout << "     1. Listar todos los videojuegos                                         " << endl;
+        cout << "     2. Listar por genero                                                       " << endl;
+        cout << "     3. Listar por creador                                                       " << endl;
+        cout << "     4. Listar por precio                                                         " << endl;
+        setConsoleColor(4, 0);
+        cout << "     0. ATRAS                                                                     " << endl;
+        setConsoleColor(8, 0);
+        cout << "-----------------------------------------------------------" << endl;
+        cout << endl;
+        cout << "======== Gracias por utilizar el sistema  ===========" << endl;
+        cout << "=================================================" << endl;
+
+
+        cin>> opcion;
+        setConsoleColor(15, 0);
+        switch (opcion)
+        {
+        case 1:
+            elegirVideojuego();
+            break;
+        case 2:
+            listarPorGenero();
+            break;
+        case 3:
+            listarPorCreador();
+            break;
+        case 4:
+            mostrarPorPrecio();
+            break;
+        case 5:
+            listarPorAnio();
+            break;
+        default:
+            cout<< "Opcion invalida.";
+            break;
+        }
     }
-  }
 }
 
 void infoCuenta() //nueva funcion
@@ -314,30 +349,44 @@ void infoCuenta() //nueva funcion
     int cantReg = arcU.contarRegistros();
 
     for (int i = 0; i < cantReg; i++)
+    {
+        usu = arcU.leerRegistros(i);
+        if (usu.getID() == idIniciada)
         {
-            usu = arcU.leerRegistros(i);
-            if (usu.getID() == idIniciada)
+            while (opcion != 0)
+            {
+                system("CLS");
+                usu.mostrarDatos();
+                if (usu.getActivo() == false)
                 {
-                   while (opcion != 0){
-                   system("CLS");
-                   usu.mostrarDatos();
-                   if (usu.getActivo() == false){setConsoleColor(4, 0);cout << "-----------CUENTA DESHABILITADA-----------" << endl;}
-                   cout << endl; setConsoleColor(15, 0);
-                   cout<<"1 - Deshabilitar cuenta"<<endl;
-                   cout<<"0 - Salir"<<endl;
-                   cin>>opcion;
-                   switch (opcion)
-                   {
-                   case 1:
-                       bajaUsuario(idIniciada);
-                       break;
-                   case 0: break;
-                   default: system("CLS");setConsoleColor(4, 0); cout<<"Opcion invalida" <<endl;
-                       break;
-                   }
-                   }
+                    setConsoleColor(4, 0);
+                    cout << "-----------CUENTA DESHABILITADA-----------" << endl;
                 }
+                cout << endl;
+                setConsoleColor(15, 0);
+                cout<<"1 - Deshabilitar cuenta"<<endl;
+                cout<<"2 - Anadir tarjeta"<<endl;
+                cout<<"0 - Salir"<<endl;
+                cin>>opcion;
+                switch (opcion)
+                {
+                case 1:
+                    bajaUsuario(idIniciada);
+                    break;
+                case 2:
+                    aniadirTarjeta(idIniciada);
+                    break;
+                case 0:
+                    break;
+                default:
+                    system("CLS");
+                    setConsoleColor(4, 0);
+                    cout<<"Opcion invalida" <<endl;
+                    break;
+                }
+            }
         }
+    }
 }
 
 bool buscarNombre(const char *_nombre, int &posicion)
@@ -372,11 +421,14 @@ void listarPorGenero() //nueva funcion xdddddd (todavia esta en proceso)
     cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
     for (int i = 0; i< cantReg ; i++ )
     {
-    game = arcV.leerRegistros(i);
-    if(strcmp(game.getGenero(), genero) == 0){ cout<< i+1<< " - "<< game.getTitulo() <<endl; }
+        game = arcV.leerRegistros(i);
+        if(strcmp(game.getGenero(), genero) == 0)
+        {
+            cout<< i+1<< " - "<< game.getTitulo() <<endl;
+        }
     }
     system("PAUSE");
-  }
+}
 
 void listarPorCreador()
 {
@@ -394,16 +446,19 @@ void listarPorCreador()
     cout << "Filtro aplicado: " << desarrolladora << endl;
     cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
 
-    for (int i = 0; i < tam; i++) {
+    for (int i = 0; i < tam; i++)
+    {
         game = arcV.leerRegistros(i);
-        if (strcmp(game.getDesarrollador(), desarrolladora) == 0) {
+        if (strcmp(game.getDesarrollador(), desarrolladora) == 0)
+        {
             cout << i + 1 << " - " << game.getTitulo() << endl;
             contgame++;
         }
     }
     system("PAUSE");
-    if (contgame == 0) {
-            setConsoleColor(4, 0);
+    if (contgame == 0)
+    {
+        setConsoleColor(4, 0);
         cout << "No hay juegos con esa desarrolladora :(" << endl;
     }
 }
@@ -427,29 +482,39 @@ int datosUsuarioIniciado()
 
 void mostrarPorPrecio ()
 {
-archivoVideoJuego arcV("archivos/videojuego.dat");
-videoJuego game;
-int tam = arcV.contarRegistros();
-int montoMax = 0;
-int montoMin= 0;
-int contGame= 0;
-system("CLS");
-setConsoleColor(15, 0);
-cout<<"Ingrese el monto maximo "<<endl;
-cin>>montoMax;
-cout<<"Ingrese el monto minimo "<<endl;
-cin>>montoMin;
-system("CLS");
-cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
-cout<<"El filtro aplicado es: " <<" desde : " <<montoMin<< "$"<<" hasta : "<< montoMax<< "$"<<endl;
-cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
-for (int i= 0;i< tam ; i++)
-{
-    game= arcV.leerRegistros(i);
-    if (montoMin<=game.getPrecio() <= montoMax){ cout<< i+1 <<"-"<< game.getTitulo()<<endl; contGame++;}
-}
-if(contGame== 0){system("CLS");setConsoleColor(4, 0);cout<< "No hay ningun juego con ese monto."<<endl;setConsoleColor(15, 0);}
-system("PAUSE");
+    archivoVideoJuego arcV("archivos/videojuego.dat");
+    videoJuego game;
+    int tam = arcV.contarRegistros();
+    int montoMax = 0;
+    int montoMin= 0;
+    int contGame= 0;
+    system("CLS");
+    setConsoleColor(15, 0);
+    cout<<"Ingrese el monto maximo "<<endl;
+    cin>>montoMax;
+    cout<<"Ingrese el monto minimo "<<endl;
+    cin>>montoMin;
+    system("CLS");
+    cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
+    cout<<"El filtro aplicado es: " <<" desde : " <<montoMin<< "$"<<" hasta : "<< montoMax<< "$"<<endl;
+    cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
+    for (int i= 0; i< tam ; i++)
+    {
+        game= arcV.leerRegistros(i);
+        if (montoMin<=game.getPrecio() && game.getPrecio()<= montoMax)
+        {
+            cout<< i+1 <<"-"<< game.getTitulo()<<endl;
+            contGame++;
+        }
+    }
+    if(contGame== 0)
+    {
+        system("CLS");
+        setConsoleColor(4, 0);
+        cout<< "No hay ningun juego con ese monto."<<endl;
+        setConsoleColor(15, 0);
+    }
+    system("PAUSE");
 }
 
 void listarPorAnio()
@@ -478,7 +543,8 @@ void listarPorAnio()
     if (contGame == 0)
     {
         setConsoleColor(4, 0);
-        cout<< "No existen juegos con ese anio" << endl; setConsoleColor(15, 0);
+        cout<< "No existen juegos con ese anio" << endl;
+        setConsoleColor(15, 0);
     }
     system("PAUSE");
 }
@@ -492,7 +558,10 @@ int buscarUsuarioPorID(int id)
     for (int i = 0 ; i < tam ; i++)
     {
         obj = arcU.leerRegistros(i);
-        if (id == obj.getID()){return i;}
+        if (id == obj.getID())
+        {
+            return i;
+        }
     }
     return -1;
 }
@@ -502,7 +571,8 @@ void bajaUsuario(int idIniciada)
     usuario obj;
     archivoUsuario arcU("archivos/Usuario.dat");
     int pos = buscarUsuarioPorID(idIniciada);
-    if(pos<0){
+    if(pos<0)
+    {
         cout<<"Error al modificar usuario."<<endl;
         cout << "Codigo de error: " << pos << endl;
         system("pause");
@@ -511,7 +581,8 @@ void bajaUsuario(int idIniciada)
     cout << "REGISTRO: " << pos << endl;
     cout << "ID SELECCIONADA: " << idIniciada << endl;
     obj = arcU.leerRegistros(pos);
-    if(obj.getActivo()==false){
+    if(obj.getActivo()==false)
+    {
         cout<<"El usuario ya se encontraba deshabilitado" << endl;
         system("pause");
         return;
@@ -533,11 +604,41 @@ void cargarVideojuego()
     gameAnt = arcV.leerRegistros(tam-1); //CARGA LOS DATOS DEL ULTIMO REGISTRO
     game.setidVideojuego(gameAnt.getidVideojuego()+1);
 
-     cout << "ID del nuevo videojuego seteada como : " << game.getidVideojuego() << endl;
+    cout << "ID del nuevo videojuego seteada como : " << game.getidVideojuego() << endl;
     arcV.grabarRegistros(game);
 }
 
+void aniadirTarjeta(int idIniciada)
+{
+    usuario obj;
+    archivoUsuario arcU("archivos/Usuario.dat");
+    int pos = buscarUsuarioPorID(idIniciada);
+    int num;
+    if(pos<0)
+    {
+        cout<<"Error al aniadir tarjeta."<<endl;
+        cout << "Codigo de error: " << pos << endl;
+        system("pause");
+        return;
+    }
+    cout << "REGISTRO: " << pos << endl;
+    cout << "ID SELECCIONADA: " << idIniciada << endl;
+    obj = arcU.leerRegistros(pos);
+    if(obj.getActivo()==false)
+    {
+        cout<<"El usuario se encontraba deshabilitado" << endl;
+        system("pause");
+        return;
+    }
+    cout<<"Ingrese el numero de tarjeta: ";
+    cin>>num;
+    obj.setTarjet(num);
+    arcU.modificarUsuario(obj,pos);
+    cout << "La cuenta ha sido deshabilitada." << endl;
+    system("pause");
+}
 
+/*
 void designarBiblioteca(int idIniciada)
 {
     archivoBiblioteca arcB("archivos/biblioteca.dat");
@@ -558,4 +659,4 @@ void designarBiblioteca(int idIniciada)
     }
 
     arcB.grabarRegistros(libro);
-}
+}*/
