@@ -158,6 +158,9 @@ void grabarRegistroUsuario()
         system("pause");
         return;
     }
+
+    int IdBiblioteca = designarBiblioteca(obj.getID());
+    cout<< "ID de biblioteca seteada como: "<< IdBiblioteca<<endl;
     cout << "ID DEL NUEVO USUARIO SETEADA COMO: " << obj.getID() << endl;
     system("pause");
     archivo.grabarRegistros(obj);
@@ -538,24 +541,19 @@ void cargarVideojuego()
 }
 
 
-void designarBiblioteca(int idIniciada)
+int designarBiblioteca(int idUsuario)
 {
     archivoBiblioteca arcB("archivos/biblioteca.dat");
     Biblioteca libro;
-
-    archivoUsuario arcU("archivos/usuarios.dat");
+    archivoUsuario arcU("archivos/usuario.dat");
     usuario usu;
-    int pos = buscarUsuarioPorID(idIniciada);
-    int tam = arcB.contarRegistros();
+    int pos = buscarUsuarioPorID(idUsuario);
     int cantReg = arcU.contarRegistros();
-
-
-    for (int i =0;i< cantReg;i++ ){
-
-        libro = arcB.leerBiblioteca(i);
-
-        if((usu.getActivo()== true) && (i == pos)){libro.setIdBiblioteca(usu.getID());}
+    arcB.leerBiblioteca(pos);
+    libro.setIdUsuario(idUsuario);
+    arcB.modificarBiblioteca(pos, libro);
+    cout<<"tu biblioteca asignada tiene ID: "<< libro.getIdUsuario()<<endl;
+    int idBibloteca = libro.getIdUsuario();
+    return idBibloteca;
     }
 
-    arcB.grabarRegistros(libro);
-}

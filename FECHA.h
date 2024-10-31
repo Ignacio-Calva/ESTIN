@@ -6,9 +6,6 @@ class Fecha{
     int _dia, _mes, _anio;
 
     public:
-    Fecha();
-    Fecha(int dia, int mes, int anio);
-
     void mostrar()
     {
         cout << _dia << "/" << _mes << _anio << endl;
