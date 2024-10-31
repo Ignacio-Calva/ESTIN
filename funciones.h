@@ -28,5 +28,6 @@ void mostrarPorPrecio();
 void bajaUsuario(int idIniciada);
 void bajaUsuario(int idIniciada);
 void cargarVideojuego();
+void designarBiblioteca(int idIniciada);
 
 #endif // FUNCIONES_H_INCLUDED

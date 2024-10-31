@@ -3,6 +3,7 @@ using namespace std;
 #include <cstring>
 #include "funciones.h"
 #include "VIDEOJUEGO.h"
+#include "BIBLIOTECA.h"
 #include "USUARIO.h"
 #include <windows.h>
 
@@ -534,5 +535,27 @@ void cargarVideojuego()
 
      cout << "ID del nuevo videojuego seteada como : " << game.getidVideojuego() << endl;
     arcV.grabarRegistros(game);
+}
 
+
+void designarBiblioteca(int idIniciada)
+{
+    archivoBiblioteca arcB("archivos/biblioteca.dat");
+    Biblioteca libro;
+
+    archivoUsuario arcU("archivos/usuarios.dat");
+    usuario usu;
+    int pos = buscarUsuarioPorID(idIniciada);
+    int tam = arcB.contarRegistros();
+    int cantReg = arcU.contarRegistros();
+
+
+    for (int i =0;i< cantReg;i++ ){
+
+        libro = arcB.leerBiblioteca(i);
+
+        if((usu.getActivo()== true) && (i == pos)){libro.setIdBiblioteca(usu.getID());}
+    }
+
+    arcB.grabarRegistros(libro);
 }
