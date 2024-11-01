@@ -14,6 +14,7 @@ void listarVideojuegos();
 void caracteristicasVideojuego(int j);
 void buscarPorNombre(const char *n);
 void cargarCadena(char *pal, int tam);
+bool compararSinMayusculas(const char* texto1, const char* texto2);
 void grabarRegistroUsuario();
 void inicioSesion();
 void menuPrincipal();
@@ -30,6 +31,7 @@ void bajaUsuario(int idIniciada);
 void cargarVideojuego();
 int designarBiblioteca(int idIniciada);
 void aniadirTarjeta(int idIniciada);
+
 
 ///ADMINISTRADOR
 void listarVideojuegosAdmin();
