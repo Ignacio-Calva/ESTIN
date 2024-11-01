@@ -30,5 +30,6 @@ void bajaUsuario(int idIniciada);
 void cargarVideojuego();
 int designarBiblioteca(int idIniciada);
 void aniadirTarjeta(int idIniciada);
+void comprarJuego();
 
 #endif // FUNCIONES_H_INCLUDED
