@@ -797,3 +797,30 @@ void listarVideojuegosAdmin()///LISTA LOS JUEGOS, PERO CON DESHABILITADOS INCLUI
         else {cout << "Deshabilitado." << endl;}
     }
 }
+
+bool compararSinMayusculas(const char* texto1, const char* texto2)
+{
+    int longitud1 = strlen(texto1);
+    int longitud2 = strlen(texto2);
+    char textoPasado1[30]{};
+    char textoPasado2[30]{};
+    strcpy(textoPasado1,texto1);
+    strcpy(textoPasado2,texto2);
+    if (longitud1 == longitud2)
+    {
+        for (int i = 0 ; i < longitud1 ; i++)
+        {
+            if(texto1[i] >=65 && texto1[i] <= 90)
+                {
+                    textoPasado1[i] += 32;
+                }
+            if(texto2[i] >=65 && texto2[i] <= 90)
+                {
+                    textoPasado2[i] += 32;
+                }
+        }
+        if (strcmp(textoPasado1,textoPasado2) == 0){return true;}
+        else{return false;}
+    }
+    else{return false;}
+}
