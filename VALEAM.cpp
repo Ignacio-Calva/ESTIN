@@ -21,19 +21,6 @@ void añadirVideojuegos()
 */
 int main()
 {
-
-     ///LINEAS PARA PROBAR FUNCION DE COMPARAR STRINGS CON MAYUSCULAS DISTINTAS
-    char texto1[30];
-    char texto2[30];
-    cout<<"Ingrese el texto 1: ";
-    cargarCadena(texto1,29);
-    cout << "Ingrese el texto 2: ";
-    cargarCadena(texto2,29);
-    if (compararSinMayusculas(texto1,texto2)){cout<<"Los textos son iguales"<<endl;}
-    else{cout << "Los textos son distintos"<<endl;}
-    system("pause");
-    ///BORRAR DESPUES
-
     int opcion1 = 1;
     while (opcion1 != 0)
     {   setConsoleColor(15, 0);
