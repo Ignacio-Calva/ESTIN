@@ -85,9 +85,9 @@ void listarVideojuegos()
     cout<<"VideoJuegos: " << endl << endl;
     for (int i = 0; i < cantReg; i++)
     {
+        game = arcV.leerRegistros(i);
         if (game.getActivo())
         {
-            game = arcV.leerRegistros(i);
             setConsoleColor(15, 0);
             cout<< i+1 << " - " << game.getTitulo() << endl;
         }
