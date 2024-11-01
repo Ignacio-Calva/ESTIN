@@ -559,5 +559,3 @@ void designarBiblioteca(int idIniciada)
 
     arcB.grabarRegistros(libro);
 }
-
-//lol
