@@ -284,6 +284,8 @@ while(opcion != 0){
     cout << "     2. Listar por genero                                                       " << endl;
     cout << "     3. Listar por creador                                                       " << endl;
     cout << "     4. Listar por precio                                                         " << endl;
+    cout << "     5- Listar por año           "<<endl;
+    cout << "     6- Listar pot gratuito    "<<endl;
     setConsoleColor(4, 0);
     cout << "     0. ATRAS                                                                     " << endl;
     setConsoleColor(8, 0);
@@ -430,7 +432,7 @@ int datosUsuarioIniciado()
             return i;
         }
     }
-}
+return -1;}
 
 void mostrarPorPrecio ()
 {
@@ -453,7 +455,7 @@ cout<<"-------------------------------------------------------------------------
 for (int i= 0;i< tam ; i++)
 {
     game= arcV.leerRegistros(i);
-    if (montoMin<=game.getPrecio() <= montoMax){ cout<< i+1 <<"-"<< game.getTitulo()<<endl; contGame++;}
+    if ((montoMin<=game.getPrecio())&&(game.getPrecio()<= montoMax)){ cout<< i+1 <<"-"<< game.getTitulo()<<endl; contGame++;}
 }
 if(contGame== 0){system("CLS");setConsoleColor(4, 0);cout<< "No hay ningun juego con ese monto."<<endl;setConsoleColor(15, 0);}
 system("PAUSE");
@@ -466,28 +468,47 @@ void listarPorAnio()
     int tam = arcV.contarRegistros();
     int anio;
     int contGame = 0;
+    int numJuego;
+    system("CLS");
     cout<< "Ingrese el anio con el cual filtrar: "<<endl;
     cin>>anio;
     system("CLS");
-    cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
+
+    cout<<"---------------------------------------------------------------------"<<endl;
     cout<<"Filtro aplicado: "<<anio<<endl;
-    cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
+    cout<<"---------------------------------------------------------------------"<<endl;
     for (int i =0; i<tam ; i++ )
     {
         game = arcV.leerRegistros(i);
 
         if(game.getAnio() == anio)
         {
-            cout<<i+1 << "-"<< game.getTitulo()<<endl;
+            cout<<"-----------------------------------------------------------------"<<endl;
+            cout<<game.getidVideojuego() << "-"<< game.getTitulo()<< "    -- precio: $ " << game.getPrecio()<<endl;
             contGame++;
         }
     }
-    if (contGame == 0)
-    {
-        setConsoleColor(4, 0);
-        cout<< "No existen juegos con ese anio" << endl; setConsoleColor(15, 0);
-    }
+    if(contGame== 0){cout<<"NO HAY VIDEOJUEGOS CON ESE AÑO"<<endl;
     system("PAUSE");
+    }else{
+
+         setConsoleColor(4, 0);
+        cout << "0 - ATRAS" << endl;
+        setConsoleColor(8, 0);
+        cout << "--------------------------------------------" << endl;
+        cout << "INGRESE EL NUMERO DEL JUEGO DESEADO: " <<endl;
+        cout << "--------------------------------------------" << endl;
+
+        cin >> numJuego;
+        if (numJuego > 0 )
+        {
+            if (numJuego > tam){ cout << "NUMERO DE JUEGO NO ENCONTRADO." << endl;
+
+            system("PAUSE");
+            } else{caracteristicasVideojuego(numJuego);
+            }
+        }
+    }
 }
 
 ///FUNCIONES PARA DAR DE BAJA UN USUARIO
@@ -537,6 +558,7 @@ void cargarVideojuego()
     game.cargar();
 
     int tam=arcV.contarRegistros();
+
     gameAnt = arcV.leerRegistros(tam-1); //CARGA LOS DATOS DEL ULTIMO REGISTRO
     game.setidVideojuego(gameAnt.getidVideojuego()+1);
 
@@ -552,7 +574,6 @@ int designarBiblioteca(int idUsuario)
     archivoUsuario arcU("archivos/usuario.dat");
     usuario usu;
     int pos = buscarUsuarioPorID(idUsuario);
-    int cantReg = arcU.contarRegistros();
     arcB.leerBiblioteca(pos);
     libro.setIdUsuario(idUsuario);
     arcB.modificarBiblioteca(pos, libro);
