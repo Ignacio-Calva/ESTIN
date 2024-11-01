@@ -7,7 +7,7 @@
 
 1728004313 c:\users\admin\desktop\practica\puntoh.h
 
-1728069568 ated upstream
+1730251479 ated upstream
 
 1730237135 source:d:\facultad\tecnicatura programación\programación\estin\valeam.cpp
 	<iostream>
@@ -36,21 +36,47 @@
 1728069614 d:\facultad\tecnicatura programación\programación\estin\clases.h
 	"funciones.h"
 
-1728078771 D
+1730251479 D
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\funciones.cpp
 
-<<<<<<< Updated upstream
-1730329950 source:c:\users\admin\documents\github\estin\funciones.cpp
-=======
-1730487103 source:c:\users\admin\documents\github\estin\funciones.cpp
->>>>>>> Stashed changes
+1730488487 source:c:\users\admin\documents\github\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
 	"VIDEOJUEGO.h"
+	"BIBLIOTECA.h"
 	"USUARIO.h"
 	<windows.h>
+
+1730487103 shed changes
+	<iostream>
+	<string.h>
+	<windows.h>
+	"funciones.h"
+	"clases.h"
+	<iostream>
+	<string.h>
+	<windows.h>
+	"funciones.h"
+	"VIDEOJUEGO.h"
+	"USUARIO.h"
+	"BIBLIOTECA.h"
+	"funciones.h"
+
+1730422607 n
+	<iostream>
+	<cstring>
+	"funciones.h"
+	"VIDEOJUEGO.h"
+	"BIBLIOTECA.h"
+	"USUARIO.h"
+	<windows.h>
+	<cstring>
+	"funciones.h"
+	"FECHA.h"
+	<string>
+	"funciones.h"
 
 1728078783 ent of 4d2d326 (Revert "SoluciÃ³n compilador")
 	<iostream>
@@ -61,21 +87,6 @@
 
 1728078783 >
 
-1728069614 shed changes
-	<iostream>
-	<string.h>
-	<windows.h>
-	"funciones.h"
-	"clases.h"
-	<iostream>
-	<string.h>
-	<windows.h>
-	"funciones.h"
-	"VIDEOJUEGO.h"
-	"USUARIO.h"
-	"BIBLIOTECA.h"
-	"funciones.h"
-
 1728091878 c:\users\user\desktop\estin-main\estin\funciones.h
 	<cstring>
 
@@ -84,17 +95,13 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\valeam.cpp
 
-<<<<<<< Updated upstream
-1730318105 c:\users\admin\documents\github\estin\funciones.h
-=======
-1730487103 c:\users\admin\documents\github\estin\funciones.h
->>>>>>> Stashed changes
+1730488487 c:\users\admin\documents\github\estin\funciones.h
 	<cstring>
 
 1728148751 c:\users\admin\documents\github\estin\clases.h
 	"funciones.h"
 
-1730328559 source:c:\users\admin\documents\github\estin\valeam.cpp
+1730387062 source:c:\users\admin\documents\github\estin\valeam.cpp
 	<iostream>
 	<string.h>
 	<windows.h>
@@ -103,7 +110,7 @@
 	"USUARIO.h"
 	"BIBLIOTECA.h"
 
-1730318105 c:\users\admin\documents\github\estin\usuario.h
+1730414242 c:\users\admin\documents\github\estin\usuario.h
 	"funciones.h"
 	"PERSONA.h"
 
@@ -122,31 +129,20 @@
 	"USUARIO.h"
 	"funciones.h"
 
-<<<<<<< Updated upstream
-1730330002 c:\users\admin\documents\github\estin\videojuego.h
+1730488487 c:\users\admin\documents\github\estin\videojuego.h
 	"funciones.h"
 
-1729701420 c:\users\admin\documents\github\estin\biblioteca.h
-=======
-1730487103 c:\users\admin\documents\github\estin\videojuego.h
-	"funciones.h"
-
-1730487103 c:\users\admin\documents\github\estin\biblioteca.h
->>>>>>> Stashed changes
+1730488487 c:\users\admin\documents\github\estin\biblioteca.h
 	"funciones.h"
 	"FECHA.h"
 
 1729698513 d:\facultad\tecnicatura programación\programación\estin\fecha.h
 	<string>
 
-<<<<<<< Updated upstream
-1730318526 c:\users\admin\documents\github\estin\fecha.h
-=======
-1730487103 c:\users\admin\documents\github\estin\fecha.h
->>>>>>> Stashed changes
+1730488487 c:\users\admin\documents\github\estin\fecha.h
 	<string>
 
-1730377768 source:c:\users\user\desktop\estin\funciones.cpp
+1730431709 source:c:\users\user\desktop\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -155,10 +151,10 @@
 	"USUARIO.h"
 	<windows.h>
 
-1730377184 c:\users\user\desktop\estin\funciones.h
+1730423016 c:\users\user\desktop\estin\funciones.h
 	<cstring>
 
-1730374168 c:\users\user\desktop\estin\videojuego.h
+1730431784 c:\users\user\desktop\estin\videojuego.h
 	"funciones.h"
 
 1730374168 c:\users\user\desktop\estin\usuario.h
@@ -174,11 +170,11 @@
 	"USUARIO.h"
 	"BIBLIOTECA.h"
 
-1730378443 c:\users\user\desktop\estin\biblioteca.h
+1730419002 c:\users\user\desktop\estin\biblioteca.h
 	"funciones.h"
 	"FECHA.h"
 
-1730378050 c:\users\user\desktop\estin\fecha.h
+1730417773 c:\users\user\desktop\estin\fecha.h
 	<string>
 
 1730358711 source:c:\users\user\desktop\facultad\estin-main\estin\funciones.cpp
@@ -218,16 +214,12 @@
 1730239693 d:\facultad\tecnicatura programación\programación\estin\persona.h
 	"funciones.h"
 
-1730253212 c:\users\user\desktop\estin\persona.h
+1730423016 c:\users\user\desktop\estin\persona.h
 	"funciones.h"
 
 1730251479 c:\users\user\desktop\facultad\estin-main\estin\persona.h
 	"funciones.h"
 
-<<<<<<< Updated upstream
-1730307548 c:\users\admin\documents\github\estin\persona.h
-=======
-1730487103 c:\users\admin\documents\github\estin\persona.h
->>>>>>> Stashed changes
+1730488487 c:\users\admin\documents\github\estin\persona.h
 	"funciones.h"
 

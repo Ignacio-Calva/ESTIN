@@ -11,6 +11,7 @@ class Persona
         int DNI;
         char Mail[30] = {};
         int IDPais;
+        int numTarjeta;
         bool admin = false;
     public:
         void cargarDatosPersona()
@@ -36,6 +37,7 @@ class Persona
             cout<< "DNI:  " << DNI << endl;
             cout<< "Mail: " << Mail << endl;
             cout<< "ID de Pais: " << IDPais << endl;
+            cout<< "Numero de tarjeta: " << numTarjeta << endl;
         }
 
         void setNombre(const char *n){strcpy(NombreUsuario, n);}
@@ -45,6 +47,7 @@ class Persona
         void setMail(const char *m){strcpy(Mail, m);}
         void setIDPais(int p){IDPais=p;}
         void setAdmin(bool a){admin=a;}
+        void setTarjet(int numTar) {numTarjeta=numTar;}
 
         const char* getNombre(){return NombreUsuario;}
         const char* getContrasenia(){return Contrasenia;}
@@ -53,7 +56,7 @@ class Persona
         const char* getMail(){return Mail;}
         int getIDPais(){return IDPais;}
         bool getAdmin(){return admin;}
-
+        int getTarjet() {return numTarjeta;}
 };
 
 

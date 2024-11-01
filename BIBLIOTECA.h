@@ -57,6 +57,7 @@ class Biblioteca{
             }
         }
 
+        void designarBiblioteca(int pos, Biblioteca obj);
         void setIdUsuario(int _id){idUsuario = _id;}
         void setIdVideojuego(int _id, int pos){idVideojuego[pos] = _id;}
         void setFechaCompra(Fecha _fechaCompra, int pos){fechaCompra[pos] = _fechaCompra;}
@@ -106,6 +107,19 @@ class archivoBiblioteca{
             if (p == nullptr) return;
             fclose(p);
         }
+
+        bool modificarBiblioteca (int pos, Biblioteca obj)
+        {
+            FILE *p = fopen(nombre, "rb+");
+            if (p==NULL) return false;
+            fseek(p, pos * sizeof obj, 0);
+            fwrite(&obj, sizeof obj, 1, p);
+            fclose(p);
+            return true;
+
+        }
+
+
 };
 
 #endif // BIBLIOTECA_H_INCLUDED

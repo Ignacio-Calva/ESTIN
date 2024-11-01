@@ -158,6 +158,9 @@ void grabarRegistroUsuario()
         system("pause");
         return;
     }
+
+    int IdBiblioteca = designarBiblioteca(obj.getID());
+    cout<< "ID de biblioteca seteada como: "<< IdBiblioteca<<endl;
     cout << "ID DEL NUEVO USUARIO SETEADA COMO: " << obj.getID() << endl;
     system("pause");
     archivo.grabarRegistros(obj);
@@ -281,6 +284,8 @@ while(opcion != 0){
     cout << "     2. Listar por genero                                                       " << endl;
     cout << "     3. Listar por creador                                                       " << endl;
     cout << "     4. Listar por precio                                                         " << endl;
+    cout << "     5- Listar por anio          "<<endl;
+    cout << "     6- Listar pot gratuito    "<<endl;
     setConsoleColor(4, 0);
     cout << "     0. ATRAS                                                                     " << endl;
     setConsoleColor(8, 0);
@@ -324,12 +329,16 @@ void infoCuenta() //nueva funcion
                    if (usu.getActivo() == false){setConsoleColor(4, 0);cout << "-----------CUENTA DESHABILITADA-----------" << endl;}
                    cout << endl; setConsoleColor(15, 0);
                    cout<<"1 - Deshabilitar cuenta"<<endl;
+                   cout<<"2 - Asignar tarjeta"<<endl;
                    cout<<"0 - Salir"<<endl;
                    cin>>opcion;
                    switch (opcion)
                    {
                    case 1:
                        bajaUsuario(idIniciada);
+                       break;
+                   case 2:
+                     aniadirTarjeta(idIniciada);
                        break;
                    case 0: break;
                    default: system("CLS");setConsoleColor(4, 0); cout<<"Opcion invalida" <<endl;
@@ -373,7 +382,7 @@ void listarPorGenero() //nueva funcion xdddddd (todavia esta en proceso)
     for (int i = 0; i< cantReg ; i++ )
     {
     game = arcV.leerRegistros(i);
-    if(strcmp(game.getGenero(), genero) == 0){ cout<< i+1<< " - "<< game.getTitulo() <<endl; }
+    if(strcmp(game.getGenero(), genero) == 0){ cout<< i+1<< " - "<< game.getTitulo()<< "    -- precio: $ " << game.getPrecio()<<endl;; }
     }
     system("PAUSE");
   }
@@ -397,7 +406,7 @@ void listarPorCreador()
     for (int i = 0; i < tam; i++) {
         game = arcV.leerRegistros(i);
         if (strcmp(game.getDesarrollador(), desarrolladora) == 0) {
-            cout << i + 1 << " - " << game.getTitulo() << endl;
+            cout << i + 1 << " - " << game.getTitulo()<< "    -- precio: $ " << game.getPrecio()<<endl;;
             contgame++;
         }
     }
@@ -423,7 +432,7 @@ int datosUsuarioIniciado()
             return i;
         }
     }
-}
+return -1;}
 
 void mostrarPorPrecio ()
 {
@@ -446,41 +455,65 @@ cout<<"-------------------------------------------------------------------------
 for (int i= 0;i< tam ; i++)
 {
     game= arcV.leerRegistros(i);
-    if (montoMin<=game.getPrecio() <= montoMax){ cout<< i+1 <<"-"<< game.getTitulo()<<endl; contGame++;}
+    if ((montoMin<=game.getPrecio())&&(game.getPrecio()<= montoMax)){ cout<< i+1 <<"-"<< game.getTitulo() << "    -- precio: $ " << game.getPrecio()<<endl; contGame++;}
 }
 if(contGame== 0){system("CLS");setConsoleColor(4, 0);cout<< "No hay ningun juego con ese monto."<<endl;setConsoleColor(15, 0);}
 system("PAUSE");
 }
 
-void listarPorAnio()
+void listarPorAnio()  //función a arreglar
 {
     archivoVideoJuego arcV("archivos/videojuego.dat");
     videoJuego game;
     int tam = arcV.contarRegistros();
     int anio;
     int contGame = 0;
+    int numJuego;
+    int videoJuegos[150] = {0};
+    system("CLS");
     cout<< "Ingrese el anio con el cual filtrar: "<<endl;
     cin>>anio;
     system("CLS");
-    cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
+
+    cout<<"------------------------------------------"<<endl;
     cout<<"Filtro aplicado: "<<anio<<endl;
-    cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
+    cout<<"------------------------------------------"<<endl;
     for (int i =0; i<tam ; i++ )
     {
         game = arcV.leerRegistros(i);
 
         if(game.getAnio() == anio)
         {
-            cout<<i+1 << "-"<< game.getTitulo()<<endl;
+            cout<<game.getidVideojuego() << "-"<< game.getTitulo()<< "   -- precio: $ " << game.getPrecio()<<endl;
             contGame++;
+            videoJuegos[i]+1;
         }
     }
-    if (contGame == 0)
+    if(contGame== 0)
     {
-        setConsoleColor(4, 0);
-        cout<< "No existen juegos con ese anio" << endl; setConsoleColor(15, 0);
+        cout<<"NO HAY VIDEOJUEGOS CON ESE ANIO"<<endl;
+        system("PAUSE");
     }
-    system("PAUSE");
+    else
+    {
+
+        setConsoleColor(4, 0);
+        cout << "0 - ATRAS" << endl;
+        setConsoleColor(8, 0);
+        cout << "--------------------------------------------" << endl;
+        cout << "INGRESE EL NUMERO DEL JUEGO DESEADO: " <<endl;
+        cout << "--------------------------------------------" << endl;
+        cin >> numJuego;
+
+        for (int i = 0; i < tam; i++)
+        {
+            if (numJuego > 0 && videoJuegos[numJuego-1] == 1)
+            {
+                caracteristicasVideojuego(videoJuegos[i]);
+                system("pause");
+            }
+        }
+    }
 }
 
 ///FUNCIONES PARA DAR DE BAJA UN USUARIO
@@ -530,6 +563,7 @@ void cargarVideojuego()
     game.cargar();
 
     int tam=arcV.contarRegistros();
+
     gameAnt = arcV.leerRegistros(tam-1); //CARGA LOS DATOS DEL ULTIMO REGISTRO
     game.setidVideojuego(gameAnt.getidVideojuego()+1);
 
@@ -537,25 +571,47 @@ void cargarVideojuego()
     arcV.grabarRegistros(game);
 }
 
-
-void designarBiblioteca(int idIniciada)
+int designarBiblioteca(int idUsuario)
 {
     archivoBiblioteca arcB("archivos/biblioteca.dat");
     Biblioteca libro;
-
-    archivoUsuario arcU("archivos/usuarios.dat");
+    archivoUsuario arcU("archivos/usuario.dat");
     usuario usu;
-    int pos = buscarUsuarioPorID(idIniciada);
-    int tam = arcB.contarRegistros();
-    int cantReg = arcU.contarRegistros();
-
-
-    for (int i =0;i< cantReg;i++ ){
-
-        libro = arcB.leerBiblioteca(i);
-
-        if((usu.getActivo()== true) && (i == pos)){libro.setIdBiblioteca(usu.getID());}
+    int pos = buscarUsuarioPorID(idUsuario);
+    arcB.leerBiblioteca(pos);
+    libro.setIdUsuario(idUsuario);
+    arcB.modificarBiblioteca(pos, libro);
+    cout<<"tu biblioteca asignada tiene ID: "<< libro.getIdUsuario()<<endl;
+    int idBibloteca = libro.getIdUsuario();
+    return idBibloteca;
     }
 
-    arcB.grabarRegistros(libro);
+void aniadirTarjeta(int idIniciada)
+{
+    usuario obj;
+    archivoUsuario arcU("archivos/Usuario.dat");
+    int pos = buscarUsuarioPorID(idIniciada);
+    int num;
+    if(pos<0)
+    {
+        cout<<"Error al aniadir tarjeta."<<endl;
+        cout << "Codigo de error: " << pos << endl;
+        system("pause");
+        return;
+    }
+    cout << "REGISTRO: " << pos << endl;
+    cout << "ID SELECCIONADA: " << idIniciada << endl;
+    obj = arcU.leerRegistros(pos);
+    if(obj.getActivo()==false)
+    {
+        cout<<"El usuario se encontraba deshabilitado" << endl;
+        system("pause");
+        return;
+    }
+    cout<<"Ingrese el numero de tarjeta: ";
+    cin>>num;
+    obj.setTarjet(num);
+    arcU.modificarUsuario(obj,pos);
+    cout << "La cuenta ha sido deshabilitada." << endl;
+    system("pause");
 }
