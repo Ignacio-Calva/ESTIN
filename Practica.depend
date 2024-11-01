@@ -41,9 +41,13 @@
 1728091878 source:c:\users\user\desktop\estin-main\estin\funciones.cpp
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 1730329950 source:c:\users\admin\documents\github\estin\funciones.cpp
 =======
 1730487103 source:c:\users\admin\documents\github\estin\funciones.cpp
+>>>>>>> Stashed changes
+=======
+1730487201 source:c:\users\admin\documents\github\estin\funciones.cpp
 >>>>>>> Stashed changes
 	<iostream>
 	<cstring>
@@ -85,9 +89,13 @@
 1728091878 source:c:\users\user\desktop\estin-main\estin\valeam.cpp
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 1730318105 c:\users\admin\documents\github\estin\funciones.h
 =======
 1730487103 c:\users\admin\documents\github\estin\funciones.h
+>>>>>>> Stashed changes
+=======
+1730487201 c:\users\admin\documents\github\estin\funciones.h
 >>>>>>> Stashed changes
 	<cstring>
 
@@ -123,6 +131,7 @@
 	"funciones.h"
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 1730330002 c:\users\admin\documents\github\estin\videojuego.h
 	"funciones.h"
 
@@ -133,6 +142,12 @@
 
 1730487103 c:\users\admin\documents\github\estin\biblioteca.h
 >>>>>>> Stashed changes
+=======
+1730487201 c:\users\admin\documents\github\estin\videojuego.h
+	"funciones.h"
+
+1730487201 c:\users\admin\documents\github\estin\biblioteca.h
+>>>>>>> Stashed changes
 	"funciones.h"
 	"FECHA.h"
 
@@ -140,9 +155,13 @@
 	<string>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 1730318526 c:\users\admin\documents\github\estin\fecha.h
 =======
 1730487103 c:\users\admin\documents\github\estin\fecha.h
+>>>>>>> Stashed changes
+=======
+1730487201 c:\users\admin\documents\github\estin\fecha.h
 >>>>>>> Stashed changes
 	<string>
 
@@ -225,9 +244,13 @@
 	"funciones.h"
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 1730307548 c:\users\admin\documents\github\estin\persona.h
 =======
 1730487103 c:\users\admin\documents\github\estin\persona.h
+>>>>>>> Stashed changes
+=======
+1730487201 c:\users\admin\documents\github\estin\persona.h
 >>>>>>> Stashed changes
 	"funciones.h"
 
