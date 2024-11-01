@@ -170,7 +170,6 @@ void grabarRegistroUsuario()
 
 void inicioSesion()
 {
-    int eleccion;
     while (true){
         system("cls");
         cout << "         INICIO DE SESION       " << endl;
@@ -190,7 +189,7 @@ void inicioSesion()
         char nombre[30];
         char contrasenia[20];
         system("cls");
-        cout << "INICIO DE SESION COMO USUARIO" << endl;
+        cout << "       INICIO DE SESION      " << endl;
         cout << "=============================" << endl << endl;
         cout << "La cuenta admin es: " << endl;
         cout << cuentaAdmin.getNombre() << " " << cuentaAdmin.getContrasenia() << endl;
@@ -202,47 +201,70 @@ void inicioSesion()
 
         ///LOGUEO ADMIN MAIN
         if(strcmp(cuentaAdmin.getNombre(),nombre) == 0)
-            {
-                if (cuentaAdmin.getActivo()==false) {cout << "La cuenta de administrador principal se encuentra deshabilitada.";}///CONFIRMO QUE NO HAYA SIDO DESHABILITADA ANTERIORMENTE
-                cout << "Usuario encontrado." << endl;
-                cout << "Ingrese su contrasenia: " ;
-                cargarCadena(contrasenia, 19);
-                if (strcmp(contrasenia,cuentaAdmin.getContrasenia()) == 0)
-                {
-                    cout<<"Contrasenia correcta. Se ha iniciado sesion con la cuenta de administrador principal. " << endl;
-                    if (cuentaAdmin.getAdmin()) cout << "Esta cuenta tiene permisos de administrador."<<endl;
-                    system("pause");
-                    system("cls");
-                    //menuAdministrador(); //MODIFICAR EL MENU DE ADMINISTRADOR
-                    return;
-                }
-            }
-        if (buscarNombre(nombre, pos))
         {
-            usu = arcU.leerRegistros(pos);
+            if (cuentaAdmin.getActivo()==false)
+            {
+                cout << "La cuenta de administrador principal se encuentra deshabilitada.";
+                system("pause");
+                system("cls");
+                return;
+            }///CONFIRMO QUE NO HAYA SIDO DESHABILITADA ANTERIORMENTE
             cout << "Usuario encontrado." << endl;
             cout << "Ingrese su contrasenia: " ;
             cargarCadena(contrasenia, 19);
-            if (strcmp(usu.getContrasenia(),contrasenia) == 0)
+            if (strcmp(contrasenia,cuentaAdmin.getContrasenia()) == 0)
             {
-                idIniciada = usu.getID(); //asignar ID iniciada
-                cout << "Sesion iniciada correctamente!" << endl;
+                cout<<"Contrasenia correcta. Se ha iniciado sesion con la cuenta de administrador principal. " << endl;
+                if (cuentaAdmin.getAdmin()) cout << "Esta cuenta tiene permisos de administrador."<<endl;
                 system("pause");
                 system("cls");
-                menuPrincipal();
+                //menuAdministrador(); //MODIFICAR EL MENU DE ADMINISTRADOR
+            } else
+            {
+                cout<<"La contrasenia es incorrecta. Vuelva a intentarlo." << endl;
+                system("pause");
+            }
+        }
+        else///SI NO SE PUDO INICIAR COMO ADMIN MAIN, PRUEBA CON OTROS USUARIOS
+        {
+            if (buscarNombre(nombre, pos))
+            {
+                usu = arcU.leerRegistros(pos);
+                cout << "Usuario encontrado." << endl;
+                cout << "Ingrese su contrasenia: " ;
+                cargarCadena(contrasenia, 19);
+                if (strcmp(usu.getContrasenia(),contrasenia) == 0)
+                {
+                    idIniciada = usu.getID(); //asignar ID iniciada
+                    if (usu.getAdmin()==false)
+                    {
+                        cout << "Sesion iniciada correctamente!" << endl;
+                        system("pause");
+                        system("cls");
+                        menuPrincipal();
+                    }
+                    else
+                    {
+                        cout << "Contrasenia correcta. Esta cuenta tiene permisos de administrador." << endl;
+                        system("pause");
+                        system("cls");
+                        //menuAdministrador();
+                    }
+                }
+                else
+                {
+                    cout << "La contrasenia es incorrecta. Vuelva a intentarlo." << endl;
+                    system("pause");
+                }
             }
             else
             {
-                cout << "La contrasenia es incorrecta. Vuelva a intentarlo." << endl;
+                cout << "Nombre de usuario no encontrado." << endl;
                 system("pause");
             }
+            return;
         }
-        else
-        {
-            cout << "Nombre de usuario no encontrado." << endl;
-            system("pause");
-        }
-        return;
+
 
 //        case 2:
 //            cargarVideojuego();
