@@ -31,8 +31,9 @@ void bajaUsuario(int idIniciada);
 void cargarVideojuego();
 int designarBiblioteca(int idIniciada);
 void aniadirTarjeta(int idIniciada);
-void comprarJuego();
-
+void comprarJuego(int idVideojuego);
+void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada);
+void mostrarBibliotecaDeUsuario(int idIniciada);
 ///ADMINISTRADOR
 void listarVideojuegosAdmin();
 void menuAdministrador();

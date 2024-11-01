@@ -40,7 +40,7 @@ void elegirVideojuego()
             }
         }
         caracteristicasVideojuego(numJuego);
-        comprarJuego();
+        comprarJuego(idIniciada);
         system("PAUSE");
     }
 }
@@ -337,6 +337,8 @@ while(opcion != 0){
     cout << "     4. Listar por precio                                                         " << endl;
     cout << "     5- Listar por anio          "<<endl;
     cout << "     6- Listar pot gratuito    "<<endl;
+    cout << "     7- comprar Videojuego    "<<endl;
+
     setConsoleColor(4, 0);
     cout << "     0. ATRAS                                                                     " << endl;
     setConsoleColor(8, 0);
@@ -355,6 +357,8 @@ while(opcion != 0){
     case 3: listarPorCreador();break;
     case 4: mostrarPorPrecio();break;
     case 5: listarPorAnio();break;
+    case 7: comprarJuego(idIniciada);break;
+    case 8: mostrarBibliotecaDeUsuario(idIniciada);break;
     default: cout<< "Opcion invalida."; break;
     }
   }
@@ -825,10 +829,9 @@ bool compararSinMayusculas(const char* texto1, const char* texto2)
     else{return false;}
 }
 
-void comprarJuego()
+void comprarJuego(int idVideojuego)
 {
     int opcion;
-
     archivoVideoJuego arcV("archivos/videoJuego.dat");
     usuario usu;
     archivoUsuario arcU("archivos/Usuario.dat");
@@ -847,6 +850,8 @@ void comprarJuego()
 
                     if (usu.getTarjet() != 0)
                     {
+                        agregarVideojuegoBiblioteca(idVideojuego, idIniciada);
+
                         cout<<"juego comprado, disfrute :D";
                         system("PAUSE");
                         return;
@@ -884,24 +889,34 @@ void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada){
 archivoBiblioteca arcB ("archivos/biblioteca.dat");
 Biblioteca libro;
 
+Fecha compra;
 int tam = arcB.contarRegistros();
-
-
 for (int i =0;i<tam ; i++){
-
     libro= arcB.leerBiblioteca(i);
-
     if(idIniciada == libro.getIdUsuario()){
-
+    compra.cargar();
+    libro.setFechaCompra(compra,idIniciada);
     libro.setIdVideojuego(idVideojuego, idVideojuego-1);
-
     arcB.modificarBiblioteca(i,libro);
     cout<<"El videojuego ha sido agregado a tu biblioteca con exito, disfruta!!";
-
+    system("PAUSE");
     return;
     }
-
   }
-
 }
 
+void mostrarBibliotecaDeUsuario(int idIniciada)
+{
+    archivoBiblioteca arcB ("archivos/biblioteca.dat");
+    Biblioteca libro;
+    int tam = arcB.contarRegistros();
+    for (int i = 0;i<tam ;i++ ){
+        libro= arcB.leerBiblioteca(i);
+        if(idIniciada == libro.getIdUsuario()){
+            libro.mostrar();
+
+                    system("PAUSE");
+        return;
+        }
+    }
+}
