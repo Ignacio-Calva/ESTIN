@@ -9,7 +9,7 @@
 
 1728069568 ated upstream
 
-1730237135 source:d:\facultad\tecnicatura programación\programación\estin\valeam.cpp
+1730478842 source:d:\facultad\tecnicatura programación\programación\estin\valeam.cpp
 	<iostream>
 	<string.h>
 	<windows.h>
@@ -22,15 +22,17 @@
 	"funciones.h"
 	"funciones.h"
 
-1730317280 d:\facultad\tecnicatura programación\programación\estin\funciones.h
+1730478842 d:\facultad\tecnicatura programación\programación\estin\funciones.h
 	<cstring>
 
-1730318881 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
+1730483133 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
 	"VIDEOJUEGO.h"
+	"BIBLIOTECA.h"
 	"USUARIO.h"
+	"ADMIN.h"
 	<windows.h>
 
 1728069614 d:\facultad\tecnicatura programación\programación\estin\clases.h
@@ -100,14 +102,14 @@
 	"funciones.h"
 	"PERSONA.h"
 
-1730317489 d:\facultad\tecnicatura programación\programación\estin\usuario.h
+1730480186 d:\facultad\tecnicatura programación\programación\estin\usuario.h
 	"funciones.h"
 	"PERSONA.h"
 
-1730316082 d:\facultad\tecnicatura programación\programación\estin\videojuego.h
+1730478842 d:\facultad\tecnicatura programación\programación\estin\videojuego.h
 	"funciones.h"
 
-1729698927 d:\facultad\tecnicatura programación\programación\estin\biblioteca.h
+1730478842 d:\facultad\tecnicatura programación\programación\estin\biblioteca.h
 	"funciones.h"
 	"FECHA.h"
 
@@ -122,7 +124,7 @@
 	"funciones.h"
 	"FECHA.h"
 
-1729698513 d:\facultad\tecnicatura programación\programación\estin\fecha.h
+1730478842 d:\facultad\tecnicatura programación\programación\estin\fecha.h
 	<string>
 
 1730422486 c:\users\admin\documents\github\estin\fecha.h
@@ -197,7 +199,7 @@
 1730145164 c:\users\user\desktop\facultad\estin-main\estin\fecha.h
 	<string>
 
-1730239693 d:\facultad\tecnicatura programación\programación\estin\persona.h
+1730481732 d:\facultad\tecnicatura programación\programación\estin\persona.h
 	"funciones.h"
 
 1730423016 c:\users\user\desktop\estin\persona.h
@@ -208,4 +210,8 @@
 
 1730422607 c:\users\admin\documents\github\estin\persona.h
 	"funciones.h"
+
+1730483082 d:\facultad\tecnicatura programación\programación\estin\admin.h
+	"funciones.h"
+	"PERSONA.h"
 

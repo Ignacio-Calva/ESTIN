@@ -10,6 +10,12 @@ class Admin : public Persona
         int juegosCargados;
         bool activo = true;
     public:
+        Admin(){}
+        Admin(const char* _usuario,const char* _contra,int _idAdmin,bool _activo) : Persona(_usuario,_contra){
+            idAdmin = _idAdmin;
+            activo = _activo;
+            setAdmin(true);
+        }
         void cargarDatos()
         {
             cargarDatosPersona();

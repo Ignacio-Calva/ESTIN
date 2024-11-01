@@ -14,6 +14,19 @@ class Persona
         int numTarjeta;
         bool admin = false;
     public:
+        Persona (){}
+        Persona(const char* _nombre, const char* _contra)
+        {
+            strcpy(NombreUsuario,_nombre);
+            strcpy(Contrasenia,_contra);
+            Edad = 0;
+            DNI = 0;
+            Mail[0] = 0;
+            IDPais = 0;
+            numTarjeta = 0;
+            admin = false;
+        }
+
         void cargarDatosPersona()
         {
             cout << "INGRESE EL NOMBRE DE USUARIO: ";

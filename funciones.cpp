@@ -5,9 +5,11 @@ using namespace std;
 #include "VIDEOJUEGO.h"
 #include "BIBLIOTECA.h"
 #include "USUARIO.h"
+#include "ADMIN.h"
 #include <windows.h>
 
 int idIniciada;
+Admin cuentaAdmin("admin","password",0,true);
 
 void elegirVideojuego()
 {
@@ -173,68 +175,88 @@ void inicioSesion()
         system("cls");
         cout << "         INICIO DE SESION       " << endl;
         cout << "================================" << endl;
-        cout << "1- Iniciar sesion como Usuario" << endl;
-        cout << "2- Iniciar sesion como Admin" << endl;
-        cout << "0- Volver" << endl;
-        cout << "================================" << endl<<endl;
-        cout << "Elija una opcion: ";
-        cin >> eleccion;
-        switch(eleccion){
-            case 1:
+//        cout << "1- Iniciar sesion como Usuario" << endl;
+//        cout << "2- Iniciar sesion como Admin" << endl;
+//        cout << "0- Volver" << endl;
+//        cout << "================================" << endl<<endl;
+//        cout << "Elija una opcion: ";
+//        cin >> eleccion;
+//        switch(eleccion){
+//            case 1:
+//                {
+        archivoUsuario arcU("archivos/Usuario.dat");
+        usuario usu;
+
+        char nombre[30];
+        char contrasenia[20];
+        system("cls");
+        cout << "INICIO DE SESION COMO USUARIO" << endl;
+        cout << "=============================" << endl << endl;
+        cout << "La cuenta admin es: " << endl;
+        cout << cuentaAdmin.getNombre() << " " << cuentaAdmin.getContrasenia() << endl;
+        cout << "BORRAR ESTAS LINEAS CUANDO EL PROGRAMA ESTE TERMINADO." << endl;
+        cout<<"Ingrese su nombre de usuario: " ;
+        cargarCadena(nombre, 29);
+
+        int pos=0; ///USADA POR REFERENCIA PARA GUARDAR DONDE FUE ENCONTRADO EL NOMBRE EN LA FUNCION buscarNombre()
+
+        ///LOGUEO ADMIN MAIN
+        if(strcmp(cuentaAdmin.getNombre(),nombre) == 0)
+            {
+                if (cuentaAdmin.getActivo()==false) {cout << "La cuenta de administrador principal se encuentra deshabilitada.";}///CONFIRMO QUE NO HAYA SIDO DESHABILITADA ANTERIORMENTE
+                cout << "Usuario encontrado." << endl;
+                cout << "Ingrese su contrasenia: " ;
+                cargarCadena(contrasenia, 19);
+                if (strcmp(contrasenia,cuentaAdmin.getContrasenia()) == 0)
                 {
-                    archivoUsuario arcU("archivos/Usuario.dat");
-                    usuario usu;
-
-                    char nombre[30];
-                    char contrasenia[20];
+                    cout<<"Contrasenia correcta. Se ha iniciado sesion con la cuenta de administrador principal. " << endl;
+                    if (cuentaAdmin.getAdmin()) cout << "Esta cuenta tiene permisos de administrador."<<endl;
+                    system("pause");
                     system("cls");
-                    cout << "INICIO DE SESION COMO USUARIO" << endl;
-                    cout << "=============================" << endl << endl;
-                    cout<<"Ingrese su nombre de usuario: " ;
-                    cargarCadena(nombre, 29);
-
-                    int pos=0; ///USADA POR REFERENCIA PARA GUARDAR DONDE FUE ENCONTRADO EL NOMBRE EN LA FUNCION buscarNombre()
-                    if (buscarNombre(nombre, pos))
-                    {
-                        usu = arcU.leerRegistros(pos);
-                        cout << "Usuario encontrado." << endl;
-                        cout << "Ingrese su contrasenia: " ;
-                        cargarCadena(contrasenia, 19);
-                        if (strcmp(usu.getContrasenia(),contrasenia) == 0)
-                        {
-                            idIniciada = usu.getID(); //asignar ID iniciada
-                            cout << "Sesion iniciada correctamente!" << endl;
-                            system("pause");
-                            system("cls");
-                            menuPrincipal();
-                        }
-                        else
-                        {
-                            cout << "La contrasenia es incorrecta. Vuelva a intentarlo." << endl;
-                            system("pause");
-                        }
-                    }
-                    else
-                    {
-                        cout << "Nombre de usuario no encontrado." << endl;
-                        system("pause");
-                    }
+                    //menuAdministrador(); //MODIFICAR EL MENU DE ADMINISTRADOR
                     return;
                 }
-            case 2:
-                ///inicioSesionAdmin(); <---- desarrollar xd jaja xd
-                cargarVideojuego();
+            }
+        if (buscarNombre(nombre, pos))
+        {
+            usu = arcU.leerRegistros(pos);
+            cout << "Usuario encontrado." << endl;
+            cout << "Ingrese su contrasenia: " ;
+            cargarCadena(contrasenia, 19);
+            if (strcmp(usu.getContrasenia(),contrasenia) == 0)
+            {
+                idIniciada = usu.getID(); //asignar ID iniciada
+                cout << "Sesion iniciada correctamente!" << endl;
                 system("pause");
-                return;
-            case 0:
-                return;
-            default:
-                cout << "Por favor, ingrese una opcion valida." << endl;
+                system("cls");
+                menuPrincipal();
+            }
+            else
+            {
+                cout << "La contrasenia es incorrecta. Vuelva a intentarlo." << endl;
                 system("pause");
-                break;
+            }
         }
+        else
+        {
+            cout << "Nombre de usuario no encontrado." << endl;
+            system("pause");
+        }
+        return;
+
+//        case 2:
+//            cargarVideojuego();
+//            system("pause");
+//            return;
+//        case 0:
+//            return;
+//        default:
+//            cout << "Por favor, ingrese una opcion valida." << endl;
+//            system("pause");
+//            break;
     }
 }
+
 
 void menuPrincipal()
 {
@@ -581,7 +603,7 @@ int designarBiblioteca(int idUsuario)
     arcB.leerBiblioteca(pos);
     libro.setIdUsuario(idUsuario);
     arcB.modificarBiblioteca(pos, libro);
-    cout<<"tu biblioteca asignada tiene ID: "<< libro.getIdUsuario()<<endl;
+    cout<<"Tu biblioteca asignada tiene ID: "<< libro.getIdUsuario()<<endl;
     int idBibloteca = libro.getIdUsuario();
     return idBibloteca;
     }
@@ -612,6 +634,6 @@ void aniadirTarjeta(int idIniciada)
     cin>>num;
     obj.setTarjet(num);
     arcU.modificarUsuario(obj,pos);
-    cout << "La cuenta ha sido deshabilitada." << endl;
+    cout << "La tarjeta asignada a la cuenta es: " << obj.getTarjet() << endl;
     system("pause");
 }
