@@ -39,4 +39,6 @@ void menuAdministrador();
 void deshabilitarVideojuego();
 void habilitarVideojuego();
 
+
+
 #endif // FUNCIONES_H_INCLUDED

@@ -844,6 +844,7 @@ void comprarJuego()
             {
             case 1:
                     usu = arcU.leerRegistros(idIniciada-1);
+
                     if (usu.getTarjet() != 0)
                     {
                         cout<<"juego comprado, disfrute :D";
@@ -875,3 +876,32 @@ void comprarJuego()
             }
         }
 }
+
+
+
+void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada){
+
+archivoBiblioteca arcB ("archivos/biblioteca.dat");
+Biblioteca libro;
+
+int tam = arcB.contarRegistros();
+
+
+for (int i =0;i<tam ; i++){
+
+    libro= arcB.leerBiblioteca(i);
+
+    if(idIniciada == libro.getIdUsuario()){
+
+    libro.setIdVideojuego(idVideojuego, idVideojuego-1);
+
+    arcB.modificarBiblioteca(i,libro);
+    cout<<"El videojuego ha sido agregado a tu biblioteca con exito, disfruta!!";
+
+    return;
+    }
+
+  }
+
+}
+
