@@ -119,7 +119,7 @@ void buscarPorNombre(const char *n)
     for (int i = 0; i < cantReg; i++)
     {
         game = arcV.leerRegistros(i);
-        if (game.getTitulo()==n)
+        if (compararSinMayusculas(n, game.getTitulo()))
         {
             system("CLS");
             setConsoleColor(15, 0);
@@ -427,13 +427,13 @@ void listarPorGenero() //nueva funcion xdddddd (todavia esta en proceso)
     cargarCadena(genero, 29);
     int cantReg =arcV.contarRegistros();
     system("CLS");
-    cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
+    cout<<"--------------------------------------------------------------------------"<<endl;
     cout<<"Filtro aplicado: "<< genero <<endl;
-    cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
+    cout<<"--------------------------------------------------------------------------"<<endl;
     for (int i = 0; i< cantReg ; i++ )
     {
     game = arcV.leerRegistros(i);
-    if(strcmp(game.getGenero(), genero) == 0){ cout<< i+1<< " - "<< game.getTitulo()<< "    -- precio: $ " << game.getPrecio()<<endl;; }
+    if(compararSinMayusculas(genero, game.getGenero())){ cout<< i+1<< " - "<< game.getTitulo()<< "    -- precio: $ " << game.getPrecio()<<endl;; }
     }
     system("PAUSE");
   }
@@ -450,13 +450,13 @@ void listarPorCreador()
     cout << "Ingrese la desarrolladora a buscar: ";
     cargarCadena(desarrolladora, 29);
     system("CLS");
-    cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
+    cout<<"--------------------------------------------------------------------------"<<endl;
     cout << "Filtro aplicado: " << desarrolladora << endl;
-    cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
+    cout<<"--------------------------------------------------------------------------"<<endl;
 
     for (int i = 0; i < tam; i++) {
         game = arcV.leerRegistros(i);
-        if (strcmp(game.getDesarrollador(), desarrolladora) == 0) {
+        if (compararSinMayusculas(desarrolladora, game.getDesarrollador())) {
             cout << i + 1 << " - " << game.getTitulo()<< "    -- precio: $ " << game.getPrecio()<<endl;;
             contgame++;
         }
@@ -500,9 +500,9 @@ cin>>montoMax;
 cout<<"Ingrese el monto minimo "<<endl;
 cin>>montoMin;
 system("CLS");
-cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
+cout<<"------------------------------------------------------------------------------"<<endl;
 cout<<"El filtro aplicado es: " <<" desde : " <<montoMin<< "$"<<" hasta : "<< montoMax<< "$"<<endl;
-cout<<"-----------------------------------------------------------------------------------------------------------------------------------"<<endl;
+cout<<"------------------------------------------------------------------------------"<<endl;
 for (int i= 0;i< tam ; i++)
 {
     game= arcV.leerRegistros(i);
@@ -526,9 +526,9 @@ void listarPorAnio()  //función a arreglar
     cin>>anio;
     system("CLS");
 
-    cout<<"------------------------------------------"<<endl;
+    cout<<"--------------------------------------------------------------------------"<<endl;
     cout<<"Filtro aplicado: "<<anio<<endl;
-    cout<<"------------------------------------------"<<endl;
+    cout<<"--------------------------------------------------------------------------"<<endl;
     for (int i =0; i<tam ; i++ )
     {
         game = arcV.leerRegistros(i);
