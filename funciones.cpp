@@ -18,8 +18,6 @@ void setConsoleColor(int textColor, int backgroundColor)
     SetConsoleTextAttribute(hConsole, colorAttribute);
 }
 
-
-
 void inicioSesion()
 {
     while (true){
