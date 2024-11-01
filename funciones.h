@@ -1,6 +1,7 @@
 #ifndef FUNCIONES_H_INCLUDED
 #define FUNCIONES_H_INCLUDED
 #include <cstring>
+#include "FECHA.h"
 using namespace std;
 
 ///COLORES
@@ -32,6 +33,7 @@ void cargarVideojuego();
 int designarBiblioteca(int idIniciada);
 void aniadirTarjeta(int idIniciada);
 void comprarJuego();
+Fecha compararFecha(Fecha fecha1, Fecha fecha2);
 
 ///ADMINISTRADOR
 void listarVideojuegosAdmin();

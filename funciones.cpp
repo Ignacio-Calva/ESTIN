@@ -875,3 +875,38 @@ void comprarJuego()
             }
         }
 }
+
+Fecha compararFecha(Fecha fecha1, Fecha fecha2) ///DEVUELVE LA FECHA MAS CHICA
+{
+    if(fecha1.getAnio() < fecha2.getAnio())
+    {
+        return fecha1;
+    }
+    else if(fecha2.getAnio() < fecha1.getAnio())
+    {
+        return fecha2;
+    }
+    else  //LOS DOS AÑOS SON IGUALES
+    {
+        if (fecha1.getMes() < fecha2.getMes())
+        {
+            return fecha1;
+        }
+        else if (fecha2.getMes() < fecha1.getMes())
+        {
+            return fecha2;
+        }
+        else //LOS DOS MESES SON IGUALES
+        {
+            if (fecha1.getDia() < fecha2.getDia())
+            {
+                return fecha1;
+            }
+            else if(fecha2.getDia() < fecha1.getDia())
+            {
+                return fecha2;
+            }
+            else{return fecha1;} //LAS DOS FECHAS SON IGUALES, RETORNA LA PRIMERA
+        }
+    }
+}
