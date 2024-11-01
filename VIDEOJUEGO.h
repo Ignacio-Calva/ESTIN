@@ -5,7 +5,7 @@
 class videoJuego
 {
 private:
-    int idVideojuego;
+    int idVideojuego = 0;
     char titulo[30];
     char genero[30];
     int precio;

@@ -284,7 +284,7 @@ while(opcion != 0){
     cout << "     2. Listar por genero                                                       " << endl;
     cout << "     3. Listar por creador                                                       " << endl;
     cout << "     4. Listar por precio                                                         " << endl;
-    cout << "     5- Listar por año           "<<endl;
+    cout << "     5- Listar por anio          "<<endl;
     cout << "     6- Listar pot gratuito    "<<endl;
     setConsoleColor(4, 0);
     cout << "     0. ATRAS                                                                     " << endl;
@@ -382,7 +382,7 @@ void listarPorGenero() //nueva funcion xdddddd (todavia esta en proceso)
     for (int i = 0; i< cantReg ; i++ )
     {
     game = arcV.leerRegistros(i);
-    if(strcmp(game.getGenero(), genero) == 0){ cout<< i+1<< " - "<< game.getTitulo() <<endl; }
+    if(strcmp(game.getGenero(), genero) == 0){ cout<< i+1<< " - "<< game.getTitulo()<< "    -- precio: $ " << game.getPrecio()<<endl;; }
     }
     system("PAUSE");
   }
@@ -406,7 +406,7 @@ void listarPorCreador()
     for (int i = 0; i < tam; i++) {
         game = arcV.leerRegistros(i);
         if (strcmp(game.getDesarrollador(), desarrolladora) == 0) {
-            cout << i + 1 << " - " << game.getTitulo() << endl;
+            cout << i + 1 << " - " << game.getTitulo()<< "    -- precio: $ " << game.getPrecio()<<endl;;
             contgame++;
         }
     }
@@ -455,13 +455,13 @@ cout<<"-------------------------------------------------------------------------
 for (int i= 0;i< tam ; i++)
 {
     game= arcV.leerRegistros(i);
-    if ((montoMin<=game.getPrecio())&&(game.getPrecio()<= montoMax)){ cout<< i+1 <<"-"<< game.getTitulo()<<endl; contGame++;}
+    if ((montoMin<=game.getPrecio())&&(game.getPrecio()<= montoMax)){ cout<< i+1 <<"-"<< game.getTitulo() << "    -- precio: $ " << game.getPrecio()<<endl; contGame++;}
 }
 if(contGame== 0){system("CLS");setConsoleColor(4, 0);cout<< "No hay ningun juego con ese monto."<<endl;setConsoleColor(15, 0);}
 system("PAUSE");
 }
 
-void listarPorAnio()
+void listarPorAnio()  //función a arreglar
 {
     archivoVideoJuego arcV("archivos/videojuego.dat");
     videoJuego game;
@@ -469,43 +469,48 @@ void listarPorAnio()
     int anio;
     int contGame = 0;
     int numJuego;
+    int videoJuegos[150] = {0};
     system("CLS");
     cout<< "Ingrese el anio con el cual filtrar: "<<endl;
     cin>>anio;
     system("CLS");
 
-    cout<<"---------------------------------------------------------------------"<<endl;
+    cout<<"------------------------------------------"<<endl;
     cout<<"Filtro aplicado: "<<anio<<endl;
-    cout<<"---------------------------------------------------------------------"<<endl;
+    cout<<"------------------------------------------"<<endl;
     for (int i =0; i<tam ; i++ )
     {
         game = arcV.leerRegistros(i);
 
         if(game.getAnio() == anio)
         {
-            cout<<"-----------------------------------------------------------------"<<endl;
-            cout<<game.getidVideojuego() << "-"<< game.getTitulo()<< "    -- precio: $ " << game.getPrecio()<<endl;
+            cout<<game.getidVideojuego() << "-"<< game.getTitulo()<< "   -- precio: $ " << game.getPrecio()<<endl;
             contGame++;
+            videoJuegos[i]+1;
         }
     }
-    if(contGame== 0){cout<<"NO HAY VIDEOJUEGOS CON ESE AÑO"<<endl;
-    system("PAUSE");
-    }else{
+    if(contGame== 0)
+    {
+        cout<<"NO HAY VIDEOJUEGOS CON ESE ANIO"<<endl;
+        system("PAUSE");
+    }
+    else
+    {
 
-         setConsoleColor(4, 0);
+        setConsoleColor(4, 0);
         cout << "0 - ATRAS" << endl;
         setConsoleColor(8, 0);
         cout << "--------------------------------------------" << endl;
         cout << "INGRESE EL NUMERO DEL JUEGO DESEADO: " <<endl;
         cout << "--------------------------------------------" << endl;
-
         cin >> numJuego;
-        if (numJuego > 0 )
-        {
-            if (numJuego > tam){ cout << "NUMERO DE JUEGO NO ENCONTRADO." << endl;
 
-            system("PAUSE");
-            } else{caracteristicasVideojuego(numJuego);
+        for (int i = 0; i < tam; i++)
+        {
+            if (numJuego > 0 && videoJuegos[numJuego-1] == 1)
+            {
+                caracteristicasVideojuego(videoJuegos[i]);
+                system("pause");
             }
         }
     }
@@ -565,7 +570,6 @@ void cargarVideojuego()
      cout << "ID del nuevo videojuego seteada como : " << game.getidVideojuego() << endl;
     arcV.grabarRegistros(game);
 }
-
 
 int designarBiblioteca(int idUsuario)
 {

@@ -2,24 +2,14 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="VALEAM.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="funciones.cpp" open="1" top="1" tabpos="5" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="405" topLine="24" />
+			<Cursor1 position="16604" topLine="476" />
 		</Cursor>
 	</File>
-	<File name="funciones.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="VIDEOJUEGO.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="890" topLine="5" />
-		</Cursor>
-	</File>
-	<File name="PERSONA.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="880" topLine="36" />
-		</Cursor>
-	</File>
-	<File name="USUARIO.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="350" topLine="0" />
+			<Cursor1 position="336" topLine="1" />
 		</Cursor>
 	</File>
 	<File name="FECHA.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -27,14 +17,9 @@
 			<Cursor1 position="369" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="BIBLIOTECA.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+	<File name="USUARIO.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1414" topLine="27" />
-		</Cursor>
-	</File>
-	<File name="VIDEOJUEGO.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="336" topLine="1" />
+			<Cursor1 position="350" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="puntoH.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -47,9 +32,19 @@
 			<Collapse line="107" />
 		</Folding>
 	</File>
-	<File name="TROFEO.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="funciones.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1089" topLine="3" />
+			<Cursor1 position="890" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="PERSONA.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="880" topLine="23" />
+		</Cursor>
+	</File>
+	<File name="VALEAM.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="405" topLine="11" />
 		</Cursor>
 	</File>
 	<File name="clases.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -61,9 +56,14 @@
 			<Collapse line="55" />
 		</Folding>
 	</File>
-	<File name="funciones.cpp" open="1" top="1" tabpos="5" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
+	<File name="BIBLIOTECA.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="16052" topLine="467" />
+			<Cursor1 position="1414" topLine="27" />
+		</Cursor>
+	</File>
+	<File name="TROFEO.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1089" topLine="3" />
 		</Cursor>
 	</File>
 	<Target name="Debug" top="clases.h">
