@@ -153,10 +153,10 @@
 	"USUARIO.h"
 	<windows.h>
 
-1730423016 c:\users\user\desktop\estin\funciones.h
+1730494310 c:\users\user\desktop\estin\funciones.h
 	<cstring>
 
-1730431784 c:\users\user\desktop\estin\videojuego.h
+1730493381 c:\users\user\desktop\estin\videojuego.h
 	"funciones.h"
 
 1730374168 c:\users\user\desktop\estin\usuario.h
@@ -172,11 +172,11 @@
 	"USUARIO.h"
 	"BIBLIOTECA.h"
 
-1730419002 c:\users\user\desktop\estin\biblioteca.h
+1730494310 c:\users\user\desktop\estin\biblioteca.h
 	"funciones.h"
 	"FECHA.h"
 
-1730417773 c:\users\user\desktop\estin\fecha.h
+1730490972 c:\users\user\desktop\estin\fecha.h
 	<string>
 
 1730358711 source:c:\users\user\desktop\facultad\estin-main\estin\funciones.cpp
@@ -216,7 +216,7 @@
 1730492297 d:\facultad\tecnicatura programación\programación\estin\persona.h
 	"funciones.h"
 
-1730423016 c:\users\user\desktop\estin\persona.h
+1730494310 c:\users\user\desktop\estin\persona.h
 	"funciones.h"
 
 1730251479 c:\users\user\desktop\facultad\estin-main\estin\persona.h
