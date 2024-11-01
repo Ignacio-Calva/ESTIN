@@ -385,6 +385,7 @@ void infoCuenta() //nueva funcion
                    cout << endl; setConsoleColor(15, 0);
                    cout<<"1 - Deshabilitar cuenta"<<endl;
                    cout<<"2 - Asignar tarjeta"<<endl;
+                   cout<<"3 - Mostrar biblioteca"<<endl;
                    cout<<"0 - Salir"<<endl;
                    cin>>opcion;
                    switch (opcion)
@@ -394,6 +395,9 @@ void infoCuenta() //nueva funcion
                        break;
                    case 2:
                      aniadirTarjeta(idIniciada);
+                       break;
+                   case 3:
+                     mostrarBibliotecaDeUsuario(idIniciada);
                        break;
                    case 0: break;
                    default: system("CLS");setConsoleColor(4, 0); cout<<"Opcion invalida" <<endl;
@@ -636,6 +640,7 @@ int designarBiblioteca(int idUsuario)
     arcB.leerBiblioteca(pos);
     libro.setIdUsuario(idUsuario);
     arcB.modificarBiblioteca(pos, libro);
+    arcB.grabarRegistros(libro);
     cout<<"Tu biblioteca asignada tiene ID: "<< libro.getIdUsuario()<<endl;
     int idBibloteca = libro.getIdUsuario();
     return idBibloteca;
@@ -882,14 +887,11 @@ void comprarJuego(int idVideojuego)
         }
 }
 
-
-
 void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada){
-
 archivoBiblioteca arcB ("archivos/biblioteca.dat");
 Biblioteca libro;
-
 Fecha compra;
+idVideojuego= 3;
 int tam = arcB.contarRegistros();
 for (int i =0;i<tam ; i++){
     libro= arcB.leerBiblioteca(i);
@@ -898,6 +900,7 @@ for (int i =0;i<tam ; i++){
     libro.setFechaCompra(compra,idIniciada);
     libro.setIdVideojuego(idVideojuego, idVideojuego-1);
     arcB.modificarBiblioteca(i,libro);
+    arcB.grabarRegistros(libro);
     cout<<"El videojuego ha sido agregado a tu biblioteca con exito, disfruta!!";
     system("PAUSE");
     return;
@@ -914,8 +917,7 @@ void mostrarBibliotecaDeUsuario(int idIniciada)
         libro= arcB.leerBiblioteca(i);
         if(idIniciada == libro.getIdUsuario()){
             libro.mostrar();
-
-                    system("PAUSE");
+            system("PAUSE");
         return;
         }
     }
