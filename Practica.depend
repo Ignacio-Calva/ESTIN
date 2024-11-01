@@ -7,7 +7,7 @@
 
 1728004313 c:\users\admin\desktop\practica\puntoh.h
 
-1728069568 ated upstream
+1730251479 ated upstream
 
 1730478842 source:d:\facultad\tecnicatura programación\programación\estin\valeam.cpp
 	<iostream>
@@ -38,11 +38,11 @@
 1728069614 d:\facultad\tecnicatura programación\programación\estin\clases.h
 	"funciones.h"
 
-1728078771 D
+1730251479 D
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\funciones.cpp
 
-1730472741 source:c:\users\admin\documents\github\estin\funciones.cpp
+1730489817 source:c:\users\admin\documents\github\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -50,6 +50,35 @@
 	"BIBLIOTECA.h"
 	"USUARIO.h"
 	<windows.h>
+
+1730487103 shed changes
+	<iostream>
+	<string.h>
+	<windows.h>
+	"funciones.h"
+	"clases.h"
+	<iostream>
+	<string.h>
+	<windows.h>
+	"funciones.h"
+	"VIDEOJUEGO.h"
+	"USUARIO.h"
+	"BIBLIOTECA.h"
+	"funciones.h"
+
+1730422607 n
+	<iostream>
+	<cstring>
+	"funciones.h"
+	"VIDEOJUEGO.h"
+	"BIBLIOTECA.h"
+	"USUARIO.h"
+	<windows.h>
+	<cstring>
+	"funciones.h"
+	"FECHA.h"
+	<string>
+	"funciones.h"
 
 1728078783 ent of 4d2d326 (Revert "SoluciÃ³n compilador")
 	<iostream>
@@ -60,21 +89,6 @@
 
 1728078783 >
 
-1728069614 shed changes
-	<iostream>
-	<string.h>
-	<windows.h>
-	"funciones.h"
-	"clases.h"
-	<iostream>
-	<string.h>
-	<windows.h>
-	"funciones.h"
-	"VIDEOJUEGO.h"
-	"USUARIO.h"
-	"BIBLIOTECA.h"
-	"funciones.h"
-
 1728091878 c:\users\user\desktop\estin-main\estin\funciones.h
 	<cstring>
 
@@ -83,7 +97,7 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\valeam.cpp
 
-1730422607 c:\users\admin\documents\github\estin\funciones.h
+1730490690 c:\users\admin\documents\github\estin\funciones.h
 	<cstring>
 
 1728148751 c:\users\admin\documents\github\estin\clases.h
@@ -117,17 +131,17 @@
 	"USUARIO.h"
 	"funciones.h"
 
-1730472741 c:\users\admin\documents\github\estin\videojuego.h
+1730488487 c:\users\admin\documents\github\estin\videojuego.h
 	"funciones.h"
 
-1730422486 c:\users\admin\documents\github\estin\biblioteca.h
+1730489106 c:\users\admin\documents\github\estin\biblioteca.h
 	"funciones.h"
 	"FECHA.h"
 
 1730478842 d:\facultad\tecnicatura programación\programación\estin\fecha.h
 	<string>
 
-1730422486 c:\users\admin\documents\github\estin\fecha.h
+1730488487 c:\users\admin\documents\github\estin\fecha.h
 	<string>
 
 1730431709 source:c:\users\user\desktop\estin\funciones.cpp
@@ -208,7 +222,7 @@
 1730251479 c:\users\user\desktop\facultad\estin-main\estin\persona.h
 	"funciones.h"
 
-1730422607 c:\users\admin\documents\github\estin\persona.h
+1730490189 c:\users\admin\documents\github\estin\persona.h
 	"funciones.h"
 
 1730492297 d:\facultad\tecnicatura programación\programación\estin\admin.h

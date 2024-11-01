@@ -11,7 +11,7 @@ class Persona
         int DNI;
         char Mail[30] = {};
         int IDPais;
-        int numTarjeta;
+        int numTarjeta = 0;
         bool admin = false;
     public:
         Persona (){}

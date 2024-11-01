@@ -14,9 +14,9 @@ Admin cuentaAdmin("admin","password",0,true);
 void elegirVideojuego()
 {
     archivoVideoJuego arcV("archivos/videoJuego.dat");
+
     int tam = arcV.contarRegistros();
     int numJuego;
-
     while (true)
     {
         system("CLS");
@@ -40,7 +40,7 @@ void elegirVideojuego()
             }
         }
         caracteristicasVideojuego(numJuego);
-        system("PAUSE");
+        comprarJuego();
     }
 }
 
@@ -663,6 +663,7 @@ void aniadirTarjeta(int idIniciada)
     cin>>num;
     obj.setTarjet(num);
     arcU.modificarUsuario(obj,pos);
+<<<<<<< HEAD
     cout << "La tarjeta asignada a la cuenta es: " << obj.getTarjet() << endl;
     system("pause");
 }
@@ -796,4 +797,58 @@ void listarVideojuegosAdmin()///LISTA LOS JUEGOS, PERO CON DESHABILITADOS INCLUI
         if (game.getActivo()){cout << "Activo." << endl;}
         else {cout << "Deshabilitado." << endl;}
     }
+=======
+    system("pause");
+}
+
+void comprarJuego()
+{
+    int opcion;
+
+    archivoVideoJuego arcV("archivos/videoJuego.dat");
+    usuario usu;
+    archivoUsuario arcU("archivos/Usuario.dat");
+
+    while (opcion != 0)
+        {
+            int opcion2 = 1;
+            cout<<"1 - Comprar"<<endl;
+            cout<<"0 - Salir"<<endl;
+            cout<<"-----------"<<endl;
+            cin>>opcion;
+            switch (opcion)
+            {
+            case 1:
+                    usu = arcU.leerRegistros(idIniciada-1);
+                    if (usu.getTarjet() != 0)
+                    {
+                        cout<<"juego comprado, disfrute :D";
+                        system("PAUSE");
+                        return;
+                    }else if (usu.getTarjet() == 0)
+                    {
+                        cout<<"No tienes alguna tarjeta asociada."<<endl;
+                        cout<<"Desea añadir una a su cuenta?"<<endl<<endl;
+                        cout<<"1 - si"<<endl;
+                        cout<<"2 - no"<<endl;
+                        cin>>opcion2;
+                        switch (opcion2)
+                        {
+                        case 1:
+                            aniadirTarjeta(idIniciada);
+                            system("CLS");
+                            return;
+                        case 2:
+                            cout<<"Okay..."<<endl;
+                            system("PAUSE");
+                            system("CLS");
+                            return;
+                        default:
+                            break;
+                        }
+                    }
+                break;
+            }
+        }
+>>>>>>> pruebas-Tarjeta
 }
