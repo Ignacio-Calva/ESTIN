@@ -31,4 +31,10 @@ void cargarVideojuego();
 int designarBiblioteca(int idIniciada);
 void aniadirTarjeta(int idIniciada);
 
+///ADMINISTRADOR
+void listarVideojuegosAdmin();
+void menuAdministrador();
+void deshabilitarVideojuego();
+void habilitarVideojuego();
+
 #endif // FUNCIONES_H_INCLUDED

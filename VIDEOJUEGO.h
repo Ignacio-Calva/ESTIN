@@ -15,6 +15,7 @@ private:
     int peso;
     int restriccionEdad;
     int anio;
+    bool activo;
 
 public:
     void cargar()
@@ -37,6 +38,7 @@ public:
         cin>>restriccionEdad;
         cout<<"Anio de lanzamiento: ";
         cin>>anio;
+        activo = true;
     }
 
     void mostrar()
@@ -62,6 +64,7 @@ public:
     void setRestriccionEdad(int _restriccion){restriccionEdad = _restriccion;}
     void setAnio(int _anio){anio = _anio;}
     void setidVideojuego(int _idVideojuego){idVideojuego = _idVideojuego;}
+    void setActivo(bool _activo){activo=_activo;}
     char* getTitulo(){return titulo;}
     char* getGenero(){return genero;}
     int getPrecio(){return precio;}
@@ -72,6 +75,7 @@ public:
     int getRestriccion(){return restriccionEdad;}
     int getAnio(){return anio; }
     int getidVideojuego(){return idVideojuego; }
+    bool getActivo(){return activo; }
 };
 
 class archivoVideoJuego
@@ -121,6 +125,18 @@ public:
         FILE *p = fopen(nombre, "wb");
         if (p == nullptr) return;
         fclose(p);
+    }
+
+    bool modificarVideojuego(videoJuego obj, int pos)
+    {
+        FILE *p=fopen(nombre,"rb+");
+        if(p==NULL){
+            return false;
+        }
+        fseek(p, pos * sizeof obj, 0);
+        fwrite(&obj, sizeof obj, 1, p);
+        fclose(p);
+        return true;
     }
 };
 

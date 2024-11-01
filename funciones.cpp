@@ -85,10 +85,16 @@ void listarVideojuegos()
     cout<<"VideoJuegos: " << endl << endl;
     for (int i = 0; i < cantReg; i++)
     {
-        game = arcV.leerRegistros(i);
-        setConsoleColor(15, 0);
-        cout<< i+1 << " - " << game.getTitulo() << endl;
-
+        if (game.getActivo())
+        {
+            game = arcV.leerRegistros(i);
+            setConsoleColor(15, 0);
+            cout<< i+1 << " - " << game.getTitulo() << endl;
+        }
+        else
+        {
+            cout << "*JUEGO DESHABILITADO (COUT DE PRUEBA)" << endl;
+        }
     }
 }
 
@@ -209,16 +215,17 @@ void inicioSesion()
                 system("cls");
                 return;
             }///CONFIRMO QUE NO HAYA SIDO DESHABILITADA ANTERIORMENTE
+            system("cls");
             cout << "Usuario encontrado." << endl;
             cout << "Ingrese su contrasenia: " ;
             cargarCadena(contrasenia, 19);
             if (strcmp(contrasenia,cuentaAdmin.getContrasenia()) == 0)
             {
-                cout<<"Contrasenia correcta. Se ha iniciado sesion con la cuenta de administrador principal. " << endl;
-                if (cuentaAdmin.getAdmin()) cout << "Esta cuenta tiene permisos de administrador."<<endl;
+                cout<< endl <<"Contrasenia correcta. Se ha iniciado sesion con la cuenta de administrador principal. " << endl;
+                if (cuentaAdmin.getAdmin()) cout << endl << "Esta cuenta tiene permisos de administrador."<<endl;
                 system("pause");
                 system("cls");
-                //menuAdministrador(); //MODIFICAR EL MENU DE ADMINISTRADOR
+                menuAdministrador(); //MODIFICAR EL MENU DE ADMINISTRADOR
             } else
             {
                 cout<<"La contrasenia es incorrecta. Vuelva a intentarlo." << endl;
@@ -658,4 +665,135 @@ void aniadirTarjeta(int idIniciada)
     arcU.modificarUsuario(obj,pos);
     cout << "La tarjeta asignada a la cuenta es: " << obj.getTarjet() << endl;
     system("pause");
+}
+
+void menuAdministrador()
+{
+    while (true)
+    {
+        int opcion;
+        cout << "=======================================" << endl;
+        cout << "        MENU DE ADMINISTRADOR          " << endl;
+        cout << "=======================================" << endl;
+        cout << "(1) Agregar juego a la tienda" << endl;
+        cout << "(2) Deshabilitar juego de la tienda" << endl;
+        cout << "(3) Habilitar juego de la tienda" << endl;
+        cout << "(4) Habilitar cuenta" << endl;
+        cout << "(5) Deshabilitar cuenta" << endl;
+        cout << "(6) Otorgar permisos de administrador" << endl;
+        cout << "(7) Remover permisos de administrador" << endl;
+        cout << "(0) Cerrar Sesion" << endl;
+        cout << "=======================================" << endl;
+        cout << endl << "Ingrese una opcion: ";
+        cin >> opcion;
+        switch (opcion)
+        {
+        case 1:
+            cargarVideojuego();
+            system("pause");
+            system("cls");
+            break;
+        case 2:
+            deshabilitarVideojuego();//(Lo deshabilita)
+            break;
+        case 3:
+            habilitarVideojuego();
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 6:
+            break;
+        case 7:
+            break;
+        case 0:
+            return;
+        default:
+            break;
+        }
+    }
+}
+
+void deshabilitarVideojuego()
+{
+    archivoVideoJuego arcV("archivos/videoJuego.dat");
+    videoJuego game;
+    char opcion;
+    int idJuegoDeshabilitar;
+    cout << "Desea listar los videojuegos?" << endl;
+    cout << "Respuesta (s/n): ";
+    cin >> opcion;
+    if (opcion == 's'){listarVideojuegosAdmin();}
+    cout << endl << "Ingrese la ID del videojuego a deshabilitar: ";
+    cin >> idJuegoDeshabilitar;
+    int tam = arcV.contarRegistros();
+    for (int i=0 ; i < tam ; i++)
+    {
+        game = arcV.leerRegistros(i);
+        if (game.getidVideojuego() == idJuegoDeshabilitar)
+        {
+            if (game.getActivo()==true)
+            {
+                game.setActivo(false);
+                arcV.modificarVideojuego(game,i);
+                cout << "El juego ha sido deshabilitado correctamente." << endl;
+                system("pause");
+                system("cls");
+            }
+            else{cout << "El juego ya se encontraba deshabilitado." << endl; system("pause"); system("cls");}
+        }
+    }
+}
+
+void habilitarVideojuego()
+{
+    archivoVideoJuego arcV("archivos/videoJuego.dat");
+    videoJuego game;
+    char opcion;
+    int idJuegoHabilitar;
+    cout << "Desea listar los videojuegos?" << endl;
+    cout << "Respuesta (s/n): ";
+    cin >> opcion;
+    if (opcion == 's'){listarVideojuegosAdmin();}
+    cout << endl <<"Ingrese la ID del videojuego a habilitar: ";
+    cin >> idJuegoHabilitar;
+    int tam = arcV.contarRegistros();
+    for (int i=0 ; i < tam ; i++)
+    {
+        game = arcV.leerRegistros(i);
+        if (game.getidVideojuego() == idJuegoHabilitar)
+        {
+            if (game.getActivo()==false)
+            {
+                game.setActivo(true);
+                arcV.modificarVideojuego(game,i);
+                cout << "El juego ha sido habilitado correctamente." << endl;
+                system("pause");
+                system("cls");
+            }
+            else{cout << "El juego ya se encontraba habilitado." << endl; system("pause"); system("cls");}
+        }
+    }
+}
+
+void listarVideojuegosAdmin()///LISTA LOS JUEGOS, PERO CON DESHABILITADOS INCLUIDOS
+{
+    archivoVideoJuego arcV("archivos/videojuego.dat");
+    videoJuego game;
+    usuario usu;
+    archivoUsuario arcU("archivos/Usuario.dat");
+    usu = arcU.leerRegistros(datosUsuarioIniciado());
+    int cantReg = arcV.contarRegistros();
+    setConsoleColor(11, 0);
+    cout<<"VideoJuegos: " << endl << endl;
+    for (int i = 0; i < cantReg; i++)
+    {
+        game = arcV.leerRegistros(i);
+        setConsoleColor(15, 0);
+        cout<< i+1 << " - " << game.getTitulo();
+        cout << " -----  Estado en la tienda: " ;
+        if (game.getActivo()){cout << "Activo." << endl;}
+        else {cout << "Deshabilitado." << endl;}
+    }
 }
