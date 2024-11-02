@@ -44,8 +44,3 @@ int main()
     }
     return 0;
 }
-
-/*Cuentas... Nombre: Chorizo, Contraseña: lol
-             Nombre: cande, Contraseña: cande
-             Nombre: nacho, Contraseña: nacho
-             Nombre: valen, Contraseña: valen*/

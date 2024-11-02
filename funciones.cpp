@@ -576,7 +576,6 @@ void listarPorAnio()  //función a arreglar
     }
 }
 
-///FUNCIONES PARA DAR DE BAJA UN USUARIO
 int buscarUsuarioPorID(int id)
 {
     archivoUsuario arcU("archivos/Usuario.dat");
@@ -710,8 +709,10 @@ void menuAdministrador()
             habilitarVideojuego();
             break;
         case 4:
+            habilitarCuentaUsuario();
             break;
         case 5:
+            deshabilitarCuentaUsuario();
             break;
         case 6:
             break;
@@ -787,6 +788,68 @@ void habilitarVideojuego()
     }
 }
 
+void deshabilitarCuentaUsuario()
+{
+    archivoUsuario arcU("archivos/Usuario.dat");
+    usuario usu;
+    char opcion;
+    int idCuentaDeshabilitar;
+    cout << "Desea listar los usuarios?" << endl;
+    cout << "Respuesta (s/n): ";
+    cin >> opcion;
+    if (opcion == 's'){listarUsuariosAdmin();}
+    cout << endl <<"Ingrese el ID del usuario a deshabilitar: ";
+    cin >> idCuentaDeshabilitar;
+    int tam = arcU.contarRegistros();
+    for (int i=0 ; i < tam ; i++)
+    {
+        usu = arcU.leerRegistros(i);
+        if (usu.getID() == idCuentaDeshabilitar)
+        {
+            if (usu.getActivo()==true)
+            {
+                usu.setActivo(false);
+                arcU.modificarUsuario(usu,i);
+                cout << "El usuario ha sido deshabilitado correctamente." << endl;
+                system("pause");
+                system("cls");
+            }
+            else{cout << "El usuario ya se encontraba deshabilitado." << endl; system("pause"); system("cls");}
+        }
+    }
+}
+
+void habilitarCuentaUsuario()
+{
+    archivoUsuario arcU("archivos/Usuario.dat");
+    usuario usu;
+    char opcion;
+    int idCuentaHabilitar;
+    cout << "Desea listar los usuarios?" << endl;
+    cout << "Respuesta (s/n): ";
+    cin >> opcion;
+    if (opcion == 's'){listarUsuariosAdmin();}
+    cout << endl <<"Ingrese el ID del usuario a habilitar: ";
+    cin >> idCuentaHabilitar;
+    int tam = arcU.contarRegistros();
+    for (int i=0 ; i < tam ; i++)
+    {
+        usu = arcU.leerRegistros(i);
+        if (usu.getID() == idCuentaHabilitar)
+        {
+            if (usu.getActivo()==false)
+            {
+                usu.setActivo(true);
+                arcU.modificarUsuario(usu,i);
+                cout << "El usuario ha sido habilitado correctamente." << endl;
+                system("pause");
+                system("cls");
+            }
+            else{cout << "El usuario ya se encontraba habilitado." << endl; system("pause"); system("cls");}
+        }
+    }
+}
+
 void listarVideojuegosAdmin()///LISTA LOS JUEGOS, PERO CON DESHABILITADOS INCLUIDOS
 {
     archivoVideoJuego arcV("archivos/videojuego.dat");
@@ -805,6 +868,25 @@ void listarVideojuegosAdmin()///LISTA LOS JUEGOS, PERO CON DESHABILITADOS INCLUI
         cout << " -----  Estado en la tienda: " ;
         if (game.getActivo()){cout << "Activo." << endl;}
         else {cout << "Deshabilitado." << endl;}
+    }
+}
+
+void listarUsuariosAdmin()
+{
+    usuario usu;
+    archivoUsuario arcU("archivos/Usuario.dat");
+    usu = arcU.leerRegistros(datosUsuarioIniciado());
+    int cantReg = arcU.contarRegistros();
+    setConsoleColor(11, 0);
+    cout<<"Usuarios: " << endl << endl;
+    for (int i = 0; i < cantReg; i++)
+    {
+        usu = arcU.leerRegistros(i);
+        setConsoleColor(15, 0);
+        cout<< i+1 << " - " << usu.getNombre();
+        cout << " -----  Estado de la cuenta: " ;
+        if (usu.getActivo()){cout << "Habilitada" << endl;}
+        else {cout << "Desabilitada" << endl;}
     }
 }
 
@@ -888,7 +970,6 @@ void comprarJuego(int idVideojuego)
         }
 }
 
-
 Fecha compararFecha(Fecha fecha1, Fecha fecha2) ///DEVUELVE LA FECHA MAS CHICA
 {
     if(fecha1.getAnio() < fecha2.getAnio())
@@ -924,7 +1005,8 @@ Fecha compararFecha(Fecha fecha1, Fecha fecha2) ///DEVUELVE LA FECHA MAS CHICA
     }
 }
 
-void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada){
+void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada)
+{
 archivoBiblioteca arcB ("archivos/biblioteca.dat");
 Biblioteca libro;
 Fecha compra;

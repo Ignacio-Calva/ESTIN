@@ -44,7 +44,7 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\funciones.cpp
 
-1730498615 source:c:\users\admin\documents\github\estin\funciones.cpp
+1730569486 source:c:\users\admin\documents\github\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -86,13 +86,15 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\valeam.cpp
 
-1730497452 c:\users\admin\documents\github\estin\funciones.h
+1730569436 c:\users\admin\documents\github\estin\funciones.h
 	<cstring>
+	"FECHA.h"
+	"VIDEOJUEGO.h"
 
 1728148751 c:\users\admin\documents\github\estin\clases.h
 	"funciones.h"
 
-1730497318 source:c:\users\admin\documents\github\estin\valeam.cpp
+1730568059 source:c:\users\admin\documents\github\estin\valeam.cpp
 	<iostream>
 	<string.h>
 	<windows.h>
@@ -123,14 +125,14 @@
 1730496782 c:\users\admin\documents\github\estin\videojuego.h
 	"funciones.h"
 
-1730496776 c:\users\admin\documents\github\estin\biblioteca.h
+1730567563 c:\users\admin\documents\github\estin\biblioteca.h
 	"funciones.h"
 	"FECHA.h"
 
 1730507998 d:\facultad\tecnicatura programación\programación\estin\fecha.h
 	<string>
 
-1730496776 c:\users\admin\documents\github\estin\fecha.h
+1730566646 c:\users\admin\documents\github\estin\fecha.h
 	<string>
 
 1730504392 source:c:\users\user\desktop\estin\funciones.cpp
