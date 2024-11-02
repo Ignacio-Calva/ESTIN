@@ -143,8 +143,9 @@
 	"ADMIN.h"
 	<windows.h>
 
-1730502734 c:\users\user\desktop\estin\funciones.h
+1730507657 c:\users\user\desktop\estin\funciones.h
 	<cstring>
+	"FECHA.h"
 
 1730493381 c:\users\user\desktop\estin\videojuego.h
 	"funciones.h"
@@ -153,7 +154,7 @@
 	"funciones.h"
 	"PERSONA.h"
 
-1730502752 source:c:\users\user\desktop\estin\valeam.cpp
+1730505427 source:c:\users\user\desktop\estin\valeam.cpp
 	<iostream>
 	<string.h>
 	<windows.h>
@@ -166,7 +167,7 @@
 	"funciones.h"
 	"FECHA.h"
 
-1730502734 c:\users\user\desktop\estin\fecha.h
+1730506116 c:\users\user\desktop\estin\fecha.h
 	<string>
 
 1730358711 source:c:\users\user\desktop\facultad\estin-main\estin\funciones.cpp
