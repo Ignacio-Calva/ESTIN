@@ -1,9 +1,11 @@
 #ifndef FUNCIONES_H_INCLUDED
 #define FUNCIONES_H_INCLUDED
 #include <cstring>
-#include "FECHA.h"
 using namespace std;
+void cargarCadena(char *pal, int tam);
 
+#include "FECHA.h"
+#include "VIDEOJUEGO.h"
 ///COLORES
 void setConsoleColor(int textColor, int backgroundColor);
 
@@ -14,7 +16,7 @@ void mostrarTitulo(const string &titulo);
 void listarVideojuegos();
 void caracteristicasVideojuego(int j);
 void buscarPorNombre(const char *n);
-void cargarCadena(char *pal, int tam);
+///MOVI LA FUNCION DE CARGAR CADENA PORQUE DABA PROBLEMAS
 bool compararSinMayusculas(const char* texto1, const char* texto2);
 void grabarRegistroUsuario();
 void inicioSesion();
@@ -34,6 +36,9 @@ int designarBiblioteca(int idIniciada);
 void aniadirTarjeta(int idIniciada);
 void comprarJuego();
 Fecha compararFecha(Fecha fecha1, Fecha fecha2);
+void listarOrdenAnio(archivoVideoJuego archivo);
+void listarPorOrdenes();
+
 
 ///ADMINISTRADOR
 void listarVideojuegosAdmin();

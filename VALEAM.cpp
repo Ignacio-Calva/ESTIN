@@ -21,17 +21,6 @@ void añadirVideojuegos()
 */
 int main()
 {
-    //PRUEBA FECHAS
-    Fecha fecha1,fecha2, fechaAnterior;
-    cout << "CARGANDO FECHA 1" << endl;
-    fecha1.cargar();
-    cout << "CARGANDO FECHA 2" << endl;
-    fecha2.cargar();
-    fechaAnterior = compararFecha(fecha1,fecha2);
-    fechaAnterior.mostrar();
-    system("pause");
-    //
-
     int opcion1 = 1;
     while (opcion1 != 0)
     {   setConsoleColor(15, 0);
