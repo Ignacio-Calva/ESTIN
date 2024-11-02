@@ -47,10 +47,13 @@ void mostrarBibliotecaDeUsuario(int idIniciada);
 ///ADMINISTRADOR
 void listarVideojuegosAdmin();
 void listarUsuariosAdmin();
+void listarAdmins();
 void menuAdministrador();
 void deshabilitarVideojuego();
 void habilitarVideojuego();
 void deshabilitarCuentaUsuario();
 void habilitarCuentaUsuario();
+void otorgarAdmin();
+void removerAdmin();
 
 #endif // FUNCIONES_H_INCLUDED
