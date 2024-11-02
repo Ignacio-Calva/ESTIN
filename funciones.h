@@ -32,13 +32,21 @@ void bajaUsuario(int idIniciada);
 void cargarVideojuego();
 int designarBiblioteca(int idIniciada);
 void aniadirTarjeta(int idIniciada);
+<<<<<<< HEAD
 void comprarJuego();
 Fecha compararFecha(Fecha fecha1, Fecha fecha2);
 
+=======
+void comprarJuego(int idVideojuego);
+void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada);
+void mostrarBibliotecaDeUsuario(int idIniciada);
+>>>>>>> comprar-videojuego
 ///ADMINISTRADOR
 void listarVideojuegosAdmin();
 void menuAdministrador();
 void deshabilitarVideojuego();
 void habilitarVideojuego();
+
+
 
 #endif // FUNCIONES_H_INCLUDED

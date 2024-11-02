@@ -19,7 +19,20 @@ class Fecha{
 
     void mostrar()
     {
+<<<<<<< HEAD
         cout << _dia << "/" << _mes << "/" << _anio << endl;
+=======
+        cout << _dia << "/" << _mes << "/" <<_anio << endl;
+    }
+    void cargar()
+    {
+        cout<<"ingrese el dia:";
+        cin>>_dia;
+        cout<<"ingrese el mes:";
+        cin>>_mes;
+        cout<<"ingrese el anio:";
+        cin>>_anio;
+>>>>>>> comprar-videojuego
     }
     int getDia(){return _dia;}
     int getMes(){return _mes;}
