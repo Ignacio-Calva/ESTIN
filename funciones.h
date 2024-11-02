@@ -56,4 +56,6 @@ void habilitarCuentaUsuario();
 void otorgarAdmin();
 void removerAdmin();
 
+
+bool hayUnAdmin();
 #endif // FUNCIONES_H_INCLUDED

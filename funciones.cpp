@@ -216,10 +216,12 @@ void inicioSesion()
 
         int pos=0; ///USADA POR REFERENCIA PARA GUARDAR DONDE FUE ENCONTRADO EL NOMBRE EN LA FUNCION buscarNombre()
 
+
+
         ///LOGUEO ADMIN MAIN
         if(strcmp(cuentaAdmin.getNombre(),nombre) == 0)
         {
-            if (cuentaAdmin.getActivo()==false)
+            if (hayUnAdmin()==true)
             {
                 cout << "La cuenta de administrador principal se encuentra deshabilitada.";
                 system("pause");
@@ -267,7 +269,7 @@ void inicioSesion()
                         cout << "Contrasenia correcta. Esta cuenta tiene permisos de administrador." << endl;
                         system("pause");
                         system("cls");
-                        //menuAdministrador();
+                        menuAdministrador();
                     }
                 }
                 else
@@ -495,7 +497,7 @@ void listarPorGenero() //nueva funcion xdddddd (todavia esta en proceso)
         game = arcV.leerRegistros(i);
         if(compararSinMayusculas(genero, game.getGenero()))
         {
-            cout<< i+1<< " - "<< game.getTitulo()<< "    -- precio: $ " << game.getPrecio()<<endl;;
+            cout<< i+1<< " - "<< game.getTitulo()<< "    -- precio: $ " << game.getPrecio()<<endl;
         }
     }
     system("PAUSE");
@@ -522,7 +524,7 @@ void listarPorCreador()
         game = arcV.leerRegistros(i);
         if (compararSinMayusculas(desarrolladora, game.getDesarrollador()))
         {
-            cout << i + 1 << " - " << game.getTitulo()<< "    -- precio: $ " << game.getPrecio()<<endl;;
+            cout << i + 1 << " - " << game.getTitulo()<< "    -- precio: $ " << game.getPrecio()<<endl;
             contgame++;
         }
     }
@@ -1356,4 +1358,22 @@ void listarPorOrdenes()
             break;
         }
     }
+}
+
+bool hayUnAdmin()
+{
+  usuario usu;
+  archivoUsuario arcU("archivos/Usuario.dat");
+
+  int tam = arcU.contarRegistros();
+
+  for (int i = 0; i < tam; i++)
+      {
+          usu = arcU.leerRegistros(i);
+          if (usu.getAdmin()==true)
+              {
+               return true;
+              }
+      }
+ return false;
 }
