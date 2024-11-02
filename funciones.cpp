@@ -336,9 +336,9 @@ while(opcion != 0){
     cout << "     3. Listar por creador                                                       " << endl;
     cout << "     4. Listar por precio                                                         " << endl;
     cout << "     5- Listar por anio          "<<endl;
-    cout << "     6- Listar pot gratuito    "<<endl;
+    cout << "     6- Listar por gratuito    "<<endl;
     cout << "     7- comprar Videojuego    "<<endl;
-
+    cout << "     9- Listar por ordenes     " << endl;
     setConsoleColor(4, 0);
     cout << "     0. ATRAS                                                                     " << endl;
     setConsoleColor(8, 0);
@@ -359,6 +359,7 @@ while(opcion != 0){
     case 5: listarPorAnio();break;
     case 7: comprarJuego(idIniciada);break;
     case 8: mostrarBibliotecaDeUsuario(idIniciada);break;
+    case 9: listarPorOrdenes();break;
     default: cout<< "Opcion invalida."; break;
     }
   }
@@ -887,7 +888,7 @@ void comprarJuego(int idVideojuego)
         }
 }
 
-<<<<<<< HEAD
+
 Fecha compararFecha(Fecha fecha1, Fecha fecha2) ///DEVUELVE LA FECHA MAS CHICA
 {
     if(fecha1.getAnio() < fecha2.getAnio())
@@ -919,7 +920,10 @@ Fecha compararFecha(Fecha fecha1, Fecha fecha2) ///DEVUELVE LA FECHA MAS CHICA
                 return fecha2;
             }
             else{return fecha1;} //LAS DOS FECHAS SON IGUALES, RETORNA LA PRIMERA
-=======
+        }
+    }
+}
+
 void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada){
 archivoBiblioteca arcB ("archivos/biblioteca.dat");
 Biblioteca libro;
@@ -952,7 +956,78 @@ void mostrarBibliotecaDeUsuario(int idIniciada)
             libro.mostrar();
             system("PAUSE");
         return;
->>>>>>> comprar-videojuego
+        }
+    }
+}
+
+void listarOrdenAnio(archivoVideoJuego archivo)
+{
+    system("cls");
+    videoJuego *vectorJuegos;
+    int tam = archivo.contarRegistros();
+    videoJuego juegoActual, juegoAnterior;
+    vectorJuegos = new videoJuego [tam];
+    if (vectorJuegos == nullptr){return;}
+    juegoAnterior = archivo.leerRegistros(0);
+    for (int i=0 ; i < tam ; i++)
+    {
+        vectorJuegos[i] = archivo.leerRegistros(i);
+    }
+    for (int i = 0 ; i < tam ; i++)
+    {
+        for (int j = 1 ; j < tam ; j++)
+        {
+            if (vectorJuegos[j].getAnio() < vectorJuegos[j - 1].getAnio())
+            {
+                videoJuego aux = vectorJuegos[j];
+                vectorJuegos[j] = vectorJuegos[j - 1];
+                vectorJuegos[j - 1] = aux;
+            }
+
+        }
+    }
+    for (int i = 0 ; i < tam ; i++)
+    {
+        vectorJuegos[i].mostrar();
+    }
+    system("pause");
+    system("cls");
+    delete[]vectorJuegos;
+}
+
+void listarPorOrdenes()
+{
+    int opcion;
+    archivoVideoJuego archivoTienda("archivos/videoJuego.dat");
+    while (true)
+    {
+        cout << "===================================" << endl;
+        cout << "   SELECCIONE EL FILTRO DESEADO"     << endl;
+        cout << "===================================" << endl;
+        cout << " (1) - Listar por anio"              << endl;
+        cout << " (2) - Desarrollar"                  << endl;
+        cout << " (3) - Desarrollar"                  << endl;
+        cout << " (4) - Desarrollar"                  << endl;
+        cout << " (0) - SALIR"                        << endl;
+        cout << "===================================" << endl;
+        cout << "Ingrese una opcion: ";
+        cin >> opcion;
+        switch (opcion)
+        {
+        case 1:
+            listarOrdenAnio(archivoTienda);
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        default:
+            cout << "Opcion invalida. Por favor, elija una opcion valida" << endl;
+            system("pause");
+            system("cls");
+            break;
         }
     }
 }
