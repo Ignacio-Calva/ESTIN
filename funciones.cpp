@@ -816,6 +816,7 @@ void menuAdministrador()
 {
     while (true)
     {
+        system("cls");
         int opcion;
         cout << "=======================================" << endl;
         cout << "        MENU DE ADMINISTRADOR          " << endl;
@@ -837,7 +838,6 @@ void menuAdministrador()
         case 1:
             cargarVideojuego();
             system("pause");
-            system("cls");
             break;
         case 2:
             deshabilitarVideojuego();//(Lo deshabilita)
