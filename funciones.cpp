@@ -627,7 +627,7 @@ void mostrarPorPrecio ()
         else if ((montoMin<=game.getPrecio())&&(game.getPrecio()<= montoMax)&&game.getActivo()==false && usu.getEdad() >= game.getRestriccion())
             {
                 cout << "*JUEGO DESHABILITADO" << endl;
-            }else if ((montoMin<=game.getPrecio())&&(game.getPrecio()<= montoMax)&&game.getActivo()==false && usu.getEdad() < game.getRestriccion())
+            }else if ((montoMin<=game.getPrecio())&&(game.getPrecio()<= montoMax)&&game.getActivo()==true && usu.getEdad() < game.getRestriccion())
             {
                 cout << "No tienes edad suficiente para este videojuego" << endl;
                 contGame++;
