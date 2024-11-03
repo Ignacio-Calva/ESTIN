@@ -153,23 +153,31 @@ void grabarRegistroUsuario()
 {
     usuario obj, objAux;
     archivoUsuario archivo("archivos/Usuario.dat");
-    bool existe ;
+    bool existe = false;
     obj.cargarDatos();
     int tam=archivo.contarRegistros();
-    objAux = archivo.leerRegistros(tam-1); //CARGA LOS DATOS DEL ULTIMO REGISTRO
-    obj.setID(objAux.getID()+1); //AUTOMATICAMENTE ASIGNA COMO ID EL NUMERO SIGUIENTE
-    for (int i = 0 ; i < tam ; i++)
+    if (tam > 0)
     {
-        objAux = archivo.leerRegistros(i);
-        if (strcmp(obj.getNombre(),objAux.getNombre())!=0)
+        objAux = archivo.leerRegistros(tam-1); //CARGA LOS DATOS DEL ULTIMO REGISTRO
+        obj.setID(objAux.getID()+1); //AUTOMATICAMENTE ASIGNA COMO ID EL NUMERO SIGUIENTE
+    } else {obj.setID(1);}
+    if (tam > 0)
+    {
+        for (int i = 0 ; i < tam ; i++)
         {
-            existe = false;
-        }
-        else
-        {
-            existe = true;
+            objAux = archivo.leerRegistros(i);
+            if (strcmp(obj.getNombre(),objAux.getNombre())==0)
+            {
+                existe = true;
+                break;
+            }
+            else
+            {
+                existe = false;
+            }
         }
     }
+
     if (existe)
     {
         cout << "USUARIO EXISTENTE." << endl;
@@ -209,7 +217,7 @@ void inicioSesion()
         cout << "       INICIO DE SESION      " << endl;
         cout << "=============================" << endl << endl;
         cout << "La cuenta admin es: " << endl;
-        cout << cuentaAdmin.getNombre() << " " << cuentaAdmin.getContrasenia() << endl;
+        cout << cuentaAdmin.getNombre() << " " << cuentaAdmin.getContrasenia() << endl<<endl;
         cout << "BORRAR ESTAS LINEAS CUANDO EL PROGRAMA ESTE TERMINADO." << endl;
         cout<<"Ingrese su nombre de usuario: " ;
         cargarCadena(nombre, 29);
@@ -223,7 +231,7 @@ void inicioSesion()
         {
             if (hayUnAdmin()==true)
             {
-                cout << "La cuenta de administrador principal se encuentra deshabilitada.";
+                cout << "La cuenta de administrador principal se encuentra deshabilitada." << endl;
                 system("pause");
                 system("cls");
                 return;
@@ -239,6 +247,7 @@ void inicioSesion()
                 system("pause");
                 system("cls");
                 menuAdministrador(); //MODIFICAR EL MENU DE ADMINISTRADOR
+                break;
             }
             else
             {
@@ -252,6 +261,12 @@ void inicioSesion()
             {
                 usu = arcU.leerRegistros(pos);
                 cout << "Usuario encontrado." << endl;
+                if (usu.getActivo() == false && usu.getAdmin()==false)
+                {
+                    cout << "Esta cuenta esta deshabilitada"<< endl;
+                    system("pause");
+                    return;
+                }
                 cout << "Ingrese su contrasenia: " ;
                 cargarCadena(contrasenia, 19);
                 if (strcmp(usu.getContrasenia(),contrasenia) == 0)
@@ -270,6 +285,7 @@ void inicioSesion()
                         system("pause");
                         system("cls");
                         menuAdministrador();
+                        break;
                     }
                 }
                 else
@@ -330,7 +346,6 @@ void menuPrincipal()
             infoCuenta();
             break; //AGREGO LA FUNCION AL MENU
         case 0:
-            ;
             break;
         default:
             cout<< "Opcion invalida.";
@@ -908,11 +923,20 @@ void deshabilitarCuentaUsuario()
         {
             if (usu.getActivo()==true)
             {
-                usu.setActivo(false);
-                arcU.modificarUsuario(usu,i);
-                cout << "El usuario ha sido deshabilitado correctamente." << endl;
-                system("pause");
-                system("cls");
+                if (usu.getAdmin()==false)
+                {
+                    usu.setActivo(false);
+                    arcU.modificarUsuario(usu,i);
+                    cout << "El usuario ha sido deshabilitado correctamente." << endl;
+                    system("pause");
+                    system("cls");
+                } else
+                {
+                    cout << "No se puede deshabilitar una cuenta de administrador." << endl;
+                    system("pause");
+                    system("cls");
+                }
+
             }
             else
             {
@@ -967,10 +991,9 @@ void otorgarAdmin()
 {
     archivoUsuario arcU("archivos/Usuario.dat");
     usuario usu;
-
     archivoAdmin arcA ("archivos/admin.dat");
     Admin adm;
-
+    int tamArchivoAdmin = arcA.contarRegistros();
     char opcion;
     int idCuentaHabilitar;
     cout << "Desea listar los usuarios?" << endl;
@@ -988,21 +1011,47 @@ void otorgarAdmin()
         usu = arcU.leerRegistros(i);
         if (usu.getID() == idCuentaHabilitar)
         {
-            if (usu.getAdmin()==false)
+            if (usu.getAdmin()==false && usu.getActivo())
             {
+                system("cls");
                 usu.setAdmin(true);
+                ///REVISO SI YA ESTABA REGISTRADO ANTES EN EL ARCHIVO DE ADMINISTRADORES:
+                for (int j=0 ; j < tamArchivoAdmin ; j++)
+                {
+                    adm = arcA.leerRegistros(j);
+                    if (adm.getIdAdmin()==idCuentaHabilitar)
+                    {
+                        cout << "Esta cuenta tuvo permisos de administrador anteriormente." << endl;
+                        adm.setAdmin(true);
+                        arcA.modificarAdmin(adm,j);
+                        arcU.modificarUsuario(usu,i);
+                        cout << "Se ha otorgado el rango nuevamente." << endl;
+                        system("pause");
+                        system("cls");
+                        return;
+                    }
+                }
+                ////////////////////////////////////////
                 grabarRegistroadmin(idCuentaHabilitar);
                 arcU.modificarUsuario(usu,i);
-
                 cout << "Se ha otorgado el rango correctamente." << endl;
                 system("pause");
                 system("cls");
             }
             else
             {
-                cout << "El usuario ya contenía rango admin." << endl;
-                system("pause");
-                system("cls");
+                if (usu.getAdmin())
+                {
+                    cout << "El usuario ya contenía rango admin." << endl;
+                    system("pause");
+                    system("cls");
+                } else if (usu.getActivo()==false)
+                {
+                    cout << endl << "El usuario esta deshabilitado actualmente. No puede otorgarle permisos de administrador." << endl;
+                    cout << endl <<"Habilite este usuario primero." << endl;
+                    system("pause");
+                    system("cls");
+                }
             }
         }
     }
@@ -1011,7 +1060,9 @@ void otorgarAdmin()
 void removerAdmin()
 {
     archivoUsuario arcU("archivos/Usuario.dat");
+    archivoAdmin arcA("archivos/admin.dat");
     usuario usu;
+    Admin adm;
     char opcion;
     int idCuentaHabilitar;
     cout << "Desea listar los usuarios?" << endl;
@@ -1031,9 +1082,23 @@ void removerAdmin()
         {
             if (usu.getAdmin()==true)
             {
+                int tamArchivoAdmin = arcA.contarRegistros();
+                for (int j=0 ; j < tamArchivoAdmin ; j++)
+                {
+                    adm = arcA.leerRegistros(j);
+                    if (adm.getIdAdmin() == idCuentaHabilitar)
+                    {
+                        adm.setAdmin(false);
+                        arcA.modificarAdmin(adm,j);
+                        cout << "Se ha removido el rango correctamente (Archivo ADMINS). ID: " << adm.getIdAdmin() << endl;
+                        break;
+                    }
+                    ///BUSCA LA ID EN EL ARCHIVO DE ADMIN Y GRABA LOS DATOS EN EL OBJ ADM
+                }
+
                 usu.setAdmin(false);
                 arcU.modificarUsuario(usu,i);
-                cout << "Se ha removido el rango correctamente." << endl;
+                cout << "Se ha removido el rango correctamente. (Archivo Usuario)" << endl;
                 system("pause");
                 system("cls");
             }
@@ -1372,58 +1437,56 @@ void listarPorOrdenes()
 
 bool hayUnAdmin()
 {
-  usuario usu;
-  archivoUsuario arcU("archivos/Usuario.dat");
-
-  int tam = arcU.contarRegistros();
-
-  for (int i = 0; i < tam; i++)
-      {
-          usu = arcU.leerRegistros(i);
-          if (usu.getAdmin()==true)
-              {
-               return true;
-              }
-      }
- return false;
+Admin admin;
+archivoAdmin arcA("archivos/admin.dat");
+int tam = arcA.contarRegistros();
+for (int i = 0; i < tam; i++)
+{
+    admin = arcA.leerRegistros(i);
+    if (admin.getAdmin()) return true;
+}
+return false;
 }
 
 void mostrarArchivoAdmin()
 {
     archivoAdmin arcA ("archivos/admin.dat");
     Admin adm;
-
     int tam = arcA.contarRegistros();
-
-    for (int i = 0;i<tam ;i++ ){
-
-     adm= arcA.leerRegistros(i);
-     adm.mostrarDatos();
-
+    system("cls");
+    for (int i = 0;i<tam ;i++ )
+    {
+        cout << "============== REGISTRO: "<< i <<" ============" << endl;
+        adm= arcA.leerRegistros(i);
+        adm.mostrarDatos();
+        cout << "======================================" << endl;
     }
+    system("pause");
+    system("cls");
 }
 
-void grabarRegistroadmin(int idCuentaHabilitar){
-
- archivoAdmin arcA("achivos/admin.dat");
- Admin adm;
-
- archivoUsuario arcU("archivos/usuario.dat");
- usuario usu;
-
- int tam = arcU.contarRegistros();
-
- for (int i = 0;i<tam ; i++){
-
-if(usu.getID() == idCuentaHabilitar){
-
-adm.setIdAdmin(idCuentaHabilitar);
-adm.setNombre(usu.getNombre());
-adm.setDNI(usu.getDNI());
-adm.setEdad(usu.getEdad());
-adm.setIDPais(usu.getIDPais());
-adm.setMail(usu.getMail());
-}
- arcA.grabarRegistros(adm);
-}
+void grabarRegistroadmin(int idCuentaHabilitar)
+{
+    archivoAdmin arcA("archivos/admin.dat");
+    Admin adm;
+    archivoUsuario arcU("archivos/usuario.dat");
+    usuario usu;
+    int tam = arcU.contarRegistros();
+    for (int i = 0;i<tam ; i++)
+    {
+        usu = arcU.leerRegistros(i);
+        if(usu.getID() == idCuentaHabilitar)
+        {
+            adm.setIdAdmin(idCuentaHabilitar);
+            adm.setNombre(usu.getNombre());
+            adm.setDNI(usu.getDNI());
+            adm.setEdad(usu.getEdad());
+            adm.setIDPais(usu.getIDPais());
+            adm.setMail(usu.getMail());
+            adm.setAdmin(true);
+            cout << endl << "TEXTOS PARA VERIFICAR QUE TODO FUNCIONE CORRECTAMENTE XD" << endl  << "Datos a grabar:" << endl;
+            adm.mostrarDatos();
+            if (arcA.grabarRegistros(adm)){cout << "CUENTA REGISTRADA EN ARCHIVO DE ADMINISTRADORES"<<endl;} //El metodo de grabar registros retorna bool
+        }
+    }
 }

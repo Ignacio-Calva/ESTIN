@@ -9,7 +9,7 @@
 
 1728069568 ated upstream
 
-1730507414 source:d:\facultad\tecnicatura programación\programación\estin\valeam.cpp
+1730654776 source:d:\facultad\tecnicatura programación\programación\estin\valeam.cpp
 	<iostream>
 	<string.h>
 	<windows.h>
@@ -22,12 +22,12 @@
 	"funciones.h"
 	"funciones.h"
 
-1730508220 d:\facultad\tecnicatura programación\programación\estin\funciones.h
+1730654776 d:\facultad\tecnicatura programación\programación\estin\funciones.h
 	<cstring>
 	"FECHA.h"
 	"VIDEOJUEGO.h"
 
-1730508012 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
+1730665415 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -107,7 +107,7 @@
 	"funciones.h"
 	"PERSONA.h"
 
-1730480186 d:\facultad\tecnicatura programación\programación\estin\usuario.h
+1730657882 d:\facultad\tecnicatura programación\programación\estin\usuario.h
 	"funciones.h"
 	"PERSONA.h"
 
@@ -219,7 +219,7 @@
 1730496776 c:\users\admin\documents\github\estin\persona.h
 	"funciones.h"
 
-1730492297 d:\facultad\tecnicatura programación\programación\estin\admin.h
+1730665555 d:\facultad\tecnicatura programación\programación\estin\admin.h
 	"funciones.h"
 	"PERSONA.h"
 

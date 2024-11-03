@@ -7,7 +7,7 @@ class Admin : public Persona
 {
     private:
         int idAdmin = 0;
-        int juegosCargados;
+        int juegosCargados = 0;
         bool activo = true;
     public:
         Admin(){}
@@ -27,6 +27,11 @@ class Admin : public Persona
         {
             mostrarDatosPersona();
             cout << "ID de Admin: " << idAdmin << endl;
+            cout << "Juegos cargados: " << juegosCargados << endl;
+            cout << "Activo: ";
+            if (activo){cout << "Si." << endl;} else {cout << "No." << endl;}
+            cout << "ADMIN: ";
+            if (getAdmin()){cout << "Si." << endl;} else {cout << "No. (Permisos removidos anteriormente)" << endl;}
         }
         //SETTERS
         void setIdAdmin(int _idAdmin){idAdmin = _idAdmin;}
@@ -70,8 +75,12 @@ public:
     bool grabarRegistros(Admin obj)
     {
         FILE *P=fopen(nombre, "ab");
-        if(P==NULL) return false;
-        int info=fwrite(&obj, sizeof obj, 1, P);
+        if(P==nullptr)
+        {
+            cout << "Error al abrir el archivo " << nombre << " para escritura." << endl;
+            return false;
+        }
+        int info=fwrite(&obj, sizeof (Admin), 1, P);
         fclose(P);
         return info;
     }
@@ -81,6 +90,18 @@ public:
         FILE *p = fopen(nombre, "wb");
         if (p == nullptr) return;
         fclose(p);
+    }
+
+    bool modificarAdmin(Admin obj,int pos)
+    {
+        FILE *p=fopen(nombre,"rb+");
+        if(p==NULL){
+            return false;
+        }
+        fseek(p, pos * sizeof obj, 0);
+        fwrite(&obj, sizeof obj, 1, p);
+        fclose(p);
+        return true;
     }
 };
 
