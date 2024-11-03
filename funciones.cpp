@@ -766,6 +766,7 @@ void menuAdministrador()
         cout << "(5) Deshabilitar cuenta" << endl;
         cout << "(6) Otorgar permisos de administrador" << endl;
         cout << "(7) Remover permisos de administrador" << endl;
+        cout << "(8) Listar admins registrados" << endl;
         cout << "(0) Cerrar Sesion" << endl;
         cout << "=======================================" << endl;
         cout << endl << "Ingrese una opcion: ";
@@ -794,6 +795,9 @@ void menuAdministrador()
             break;
         case 7:
             removerAdmin();
+            break;
+        case 8:
+            mostrarArchivoAdmin();
             break;
         case 0:
             return;
@@ -963,6 +967,10 @@ void otorgarAdmin()
 {
     archivoUsuario arcU("archivos/Usuario.dat");
     usuario usu;
+
+    archivoAdmin arcA ("archivos/admin.dat");
+    Admin adm;
+
     char opcion;
     int idCuentaHabilitar;
     cout << "Desea listar los usuarios?" << endl;
@@ -983,7 +991,9 @@ void otorgarAdmin()
             if (usu.getAdmin()==false)
             {
                 usu.setAdmin(true);
+                grabarRegistroadmin(idCuentaHabilitar);
                 arcU.modificarUsuario(usu,i);
+
                 cout << "Se ha otorgado el rango correctamente." << endl;
                 system("pause");
                 system("cls");
@@ -1376,4 +1386,44 @@ bool hayUnAdmin()
               }
       }
  return false;
+}
+
+void mostrarArchivoAdmin()
+{
+    archivoAdmin arcA ("archivos/admin.dat");
+    Admin adm;
+
+    int tam = arcA.contarRegistros();
+
+    for (int i = 0;i<tam ;i++ ){
+
+     adm= arcA.leerRegistros(i);
+     adm.mostrarDatos();
+
+    }
+}
+
+void grabarRegistroadmin(int idCuentaHabilitar){
+
+ archivoAdmin arcA("achivos/admin.dat");
+ Admin adm;
+
+ archivoUsuario arcU("archivos/usuario.dat");
+ usuario usu;
+
+ int tam = arcU.contarRegistros();
+
+ for (int i = 0;i<tam ; i++){
+
+if(usu.getID() == idCuentaHabilitar){
+
+adm.setIdAdmin(idCuentaHabilitar);
+adm.setNombre(usu.getNombre());
+adm.setDNI(usu.getDNI());
+adm.setEdad(usu.getEdad());
+adm.setIDPais(usu.getIDPais());
+adm.setMail(usu.getMail());
+}
+ arcA.grabarRegistros(adm);
+}
 }

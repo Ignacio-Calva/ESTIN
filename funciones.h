@@ -55,7 +55,8 @@ void deshabilitarCuentaUsuario();
 void habilitarCuentaUsuario();
 void otorgarAdmin();
 void removerAdmin();
-
+void mostrarArchivoAdmin();
+void grabarRegistroadmin(int idCuentaHabilitar);
 
 bool hayUnAdmin();
 #endif // FUNCIONES_H_INCLUDED
