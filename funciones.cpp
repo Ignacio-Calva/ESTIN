@@ -1446,10 +1446,11 @@ void listarOrdenAnio(archivoVideoJuego archivo)
 
 void listarPorOrdenes()
 {
-    int opcion;
+    int opcion = 1;
     archivoVideoJuego archivoTienda("archivos/videoJuego.dat");
-    while (true)
+    while (opcion!=0)
     {
+        system("cls");
         cout << "===================================" << endl;
         cout << "   SELECCIONE EL FILTRO DESEADO"     << endl;
         cout << "===================================" << endl;
@@ -1472,10 +1473,11 @@ void listarPorOrdenes()
             break;
         case 4:
             break;
+        case 0:
+            break;
         default:
             cout << "Opcion invalida. Por favor, elija una opcion valida" << endl;
             system("pause");
-            system("cls");
             break;
         }
     }
