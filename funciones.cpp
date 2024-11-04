@@ -40,6 +40,7 @@ void elegirVideojuego()
             {
                 cout << "NUMERO DE JUEGO NO ENCONTRADO."<<endl;
                 system("pause");
+                break;
             }
         }
         caracteristicasVideojuego(numJuego);
