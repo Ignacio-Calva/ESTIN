@@ -21,14 +21,12 @@ void elegirVideojuego()
     {
         system("CLS");
         listarVideojuegos();
-
         setConsoleColor(4, 0);
         cout<<endl<<"0 - ATRAS" << endl;
         setConsoleColor(8, 0);
         cout<<"-------------------------------------------------------------------"<<endl;
-        cout<<endl<<"INGRESE EL NUMERO DEL JUEGO DESEADO: ";
-        cout<<"-------------------------------------------------------------------"<<endl;
-
+        cout<<endl<<"Ingrese el numero del juego deseado (0 Para cancelar): "<< endl;
+        setConsoleColor(4, 0);
         cin>>numJuego;
         if(numJuego >= 0)
         {
@@ -38,7 +36,7 @@ void elegirVideojuego()
             }
             else if (numJuego > tam)
             {
-                cout << "NUMERO DE JUEGO NO ENCONTRADO."<<endl;
+                cout << "Numero de juego no encontrado."<<endl;
                 system("pause");
                 break;
             }
@@ -94,7 +92,7 @@ void listarVideojuegos()
         if (game.getActivo() && usu.getEdad() >= game.getRestriccion())
         {
             setConsoleColor(15, 0);
-            cout<< i+1 << " - " << game.getTitulo() << endl;
+            cout<< i+1 << " - " << game.getTitulo() << " <-------> PRECIO: $" << game.getPrecio() << " <-------> PESO (GB): " << game.getPeso() << " GB." << endl;
         }
         else if (game.getActivo()==false)
         {
@@ -328,8 +326,11 @@ void menuPrincipal()
     {
         system("CLS");
         setConsoleColor(15, 1);
-        cout<<"VALEAM"<<endl<<endl;
-        setConsoleColor(3, 0);
+        cout<<"==============================" << endl;
+        cout<<"            ESTIM             "<<endl;
+        cout<<"==============================" << endl;
+        setConsoleColor(3,0);
+        cout<<"ID de cuenta iniciada: " << idIniciada<<endl;
         cout<<"1 - Listar VideoJuegos"<<endl;
         cout<<"2 - Buscar VideoJuego"<<endl;
         cout<<"3 - Categorias"<<endl;
@@ -383,7 +384,7 @@ void menuFiltro()
         cout << "     5- Listar por anio          "<<endl;
         cout << "     6- Listar por gratuito    "<<endl;
         cout << "     7- comprar Videojuego    "<<endl;
-        cout << "     9- Listar por ordenes     " << endl;
+        cout << "     8- Listar por ordenes     " << endl;
         setConsoleColor(4, 0);
         cout << "     0. ATRAS                                                                     " << endl;
         setConsoleColor(8, 0);
@@ -416,9 +417,6 @@ void menuFiltro()
             comprarJuego(idIniciada);
             break;
         case 8:
-            mostrarBibliotecaDeUsuario(idIniciada);
-            break;
-        case 9:
             listarPorOrdenes();
             break;
         default:
@@ -1292,20 +1290,19 @@ void comprarJuego(int idVideojuego)
         {
         case 1:
             usu = arcU.leerRegistros(idIniciada-1);
-
             if (usu.getTarjet() != 0)
             {
+                bib = arcB.leerBiblioteca(idIniciada-1);
                 for (int i = 0; i < 150; i++)
                 {
-                    bib = arcB.leerBiblioteca(i);
-                    if(bib.getIdVideojuego(idVideojuego)==0)
+                    if (bib.getIdVideojuego(i)==idVideojuego)
                     {
-                        agregarVideojuegoBiblioteca(idVideojuego, idIniciada);
-                        cout<<"juego comprado, disfrute :D";
-                        system("PAUSE");
+                        cout << "Ya tienes el juego en tu biblioteca. " << endl;
                         return;
                     }
                 }
+                agregarVideojuegoBiblioteca(idVideojuego,idIniciada);
+                return;
             }
             else if (usu.getTarjet() == 0)
             {
@@ -1329,6 +1326,8 @@ void comprarJuego(int idVideojuego)
                     break;
                 }
             }
+            return;
+        case 0:
             break;
         }
     }
@@ -1388,8 +1387,7 @@ void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada)
             libro.setIdVideojuego(idVideojuego-1, idVideojuego);
             arcB.modificarBiblioteca(i,libro);
             arcB.grabarRegistros(libro);
-            cout<<"El videojuego ha sido agregado a tu biblioteca con exito, disfruta!!";
-            system("PAUSE");
+            cout<<"El videojuego ha sido agregado a tu biblioteca con exito, disfruta!! " << endl;
             return;
         }
     }
@@ -1406,6 +1404,9 @@ void mostrarBibliotecaDeUsuario(int idIniciada)
         libro = arcB.leerBiblioteca(i);
         if(idIniciada == libro.getIdUsuario())
         {
+            system("cls");
+            cout << "Mostrando biblioteca ID: " << libro.getIdUsuario() << endl;
+            cout << "Biblioteca del usuario ID: " << idIniciada << endl;
             libro.mostrar();
             system("PAUSE");
             return;

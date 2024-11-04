@@ -51,9 +51,9 @@ class Biblioteca{
             for (int i = 0; i < 150; i++)
             {
                 if (idVideojuego[i]>0)
-                    {
-                     cout<< "ID videojuego: " << idVideojuego[i] << "   comprado el: "; fechaCompra[i].mostrar();
-                    }
+                {
+                    cout<< "ID videojuego: " << idVideojuego[i] << "   comprado el: "; fechaCompra[i].mostrar();
+                }
             }
         }
 
