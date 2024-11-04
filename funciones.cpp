@@ -507,7 +507,7 @@ void listarPorGenero() //nueva funcion xdddddd (todavia esta en proceso)
     cargarCadena(genero, 29);
     int cantReg =arcV.contarRegistros();
     system("CLS");
-    usu = arcU.leerRegistros(idIniciada);
+    usu = arcU.leerRegistros(datosUsuarioIniciado());
     cout<<"--------------------------------------------------------------------------"<<endl;
     cout<<"Filtro aplicado: "<< genero <<endl;
     cout<<"--------------------------------------------------------------------------"<<endl;
@@ -543,7 +543,7 @@ void listarPorCreador()
     cout << "Ingrese la desarrolladora a buscar: ";
     cargarCadena(desarrolladora, 29);
     system("CLS");
-    usu = arcU.leerRegistros(idIniciada);
+    usu = arcU.leerRegistros(datosUsuarioIniciado());
     cout<<"--------------------------------------------------------------------------"<<endl;
     cout << "Filtro aplicado: " << desarrolladora << endl;
     cout<<"--------------------------------------------------------------------------"<<endl;
@@ -609,7 +609,7 @@ void mostrarPorPrecio ()
     cout<<"Ingrese el monto minimo "<<endl;
     cin>>montoMin;
     system("CLS");
-    usu = arcU.leerRegistros(idIniciada);
+    usu = arcU.leerRegistros(datosUsuarioIniciado());
     cout<<"------------------------------------------------------------------------------"<<endl;
     cout<<"El filtro aplicado es: " <<" desde : " <<montoMin<< "$"<<" hasta : "<< montoMax<< "$"<<endl;
     cout<<"------------------------------------------------------------------------------"<<endl;
@@ -655,14 +655,14 @@ void listarPorAnio()  //función a arreglar
     cout<< "Ingrese el anio con el cual filtrar: "<<endl;
     cin>>anio;
     system("CLS");
-    usu = arcU.leerRegistros(idIniciada);
+    usu = arcU.leerRegistros(datosUsuarioIniciado());
     cout<<"--------------------------------------------------------------------------"<<endl;
     cout<<"Filtro aplicado: "<<anio<<endl;
     cout<<"--------------------------------------------------------------------------"<<endl;
     for (int i =0; i<tam ; i++ )
     {
         game = arcV.leerRegistros(i);
-        if(game.getAnio() == anio && usu.getEdad() >= game.getRestriccion() && game.getActivo())
+        if(game.getAnio() == anio && usu.getEdad() >= game.getRestriccion() && game.getActivo()==true)
         {
             cout<<game.getidVideojuego() << "-"<< game.getTitulo()<< "   -- precio: $ " << game.getPrecio()<<endl;
             contGame++;
