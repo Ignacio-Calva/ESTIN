@@ -57,7 +57,6 @@ class Biblioteca{
             }
         }
 
-        void designarBiblioteca(int pos, Biblioteca obj);
         void setIdUsuario(int _mas){idUsuario = _mas;}
         void setIdVideojuego(int pos, int _id){idVideojuego[pos] = _id;}
         void setFechaCompra(Fecha _fechaCompra, int pos){fechaCompra[pos] = _fechaCompra;}

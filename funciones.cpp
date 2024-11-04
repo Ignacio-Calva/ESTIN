@@ -81,8 +81,10 @@ void listarVideojuegos()
     usuario usu;
     archivoUsuario arcU("archivos/Usuario.dat");
 
+    archivoBiblioteca arcB("archivos/biblioteca.dat");
+    Biblioteca bib;
     usu = arcU.leerRegistros(datosUsuarioIniciado());
-
+    bib = arcB.leerBiblioteca(idIniciada-1);
     int cantReg = arcV.contarRegistros();
     setConsoleColor(11, 0);
     cout<<"VideoJuegos: " << endl << endl;
@@ -92,15 +94,29 @@ void listarVideojuegos()
         if (game.getActivo() && usu.getEdad() >= game.getRestriccion())
         {
             setConsoleColor(15, 0);
-            cout<< i+1 << " - " << game.getTitulo() << " <-------> PRECIO: $" << game.getPrecio() << " <-------> PESO (GB): " << game.getPeso() << " GB." << endl;
+            cout<< i+1 << " - " << game.getTitulo() << " <-------> PRECIO: ";
+            if (bib.getIdVideojuego(game.getidVideojuego()-1) == 0)
+            {
+                cout << "$" << game.getPrecio();
+            }else
+            {
+                setConsoleColor(4,0);
+                cout << "*JUEGO ADQUIRIDO*" ;
+                setConsoleColor(15,0);
+            }
+            cout << " <-------> PESO (GB): " << game.getPeso() << " GB." << endl;
         }
         else if (game.getActivo()==false)
         {
+            setConsoleColor(4,0);
             cout << "*JUEGO DESHABILITADO" << endl;
+            setConsoleColor(15,0);
         }
         else
         {
-          cout << "No tienes edad suficiente para este videojuego" << endl;
+            setConsoleColor(4,0);
+            cout << "No tienes edad suficiente para este videojuego" << endl;
+            setConsoleColor(15,0);
         }
     }
 }
@@ -391,9 +407,9 @@ void menuFiltro()
         cout << "-----------------------------------------------------------" << endl;
         cout << endl;
         cout << "======== Gracias por utilizar el sistema  ===========" << endl;
-        cout << "=================================================" << endl;
-
-
+        cout << "=====================================================" << endl;
+        setConsoleColor(15, 0);
+        cout << "Ingrese la opcion deseada: ";
         cin>> opcion;
         setConsoleColor(15, 0);
         switch (opcion)
@@ -664,7 +680,7 @@ void listarPorAnio()  //función a arreglar
         game = arcV.leerRegistros(i);
         if(game.getAnio() == anio && usu.getEdad() >= game.getRestriccion() && game.getActivo()==true)
         {
-            cout<<game.getidVideojuego() << "-"<< game.getTitulo()<< "   -- precio: $ " << game.getPrecio()<<endl;
+            cout<<game.getidVideojuego() << "-"<< game.getTitulo()<< "   -- Precio: $ " << game.getPrecio()<<endl;
             contGame++;
             videoJuegos[i]+1;
         }else if (game.getAnio() == anio && usu.getEdad() >= game.getRestriccion() && game.getActivo()==false)
@@ -770,9 +786,18 @@ int designarBiblioteca(int idUsuario)
     archivoUsuario arcU("archivos/usuario.dat");
     usuario usu;
     int pos = buscarUsuarioPorID(idUsuario);
-    arcB.leerBiblioteca(pos);
+    //arcB.leerBiblioteca(pos);
     libro.setIdUsuario(idUsuario);
-    arcB.modificarBiblioteca(pos, libro);
+    Fecha fecha0;
+    fecha0.setDia(0);
+    fecha0.setMes(0);
+    fecha0.setAnio(0);
+    for (int i = 0 ; i < 150 ; i++) //DECLARA EN 0 TODOS LOS  JUEGOS Y FECHAS
+    {
+        libro.setIdVideojuego(i,0);
+        libro.setFechaCompra(fecha0,i);
+    }
+    //arcB.modificarBiblioteca(pos, libro);
     arcB.grabarRegistros(libro);
     cout<<"Tu biblioteca asignada tiene ID: "<< libro.getIdUsuario()<<endl;
     int idBibloteca = libro.getIdUsuario();
@@ -1282,9 +1307,11 @@ void comprarJuego(int idVideojuego)
     while (opcion != 0)
     {
         int opcion2 = 1;
+        setConsoleColor(4,0);
         cout<<"1 - Comprar"<<endl;
         cout<<"0 - Salir"<<endl;
         cout<<"-----------"<<endl;
+        setConsoleColor(15,0);
         cin>>opcion;
         switch (opcion)
         {
@@ -1297,7 +1324,9 @@ void comprarJuego(int idVideojuego)
                 {
                     if (bib.getIdVideojuego(i)==idVideojuego)
                     {
+                        setConsoleColor(4,0);
                         cout << "Ya tienes el juego en tu biblioteca. " << endl;
+                        setConsoleColor(15,0);
                         return;
                     }
                 }
@@ -1382,11 +1411,13 @@ void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada)
         libro= arcB.leerBiblioteca(i);
         if(idIniciada == libro.getIdUsuario())
         {
+            cout << "Numero de registro de biblioteca cargado: " << i << endl;
+            cout << "ID de Biblioteca de usuario cargada: " << libro.getIdUsuario() << endl;
             compra.cargar();
             libro.setFechaCompra(compra,idVideojuego-1);
             libro.setIdVideojuego(idVideojuego-1, idVideojuego);
             arcB.modificarBiblioteca(i,libro);
-            arcB.grabarRegistros(libro);
+            //arcB.grabarRegistros(libro);
             cout<<"El videojuego ha sido agregado a tu biblioteca con exito, disfruta!! " << endl;
             return;
         }
@@ -1399,6 +1430,8 @@ void mostrarBibliotecaDeUsuario(int idIniciada)
     Biblioteca libro;
 
     int tam = arcB.contarRegistros();
+    cout << "TAMANIO DEL ARCHIVO DE BIBLIOTECA: " << tam << endl;
+    system("Pause");
     for (int i = 0; i<tam ; i++ )
     {
         libro = arcB.leerBiblioteca(i);
@@ -1412,6 +1445,7 @@ void mostrarBibliotecaDeUsuario(int idIniciada)
             return;
         }
     }
+   cout << "Error al cargar biblioteca." << endl;system("pause");return;
 }
 
 void listarOrdenAnio(archivoVideoJuego archivo)

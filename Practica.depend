@@ -27,7 +27,7 @@
 	"FECHA.h"
 	"VIDEOJUEGO.h"
 
-1730754491 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
+1730759448 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -114,7 +114,7 @@
 1730496617 d:\facultad\tecnicatura programación\programación\estin\videojuego.h
 	"funciones.h"
 
-1730754922 d:\facultad\tecnicatura programación\programación\estin\biblioteca.h
+1730759417 d:\facultad\tecnicatura programación\programación\estin\biblioteca.h
 	"funciones.h"
 	"FECHA.h"
 
