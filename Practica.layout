@@ -2,17 +2,26 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="VIDEOJUEGO.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="FECHA.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="336" topLine="1" />
+			<Cursor1 position="91" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="ADMIN.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="437" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="BIBLIOTECA.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1456" topLine="30" />
 		</Cursor>
 	</File>
 	<File name="funciones.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="44600" topLine="97" />
+			<Cursor1 position="43605" topLine="420" />
 		</Cursor>
 		<Folding>
-			<Collapse line="14" />
 			<Collapse line="51" />
 			<Collapse line="63" />
 			<Collapse line="70" />
@@ -22,64 +31,59 @@
 			<Collapse line="121" />
 			<Collapse line="143" />
 			<Collapse line="156" />
-			<Collapse line="199" />
-			<Collapse line="301" />
-			<Collapse line="323" />
-			<Collapse line="339" />
-			<Collapse line="362" />
 			<Collapse line="430" />
-			<Collapse line="484" />
-			<Collapse line="501" />
-			<Collapse line="536" />
-			<Collapse line="557" />
-			<Collapse line="580" />
-			<Collapse line="598" />
-			<Collapse line="646" />
-			<Collapse line="665" />
-			<Collapse line="688" />
-			<Collapse line="710" />
-			<Collapse line="726" />
-			<Collapse line="753" />
-			<Collapse line="769" />
-			<Collapse line="785" />
-			<Collapse line="815" />
-			<Collapse line="871" />
-			<Collapse line="910" />
-			<Collapse line="949" />
-			<Collapse line="997" />
-			<Collapse line="1036" />
-			<Collapse line="1065" />
-			<Collapse line="1089" />
-			<Collapse line="1106" />
-			<Collapse line="1161" />
-			<Collapse line="1188" />
-			<Collapse line="1213" />
-			<Collapse line="1240" />
-			<Collapse line="1270" />
-			<Collapse line="1276" />
-			<Collapse line="1330" />
-			<Collapse line="1368" />
-			<Collapse line="1392" />
-			<Collapse line="1409" />
-			<Collapse line="1447" />
-			<Collapse line="1486" />
-			<Collapse line="1499" />
-			<Collapse line="1516" />
+			<Collapse line="482" />
+			<Collapse line="499" />
+			<Collapse line="534" />
+			<Collapse line="555" />
+			<Collapse line="578" />
+			<Collapse line="596" />
+			<Collapse line="644" />
+			<Collapse line="686" />
+			<Collapse line="708" />
+			<Collapse line="724" />
+			<Collapse line="751" />
+			<Collapse line="767" />
+			<Collapse line="783" />
+			<Collapse line="813" />
+			<Collapse line="869" />
+			<Collapse line="908" />
+			<Collapse line="947" />
+			<Collapse line="995" />
+			<Collapse line="1034" />
+			<Collapse line="1159" />
+			<Collapse line="1186" />
+			<Collapse line="1211" />
+			<Collapse line="1238" />
+			<Collapse line="1268" />
+			<Collapse line="1274" />
+			<Collapse line="1336" />
+			<Collapse line="1374" />
+			<Collapse line="1415" />
+			<Collapse line="1453" />
+			<Collapse line="1492" />
+			<Collapse line="1505" />
+			<Collapse line="1522" />
 		</Folding>
+	</File>
+	<File name="VALEAM.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="403" topLine="6" />
+		</Cursor>
 	</File>
 	<File name="TROFEO.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1089" topLine="3" />
 		</Cursor>
 	</File>
-	<File name="FECHA.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="VIDEOJUEGO.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="369" topLine="0" />
+			<Cursor1 position="96" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="ADMIN.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="PERSONA.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="437" topLine="0" />
+			<Cursor1 position="112" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="USUARIO.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -87,33 +91,9 @@
 			<Cursor1 position="104" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="clases.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2194" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="8" />
-			<Collapse line="55" />
-		</Folding>
-	</File>
-	<File name="BIBLIOTECA.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1414" topLine="82" />
-		</Cursor>
-	</File>
 	<File name="funciones.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1737" topLine="21" />
-		</Cursor>
-	</File>
-	<File name="PERSONA.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="815" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="VALEAM.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="405" topLine="6" />
 		</Cursor>
 	</File>
 	<File name="puntoH.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -124,6 +104,15 @@
 			<Collapse line="8" />
 			<Collapse line="99" />
 			<Collapse line="107" />
+		</Folding>
+	</File>
+	<File name="clases.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2194" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="8" />
+			<Collapse line="55" />
 		</Folding>
 	</File>
 	<Target name="Debug" top="clases.h">

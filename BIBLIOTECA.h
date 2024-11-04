@@ -47,19 +47,19 @@ class Biblioteca{
     public:
         void mostrar()
         {
-            int i=0;
-            cout << "IDS de Videojuegos comprados: " << endl;
-            while (idVideojuego[i] != 0)
+            cout << "Videojuegos comprados: " << endl;
+            for (int i = 0; i < 150; i++)
             {
-                cout << i+1 << ") " << idVideojuego[i] << ", Fecha de adquisicion: ";
-                fechaCompra[i].mostrar();
-                i++;
+                if (idVideojuego[i]>0)
+                    {
+                     cout<< "ID videojuego: " << idVideojuego[i] << "   comprado el: "; fechaCompra[i].mostrar();
+                    }
             }
         }
 
         void designarBiblioteca(int pos, Biblioteca obj);
-        void setIdUsuario(int _id){idUsuario = _id;}
-        void setIdVideojuego(int _id, int pos){idVideojuego[pos] = _id;}
+        void setIdUsuario(int _mas){idUsuario = _mas;}
+        void setIdVideojuego(int pos, int _id){idVideojuego[pos] = _id;}
         void setFechaCompra(Fecha _fechaCompra, int pos){fechaCompra[pos] = _fechaCompra;}
         int getIdUsuario(){return idUsuario;}
         int getIdVideojuego(int pos){return idVideojuego[pos];}

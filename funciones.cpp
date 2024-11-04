@@ -43,7 +43,7 @@ void elegirVideojuego()
             }
         }
         caracteristicasVideojuego(numJuego);
-        comprarJuego(idIniciada);
+        comprarJuego(numJuego);
         system("PAUSE");
     }
 }
@@ -345,6 +345,7 @@ void menuPrincipal()
             buscarVideojuego();
             break;
         case 4:
+            mostrarBibliotecaDeUsuario(idIniciada);
             break;
         case 5:
             infoCuenta();
@@ -354,7 +355,6 @@ void menuPrincipal()
         default:
             cout<< "Opcion invalida.";
             break;
-
         }
     }
 }
@@ -454,7 +454,6 @@ void infoCuenta() //nueva funcion
                 setConsoleColor(15, 0);
                 cout<<"1 - Deshabilitar cuenta"<<endl;
                 cout<<"2 - Asignar tarjeta"<<endl;
-                cout<<"3 - Mostrar biblioteca"<<endl;
                 cout<<"0 - Salir"<<endl;
                 cin>>opcion;
                 switch (opcion)
@@ -465,15 +464,14 @@ void infoCuenta() //nueva funcion
                 case 2:
                     aniadirTarjeta(idIniciada);
                     break;
-                case 3:
-                    mostrarBibliotecaDeUsuario(idIniciada);
-                    break;
                 case 0:
                     break;
                 default:
                     system("CLS");
                     setConsoleColor(4, 0);
                     cout<<"Opcion invalida" <<endl;
+                    system("PAUSE");
+                    setConsoleColor(15, 0);
                     break;
                 }
             }
@@ -1279,6 +1277,8 @@ void comprarJuego(int idVideojuego)
     archivoVideoJuego arcV("archivos/videoJuego.dat");
     usuario usu;
     archivoUsuario arcU("archivos/Usuario.dat");
+    archivoBiblioteca arcB("archivos/biblioteca.dat");
+    Biblioteca bib;
 
     while (opcion != 0)
     {
@@ -1294,11 +1294,17 @@ void comprarJuego(int idVideojuego)
 
             if (usu.getTarjet() != 0)
             {
-                agregarVideojuegoBiblioteca(idVideojuego, idIniciada);
-
-                cout<<"juego comprado, disfrute :D";
-                system("PAUSE");
-                return;
+                for (int i = 0; i < 150; i++)
+                {
+                    bib = arcB.leerBiblioteca(i);
+                    if(bib.getIdVideojuego(idVideojuego)==0)
+                    {
+                        agregarVideojuegoBiblioteca(idVideojuego, idIniciada);
+                        cout<<"juego comprado, disfrute :D";
+                        system("PAUSE");
+                        return;
+                    }
+                }
             }
             else if (usu.getTarjet() == 0)
             {
@@ -1370,7 +1376,6 @@ void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada)
     archivoBiblioteca arcB ("archivos/biblioteca.dat");
     Biblioteca libro;
     Fecha compra;
-    idVideojuego= 3;
     int tam = arcB.contarRegistros();
     for (int i =0; i<tam ; i++)
     {
@@ -1378,8 +1383,8 @@ void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada)
         if(idIniciada == libro.getIdUsuario())
         {
             compra.cargar();
-            libro.setFechaCompra(compra,idIniciada);
-            libro.setIdVideojuego(idVideojuego, idVideojuego-1);
+            libro.setFechaCompra(compra,idVideojuego-1);
+            libro.setIdVideojuego(idVideojuego-1, idVideojuego);
             arcB.modificarBiblioteca(i,libro);
             arcB.grabarRegistros(libro);
             cout<<"El videojuego ha sido agregado a tu biblioteca con exito, disfruta!!";
@@ -1393,10 +1398,11 @@ void mostrarBibliotecaDeUsuario(int idIniciada)
 {
     archivoBiblioteca arcB ("archivos/biblioteca.dat");
     Biblioteca libro;
+
     int tam = arcB.contarRegistros();
     for (int i = 0; i<tam ; i++ )
     {
-        libro= arcB.leerBiblioteca(i);
+        libro = arcB.leerBiblioteca(i);
         if(idIniciada == libro.getIdUsuario())
         {
             libro.mostrar();
