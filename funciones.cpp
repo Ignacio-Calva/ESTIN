@@ -81,8 +81,10 @@ void listarVideojuegos()
     usuario usu;
     archivoUsuario arcU("archivos/Usuario.dat");
 
+    archivoBiblioteca arcB("archivos/biblioteca.dat");
+    Biblioteca bib;
     usu = arcU.leerRegistros(datosUsuarioIniciado());
-
+    bib = arcB.leerBiblioteca(idIniciada-1);
     int cantReg = arcV.contarRegistros();
     setConsoleColor(11, 0);
     cout<<"VideoJuegos: " << endl << endl;
@@ -92,15 +94,29 @@ void listarVideojuegos()
         if (game.getActivo() && usu.getEdad() >= game.getRestriccion())
         {
             setConsoleColor(15, 0);
-            cout<< i+1 << " - " << game.getTitulo() << " <-------> PRECIO: $" << game.getPrecio() << " <-------> PESO (GB): " << game.getPeso() << " GB." << endl;
+            cout<< i+1 << " - " << game.getTitulo() << " <-------> PRECIO: ";
+            if (bib.getIdVideojuego(game.getidVideojuego()-1) == 0)
+            {
+                cout << "$" << game.getPrecio();
+            }else
+            {
+                setConsoleColor(4,0);
+                cout << "*JUEGO ADQUIRIDO*" ;
+                setConsoleColor(15,0);
+            }
+            cout << " <-------> PESO (GB): " << game.getPeso() << " GB." << endl;
         }
         else if (game.getActivo()==false)
         {
+            setConsoleColor(4,0);
             cout << "*JUEGO DESHABILITADO" << endl;
+            setConsoleColor(15,0);
         }
         else
         {
-          cout << "No tienes edad suficiente para este videojuego" << endl;
+            setConsoleColor(4,0);
+            cout << "No tienes edad suficiente para este videojuego" << endl;
+            setConsoleColor(15,0);
         }
     }
 }
@@ -391,9 +407,9 @@ void menuFiltro()
         cout << "-----------------------------------------------------------" << endl;
         cout << endl;
         cout << "======== Gracias por utilizar el sistema  ===========" << endl;
-        cout << "=================================================" << endl;
-
-
+        cout << "=====================================================" << endl;
+        setConsoleColor(15, 0);
+        cout << "Ingrese la opcion deseada: ";
         cin>> opcion;
         setConsoleColor(15, 0);
         switch (opcion)
