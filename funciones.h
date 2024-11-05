@@ -58,6 +58,7 @@ void otorgarAdmin();
 void removerAdmin();
 void mostrarArchivoAdmin();
 void grabarRegistroadmin(int idCuentaHabilitar);
+void estadisticasJuegosMasComprados();
 
 bool hayUnAdmin();
 #endif // FUNCIONES_H_INCLUDED

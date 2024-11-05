@@ -661,7 +661,6 @@ void mostrarPorPrecio()
     }
 }
 
-
 void listarPorAnio()
 {
     archivoVideoJuego arcV("archivos/videojuego.dat");
@@ -707,7 +706,6 @@ void listarPorAnio()
         comprarJuegosListados(juegosListados, tam2);
     }
 }
-
 
 int buscarUsuarioPorID(int id)
 {
@@ -840,6 +838,7 @@ void menuAdministrador()
         cout << "(6) Otorgar permisos de administrador" << endl;
         cout << "(7) Remover permisos de administrador" << endl;
         cout << "(8) Listar admins registrados" << endl;
+        cout << "(9) videojuegos mas vendidos" << endl;
         cout << "(0) Cerrar Sesion" << endl;
         cout << "=======================================" << endl;
         cout << endl << "Ingrese una opcion: ";
@@ -870,6 +869,9 @@ void menuAdministrador()
             break;
         case 8:
             mostrarArchivoAdmin();
+            break;
+        case 9:
+            estadisticasJuegosMasComprados();
             break;
         case 0:
             return;
@@ -1596,4 +1598,45 @@ void comprarJuegosListados(int juegosListados[], int tam)
     caracteristicasVideojuego(idJuegoSeleccionado);
     comprarJuego(idJuegoSeleccionado);
     system("PAUSE");
+}
+
+void estadisticasJuegosMasComprados(){
+archivoVideoJuego arcV("archivos/videoJuego.dat");
+videoJuego game;
+archivoBiblioteca arcB ("archivos/biblioteca.dat");
+Biblioteca libro;
+
+int juegosMasComprados[150]={};
+int tam = arcB.contarRegistros();
+int maxi =0;
+for (int l =0 ;l<tam ; l++ ){
+    libro = arcB.leerBiblioteca(l);
+    for (int j=0;j<150 ; j++ ){
+        if (libro.getIdVideojuego(j) != 0){
+            juegosMasComprados[j]++;
+        }
+    }
+}
+int pos=0;
+
+for (int i=0;i<150 ;i++ ){
+
+if (juegosMasComprados[i]> maxi){
+
+    maxi = juegosMasComprados[i];
+    pos= i;
+}
+}
+
+int cantreg= arcV.contarRegistros();
+for (int i = 0; i<cantreg ;i++ ){
+        game = arcV.leerRegistros(i);
+    if (  pos+1 == game.getidVideojuego()){
+
+        cout<<"el juego mas comprado es-----> "<< game.getTitulo() << " con un precio de : "<< game.getPrecio() << "$ <-- con un total de: "<<juegosMasComprados[pos] << " compras"<<endl;
+
+system("PAUSE");
+return;
+}
+}
 }
