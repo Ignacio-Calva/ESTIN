@@ -36,6 +36,7 @@ int designarBiblioteca(int idIniciada);
 void aniadirTarjeta(int idIniciada);
 
 void comprarJuego();
+void comprarJuegosListados(int juegosListados);
 Fecha compararFecha(Fecha fecha1, Fecha fecha2);
 void listarOrdenAnio(archivoVideoJuego archivo);
 void listarPorOrdenes();

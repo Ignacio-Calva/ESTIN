@@ -522,6 +522,7 @@ void listarPorGenero() //nueva funcion xdddddd (todavia esta en proceso)
     cout<<"INGRESE EL GENERO QUE DESEA BUSCAR"<<endl;
     cargarCadena(genero, 29);
     int cantReg =arcV.contarRegistros();
+    int juegosListados = 0;
     system("CLS");
     usu = arcU.leerRegistros(datosUsuarioIniciado());
     cout<<"--------------------------------------------------------------------------"<<endl;
@@ -532,7 +533,8 @@ void listarPorGenero() //nueva funcion xdddddd (todavia esta en proceso)
         game = arcV.leerRegistros(i);
         if(compararSinMayusculas(genero, game.getGenero()) && usu.getEdad() >= game.getRestriccion() && game.getActivo())
         {
-            cout<< i+1<< " - "<< game.getTitulo()<< "    -- precio: $ " << game.getPrecio()<<endl;
+            cout<< juegosListados+1 << " - "<< game.getTitulo()<< "    -- precio: $ " << game.getPrecio()<<endl;
+            juegosListados++;
         }
         else if (compararSinMayusculas(genero, game.getGenero()) && usu.getEdad() >= game.getRestriccion() && game.getActivo()==false)
         {
@@ -543,7 +545,7 @@ void listarPorGenero() //nueva funcion xdddddd (todavia esta en proceso)
           cout << "No tienes edad suficiente para este videojuego" << endl;
         }
     }
-    system("PAUSE");
+    comprarJuegosListados(juegosListados);
 }
 
 void listarPorCreador()
@@ -556,6 +558,7 @@ void listarPorCreador()
     int tam = arcV.contarRegistros();
     char desarrolladora[30];
     int contgame = 0;
+    int juegosListados = 0;
     cout << "Ingrese la desarrolladora a buscar: ";
     cargarCadena(desarrolladora, 29);
     system("CLS");
@@ -582,12 +585,12 @@ void listarPorCreador()
             contgame++;
         }
     }
-    system("PAUSE");
     if (contgame == 0)
     {
         setConsoleColor(4, 0);
         cout << "No hay juegos con esa desarrolladora :(" << endl;
     }
+     comprarJuegosListados(juegosListados);
 }
 
 int datosUsuarioIniciado()
@@ -618,6 +621,7 @@ void mostrarPorPrecio ()
     int montoMax = 0;
     int montoMin= 0;
     int contGame= 0;
+    int juegosListados = 0;
     system("CLS");
     setConsoleColor(15, 0);
     cout<<"Ingrese el monto maximo "<<endl;
@@ -653,7 +657,7 @@ void mostrarPorPrecio ()
         cout<< "No hay ningun juego con ese monto."<<endl;
         setConsoleColor(15, 0);
     }
-    system("PAUSE");
+     comprarJuegosListados(juegosListados);
 }
 
 void listarPorAnio()  //función a arreglar
@@ -666,7 +670,7 @@ void listarPorAnio()  //función a arreglar
     int anio;
     int contGame = 0;
     int numJuego;
-    int videoJuegos[150] = {0};
+    int juegosListados = 0;
     system("CLS");
     cout<< "Ingrese el anio con el cual filtrar: "<<endl;
     cin>>anio;
@@ -682,7 +686,7 @@ void listarPorAnio()  //función a arreglar
         {
             cout<<game.getidVideojuego() << "-"<< game.getTitulo()<< "   -- Precio: $ " << game.getPrecio()<<endl;
             contGame++;
-            videoJuegos[i]+1;
+            juegosListados++;
         }else if (game.getAnio() == anio && usu.getEdad() >= game.getRestriccion() && game.getActivo()==false)
         {
           cout << "*JUEGO DESHABILITADO" << endl;
@@ -698,26 +702,7 @@ void listarPorAnio()  //función a arreglar
         cout<<"NO HAY VIDEOJUEGOS CON ESE ANIO"<<endl;
         system("PAUSE");
     }
-    else
-    {
-
-        setConsoleColor(4, 0);
-        cout << "0 - ATRAS" << endl;
-        setConsoleColor(8, 0);
-        cout << "--------------------------------------------" << endl;
-        cout << "INGRESE EL NUMERO DEL JUEGO DESEADO: " <<endl;
-        cout << "--------------------------------------------" << endl;
-        cin >> numJuego;
-
-        for (int i = 0; i < tam; i++)
-        {
-            if (numJuego > 0 && videoJuegos[numJuego-1] == 1)
-            {
-                caracteristicasVideojuego(videoJuegos[i]);
-                system("pause");
-            }
-        }
-    }
+     comprarJuegosListados(juegosListados);
 }
 
 int buscarUsuarioPorID(int id)
@@ -1579,4 +1564,33 @@ void grabarRegistroadmin(int idCuentaHabilitar)
             if (arcA.grabarRegistros(adm)){cout << "CUENTA REGISTRADA EN ARCHIVO DE ADMINISTRADORES"<<endl;} //El metodo de grabar registros retorna bool
         }
     }
+}
+
+void comprarJuegosListados(int juegosListados)
+{
+    archivoVideoJuego arcV("archivos/videoJuego.dat");
+    int numJuego;
+
+        cout<<endl<<"0 - ATRAS" << endl;
+        setConsoleColor(8, 0);
+        cout<<"-------------------------------------------------------------------"<<endl;
+        cout<<endl<<"Ingrese el numero del juego deseado (0 Para cancelar): "<< endl;
+        setConsoleColor(4, 0);
+        cin>>numJuego;
+        if(numJuego >= 0)
+        {
+            if (numJuego == 0)
+            {
+                return;
+            }
+            else if (numJuego > juegosListados)
+            {
+                cout << "Numero de juego no encontrado."<<endl;
+                system("pause");
+                return;
+            }
+        }
+        caracteristicasVideojuego(numJuego);
+        comprarJuego(numJuego);
+        system("PAUSE");
 }
