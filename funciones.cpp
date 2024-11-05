@@ -1695,15 +1695,18 @@ cargarCadena(nombre, 29);
 
     for (int j = 0; j<tam ; j++)
     {   libro = arcB.leerBiblioteca(j);
-        if(libro.getIdUsuario() == idIniciada)
-        {   for (int i = 0; i < cantReg; i++)
+        if(libro.getIdUsuario() == idIniciada){
+            cout<<"BIBLIOTECA CON ID : "<< libro.getIdUsuario()<<endl;
+            cout<<"Juegos obtenidos con el titulo : "<< nombre <<endl;
+            cout<<"-------------------------------------------"<<endl;
+
+           for (int i = 0; i < cantReg; i++)
             {   game = arcV.leerRegistros(i);
                 if (compararSinMayusculas(nombre, game.getTitulo())){
                 for (int l = 0; l<150 ; l++)
                     {   if(game.getidVideojuego()== libro.getIdVideojuego(l)){
-                            system("CLS");
                         setConsoleColor(15, 0);
-                        game.mostrar();
+                        cout<< game.getidVideojuego()<< "---> " << game.getTitulo()<<"$ "<< game.getPrecio() <<endl;
                         setConsoleColor(8, 0);
                         system("PAUSE");
                         }
