@@ -117,8 +117,6 @@ class archivoBiblioteca{
             return true;
 
         }
-
-
 };
 
 #endif // BIBLIOTECA_H_INCLUDED

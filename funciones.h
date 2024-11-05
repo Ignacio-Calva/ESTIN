@@ -50,6 +50,7 @@ void listarVideojuegosAdmin();
 void listarUsuariosAdmin();
 void listarAdmins();
 void menuAdministrador();
+void modificarVideojuego();
 void deshabilitarVideojuego();
 void habilitarVideojuego();
 void deshabilitarCuentaUsuario();

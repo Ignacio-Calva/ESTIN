@@ -86,7 +86,11 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\valeam.cpp
 
+<<<<<<< Updated upstream
 1730765899 c:\users\admin\documents\github\estin\funciones.h
+=======
+1730842534 c:\users\admin\documents\github\estin\funciones.h
+>>>>>>> Stashed changes
 	<cstring>
 	"FECHA.h"
 	"VIDEOJUEGO.h"
@@ -125,7 +129,7 @@
 1730496782 c:\users\admin\documents\github\estin\videojuego.h
 	"funciones.h"
 
-1730759976 c:\users\admin\documents\github\estin\biblioteca.h
+1730842732 c:\users\admin\documents\github\estin\biblioteca.h
 	"funciones.h"
 	"FECHA.h"
 
