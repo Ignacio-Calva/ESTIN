@@ -867,17 +867,15 @@ void menuAdministrador()
         cout << "        MENU DE ADMINISTRADOR          " << endl;
         cout << "=======================================" << endl;
         cout << "(1) Agregar juego a la tienda" << endl;
-        cout << "(2) Deshabilitar juego de la tienda" << endl;
-        cout << "(3) Habilitar juego de la tienda" << endl;
-        cout << "(4) Habilitar cuenta" << endl;
-        cout << "(5) Deshabilitar cuenta" << endl;
-        cout << "(6) Otorgar permisos de administrador" << endl;
-        cout << "(7) Remover permisos de administrador" << endl;
-        cout << "(8) Listar admins registrados" << endl;
-        cout << "(9) videojuegos mas vendidos" << endl;
-        cout << "(0) Cerrar Sesion" << endl;
-        cout << "=======================================" << endl;
-        cout << endl << "Ingrese una opcion: ";
+        cout << "(2) Modificar videojuego existente" << endl;
+        cout << "(3) Deshabilitar juego de la tienda" << endl;
+        cout << "(4) Habilitar juego de la tienda" << endl;
+        cout << "(5) Habilitar cuenta" << endl;
+        cout << "(6) Deshabilitar cuenta" << endl;
+        cout << "(7) Otorgar permisos de administrador" << endl;
+        cout << "(8) Remover permisos de administrador" << endl;
+        cout << "(9) Listar admins registrados" << endl;
+        cout << "(10) videojuegos mas vendidos" << endl;
         cin >> opcion;
         switch (opcion)
         {
@@ -886,27 +884,30 @@ void menuAdministrador()
             system("pause");
             break;
         case 2:
-            deshabilitarVideojuego();//(Lo deshabilita)
+            modificarVideojuego();
             break;
         case 3:
-            habilitarVideojuego();
+            deshabilitarVideojuego();//(Lo deshabilita)
             break;
         case 4:
-            habilitarCuentaUsuario();
+            habilitarVideojuego();
             break;
         case 5:
-            deshabilitarCuentaUsuario();
+            habilitarCuentaUsuario();
             break;
         case 6:
-            otorgarAdmin();
+            deshabilitarCuentaUsuario();
             break;
         case 7:
-            removerAdmin();
+            otorgarAdmin();
             break;
         case 8:
-            mostrarArchivoAdmin();
+            removerAdmin();
             break;
         case 9:
+            mostrarArchivoAdmin();
+            break;
+        case 10:
             estadisticasJuegosMasComprados();
             break;
         case 0:
@@ -915,6 +916,43 @@ void menuAdministrador()
             break;
         }
     }
+}
+
+void modificarVideojuego()
+{
+    archivoVideoJuego arcV("archivos/videoJuego.dat");
+    videoJuego game;
+    char opcion;
+    int idJuego;
+    int tam = arcV.contarRegistros();
+    cout << "Desea listar los videojuegos?" << endl;
+    cout << "Respuesta (s/n): ";
+    cin >> opcion;
+    if (opcion == 's')
+    {
+        for (int i = 0; i < tam; i++)
+            {
+                game = arcV.leerRegistros(i);
+                cout<< i+1 << " --- " << game.getTitulo() << " --- "<< endl;
+            }
+    }
+    cout << endl <<"Ingrese el ID de videojuego que desea modificar: ";
+    cin >> idJuego;
+    for (int i=0 ; i < tam ; i++)
+    {
+        game = arcV.leerRegistros(i);
+        if (game.getidVideojuego() == idJuego)
+        {
+            game.cargar();
+            arcV.modificarVideojuego(game,i);
+            cout << "Se ha cambiado el registro correctamente." << endl;
+            system("pause");
+            system("cls");
+            return;
+        }
+    }
+    cout<<"id de videojuego no encontrada." << endl;
+    system("PAUSE");
 }
 
 void deshabilitarVideojuego()
