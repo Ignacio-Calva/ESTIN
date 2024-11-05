@@ -7,7 +7,7 @@
 
 1728004313 c:\users\admin\desktop\practica\puntoh.h
 
-1728069568 ated upstream
+1730846126 ated upstream
 
 1730654776 source:d:\facultad\tecnicatura programación\programación\estin\valeam.cpp
 	<iostream>
@@ -22,12 +22,38 @@
 	"funciones.h"
 	"funciones.h"
 
-1730654776 d:\facultad\tecnicatura programación\programación\estin\funciones.h
+1730848268 d:\facultad\tecnicatura programación\programación\estin\funciones.h
 	<cstring>
 	"FECHA.h"
 	"VIDEOJUEGO.h"
 
-1730759448 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
+1728069614 shed changes
+	<cstring>
+	"FECHA.h"
+	"VIDEOJUEGO.h"
+	<iostream>
+	<cstring>
+	"funciones.h"
+	"VIDEOJUEGO.h"
+	"BIBLIOTECA.h"
+	"USUARIO.h"
+	"ADMIN.h"
+	<windows.h>
+	<iostream>
+	<string.h>
+	<windows.h>
+	"funciones.h"
+	"clases.h"
+	<iostream>
+	<string.h>
+	<windows.h>
+	"funciones.h"
+	"VIDEOJUEGO.h"
+	"USUARIO.h"
+	"BIBLIOTECA.h"
+	"funciones.h"
+
+1730847867 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -62,21 +88,6 @@
 	<windows.h>
 
 1728078783 >
-
-1728069614 shed changes
-	<iostream>
-	<string.h>
-	<windows.h>
-	"funciones.h"
-	"clases.h"
-	<iostream>
-	<string.h>
-	<windows.h>
-	"funciones.h"
-	"VIDEOJUEGO.h"
-	"USUARIO.h"
-	"BIBLIOTECA.h"
-	"funciones.h"
 
 1728091878 c:\users\user\desktop\estin-main\estin\funciones.h
 	<cstring>
@@ -114,7 +125,7 @@
 1730496617 d:\facultad\tecnicatura programación\programación\estin\videojuego.h
 	"funciones.h"
 
-1730759417 d:\facultad\tecnicatura programación\programación\estin\biblioteca.h
+1730759931 d:\facultad\tecnicatura programación\programación\estin\biblioteca.h
 	"funciones.h"
 	"FECHA.h"
 
