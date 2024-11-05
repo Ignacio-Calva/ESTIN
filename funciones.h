@@ -44,6 +44,8 @@ void listarPorOrdenes();
 void comprarJuego(int idVideojuego);
 void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada);
 void mostrarBibliotecaDeUsuario(int idIniciada);
+void bibliotecaXfiltros(int idIniciada);
+void menuBiblioteca();
 
 ///ADMINISTRADOR
 void listarVideojuegosAdmin();
@@ -59,6 +61,7 @@ void removerAdmin();
 void mostrarArchivoAdmin();
 void grabarRegistroadmin(int idCuentaHabilitar);
 void estadisticasJuegosMasComprados();
+
 
 bool hayUnAdmin();
 #endif // FUNCIONES_H_INCLUDED

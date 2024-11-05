@@ -363,7 +363,7 @@ void menuPrincipal()
             buscarVideojuego();
             break;
         case 4:
-            mostrarBibliotecaDeUsuario(idIniciada);
+            menuBiblioteca();
             break;
         case 5:
             infoCuenta();
@@ -375,6 +375,41 @@ void menuPrincipal()
             break;
         }
     }
+}
+
+
+void menuBiblioteca(){
+    int opcion = 1;
+    while (opcion!=0)
+    {
+        system("CLS");
+        setConsoleColor(15, 1);
+        cout<<"==============================" << endl;
+        cout<<" BIBLIOTECA ESTIM             "<<endl;
+        cout<<"==============================" << endl;
+        setConsoleColor(3,0);
+        cout<<"ID de cuenta iniciada: " << idIniciada<<endl;
+        cout<<"1 - Biblioteca personal"<<endl;
+        cout<<"2 - Listar biblioteca por nombre"<<endl;
+        cout<<"3 - Listar biblioteca por genero"<<endl;
+        cout<<"0 - cerrar"<<endl;
+        cin>>opcion;
+        switch (opcion)
+        {
+        case 1:
+            mostrarBibliotecaDeUsuario(idIniciada);
+            break;
+        case 2:
+            bibliotecaXfiltros(idIniciada);
+            break;
+        case 0:
+            break;
+        default:
+            cout<< "Opcion invalida.";
+            break;
+        }
+    }
+
 }
 
 void menuFiltro()
@@ -1639,4 +1674,42 @@ system("PAUSE");
 return;
 }
 }
+}
+
+
+void bibliotecaXfiltros(int idIniciada){
+
+archivoBiblioteca arcB("archivos/biblioteca.dat");
+Biblioteca libro;
+
+archivoVideoJuego arcV ("archivos/videojuego.dat");
+videoJuego game;
+
+int cantReg = arcV.contarRegistros();
+int tam = arcB.contarRegistros();
+
+char nombre [30];
+cout<<"-----------------------------------------"<<endl;
+cout<<" Ingrese el titulo que quiere buscar en su biblioteca : ---->"<<endl;
+cargarCadena(nombre, 29);
+
+    for (int j = 0; j<tam ; j++)
+    {   libro = arcB.leerBiblioteca(j);
+        if(libro.getIdUsuario() == idIniciada)
+        {   for (int i = 0; i < cantReg; i++)
+            {   game = arcV.leerRegistros(i);
+                if (compararSinMayusculas(nombre, game.getTitulo())){
+                for (int l = 0; l<150 ; l++)
+                    {   if(game.getidVideojuego()== libro.getIdVideojuego(l)){
+                            system("CLS");
+                        setConsoleColor(15, 0);
+                        game.mostrar();
+                        setConsoleColor(8, 0);
+                        system("PAUSE");
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
