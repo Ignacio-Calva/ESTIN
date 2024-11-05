@@ -13,38 +13,32 @@ Admin cuentaAdmin("admin","password",0,true);
 
 void elegirVideojuego()
 {
-    archivoVideoJuego arcV("archivos/videoJuego.dat");
-    int tam = arcV.contarRegistros();
-    int numJuego;
+    system("CLS");
+    archivoVideoJuego arcV("archivos/videojuego.dat");
+    videoJuego game;
+    archivoUsuario arcU("archivos/Usuario.dat");
+    usuario usu;
 
-    while (true)
-    {
-        system("CLS");
-        listarVideojuegos();
-        setConsoleColor(4, 0);
-        cout<<endl<<"0 - ATRAS" << endl;
-        setConsoleColor(8, 0);
-        cout<<"-------------------------------------------------------------------"<<endl;
-        cout<<endl<<"Ingrese el numero del juego deseado (0 Para cancelar): "<< endl;
-        setConsoleColor(4, 0);
-        cin>>numJuego;
-        if(numJuego >= 0)
-        {
-            if (numJuego == 0 )
-            {
-                break;
-            }
-            else if (numJuego > tam)
-            {
-                cout << "Numero de juego no encontrado."<<endl;
-                system("pause");
-                break;
-            }
+    int cantReg = arcV.contarRegistros();
+    int juegosListados[150] = {};
+    int tam = 0;
+
+    system("CLS");
+    usu = arcU.leerRegistros(datosUsuarioIniciado());
+
+    for (int i = 0; i < cantReg; i++) {
+        game = arcV.leerRegistros(i);
+        if (usu.getEdad() >= game.getRestriccion() && game.getActivo()) {
+            cout << tam + 1 << " - " << game.getTitulo() << "    -- precio: $ " << game.getPrecio() << endl;
+            juegosListados[tam] = game.getidVideojuego();
+            tam++;
+        } else if (usu.getEdad() >= game.getRestriccion() && !game.getActivo()) {
+            cout << "*JUEGO DESHABILITADO" << endl;
+        } else if (usu.getEdad() < game.getRestriccion() && game.getActivo()) {
+            cout << "No tienes edad suficiente para este videojuego" << endl;
         }
-        caracteristicasVideojuego(numJuego);
-        comprarJuego(numJuego);
-        system("PAUSE");
     }
+    comprarJuegosListados(juegosListados, tam);
 }
 
 void buscarVideojuego()
