@@ -44,9 +44,10 @@ void listarPorOrdenes();
 void comprarJuego(int idVideojuego);
 void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada);
 void mostrarBibliotecaDeUsuario(int idIniciada);
-void bibliotecaXfiltros(int idIniciada);
+void bibliotecaXnombre(int idIniciada);
 void menuBiblioteca();
-
+void bibliotecaXgenero(int idIniciada);
+void bibliotecaXdesarrollador(int idIniciada);
 ///ADMINISTRADOR
 void listarVideojuegosAdmin();
 void listarUsuariosAdmin();

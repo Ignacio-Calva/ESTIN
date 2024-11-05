@@ -135,7 +135,7 @@
 1730566646 c:\users\admin\documents\github\estin\fecha.h
 	<string>
 
-1730779165 source:c:\users\user\desktop\estin\funciones.cpp
+1730835015 source:c:\users\user\desktop\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -145,7 +145,7 @@
 	"ADMIN.h"
 	<windows.h>
 
-1730831388 c:\users\user\desktop\estin\funciones.h
+1730842723 c:\users\user\desktop\estin\funciones.h
 	<cstring>
 	"FECHA.h"
 	"VIDEOJUEGO.h"

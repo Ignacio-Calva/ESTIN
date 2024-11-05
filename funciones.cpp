@@ -400,8 +400,13 @@ void menuBiblioteca(){
             mostrarBibliotecaDeUsuario(idIniciada);
             break;
         case 2:
-            bibliotecaXfiltros(idIniciada);
+            bibliotecaXnombre(idIniciada);
             break;
+        case 3:
+            bibliotecaXgenero(idIniciada);
+            break;
+        case 4:
+            bibliotecaXdesarrollador(idIniciada);
         case 0:
             break;
         default:
@@ -434,7 +439,6 @@ void menuFiltro()
         cout << "     4. Listar por precio                                                         " << endl;
         cout << "     5- Listar por anio          "<<endl;
         cout << "     6- Listar por gratuito    "<<endl;
-        cout << "     7- comprar Videojuego    "<<endl;
         cout << "     8- Listar por ordenes     " << endl;
         setConsoleColor(4, 0);
         cout << "     0. ATRAS                                                                     " << endl;
@@ -463,9 +467,6 @@ void menuFiltro()
             break;
         case 5:
             listarPorAnio();
-            break;
-        case 7:
-            comprarJuego(idIniciada);
             break;
         case 8:
             listarPorOrdenes();
@@ -1330,7 +1331,7 @@ void comprarJuego(int idVideojuego)
     archivoBiblioteca arcB("archivos/biblioteca.dat");
     Biblioteca bib;
 
-    while (opcion != 0)
+    while (true)
     {
         int opcion2 = 1;
         setConsoleColor(4,0);
@@ -1383,7 +1384,7 @@ void comprarJuego(int idVideojuego)
             }
             return;
         case 0:
-            break;
+            return;
         }
     }
 }
@@ -1677,7 +1678,7 @@ return;
 }
 
 
-void bibliotecaXfiltros(int idIniciada){
+void bibliotecaXnombre(int idIniciada){
 
 archivoBiblioteca arcB("archivos/biblioteca.dat");
 Biblioteca libro;
@@ -1706,11 +1707,94 @@ cargarCadena(nombre, 29);
                 for (int l = 0; l<150 ; l++)
                     {   if(game.getidVideojuego()== libro.getIdVideojuego(l)){
                         setConsoleColor(15, 0);
-                        cout<< game.getidVideojuego()<< "---> " << game.getTitulo()<<"$ "<< game.getPrecio() <<endl;
+                        cout<< game.getidVideojuego()<< "---> " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
                         setConsoleColor(8, 0);
                         system("PAUSE");
                         }
                     }
+                }
+            }
+        }
+    }
+}
+
+void bibliotecaXgenero(int idIniciada){
+
+archivoBiblioteca arcB("archivos/biblioteca.dat");
+Biblioteca libro;
+
+archivoVideoJuego arcV ("archivos/videojuego.dat");
+videoJuego game;
+
+int cantReg = arcV.contarRegistros();
+int tam = arcB.contarRegistros();
+
+char genero [30];
+cout<<"-----------------------------------------"<<endl;
+cout<<" Ingrese el genero que quiere buscar en su biblioteca : ---->"<<endl;
+cargarCadena(genero, 29);
+
+    for (int j = 0; j<tam ; j++)
+    {   libro = arcB.leerBiblioteca(j);
+        if(libro.getIdUsuario() == idIniciada){
+            cout<<"BIBLIOTECA CON ID : "<< libro.getIdUsuario()<<endl;
+            cout<<"Juegos obtenidos con el genero : "<< genero <<endl;
+            cout<<"-------------------------------------------"<<endl;
+
+           for (int i = 0; i < cantReg; i++)
+            {   game = arcV.leerRegistros(i);
+                if (compararSinMayusculas(genero, game.getGenero())){
+                for (int l = 0; l<150 ; l++)
+                    {   if(game.getidVideojuego()== libro.getIdVideojuego(l)){
+                        setConsoleColor(15, 0);
+                        cout<< game.getidVideojuego()<< "---> " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
+                        setConsoleColor(8, 0);
+
+                        }
+                    }
+                    system("PAUSE");
+                }
+            }
+        }
+    }
+}
+
+
+void bibliotecaXdesarrollador(int idIniciada){
+
+archivoBiblioteca arcB("archivos/biblioteca.dat");
+Biblioteca libro;
+
+archivoVideoJuego arcV ("archivos/videojuego.dat");
+videoJuego game;
+
+int cantReg = arcV.contarRegistros();
+int tam = arcB.contarRegistros();
+
+char desarrollador [30];
+cout<<"-----------------------------------------"<<endl;
+cout<<" Ingrese el desarrollador que quiere buscar en su biblioteca : ---->"<<endl;
+cargarCadena(desarrollador, 29);
+
+    for (int j = 0; j<tam ; j++)
+    {   libro = arcB.leerBiblioteca(j);
+        if(libro.getIdUsuario() == idIniciada){
+            cout<<"BIBLIOTECA CON ID : "<< libro.getIdUsuario()<<endl;
+            cout<<"Juegos obtenidos con el desarrollador : "<< desarrollador <<endl;
+            cout<<"-------------------------------------------"<<endl;
+
+           for (int i = 0; i < cantReg; i++)
+            {   game = arcV.leerRegistros(i);
+                if (compararSinMayusculas(desarrollador, game.getDesarrollador())){
+                for (int l = 0; l<150 ; l++)
+                    {   if(game.getidVideojuego()== libro.getIdVideojuego(l)){
+                        setConsoleColor(15, 0);
+                        cout<< game.getidVideojuego()<< "---> " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
+                        setConsoleColor(8, 0);
+
+                        }
+                    }
+                    system("PAUSE");
                 }
             }
         }
