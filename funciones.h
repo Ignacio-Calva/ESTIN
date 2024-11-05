@@ -62,7 +62,8 @@ void removerAdmin();
 void mostrarArchivoAdmin();
 void grabarRegistroadmin(int idCuentaHabilitar);
 void estadisticasJuegosMasComprados();
-
+void menuVideojuegosMasVendidos();
+void videojuegoMasVendidoGenero();
 
 bool hayUnAdmin();
 #endif // FUNCIONES_H_INCLUDED
