@@ -511,41 +511,39 @@ bool buscarNombre(const char *_nombre, int &posicion)
     return false;
 }
 
-void listarPorGenero() //nueva funcion xdddddd (todavia esta en proceso)
+void listarPorGenero()
 {
     system("CLS");
-    archivoVideoJuego arcV ("archivos/videojuego.dat");
+    archivoVideoJuego arcV("archivos/videojuego.dat");
     videoJuego game;
-    archivoUsuario arcU ("archivos/Usuario.dat");
+    archivoUsuario arcU("archivos/Usuario.dat");
     usuario usu;
     char genero[30];
-    cout<<"INGRESE EL GENERO QUE DESEA BUSCAR"<<endl;
+    cout << "INGRESE EL GENERO QUE DESEA BUSCAR" << endl;
     cargarCadena(genero, 29);
-    int cantReg =arcV.contarRegistros();
-    int juegosListados = 0;
+    int cantReg = arcV.contarRegistros();
+    int juegosListados[150] = {};
+    int tam = 0;
+
     system("CLS");
     usu = arcU.leerRegistros(datosUsuarioIniciado());
-    cout<<"--------------------------------------------------------------------------"<<endl;
-    cout<<"Filtro aplicado: "<< genero <<endl;
-    cout<<"--------------------------------------------------------------------------"<<endl;
-    for (int i = 0; i< cantReg ; i++ )
-    {
+    cout << "--------------------------------------------------------------------------" << endl;
+    cout << "Filtro aplicado: " << genero << endl;
+    cout << "--------------------------------------------------------------------------" << endl;
+
+    for (int i = 0; i < cantReg; i++) {
         game = arcV.leerRegistros(i);
-        if(compararSinMayusculas(genero, game.getGenero()) && usu.getEdad() >= game.getRestriccion() && game.getActivo())
-        {
-            cout<< juegosListados+1 << " - "<< game.getTitulo()<< "    -- precio: $ " << game.getPrecio()<<endl;
-            juegosListados++;
-        }
-        else if (compararSinMayusculas(genero, game.getGenero()) && usu.getEdad() >= game.getRestriccion() && game.getActivo()==false)
-        {
-          cout << "*JUEGO DESHABILITADO" << endl;
-        }
-        else if (compararSinMayusculas(genero, game.getGenero()) && usu.getEdad() < game.getRestriccion() && game.getActivo()==true)
-        {
-          cout << "No tienes edad suficiente para este videojuego" << endl;
+        if (compararSinMayusculas(genero, game.getGenero()) && usu.getEdad() >= game.getRestriccion() && game.getActivo()) {
+            cout << tam + 1 << " - " << game.getTitulo() << "    -- precio: $ " << game.getPrecio() << endl;
+            juegosListados[tam] = game.getidVideojuego();
+            tam++;
+        } else if (compararSinMayusculas(genero, game.getGenero()) && usu.getEdad() >= game.getRestriccion() && !game.getActivo()) {
+            cout << "*JUEGO DESHABILITADO" << endl;
+        } else if (compararSinMayusculas(genero, game.getGenero()) && usu.getEdad() < game.getRestriccion() && game.getActivo()) {
+            cout << "No tienes edad suficiente para este videojuego" << endl;
         }
     }
-    comprarJuegosListados(juegosListados);
+    comprarJuegosListados(juegosListados, tam);
 }
 
 void listarPorCreador()
@@ -553,44 +551,44 @@ void listarPorCreador()
     system("CLS");
     archivoVideoJuego arcV("archivos/videojuego.dat");
     videoJuego game;
-    archivoUsuario arcU ("archivos/Usuario.dat");
+    archivoUsuario arcU("archivos/Usuario.dat");
     usuario usu;
     int tam = arcV.contarRegistros();
     char desarrolladora[30];
     int contgame = 0;
-    int juegosListados = 0;
+    int juegosListados[150] = {};
+    int tam2 = 0;
+
     cout << "Ingrese la desarrolladora a buscar: ";
     cargarCadena(desarrolladora, 29);
     system("CLS");
     usu = arcU.leerRegistros(datosUsuarioIniciado());
-    cout<<"--------------------------------------------------------------------------"<<endl;
+    cout << "--------------------------------------------------------------------------" << endl;
     cout << "Filtro aplicado: " << desarrolladora << endl;
-    cout<<"--------------------------------------------------------------------------"<<endl;
+    cout << "--------------------------------------------------------------------------" << endl;
 
-    for (int i = 0; i < tam; i++)
-    {
+    for (int i = 0; i < tam; i++) {
         game = arcV.leerRegistros(i);
-        if (compararSinMayusculas(desarrolladora, game.getDesarrollador()) && usu.getEdad() >= game.getRestriccion() && game.getActivo())
-        {
-            cout << i + 1 << " - " << game.getTitulo()<< "    -- precio: $ " << game.getPrecio()<<endl;
+        if (compararSinMayusculas(desarrolladora, game.getDesarrollador()) && usu.getEdad() >= game.getRestriccion() && game.getActivo()) {
+            cout << tam2 + 1 << " - " << game.getTitulo() << "    -- precio: $ " << game.getPrecio() << endl;
+            juegosListados[tam2] = game.getidVideojuego();
+            tam2++;
             contgame++;
-        }
-        else if (compararSinMayusculas(desarrolladora, game.getDesarrollador()) && usu.getEdad() >= game.getRestriccion() && game.getActivo() == false)
-        {
+        } else if (compararSinMayusculas(desarrolladora, game.getDesarrollador()) && usu.getEdad() >= game.getRestriccion() && !game.getActivo()) {
             cout << "*JUEGO DESHABILITADO" << endl;
-        }
-        else if(compararSinMayusculas(desarrolladora, game.getDesarrollador()) && usu.getEdad() < game.getRestriccion() && game.getActivo())
-        {
+            contgame++;
+        } else if (compararSinMayusculas(desarrolladora, game.getDesarrollador()) && usu.getEdad() < game.getRestriccion() && game.getActivo()) {
             cout << "No tienes edad suficiente para este videojuego" << endl;
             contgame++;
         }
     }
-    if (contgame == 0)
-    {
+
+    if (contgame == 0) {
         setConsoleColor(4, 0);
         cout << "No hay juegos con esa desarrolladora :(" << endl;
+    } else {
+        comprarJuegosListados(juegosListados, tam2);
     }
-     comprarJuegosListados(juegosListados);
 }
 
 int datosUsuarioIniciado()
@@ -611,7 +609,7 @@ int datosUsuarioIniciado()
     return -1;
 }
 
-void mostrarPorPrecio ()
+void mostrarPorPrecio()
 {
     archivoVideoJuego arcV("archivos/videojuego.dat");
     videoJuego game;
@@ -619,91 +617,97 @@ void mostrarPorPrecio ()
     usuario usu;
     int tam = arcV.contarRegistros();
     int montoMax = 0;
-    int montoMin= 0;
-    int contGame= 0;
-    int juegosListados = 0;
+    int montoMin = 0;
+    int contGame = 0;
+    int juegosListados[150] = {};
+    int tam2 = 0;
+
     system("CLS");
     setConsoleColor(15, 0);
-    cout<<"Ingrese el monto maximo "<<endl;
-    cin>>montoMax;
-    cout<<"Ingrese el monto minimo "<<endl;
-    cin>>montoMin;
+    cout << "Ingrese el monto maximo: ";
+    cin >> montoMax;
+    cout << "Ingrese el monto minimo: ";
+    cin >> montoMin;
     system("CLS");
+
     usu = arcU.leerRegistros(datosUsuarioIniciado());
-    cout<<"------------------------------------------------------------------------------"<<endl;
-    cout<<"El filtro aplicado es: " <<" desde : " <<montoMin<< "$"<<" hasta : "<< montoMax<< "$"<<endl;
-    cout<<"------------------------------------------------------------------------------"<<endl;
-    for (int i= 0; i< tam ; i++)
-    {
-        game= arcV.leerRegistros(i);
-        if ((montoMin<=game.getPrecio())&&(game.getPrecio()<= montoMax)&&game.getActivo() && usu.getEdad() >= game.getRestriccion())
-        {
-            cout<< i+1 <<"-"<< game.getTitulo() << "    -- precio: $ " << game.getPrecio()<<endl;
+    cout << "------------------------------------------------------------------------------" << endl;
+    cout << "El filtro aplicado es: desde $" << montoMin << " hasta $" << montoMax << endl;
+    cout << "------------------------------------------------------------------------------" << endl;
+
+    for (int i = 0; i < tam; i++) {
+        game = arcV.leerRegistros(i);
+        if ((montoMin <= game.getPrecio()) && (game.getPrecio() <= montoMax) && game.getActivo() && usu.getEdad() >= game.getRestriccion()) {
+            cout << tam2 + 1 << " - " << game.getTitulo() << "    -- precio: $ " << game.getPrecio() << endl;
+            juegosListados[tam2] = game.getidVideojuego();
+            tam2++;
+            contGame++;
+        } else if ((montoMin <= game.getPrecio()) && (game.getPrecio() <= montoMax) && !game.getActivo() && usu.getEdad() >= game.getRestriccion()) {
+            cout << "*JUEGO DESHABILITADO" << endl;
+            contGame++;
+        } else if ((montoMin <= game.getPrecio()) && (game.getPrecio() <= montoMax) && game.getActivo() && usu.getEdad() < game.getRestriccion()) {
+            cout << "No tienes edad suficiente para este videojuego" << endl;
             contGame++;
         }
-        else if ((montoMin<=game.getPrecio())&&(game.getPrecio()<= montoMax)&&game.getActivo()==false && usu.getEdad() >= game.getRestriccion())
-            {
-                cout << "*JUEGO DESHABILITADO" << endl;
-            }else if ((montoMin<=game.getPrecio())&&(game.getPrecio()<= montoMax)&&game.getActivo()==true && usu.getEdad() < game.getRestriccion())
-            {
-                cout << "No tienes edad suficiente para este videojuego" << endl;
-                contGame++;
-            }
     }
-    if(contGame== 0)
-    {
+
+    if (contGame == 0) {
         system("CLS");
         setConsoleColor(4, 0);
-        cout<< "No hay ningun juego con ese monto."<<endl;
+        cout << "No hay ningun juego con ese monto." << endl;
         setConsoleColor(15, 0);
+    } else {
+        comprarJuegosListados(juegosListados, tam2);
     }
-     comprarJuegosListados(juegosListados);
 }
 
-void listarPorAnio()  //función a arreglar
+
+void listarPorAnio()
 {
     archivoVideoJuego arcV("archivos/videojuego.dat");
     videoJuego game;
-    archivoUsuario arcU ("archivos/Usuario.dat");
+    archivoUsuario arcU("archivos/Usuario.dat");
     usuario usu;
     int tam = arcV.contarRegistros();
     int anio;
     int contGame = 0;
-    int numJuego;
-    int juegosListados = 0;
+    int juegosListados[150] = {};
+    int tam2 = 0;
+
     system("CLS");
-    cout<< "Ingrese el anio con el cual filtrar: "<<endl;
-    cin>>anio;
+    cout << "Ingrese el anio con el cual filtrar: ";
+    cin >> anio;
     system("CLS");
+
     usu = arcU.leerRegistros(datosUsuarioIniciado());
-    cout<<"--------------------------------------------------------------------------"<<endl;
-    cout<<"Filtro aplicado: "<<anio<<endl;
-    cout<<"--------------------------------------------------------------------------"<<endl;
-    for (int i =0; i<tam ; i++ )
-    {
+    cout << "--------------------------------------------------------------------------" << endl;
+    cout << "Filtro aplicado: " << anio << endl;
+    cout << "--------------------------------------------------------------------------" << endl;
+
+    for (int i = 0; i < tam; i++) {
         game = arcV.leerRegistros(i);
-        if(game.getAnio() == anio && usu.getEdad() >= game.getRestriccion() && game.getActivo()==true)
-        {
-            cout<<game.getidVideojuego() << "-"<< game.getTitulo()<< "   -- Precio: $ " << game.getPrecio()<<endl;
+        if (game.getAnio() == anio && usu.getEdad() >= game.getRestriccion() && game.getActivo()) {
+            cout << tam2 + 1 << " - " << game.getTitulo() << "   -- Precio: $ " << game.getPrecio() << endl;
+            juegosListados[tam2] = game.getidVideojuego();
+            tam2++;
             contGame++;
-            juegosListados++;
-        }else if (game.getAnio() == anio && usu.getEdad() >= game.getRestriccion() && game.getActivo()==false)
-        {
-          cout << "*JUEGO DESHABILITADO" << endl;
-        }
-        else if (game.getAnio() == anio && usu.getEdad() < game.getRestriccion() && game.getActivo()==true)
-        {
-          cout << "No tienes edad suficiente para este videojuego" << endl;
-          contGame++;
+        } else if (game.getAnio() == anio && usu.getEdad() >= game.getRestriccion() && !game.getActivo()) {
+            cout << "*JUEGO DESHABILITADO" << endl;
+            contGame++;
+        } else if (game.getAnio() == anio && usu.getEdad() < game.getRestriccion() && game.getActivo()) {
+            cout << "No tienes edad suficiente para este videojuego" << endl;
+            contGame++;
         }
     }
-    if(contGame== 0)
-    {
-        cout<<"NO HAY VIDEOJUEGOS CON ESE ANIO"<<endl;
+
+    if (contGame == 0) {
+        cout << "NO HAY VIDEOJUEGOS CON ESE ANIO" << endl;
         system("PAUSE");
+    } else {
+        comprarJuegosListados(juegosListados, tam2);
     }
-     comprarJuegosListados(juegosListados);
 }
+
 
 int buscarUsuarioPorID(int id)
 {
@@ -1566,31 +1570,30 @@ void grabarRegistroadmin(int idCuentaHabilitar)
     }
 }
 
-void comprarJuegosListados(int juegosListados)
+void comprarJuegosListados(int juegosListados[], int tam)
 {
     archivoVideoJuego arcV("archivos/videoJuego.dat");
     int numJuego;
 
-        cout<<endl<<"0 - ATRAS" << endl;
-        setConsoleColor(8, 0);
-        cout<<"-------------------------------------------------------------------"<<endl;
-        cout<<endl<<"Ingrese el numero del juego deseado (0 Para cancelar): "<< endl;
-        setConsoleColor(4, 0);
-        cin>>numJuego;
-        if(numJuego >= 0)
-        {
-            if (numJuego == 0)
-            {
-                return;
-            }
-            else if (numJuego > juegosListados)
-            {
-                cout << "Numero de juego no encontrado."<<endl;
-                system("pause");
-                return;
-            }
-        }
-        caracteristicasVideojuego(numJuego);
-        comprarJuego(numJuego);
-        system("PAUSE");
+    cout << endl << "0 - ATRAS" << endl;
+    setConsoleColor(8, 0);
+    cout << "-------------------------------------------------------------------" << endl;
+    setConsoleColor(4, 0);
+    cout << endl << "Ingrese el numero del juego deseado (0 Para cancelar): " << endl;
+    cin >> numJuego;
+
+    if (numJuego == 0) {
+        return;
+    }
+
+    if (numJuego < 1 || numJuego > tam) {
+        cout << "Numero de juego no encontrado." << endl;
+        system("pause");
+        return;
+    }
+
+    int idJuegoSeleccionado = juegosListados[numJuego - 1];
+    caracteristicasVideojuego(idJuegoSeleccionado);
+    comprarJuego(idJuegoSeleccionado);
+    system("PAUSE");
 }
