@@ -434,8 +434,7 @@ void menuFiltro()
         cout << "     4. Listar por precio                                                         " << endl;
         cout << "     5- Listar por anio          "<<endl;
         cout << "     6- Listar por gratuito    "<<endl;
-        cout << "     7- comprar Videojuego    "<<endl;
-        cout << "     8- Listar por ordenes     " << endl;
+        cout << "     7- Comprar Videojuego    "<<endl;
         setConsoleColor(4, 0);
         cout << "     0. ATRAS                                                                     " << endl;
         setConsoleColor(8, 0);
@@ -466,9 +465,6 @@ void menuFiltro()
             break;
         case 7:
             comprarJuego(idIniciada);
-            break;
-        case 8:
-            listarPorOrdenes();
             break;
         default:
             cout<< "Opcion invalida.";
@@ -873,7 +869,7 @@ void menuAdministrador()
         cout << "(6) Otorgar permisos de administrador" << endl;
         cout << "(7) Remover permisos de administrador" << endl;
         cout << "(8) Listar admins registrados" << endl;
-        cout << "(9) videojuegos mas vendidos" << endl;
+        cout << "(9) Videojuegos mas vendidos" << endl;
         cout << "(0) Cerrar Sesion" << endl;
         cout << "=======================================" << endl;
         cout << endl << "Ingrese una opcion: ";
@@ -1222,14 +1218,8 @@ void listarVideojuegosAdmin()///LISTA LOS JUEGOS, PERO CON DESHABILITADOS INCLUI
         setConsoleColor(15, 0);
         cout<< i+1 << " - " << game.getTitulo();
         cout << " -----  Estado en la tienda: " ;
-        if (game.getActivo())
-        {
-            cout << "Activo." << endl;
-        }
-        else
-        {
-            cout << "Deshabilitado." << endl;
-        }
+        if (game.getActivo()){cout << "Activo." << endl;}
+        else{cout << "Deshabilitado." << endl;}
     }
 }
 
@@ -1247,14 +1237,8 @@ void listarUsuariosAdmin()
         setConsoleColor(15, 0);
         cout<< i+1 << " - " << usu.getNombre();
         cout << " -----  Estado de la cuenta: " ;
-        if (usu.getActivo())
-        {
-            cout << "Habilitada" << endl;
-        }
-        else
-        {
-            cout << "Desabilitada" << endl;
-        }
+        if (usu.getActivo()){cout << "Habilitada" << endl;}
+        else{cout << "Desabilitada" << endl;}
     }
 }
 
@@ -1272,14 +1256,8 @@ void listarAdmins()
         setConsoleColor(15, 0);
         cout<< i+1 << " - " << usu.getNombre();
         cout << " -----  Estado de la cuenta: " ;
-        if (usu.getAdmin()==true)
-        {
-            cout << "Admin" << endl;
-        }
-        else
-        {
-            cout << "Usuario" << endl;
-        }
+        if (usu.getAdmin()==true){cout << "Admin" << endl;}
+        else{cout << "Usuario" << endl;}
     }
 
 
@@ -1297,28 +1275,13 @@ bool compararSinMayusculas(const char* texto1, const char* texto2)
     {
         for (int i = 0 ; i < longitud1 ; i++)
         {
-            if(texto1[i] >=65 && texto1[i] <= 90)
-            {
-                textoPasado1[i] += 32;
-            }
-            if(texto2[i] >=65 && texto2[i] <= 90)
-            {
-                textoPasado2[i] += 32;
-            }
+            if(texto1[i] >=65 && texto1[i] <= 90){textoPasado1[i] += 32;}
+            if(texto2[i] >=65 && texto2[i] <= 90){textoPasado2[i] += 32;}
         }
-        if (strcmp(textoPasado1,textoPasado2) == 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        if (strcmp(textoPasado1,textoPasado2) == 0){return true;}
+        else{return false;}
     }
-    else
-    {
-        return false;
-    }
+    else{return false;}
 }
 
 void comprarJuego(int idVideojuego)
@@ -1330,7 +1293,7 @@ void comprarJuego(int idVideojuego)
     archivoBiblioteca arcB("archivos/biblioteca.dat");
     Biblioteca bib;
 
-    while (opcion != 0)
+    while (true)
     {
         int opcion2 = 1;
         setConsoleColor(4,0);
@@ -1383,45 +1346,24 @@ void comprarJuego(int idVideojuego)
             }
             return;
         case 0:
-            break;
+            return;
         }
     }
 }
 
 Fecha compararFecha(Fecha fecha1, Fecha fecha2) ///DEVUELVE LA FECHA MAS CHICA
 {
-    if(fecha1.getAnio() < fecha2.getAnio())
-    {
-        return fecha1;
-    }
-    else if(fecha2.getAnio() < fecha1.getAnio())
-    {
-        return fecha2;
-    }
+    if(fecha1.getAnio() < fecha2.getAnio()){return fecha1;}
+    else if(fecha2.getAnio() < fecha1.getAnio()){return fecha2;}
     else  //LOS DOS AÑOS SON IGUALES
     {
-        if (fecha1.getMes() < fecha2.getMes())
-        {
-            return fecha1;
-        }
-        else if (fecha2.getMes() < fecha1.getMes())
-        {
-            return fecha2;
-        }
+        if (fecha1.getMes() < fecha2.getMes()){return fecha1;}
+        else if (fecha2.getMes() < fecha1.getMes()){return fecha2;}
         else //LOS DOS MESES SON IGUALES
         {
-            if (fecha1.getDia() < fecha2.getDia())
-            {
-                return fecha1;
-            }
-            else if(fecha2.getDia() < fecha1.getDia())
-            {
-                return fecha2;
-            }
-            else
-            {
-                return fecha1;   //LAS DOS FECHAS SON IGUALES, RETORNA LA PRIMERA
-            }
+            if (fecha1.getDia() < fecha2.getDia()){return fecha1;}
+            else if(fecha2.getDia() < fecha1.getDia()){return fecha2;}
+            else{return fecha1;}   //LAS DOS FECHAS SON IGUALES, RETORNA LA PRIMERA
         }
     }
 }
@@ -1512,44 +1454,44 @@ void listarOrdenAnio(archivoVideoJuego archivo)
     delete[]vectorJuegos;
 }
 
-void listarPorOrdenes()
-{
-    int opcion = 1;
-    archivoVideoJuego archivoTienda("archivos/videoJuego.dat");
-    while (opcion!=0)
-    {
-        system("cls");
-        cout << "===================================" << endl;
-        cout << "   SELECCIONE EL FILTRO DESEADO"     << endl;
-        cout << "===================================" << endl;
-        cout << " (1) - Listar por anio"              << endl;
-        cout << " (2) - Desarrollar"                  << endl;
-        cout << " (3) - Desarrollar"                  << endl;
-        cout << " (4) - Desarrollar"                  << endl;
-        cout << " (0) - SALIR"                        << endl;
-        cout << "===================================" << endl;
-        cout << "Ingrese una opcion: ";
-        cin >> opcion;
-        switch (opcion)
-        {
-        case 1:
-            listarOrdenAnio(archivoTienda);
-            break;
-        case 2:
-            break;
-        case 3:
-            break;
-        case 4:
-            break;
-        case 0:
-            break;
-        default:
-            cout << "Opcion invalida. Por favor, elija una opcion valida" << endl;
-            system("pause");
-            break;
-        }
-    }
-}
+//void listarPorOrdenes()
+//{
+//    int opcion = 1;
+//    archivoVideoJuego archivoTienda("archivos/videoJuego.dat");
+//    while (opcion!=0)
+//    {
+//        system("cls");
+//        cout << "===================================" << endl;
+//        cout << "   SELECCIONE EL FILTRO DESEADO"     << endl;
+//        cout << "===================================" << endl;
+//        cout << " (1) - Listar por anio"              << endl;
+//        cout << " (2) - Desarrollar"                  << endl;
+//        cout << " (3) - Desarrollar"                  << endl;
+//        cout << " (4) - Desarrollar"                  << endl;
+//        cout << " (0) - SALIR"                        << endl;
+//        cout << "===================================" << endl;
+//        cout << "Ingrese una opcion: ";
+//        cin >> opcion;
+//        switch (opcion)
+//        {
+//        case 1:
+//            listarOrdenAnio(archivoTienda);
+//            break;
+//        case 2:
+//            break;
+//        case 3:
+//            break;
+//        case 4:
+//            break;
+//        case 0:
+//            break;
+//        default:
+//            cout << "Opcion invalida. Por favor, elija una opcion valida" << endl;
+//            system("pause");
+//            break;
+//        }
+//    }
+//}
 
 bool hayUnAdmin()
 {
@@ -1635,45 +1577,42 @@ void comprarJuegosListados(int juegosListados[], int tam)
     system("PAUSE");
 }
 
-void estadisticasJuegosMasComprados(){
-archivoVideoJuego arcV("archivos/videoJuego.dat");
-videoJuego game;
-archivoBiblioteca arcB ("archivos/biblioteca.dat");
-Biblioteca libro;
-
-int juegosMasComprados[150]={};
-int tam = arcB.contarRegistros();
-int maxi =0;
-for (int l =0 ;l<tam ; l++ ){
-    libro = arcB.leerBiblioteca(l);
-    for (int j=0;j<150 ; j++ ){
-        if (libro.getIdVideojuego(j) != 0){
-            juegosMasComprados[j]++;
+void estadisticasJuegosMasComprados()
+{
+    archivoVideoJuego arcV("archivos/videoJuego.dat");
+    videoJuego game;
+    archivoBiblioteca arcB ("archivos/biblioteca.dat");
+    Biblioteca libro;
+    int juegosMasComprados[150]={};
+    int tam = arcB.contarRegistros();
+    int maxi =0;
+    for (int l =0 ;l<tam ; l++ ){
+        libro = arcB.leerBiblioteca(l);
+        for (int j=0;j<150 ; j++ ){
+            if (libro.getIdVideojuego(j) != 0){
+                juegosMasComprados[j]++;
+            }
         }
     }
-}
-int pos=0;
-
-for (int i=0;i<150 ;i++ ){
-
-if (juegosMasComprados[i]> maxi){
-
-    maxi = juegosMasComprados[i];
-    pos= i;
-}
-}
-
-int cantreg= arcV.contarRegistros();
-for (int i = 0; i<cantreg ;i++ ){
-        game = arcV.leerRegistros(i);
-    if (  pos+1 == game.getidVideojuego()){
-
-        cout<<"el juego mas comprado es-----> "<< game.getTitulo() << " con un precio de : "<< game.getPrecio() << "$ <-- con un total de: "<<juegosMasComprados[pos] << " compras"<<endl;
-
-system("PAUSE");
-return;
-}
-}
+    int pos=0;
+    for (int i=0;i<150 ;i++ )
+    {
+        if (juegosMasComprados[i]> maxi)
+        {
+            maxi = juegosMasComprados[i];
+            pos= i;
+        }
+    }
+    int cantreg= arcV.contarRegistros();
+    for (int i = 0; i<cantreg ;i++ ){
+            game = arcV.leerRegistros(i);
+        if (  pos+1 == game.getidVideojuego())
+        {
+            cout<<"Videojuego mas vendido -----> "<< game.getTitulo() << endl <<"Precio: $"<< game.getPrecio() << endl <<"TOTAL DE COMPRAS: "<<juegosMasComprados[pos] <<endl;
+            system("PAUSE");
+            return;
+        }
+    }
 }
 
 
@@ -1706,7 +1645,7 @@ cargarCadena(nombre, 29);
                 for (int l = 0; l<150 ; l++)
                     {   if(game.getidVideojuego()== libro.getIdVideojuego(l)){
                         setConsoleColor(15, 0);
-                        cout<< game.getidVideojuego()<< "---> " << game.getTitulo()<<"$ "<< game.getPrecio() <<endl;
+                        cout<< game.getidVideojuego()<< "---> " << game.getTitulo()<<" $"<< game.getPrecio() <<endl;
                         setConsoleColor(8, 0);
                         system("PAUSE");
                         }
@@ -1715,4 +1654,9 @@ cargarCadena(nombre, 29);
             }
         }
     }
+}
+
+void juegosMasComprados(const char* filtro)
+{
+
 }

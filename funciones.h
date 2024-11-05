@@ -39,7 +39,7 @@ void comprarJuego();
 void comprarJuegosListados(int juegosListados[], int tam);
 Fecha compararFecha(Fecha fecha1, Fecha fecha2);
 void listarOrdenAnio(archivoVideoJuego archivo);
-void listarPorOrdenes();
+//void listarPorOrdenes();
 
 void comprarJuego(int idVideojuego);
 void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada);
