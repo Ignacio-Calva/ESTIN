@@ -191,7 +191,6 @@ void menuAdministrador()
         {
         case 1:
             cargarVideojuego();
-            system("pause");
             break;
         case 2:
             modificarVideojuego();
@@ -560,9 +559,7 @@ void inicioSesion()
         system("cls");
         cout << "       INICIO DE SESION      " << endl;
         cout << "=============================" << endl << endl;
-        cout << "La cuenta admin es: " << endl;
-        cout << cuentaAdmin.getNombre() << " " << cuentaAdmin.getContrasenia() << endl<<endl;
-        cout << "BORRAR ESTAS LINEAS CUANDO EL PROGRAMA ESTE TERMINADO." << endl;
+
         cout<<"Ingrese su nombre de usuario: " ;
         cargarCadena(nombre, 29);
 
@@ -581,6 +578,9 @@ void inicioSesion()
                 return;
             }///CONFIRMO QUE NO HAYA SIDO DESHABILITADA ANTERIORMENTE
             system("cls");
+        cout << "         INICIO DE SESION       " << endl;
+        cout << "              ADMIN             " << endl;
+        cout << "================================" << endl;
             cout << "Usuario encontrado." << endl;
             cout << "Ingrese su contrasenia: " ;
             cargarCadena(contrasenia, 19);
@@ -603,6 +603,10 @@ void inicioSesion()
         {
             if (buscarNombre(nombre, pos))
             {
+                system("cls");
+        cout << "         INICIO DE SESION       " << endl;
+        cout << "             USUARIO            " << endl;
+        cout << "================================" << endl;
                 usu = arcU.leerRegistros(pos);
                 cout << "Usuario encontrado." << endl;
                 if (usu.getActivo() == false && usu.getAdmin()==false)
@@ -1683,15 +1687,30 @@ void cargarVideojuego()
     archivoVideoJuego arcV("archivos/videoJuego.dat");
     videoJuego game;
     videoJuego gameAnt;
-    game.cargar();
+    char nombre[30];
+
+    cout<<"Ingrese el nombre del videojuego: ";
+    cargarCadena(nombre, 29);
 
     int tam=arcV.contarRegistros();
-
+    for (int i = 0; i < tam; i++)
+        {
+            game = arcV.leerRegistros(i);
+         if (strcmp(nombre, game.getTitulo())==0)
+             {
+                 cout<<"Dicho videojuego ya se encuentra en el sistema.";
+                 system("pause");
+                 return;
+             }
+        }
+    game.setTitulo(nombre);
+    game.cargar();
     gameAnt = arcV.leerRegistros(tam-1); //CARGA LOS DATOS DEL ULTIMO REGISTRO
     game.setidVideojuego(gameAnt.getidVideojuego()+1);
 
     cout << "ID del nuevo videojuego seteada como : " << game.getidVideojuego() << endl;
     arcV.grabarRegistros(game);
+    system("pause");
 }
 
 void listarVideojuegos()

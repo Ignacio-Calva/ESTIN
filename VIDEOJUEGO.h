@@ -20,8 +20,6 @@ private:
 public:
     void cargar()
     {
-        cout<<"Nombre: ";
-        cargarCadena(titulo, 29);
         cout<<"Genero: ";
         cargarCadena(genero, 29);
         cout<<"Precio: ";
