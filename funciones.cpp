@@ -698,6 +698,7 @@ void grabarRegistroUsuario()
     archivoUsuario archivo("archivos/Usuario.dat");
     char nombre[30];
     char contra[20];
+    Fecha obj2;
     int edad;
     int dni;
     char mail[30];
@@ -743,16 +744,13 @@ void grabarRegistroUsuario()
         return;
     }
     obj.setContrasenia(contra);
-    cout<< "INGRESE SU EDAD: ";
-    cin>> edad;
-    if (edad <= 0)
-    {
-        cout << "La edad debe ser mayor a 0." << endl;
-        system("pause");
-        system("cls");
-        return;
-    }
+    cout<< "INGRESE SU FECHA DE NACIMIENTO..." << endl;
+    obj2.cargar();
+    edad = 2024 - obj2.getAnio();
     obj.setEdad(edad);
+    cout<< "TU EDAD ES: " << edad << endl;
+    system("pause");
+
     cout<< "INGRESE SU DNI: ";
     cin>> dni;
     if (dni < 0)
@@ -803,6 +801,7 @@ void grabarRegistroUsuario()
     cout << "ID DEL NUEVO USUARIO SETEADA COMO: " << obj.getID() << endl;
     obj.setTarjet(0);
     system("pause");
+    obj.setActivo(true);
     archivo.grabarRegistros(obj);
 }
 

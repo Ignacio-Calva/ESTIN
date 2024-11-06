@@ -70,7 +70,7 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\funciones.cpp
 
-1730924888 source:c:\users\admin\documents\github\estin\funciones.cpp
+1730928564 source:c:\users\admin\documents\github\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -143,7 +143,7 @@
 1730507998 d:\facultad\tecnicatura programación\programación\estin\fecha.h
 	<string>
 
-1730919692 c:\users\admin\documents\github\estin\fecha.h
+1730927173 c:\users\admin\documents\github\estin\fecha.h
 	<string>
 
 1730913344 source:c:\users\user\desktop\estin\funciones.cpp
@@ -231,8 +231,9 @@
 1730538296 c:\users\user\desktop\facultad\estin-main\estin\persona.h
 	"funciones.h"
 
-1730919187 c:\users\admin\documents\github\estin\persona.h
+1730929692 c:\users\admin\documents\github\estin\persona.h
 	"funciones.h"
+	"PAIS.h"
 
 1730858046 d:\facultad\tecnicatura programación\programación\estin\admin.h
 	"funciones.h"
@@ -249,4 +250,6 @@
 1730680579 c:\users\user\desktop\facultad\estin-main\estin\admin.h
 	"funciones.h"
 	"PERSONA.h"
+
+1730929692 c:\users\admin\documents\github\estin\pais.h
 

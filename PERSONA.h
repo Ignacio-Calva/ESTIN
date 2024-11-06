@@ -1,6 +1,7 @@
 #ifndef PERSONA_H_INCLUDED
 #define PERSONA_H_INCLUDED
 #include "funciones.h"
+#include "PAIS.h"
 
 class Persona : public Fecha
 {
@@ -12,7 +13,7 @@ class Persona : public Fecha
         int Edad;
         char Mail[30] = {};
         int IDPais;
-        Pais nombrePais;
+       // Pais nombrePais;
         int numTarjeta;
         bool admin = false;
     public:

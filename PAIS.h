@@ -1,6 +1,6 @@
 #ifndef PAIS_H_INCLUDED
 #define PAIS_H_INCLUDED
-
+/*
 class Pais{
 
 private:
@@ -21,7 +21,7 @@ public:
 class archivoPais(){
 
 private:
-    const char nombre;
+     char nombre[30];
 
 public
 archivoPais(const char *n){strpy(nombre, n);}
@@ -64,6 +64,6 @@ leerRegistros(int pos)
     }
 
 
-};
+};*/
 
 #endif // PAIS_H_INCLUDED

@@ -32,19 +32,15 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="ADMIN.h" />
-		<Unit filename="ArchivoUSUARIO.h" />
 		<Unit filename="BIBLIOTECA.h" />
-		<Unit filename="ClaseUSUARIO.h" />
 		<Unit filename="FECHA.h" />
+		<Unit filename="PAIS.h" />
 		<Unit filename="PERSONA.h" />
-		<Unit filename="TROFEO.h" />
 		<Unit filename="USUARIO.h" />
 		<Unit filename="VALEAM.cpp" />
 		<Unit filename="VIDEOJUEGO.h" />
-		<Unit filename="clases.h" />
 		<Unit filename="funciones.cpp" />
 		<Unit filename="funciones.h" />
-		<Unit filename="puntoH.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
