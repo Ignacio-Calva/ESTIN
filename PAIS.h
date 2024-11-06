@@ -1,6 +1,6 @@
 #ifndef PAIS_H_INCLUDED
 #define PAIS_H_INCLUDED
-/*
+
 class Pais{
 
 private:
@@ -21,52 +21,48 @@ public:
     const char * getNombrePais(){return nombrePais;}
 };
 
-class archivoPais(){
+class archivoPais
+{
+    private:
+        char nombre[30];
+    public:
+        archivoPais(const char *n){strcpy(nombre, n);}
+        Pais leerRegistros(int pos)
+        {
+            Pais obj;
+            FILE *P=fopen(nombre, "rb");
+            if (P==NULL)return obj;
+            fseek(P, pos * sizeof obj, 0);
+            fread(&obj, sizeof obj, 1, P);
+            fclose(P);
+            return obj;
+        }
 
-private:
-     char nombre[30];
+        int contarRegistros()
+        {
+            FILE *P=fopen(nombre, "rb");
+            if (P==NULL) return -1;
+            fseek(P, 0, 2);
+            int cant=ftell(P)/sizeof(Pais);
+            fclose(P);
+            return cant;
+        }
 
-public
-archivoPais(const char *n){strpy(nombre, n);}
+        bool grabarRegistros(Pais obj)
+        {
+            FILE *P=fopen(nombre, "ab");
+            if(P==NULL) return false;
+            int info=fwrite(&obj, sizeof obj, 1, P);
+            fclose(P);
+            return info;
+        }
 
-leerRegistros(int pos)
-    {
-        Pais obj;
-        FILE *P=fopen(nombre, "rb");
-        if (P==NULL)return obj;
-        fseek(P, pos * sizeof obj, 0);
-        fread(&obj, sizeof obj, 1, P);
-        fclose(P);
-        return obj;
-    }
-
-    int contarRegistros()
-    {
-        FILE *P=fopen(nombre, "rb");
-        if (P==NULL) return -1;
-        fseek(P, 0, 2);
-        int cant=ftell(P)/sizeof(Pais);
-        fclose(P);
-        return cant;
-    }
-
-    bool grabarRegistros(Pais obj)
-    {
-        FILE *P=fopen(nombre, "ab");
-        if(P==NULL) return false;
-        int info=fwrite(&obj, sizeof obj, 1, P);
-        fclose(P);
-        return info;
-    }
-
-    void borrarArchivo()
-    {
-        FILE *p = fopen(nombre, "wb");
-        if (p == nullptr) return;
-        fclose(p);
-    }
-
-
-};*/
+        void borrarArchivo()
+        {
+            FILE *p = fopen(nombre, "wb");
+            if (p == nullptr) return;
+            fclose(p);
+        }
+};
 
 #endif // PAIS_H_INCLUDED

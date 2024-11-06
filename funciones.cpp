@@ -792,13 +792,9 @@ void grabarRegistroUsuario()
         }
     }
     obj.setMail(mail);
-    cout<< "INGRESE EL ID DE SU PAIS: ";
-    cin>> idPais;
-    obj.setIDPais(idPais);
-    cout << "ID actual: " << obj.getID();
-    system("pause");
-    cout<< "INGRESE SU PAIS (SOLO LATAM) : ";
+    cout<< "INGRESE SU PAIS (SOLO LATAM): ";
     cargarCadena(pais,29);
+    obj.setPais(pais);
     int IdBiblioteca = designarBiblioteca(obj.getID());
     cout<< "ID de biblioteca seteada como: "<< IdBiblioteca<<endl;
     cout << "ID DEL NUEVO USUARIO SETEADA COMO: " << obj.getID() << endl;

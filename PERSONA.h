@@ -64,6 +64,10 @@ class Persona
         void setMail(const char *m){strcpy(Mail, m);}
         void setAdmin(bool a){admin=a;}
         void setTarjet(int numTar) {numTarjeta=numTar;}
+        void setPais(const char *p)
+        {
+            nombrePais.setNombrePais(p);
+        }
         const char* getNombre(){return NombreUsuario;}
         const char* getContrasenia(){return Contrasenia;}
         int getEdad(){return Edad;}
