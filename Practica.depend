@@ -22,7 +22,7 @@
 	"funciones.h"
 	"funciones.h"
 
-1730848268 d:\facultad\tecnicatura programación\programación\estin\funciones.h
+1730856575 d:\facultad\tecnicatura programación\programación\estin\funciones.h
 	<cstring>
 	"FECHA.h"
 	"VIDEOJUEGO.h"
@@ -53,7 +53,7 @@
 	"BIBLIOTECA.h"
 	"funciones.h"
 
-1730847867 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
+1730857953 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -122,7 +122,7 @@
 	"funciones.h"
 	"PERSONA.h"
 
-1730496617 d:\facultad\tecnicatura programación\programación\estin\videojuego.h
+1730855009 d:\facultad\tecnicatura programación\programación\estin\videojuego.h
 	"funciones.h"
 
 1730759931 d:\facultad\tecnicatura programación\programación\estin\biblioteca.h
@@ -234,7 +234,7 @@
 1730496776 c:\users\admin\documents\github\estin\persona.h
 	"funciones.h"
 
-1730665667 d:\facultad\tecnicatura programación\programación\estin\admin.h
+1730857540 d:\facultad\tecnicatura programación\programación\estin\admin.h
 	"funciones.h"
 	"PERSONA.h"
 

@@ -78,6 +78,7 @@ public:
         if(P==nullptr)
         {
             cout << "Error al abrir el archivo " << nombre << " para escritura." << endl;
+            system("pause");
             return false;
         }
         int info=fwrite(&obj, sizeof (Admin), 1, P);
@@ -88,7 +89,8 @@ public:
     void borrarArchivo()
     {
         FILE *p = fopen(nombre, "wb");
-        if (p == nullptr) return;
+        if (p == nullptr) {return;}
+        system("pause");
         fclose(p);
     }
 

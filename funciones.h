@@ -68,6 +68,9 @@ void menuVideojuegosMasVendidos();
 void videojuegoMasVendidoGenero();
 void videojuegoMasVendidoDesarrollador();
 void listarPorGratuito();
+void puntoRestauracion();
+void crearPuntoRestauracion();
+void cargarPuntoRestauracion();
 
 bool hayUnAdmin();
 #endif // FUNCIONES_H_INCLUDED

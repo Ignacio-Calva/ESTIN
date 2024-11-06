@@ -172,6 +172,7 @@ void menuAdministrador()
         cout << "(8) Remover permisos de administrador" << endl;
         cout << "(9) Listar admins registrados" << endl;
         cout << "(10) Videojuegos mas vendidos" << endl;
+        cout << "(11) Puntos de restauracion del sistema" << endl;
         cout << "=======================================" << endl;
         setConsoleColor(4,0);
         cout << "(0) SALIR." << endl;
@@ -209,6 +210,9 @@ void menuAdministrador()
             break;
         case 10:
             menuVideojuegosMasVendidos();
+            break;
+        case 11:
+            puntoRestauracion();
             break;
         case 0:
             return;
@@ -2076,41 +2080,141 @@ return;
 }
 
 
-//void listarPorOrdenes()
-//{
-//    int opcion = 1;
-//    archivoVideoJuego archivoTienda("archivos/videoJuego.dat");
-//    while (opcion!=0)
-//    {
-//        system("cls");
-//        cout << "===================================" << endl;
-//        cout << "   SELECCIONE EL FILTRO DESEADO"     << endl;
-//        cout << "===================================" << endl;
-//        cout << " (1) - Listar por anio"              << endl;
-//        cout << " (2) - Desarrollar"                  << endl;
-//        cout << " (3) - Desarrollar"                  << endl;
-//        cout << " (4) - Desarrollar"                  << endl;
-//        cout << " (0) - SALIR"                        << endl;
-//        cout << "===================================" << endl;
-//        cout << "Ingrese una opcion: ";
-//        cin >> opcion;
-//        switch (opcion)
-//        {
-//        case 1:
-//            listarOrdenAnio(archivoTienda);
-//            break;
-//        case 2:
-//            break;
-//        case 3:
-//            break;
-//        case 4:
-//            break;
-//        case 0:
-//            break;
-//        default:
-//            cout << "Opcion invalida. Por favor, elija una opcion valida" << endl;
-//            system("pause");
-//            break;
-//        }
-//    }
-//}
+void puntoRestauracion(){
+    system("cls");
+    int opcion;
+    while (true){
+        cout << "================================" << endl;
+        cout << "     PUNTOS DE RESTAURACION     " << endl;
+        cout << "================================" << endl;
+        cout << "(1) Crear punto de restauracion" << endl;
+        cout << "(2) Cargar punto de restauracion" << endl;
+        cout << "================================" << endl;
+        cout << "(0) Salir" << endl;
+        cout << "Ingrese una opcion:";
+        cin >> opcion;
+        switch (opcion)
+        {
+        case 1:
+            crearPuntoRestauracion();
+            break;
+        case 2:
+            {
+            int opcion2;
+            cout << "Estas seguro de que quieres restaurar al ultimo punto creado?"<<endl;
+            cout << "(1) Si" << endl;
+            cout << "(2) No" << endl;
+            cin >> opcion2;
+            if (opcion2 == 1){cargarPuntoRestauracion();}
+            }
+            break;
+        case 0:
+            return;
+        default:
+            cout << "Opcion Invalida." << endl;
+            system("pause");
+            system("cls");
+            break;
+        }
+    }
+}
+
+void crearPuntoRestauracion(){
+    archivoAdmin registroAdmin("archivos/admin.dat");
+    archivoVideoJuego registroVideojuego("archivos/videoJuego.dat");
+    archivoUsuario registroUsuario("archivos/Usuario.dat");
+    archivoBiblioteca registroBiblioteca("archivos/biblioteca.dat");
+    ///ARCHIVOS BACKUP
+    archivoAdmin registroAdminBackup("archivos/backupadmin.dat");
+    archivoVideoJuego registroVideojuegoBackup("archivos/backupvideoJuego.dat");
+    archivoUsuario registroUsuarioBackup("archivos/backupUsuario.dat");
+    archivoBiblioteca registroBibliotecaBackup("archivos/backupbiblioteca.dat");
+    Admin admin;
+    videoJuego juego;
+    usuario usu;
+    Biblioteca lib;
+
+    //CREACION DE ARCHIVOS // SOBREESCRITURA DE 0
+    registroAdminBackup.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
+    registroVideojuegoBackup.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
+    registroUsuarioBackup.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
+    registroBibliotecaBackup.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
+    int tam = registroAdmin.contarRegistros();
+    for (int i = 0 ; i < tam ; i++){
+        admin = registroAdmin.leerRegistros(i);
+        registroAdminBackup.grabarRegistros(admin);
+    }
+
+    tam = registroVideojuego.contarRegistros();
+    for (int i = 0 ; i < tam ; i++){
+        juego = registroVideojuego.leerRegistros(i);
+        registroVideojuegoBackup.grabarRegistros(juego);
+    }
+
+    tam = registroUsuario.contarRegistros();
+    for (int i = 0 ; i < tam ; i++){
+        usu = registroUsuario.leerRegistros(i);
+        registroUsuarioBackup.grabarRegistros(usu);
+    }
+
+    tam = registroBiblioteca.contarRegistros();
+    for (int i = 0 ; i < tam ; i++){
+        lib = registroBiblioteca.leerBiblioteca(i);
+        registroBibliotecaBackup.grabarRegistros(lib);
+    }
+    system("cls");
+    cout << "Punto de restauracion creado correctamente!" << endl;
+    system("pause");
+    system("cls");
+}
+
+
+
+void cargarPuntoRestauracion(){
+    archivoAdmin registroAdmin("archivos/admin.dat");
+    archivoVideoJuego registroVideojuego("archivos/videoJuego.dat");
+    archivoUsuario registroUsuario("archivos/Usuario.dat");
+    archivoBiblioteca registroBiblioteca("archivos/biblioteca.dat");
+    ///ARCHIVOS BACKUP
+    archivoAdmin registroAdminBackup("archivos/backupadmin.dat");
+    archivoVideoJuego registroVideojuegoBackup("archivos/backupvideoJuego.dat");
+    archivoUsuario registroUsuarioBackup("archivos/backupUsuario.dat");
+    archivoBiblioteca registroBibliotecaBackup("archivos/backupbiblioteca.dat");
+    Admin admin;
+    videoJuego juego;
+    usuario usu;
+    Biblioteca lib;
+
+    //CREACION DE ARCHIVOS // SOBREESCRITURA DE 0
+    registroAdmin.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
+    registroVideojuego.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
+    registroUsuario.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
+    registroBiblioteca.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
+    int tam = registroAdminBackup.contarRegistros();
+    for (int i = 0 ; i < tam ; i++){
+        admin = registroAdminBackup.leerRegistros(i);
+        registroAdmin.grabarRegistros(admin);
+    }
+
+    tam = registroVideojuegoBackup.contarRegistros();
+    for (int i = 0 ; i < tam ; i++){
+        juego = registroVideojuegoBackup.leerRegistros(i);
+        registroVideojuego.grabarRegistros(juego);
+    }
+
+    tam = registroUsuarioBackup.contarRegistros();
+    for (int i = 0 ; i < tam ; i++){
+        usu = registroUsuarioBackup.leerRegistros(i);
+        registroUsuario.grabarRegistros(usu);
+    }
+
+    tam = registroBibliotecaBackup.contarRegistros();
+    for (int i = 0 ; i < tam ; i++){
+        lib = registroBibliotecaBackup.leerBiblioteca(i);
+        registroBiblioteca.grabarRegistros(lib);
+    }
+    system("cls");
+    cout << "Registros cargados al punto de restauracion correctamente!" << endl;
+    system("pause");
+    system("cls");
+}
