@@ -69,6 +69,9 @@ void menuBiblioteca()
         cout<<"1 - Listar biblioteca personal"<<endl;
         cout<<"2 - Listar biblioteca por nombre"<<endl;
         cout<<"3 - Listar biblioteca por genero"<<endl;
+        cout<<"4 - Listar biblioteca por desarrollador"<<endl;
+        cout<<"5 - registro de compras"<<endl;
+
         cout<<"0 - cerrar"<<endl;
         cin>>opcion;
         switch (opcion)
@@ -84,7 +87,12 @@ void menuBiblioteca()
             break;
         case 4:
             bibliotecaXdesarrollador(idIniciada);
+            break;
+        case 5:
+            registroCompras();
+            break;
         case 0:
+
             break;
         default:
             cout<< "Opcion invalida.";
@@ -234,6 +242,7 @@ void menuVideojuegosMasVendidos()
         cout << "(1) Videojuego mas vendido (SIN FILTROS)" << endl;
         cout << "(2) Videojuego mas vendido SEGUN GENERO" << endl;
         cout << "(3) Videojuego mas vendido SEGUN DESARROLLADOR" << endl;
+        cout << "(4) Total vendido "<< endl;
         cout << "=======================================" << endl;
         setConsoleColor(4,0);
         cout << "(0) SALIR." << endl;
@@ -250,6 +259,9 @@ void menuVideojuegosMasVendidos()
             break;
         case 3:
             videojuegoMasVendidoDesarrollador();
+            break;
+        case 4:
+            juegosVendidos();
             break;
         case 0:
             return;
@@ -430,7 +442,7 @@ void inicioSesion()
     }
 }
 
-Fecha compararFecha(Fecha fecha1, Fecha fecha2) ///DEVUELVE LA FECHA MAS CHICA
+/*Fecha compararFecha(Fecha fecha1, Fecha fecha2) ///DEVUELVE LA FECHA MAS CHICA
 {
     if(fecha1.getAnio() < fecha2.getAnio())
     {
@@ -466,7 +478,7 @@ Fecha compararFecha(Fecha fecha1, Fecha fecha2) ///DEVUELVE LA FECHA MAS CHICA
             }
         }
     }
-}
+}*/
 
 
 ///FUNCIONES USUARIO
@@ -482,7 +494,11 @@ void grabarRegistroUsuario()
     {
         objAux = archivo.leerRegistros(tam-1); //CARGA LOS DATOS DEL ULTIMO REGISTRO
         obj.setID(objAux.getID()+1); //AUTOMATICAMENTE ASIGNA COMO ID EL NUMERO SIGUIENTE
-    } else {obj.setID(1);}
+    }
+    else
+    {
+        obj.setID(1);
+    }
     if (tam > 0)
     {
         for (int i = 0 ; i < tam ; i++)
@@ -767,7 +783,9 @@ void mostrarBibliotecaDeUsuario(int idIniciada)
             return;
         }
     }
-   cout << "Error al cargar biblioteca." << endl;system("pause");return;
+    cout << "Error al cargar biblioteca." << endl;
+    system("pause");
+    return;
 }
 
 void comprarJuegosListados(int juegosListados[], int tam)
@@ -782,11 +800,13 @@ void comprarJuegosListados(int juegosListados[], int tam)
     cout << endl << "Ingrese el numero del juego deseado (0 Para cancelar): " << endl;
     cin >> numJuego;
 
-    if (numJuego == 0) {
+    if (numJuego == 0)
+    {
         return;
     }
 
-    if (numJuego < 1 || numJuego > tam) {
+    if (numJuego < 1 || numJuego > tam)
+    {
         cout << "Numero de juego no encontrado." << endl;
         system("pause");
         return;
@@ -801,36 +821,42 @@ void comprarJuegosListados(int juegosListados[], int tam)
 void bibliotecaXnombre(int idIniciada)
 {
 
-archivoBiblioteca arcB("archivos/biblioteca.dat");
-Biblioteca libro;
+    archivoBiblioteca arcB("archivos/biblioteca.dat");
+    Biblioteca libro;
 
-archivoVideoJuego arcV ("archivos/videojuego.dat");
-videoJuego game;
+    archivoVideoJuego arcV ("archivos/videojuego.dat");
+    videoJuego game;
 
-int cantReg = arcV.contarRegistros();
-int tam = arcB.contarRegistros();
+    int cantReg = arcV.contarRegistros();
+    int tam = arcB.contarRegistros();
 
-char nombre [30];
-cout<<"-----------------------------------------"<<endl;
-cout<<" Ingrese el titulo que quiere buscar en su biblioteca : ---->"<<endl;
-cargarCadena(nombre, 29);
+    char nombre [30];
+    cout<<"-----------------------------------------"<<endl;
+    cout<<" Ingrese el titulo que quiere buscar en su biblioteca : ---->"<<endl;
+    cargarCadena(nombre, 29);
 
     for (int j = 0; j<tam ; j++)
-    {   libro = arcB.leerBiblioteca(j);
-        if(libro.getIdUsuario() == idIniciada){
+    {
+        libro = arcB.leerBiblioteca(j);
+        if(libro.getIdUsuario() == idIniciada)
+        {
             cout<<"BIBLIOTECA CON ID : "<< libro.getIdUsuario()<<endl;
             cout<<"Juegos obtenidos con el titulo : "<< nombre <<endl;
             cout<<"-------------------------------------------"<<endl;
 
-           for (int i = 0; i < cantReg; i++)
-            {   game = arcV.leerRegistros(i);
-                if (compararSinMayusculas(nombre, game.getTitulo())){
-                for (int l = 0; l<150 ; l++)
-                    {   if(game.getidVideojuego()== libro.getIdVideojuego(l)){
-                        setConsoleColor(15, 0);
-                        cout<< game.getidVideojuego()<< "---> " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
-                        setConsoleColor(8, 0);
-                        system("PAUSE");
+            for (int i = 0; i < cantReg; i++)
+            {
+                game = arcV.leerRegistros(i);
+                if (compararSinMayusculas(nombre, game.getTitulo()))
+                {
+                    for (int l = 0; l<150 ; l++)
+                    {
+                        if(game.getidVideojuego()== libro.getIdVideojuego(l))
+                        {
+                            setConsoleColor(15, 0);
+                            cout<< game.getidVideojuego()<< "---> " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
+                            setConsoleColor(8, 0);
+                            system("PAUSE");
                         }
                     }
                 }
@@ -842,35 +868,41 @@ cargarCadena(nombre, 29);
 void bibliotecaXgenero(int idIniciada)
 {
 
-archivoBiblioteca arcB("archivos/biblioteca.dat");
-Biblioteca libro;
+    archivoBiblioteca arcB("archivos/biblioteca.dat");
+    Biblioteca libro;
 
-archivoVideoJuego arcV ("archivos/videojuego.dat");
-videoJuego game;
+    archivoVideoJuego arcV ("archivos/videojuego.dat");
+    videoJuego game;
 
-int cantReg = arcV.contarRegistros();
-int tam = arcB.contarRegistros();
+    int cantReg = arcV.contarRegistros();
+    int tam = arcB.contarRegistros();
 
-char genero [30];
-cout<<"-----------------------------------------"<<endl;
-cout<<" Ingrese el genero que quiere buscar en su biblioteca : ---->"<<endl;
-cargarCadena(genero, 29);
+    char genero [30];
+    cout<<"-----------------------------------------"<<endl;
+    cout<<" Ingrese el genero que quiere buscar en su biblioteca : ---->"<<endl;
+    cargarCadena(genero, 29);
 
     for (int j = 0; j<tam ; j++)
-    {   libro = arcB.leerBiblioteca(j);
-        if(libro.getIdUsuario() == idIniciada){
+    {
+        libro = arcB.leerBiblioteca(j);
+        if(libro.getIdUsuario() == idIniciada)
+        {
             cout<<"BIBLIOTECA CON ID : "<< libro.getIdUsuario()<<endl;
             cout<<"Juegos obtenidos con el genero : "<< genero <<endl;
             cout<<"-------------------------------------------"<<endl;
 
-           for (int i = 0; i < cantReg; i++)
-            {   game = arcV.leerRegistros(i);
-                if (compararSinMayusculas(genero, game.getGenero())){
-                for (int l = 0; l<150 ; l++)
-                    {   if(game.getidVideojuego()== libro.getIdVideojuego(l)){
-                        setConsoleColor(15, 0);
-                        cout<< game.getidVideojuego()<< "---> " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
-                        setConsoleColor(8, 0);
+            for (int i = 0; i < cantReg; i++)
+            {
+                game = arcV.leerRegistros(i);
+                if (compararSinMayusculas(genero, game.getGenero()))
+                {
+                    for (int l = 0; l<150 ; l++)
+                    {
+                        if(game.getidVideojuego()== libro.getIdVideojuego(l))
+                        {
+                            setConsoleColor(15, 0);
+                            cout<< game.getidVideojuego()<< "---> " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
+                            setConsoleColor(8, 0);
 
                         }
                     }
@@ -884,35 +916,41 @@ cargarCadena(genero, 29);
 void bibliotecaXdesarrollador(int idIniciada)
 {
 
-archivoBiblioteca arcB("archivos/biblioteca.dat");
-Biblioteca libro;
+    archivoBiblioteca arcB("archivos/biblioteca.dat");
+    Biblioteca libro;
 
-archivoVideoJuego arcV ("archivos/videojuego.dat");
-videoJuego game;
+    archivoVideoJuego arcV ("archivos/videojuego.dat");
+    videoJuego game;
 
-int cantReg = arcV.contarRegistros();
-int tam = arcB.contarRegistros();
+    int cantReg = arcV.contarRegistros();
+    int tam = arcB.contarRegistros();
 
-char desarrollador [30];
-cout<<"-----------------------------------------"<<endl;
-cout<<" Ingrese el desarrollador que quiere buscar en su biblioteca : ---->"<<endl;
-cargarCadena(desarrollador, 29);
+    char desarrollador [30];
+    cout<<"-----------------------------------------"<<endl;
+    cout<<" Ingrese el desarrollador que quiere buscar en su biblioteca : ---->"<<endl;
+    cargarCadena(desarrollador, 29);
 
     for (int j = 0; j<tam ; j++)
-    {   libro = arcB.leerBiblioteca(j);
-        if(libro.getIdUsuario() == idIniciada){
+    {
+        libro = arcB.leerBiblioteca(j);
+        if(libro.getIdUsuario() == idIniciada)
+        {
             cout<<"BIBLIOTECA CON ID : "<< libro.getIdUsuario()<<endl;
             cout<<"Juegos obtenidos con el desarrollador : "<< desarrollador <<endl;
             cout<<"-------------------------------------------"<<endl;
 
-           for (int i = 0; i < cantReg; i++)
-            {   game = arcV.leerRegistros(i);
-                if (compararSinMayusculas(desarrollador, game.getDesarrollador())){
-                for (int l = 0; l<150 ; l++)
-                    {   if(game.getidVideojuego()== libro.getIdVideojuego(l)){
-                        setConsoleColor(15, 0);
-                        cout<< game.getidVideojuego()<< "---> " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
-                        setConsoleColor(8, 0);
+            for (int i = 0; i < cantReg; i++)
+            {
+                game = arcV.leerRegistros(i);
+                if (compararSinMayusculas(desarrollador, game.getDesarrollador()))
+                {
+                    for (int l = 0; l<150 ; l++)
+                    {
+                        if(game.getidVideojuego()== libro.getIdVideojuego(l))
+                        {
+                            setConsoleColor(15, 0);
+                            cout<< game.getidVideojuego()<< "---> " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
+                            setConsoleColor(8, 0);
 
                         }
                     }
@@ -926,35 +964,41 @@ cargarCadena(desarrollador, 29);
 void bibliotecaXanio(int idIniciada)
 {
 
-archivoBiblioteca arcB("archivos/biblioteca.dat");
-Biblioteca libro;
+    archivoBiblioteca arcB("archivos/biblioteca.dat");
+    Biblioteca libro;
 
-archivoVideoJuego arcV ("archivos/videojuego.dat");
-videoJuego game;
+    archivoVideoJuego arcV ("archivos/videojuego.dat");
+    videoJuego game;
 
-int cantReg = arcV.contarRegistros();
-int tam = arcB.contarRegistros();
-int anio;
+    int cantReg = arcV.contarRegistros();
+    int tam = arcB.contarRegistros();
+    int anio;
 
-cout<<"-----------------------------------------"<<endl;
-cout<<" Ingrese el anio que quiere buscar en su biblioteca : ---->"<<endl;
-cin>> anio;
+    cout<<"-----------------------------------------"<<endl;
+    cout<<" Ingrese el anio que quiere buscar en su biblioteca : ---->"<<endl;
+    cin>> anio;
 
     for (int j = 0; j<tam ; j++)
-    {   libro = arcB.leerBiblioteca(j);
-        if(libro.getIdUsuario() == idIniciada){
+    {
+        libro = arcB.leerBiblioteca(j);
+        if(libro.getIdUsuario() == idIniciada)
+        {
             cout<<"BIBLIOTECA CON ID : "<< libro.getIdUsuario()<<endl;
             cout<<"Juegos obtenidos con el anio : "<< anio <<endl;
             cout<<"-------------------------------------------"<<endl;
 
-           for (int i = 0; i < cantReg; i++)
-            {   game = arcV.leerRegistros(i);
-                if (game.getAnio() == anio ){
-                for (int l = 0; l<150 ; l++)
-                    {   if(game.getidVideojuego()== libro.getIdVideojuego(l)){
-                        setConsoleColor(15, 0);
-                        cout<< game.getidVideojuego()<< "---> " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
-                        setConsoleColor(8, 0);
+            for (int i = 0; i < cantReg; i++)
+            {
+                game = arcV.leerRegistros(i);
+                if (game.getAnio() == anio )
+                {
+                    for (int l = 0; l<150 ; l++)
+                    {
+                        if(game.getidVideojuego()== libro.getIdVideojuego(l))
+                        {
+                            setConsoleColor(15, 0);
+                            cout<< game.getidVideojuego()<< "---> " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
+                            setConsoleColor(8, 0);
                         }
                     }
                     system("PAUSE");
@@ -964,6 +1008,48 @@ cin>> anio;
     }
 }
 
+void registroCompras()
+{
+
+    archivoBiblioteca arcB("archivos/biblioteca.dat");
+    Biblioteca libro;
+
+    archivoVideoJuego arcV ("archivos/videojuego.dat");
+    videoJuego game;
+
+    int cantReg = arcV.contarRegistros();
+    int tam = arcB.contarRegistros();
+    float totalGastado;
+
+    cout<<"<<------------------COMPRAS TOTALES DE VIDEOJUEGOS----------------------->>"<<endl;
+
+    for (int j = 0; j<tam ; j++)
+    {
+        libro = arcB.leerBiblioteca(j);
+        if(libro.getIdUsuario() == idIniciada)
+        {
+            cout<<"BIBLIOTECA CON ID : "<< libro.getIdUsuario()<<endl;
+            cout<<"Juegos obtenidos : "<<endl;
+            cout<<"-------------------------------------------"<<endl;
+            for (int i = 0; i < cantReg; i++)
+            {
+                game = arcV.leerRegistros(i);
+                for (int l = 0; l<150 ; l++)
+                {
+                    if(game.getidVideojuego()== libro.getIdVideojuego(l))
+                    {
+                        totalGastado+=game.getPrecio();
+
+                    }
+                }
+            }
+            setConsoleColor(15, 0);
+            libro.mostrar();
+        }
+    }
+    cout<<"El total gastado es : "<< totalGastado<<endl;
+    system("PAUSE");
+}
 
 ///FUNCIONES VIDEOJUEGOS
 
@@ -1022,7 +1108,9 @@ void comprarJuego(int idVideojuego)
                 case 2:
                     return;
                 default:
+                    setConsoleColor(4, 0);
                     cout << "Opcion Invalida." << endl;
+                    setConsoleColor(15, 0);
                     system("pause");
                     system("cls");
                     break;
@@ -1055,15 +1143,21 @@ void listarPorGenero()
     cout << "Filtro aplicado: " << genero << endl;
     cout << "--------------------------------------------------------------------------" << endl;
 
-    for (int i = 0; i < cantReg; i++) {
+    for (int i = 0; i < cantReg; i++)
+    {
         game = arcV.leerRegistros(i);
-        if (compararSinMayusculas(genero, game.getGenero()) && usu.getEdad() >= game.getRestriccion() && game.getActivo()) {
+        if (compararSinMayusculas(genero, game.getGenero()) && usu.getEdad() >= game.getRestriccion() && game.getActivo())
+        {
             cout << tam + 1 << " - " << game.getTitulo() << "    -- precio: $ " << game.getPrecio() << endl;
             juegosListados[tam] = game.getidVideojuego();
             tam++;
-        } else if (compararSinMayusculas(genero, game.getGenero()) && usu.getEdad() >= game.getRestriccion() && !game.getActivo()) {
+        }
+        else if (compararSinMayusculas(genero, game.getGenero()) && usu.getEdad() >= game.getRestriccion() && !game.getActivo())
+        {
             cout << "*JUEGO DESHABILITADO" << endl;
-        } else if (compararSinMayusculas(genero, game.getGenero()) && usu.getEdad() < game.getRestriccion() && game.getActivo()) {
+        }
+        else if (compararSinMayusculas(genero, game.getGenero()) && usu.getEdad() < game.getRestriccion() && game.getActivo())
+        {
             cout << "No tienes edad suficiente para este videojuego" << endl;
         }
     }
@@ -1091,26 +1185,35 @@ void listarPorCreador()
     cout << "Filtro aplicado: " << desarrolladora << endl;
     cout << "--------------------------------------------------------------------------" << endl;
 
-    for (int i = 0; i < tam; i++) {
+    for (int i = 0; i < tam; i++)
+    {
         game = arcV.leerRegistros(i);
-        if (compararSinMayusculas(desarrolladora, game.getDesarrollador()) && usu.getEdad() >= game.getRestriccion() && game.getActivo()) {
+        if (compararSinMayusculas(desarrolladora, game.getDesarrollador()) && usu.getEdad() >= game.getRestriccion() && game.getActivo())
+        {
             cout << tam2 + 1 << " - " << game.getTitulo() << "    -- precio: $ " << game.getPrecio() << endl;
             juegosListados[tam2] = game.getidVideojuego();
             tam2++;
             contgame++;
-        } else if (compararSinMayusculas(desarrolladora, game.getDesarrollador()) && usu.getEdad() >= game.getRestriccion() && !game.getActivo()) {
+        }
+        else if (compararSinMayusculas(desarrolladora, game.getDesarrollador()) && usu.getEdad() >= game.getRestriccion() && !game.getActivo())
+        {
             cout << "*JUEGO DESHABILITADO" << endl;
             contgame++;
-        } else if (compararSinMayusculas(desarrolladora, game.getDesarrollador()) && usu.getEdad() < game.getRestriccion() && game.getActivo()) {
+        }
+        else if (compararSinMayusculas(desarrolladora, game.getDesarrollador()) && usu.getEdad() < game.getRestriccion() && game.getActivo())
+        {
             cout << "No tienes edad suficiente para este videojuego" << endl;
             contgame++;
         }
     }
 
-    if (contgame == 0) {
+    if (contgame == 0)
+    {
         setConsoleColor(4, 0);
         cout << "No hay juegos con esa desarrolladora :(" << endl;
-    } else {
+    }
+    else
+    {
         comprarJuegosListados(juegosListados, tam2);
     }
 }
@@ -1168,30 +1271,39 @@ void mostrarPorPrecio()
     cout << "El filtro aplicado es: desde $" << montoMin << " hasta $" << montoMax << endl;
     cout << "------------------------------------------------------------------------------" << endl;
 
-    for (int i = 0; i < tam; i++) {
+    for (int i = 0; i < tam; i++)
+    {
         game = arcV.leerRegistros(i);
-        if ((montoMin <= game.getPrecio()) && (game.getPrecio() <= montoMax) && game.getActivo() && usu.getEdad() >= game.getRestriccion()) {
+        if ((montoMin <= game.getPrecio()) && (game.getPrecio() <= montoMax) && game.getActivo() && usu.getEdad() >= game.getRestriccion())
+        {
             cout << tam2 + 1 << " - " << game.getTitulo() << "    -- precio: $ " << game.getPrecio() << endl;
             juegosListados[tam2] = game.getidVideojuego();
             tam2++;
             contGame++;
 
-        } else if ((montoMin <= game.getPrecio()) && (game.getPrecio() <= montoMax) && !game.getActivo() && usu.getEdad() >= game.getRestriccion()) {
+        }
+        else if ((montoMin <= game.getPrecio()) && (game.getPrecio() <= montoMax) && !game.getActivo() && usu.getEdad() >= game.getRestriccion())
+        {
             cout << "*JUEGO DESHABILITADO" << endl;
             contGame++;
-        } else if ((montoMin <= game.getPrecio()) && (game.getPrecio() <= montoMax) && game.getActivo() && usu.getEdad() < game.getRestriccion()) {
+        }
+        else if ((montoMin <= game.getPrecio()) && (game.getPrecio() <= montoMax) && game.getActivo() && usu.getEdad() < game.getRestriccion())
+        {
             cout << "No tienes edad suficiente para este videojuego" << endl;
             contGame++;
         }
     }
-    if (contGame == 0) {
+    if (contGame == 0)
+    {
         system("CLS");
         setConsoleColor(4, 0);
         cout << "No hay ningun juego con ese monto." << endl;
         setConsoleColor(15, 0);
-         system("PAUSE");
+        system("PAUSE");
 
-    } else {
+    }
+    else
+    {
         comprarJuegosListados(juegosListados, tam2);
     }
 }
@@ -1218,26 +1330,35 @@ void listarPorAnio()
     cout << "Filtro aplicado: " << anio << endl;
     cout << "--------------------------------------------------------------------------" << endl;
 
-    for (int i = 0; i < tam; i++) {
+    for (int i = 0; i < tam; i++)
+    {
         game = arcV.leerRegistros(i);
-        if (game.getAnio() == anio && usu.getEdad() >= game.getRestriccion() && game.getActivo()) {
+        if (game.getAnio() == anio && usu.getEdad() >= game.getRestriccion() && game.getActivo())
+        {
             cout << tam2 + 1 << " - " << game.getTitulo() << "   -- Precio: $ " << game.getPrecio() << endl;
             juegosListados[tam2] = game.getidVideojuego();
             tam2++;
             contGame++;
-        } else if (game.getAnio() == anio && usu.getEdad() >= game.getRestriccion() && !game.getActivo()) {
+        }
+        else if (game.getAnio() == anio && usu.getEdad() >= game.getRestriccion() && !game.getActivo())
+        {
             cout << "*JUEGO DESHABILITADO" << endl;
             contGame++;
-        } else if (game.getAnio() == anio && usu.getEdad() < game.getRestriccion() && game.getActivo()) {
+        }
+        else if (game.getAnio() == anio && usu.getEdad() < game.getRestriccion() && game.getActivo())
+        {
             cout << "No tienes edad suficiente para este videojuego" << endl;
             contGame++;
         }
     }
 
-    if (contGame == 0) {
+    if (contGame == 0)
+    {
         cout << "NO HAY VIDEOJUEGOS CON ESE ANIO" << endl;
         system("PAUSE");
-    } else {
+    }
+    else
+    {
         comprarJuegosListados(juegosListados, tam2);
     }
 }
@@ -1283,7 +1404,8 @@ void listarVideojuegos()
             if (bib.getIdVideojuego(game.getidVideojuego()-1) == 0)
             {
                 cout << "$" << game.getPrecio();
-            }else
+            }
+            else
             {
                 setConsoleColor(4,0);
                 cout << "*JUEGO ADQUIRIDO*" ;
@@ -1355,15 +1477,21 @@ void elegirVideojuego()
     system("CLS");
     usu = arcU.leerRegistros(datosUsuarioIniciado());
 
-    for (int i = 0; i < cantReg; i++) {
+    for (int i = 0; i < cantReg; i++)
+    {
         game = arcV.leerRegistros(i);
-        if (usu.getEdad() >= game.getRestriccion() && game.getActivo()) {
+        if (usu.getEdad() >= game.getRestriccion() && game.getActivo())
+        {
             cout << tam + 1 << " - " << game.getTitulo() << "    -- precio: $ " << game.getPrecio() << endl;
             juegosListados[tam] = game.getidVideojuego();
             tam++;
-        } else if (usu.getEdad() >= game.getRestriccion() && !game.getActivo()) {
+        }
+        else if (usu.getEdad() >= game.getRestriccion() && !game.getActivo())
+        {
             cout << "*JUEGO DESHABILITADO" << endl;
-        } else if (usu.getEdad() < game.getRestriccion() && game.getActivo()) {
+        }
+        else if (usu.getEdad() < game.getRestriccion() && game.getActivo())
+        {
             cout << "No tienes edad suficiente para este videojuego" << endl;
         }
     }
@@ -1400,26 +1528,35 @@ void listarPorGratuito()
     cout << "Filtro aplicado: Precio $0" << endl;
     cout << "--------------------------------------------------------------------------" << endl;
 
-    for (int i = 0; i < tam; i++) {
+    for (int i = 0; i < tam; i++)
+    {
         game = arcV.leerRegistros(i);
-        if (game.getPrecio() == 0 && usu.getEdad() >= game.getRestriccion() && game.getActivo()) {
+        if (game.getPrecio() == 0 && usu.getEdad() >= game.getRestriccion() && game.getActivo())
+        {
             cout << tam2 + 1 << " - " << game.getTitulo() << "   -- Precio: $ " << game.getPrecio() << endl;
             juegosListados[tam2] = game.getidVideojuego();
             tam2++;
             contGame++;
-        } else if (game.getPrecio() == 0 && usu.getEdad() >= game.getRestriccion() && !game.getActivo()) {
+        }
+        else if (game.getPrecio() == 0 && usu.getEdad() >= game.getRestriccion() && !game.getActivo())
+        {
             cout << "*JUEGO DESHABILITADO" << endl;
             contGame++;
-        } else if (game.getPrecio() == 0 && usu.getEdad() < game.getRestriccion() && game.getActivo()) {
+        }
+        else if (game.getPrecio() == 0 && usu.getEdad() < game.getRestriccion() && game.getActivo())
+        {
             cout << "No tienes edad suficiente para este videojuego" << endl;
             contGame++;
         }
     }
 
-    if (contGame == 0) {
+    if (contGame == 0)
+    {
         cout << "NO HAY VIDEOJUEGOS GRATIS" << endl;
         system("PAUSE");
-    } else {
+    }
+    else
+    {
         comprarJuegosListados(juegosListados, tam2);
     }
 }
@@ -1427,6 +1564,34 @@ void listarPorGratuito()
 
 ///FUNCIONES ADMIN
 
+void juegosVendidos()
+{
+    archivoBiblioteca arcB("archivos/biblioteca.dat");
+    Biblioteca bib;
+    archivoVideoJuego arcV("archivos/videoJuego.dat");
+    videoJuego game;
+    int cantJuegosVendidos = 0;
+    int totalRecaudado = 0;
+
+    int cantReg = arcB.contarRegistros();
+
+    for (int i = 0; i < cantReg; i++)
+    {
+        bib = arcB.leerBiblioteca(i);
+        for (int j = 0; j < 150; j++)
+        {
+            if (bib.getIdVideojuego(j)>0)
+            {
+                game = arcV.leerRegistros(j);
+                cantJuegosVendidos++;
+                totalRecaudado+=game.getPrecio();
+            }
+        }
+    }
+    cout<<"Total videojuegos vendidos: " << cantJuegosVendidos << endl;
+    cout<<"Total recaudado: " << totalRecaudado << endl;
+    system("pause");
+}
 
 void videojuegoMasVendidoGenero()
 {
@@ -1457,13 +1622,13 @@ void videojuegoMasVendidoGenero()
             return;
         }
     }
-    int juegosMasComprados[150]={};
+    int juegosMasComprados[150]= {};
     int tam = arcB.contarRegistros();
     int maxi =0;
-    for (int l =0 ;l<tam ; l++ )
+    for (int l =0 ; l<tam ; l++ )
     {
         libro = arcB.leerBiblioteca(l);
-        for (int j=0;j<150 ; j++ )
+        for (int j=0; j<150 ; j++ )
         {
             if (libro.getIdVideojuego(j) != 0)
             {
@@ -1476,7 +1641,7 @@ void videojuegoMasVendidoGenero()
         }
     }
     int pos=0;
-    for (int i=0;i<150 ;i++ )
+    for (int i=0; i<150 ; i++ )
     {
 
         if (juegosMasComprados[i]> maxi)
@@ -1486,7 +1651,7 @@ void videojuegoMasVendidoGenero()
         }
     }
     int cantreg= arcV.contarRegistros();
-    for (int i = 0; i<cantreg ;i++ )
+    for (int i = 0; i<cantreg ; i++ )
     {
         game = arcV.leerRegistros(i);
         if (pos+1 == game.getidVideojuego())
@@ -1497,7 +1662,7 @@ void videojuegoMasVendidoGenero()
             cout << "Copias vendidas: " << juegosMasComprados[pos] << endl;
             system("PAUSE");
             system("cls");
-        return;
+            return;
         }
     }
 }
@@ -1519,24 +1684,26 @@ void videojuegoMasVendidoDesarrollador()
     for (int i = 0 ; i < tamanioCatalogo ; i++)
     {
         game = arcV.leerRegistros(i);
-        if (compararSinMayusculas(dev,game.getDesarrollador())){break;}
-        else if (i == tamanioCatalogo-1 && (compararSinMayusculas(dev,game.getDesarrollador()) == false))
+        if (compararSinMayusculas(dev,game.getDesarrollador()))
+        {
+            break;
+        }
+        else if (i == tamanioCatalogo-1 && compararSinMayusculas(dev,game.getDesarrollador()) == false)
         {
             cout << "Desarrollador no encontrado! " << endl;
-            cout << "Dev: " << dev << ", Game: " << game.getDesarrollador() << endl;
             system("pause");
             system("cls");
             return;
         }
     }
 
-    int juegosMasComprados[150]={};
+    int juegosMasComprados[150]= {};
     int tam = arcB.contarRegistros();
     int maxi =0;
-    for (int l =0 ;l<tam ; l++ )
+    for (int l =0 ; l<tam ; l++ )
     {
         libro = arcB.leerBiblioteca(l);
-        for (int j=0;j<150 ; j++ )
+        for (int j=0; j<150 ; j++ )
         {
             if (libro.getIdVideojuego(j) != 0)
             {
@@ -1549,7 +1716,7 @@ void videojuegoMasVendidoDesarrollador()
         }
     }
     int pos=0;
-    for (int i=0;i<150 ;i++ )
+    for (int i=0; i<150 ; i++ )
     {
 
         if (juegosMasComprados[i]> maxi)
@@ -1559,7 +1726,7 @@ void videojuegoMasVendidoDesarrollador()
         }
     }
     int cantreg= arcV.contarRegistros();
-    for (int i = 0; i<cantreg ;i++ )
+    for (int i = 0; i<cantreg ; i++ )
     {
         game = arcV.leerRegistros(i);
         if (pos+1 == game.getidVideojuego())
@@ -1570,7 +1737,7 @@ void videojuegoMasVendidoDesarrollador()
             cout << "Copias vendidas: " << juegosMasComprados[pos] << endl;
             system("PAUSE");
             system("cls");
-        return;
+            return;
         }
     }
 }
@@ -1588,10 +1755,10 @@ void modificarVideojuego()
     if (opcion == 's')
     {
         for (int i = 0; i < tam; i++)
-            {
-                game = arcV.leerRegistros(i);
-                cout<< i+1 << " --- " << game.getTitulo() << " --- "<< endl;
-            }
+        {
+            game = arcV.leerRegistros(i);
+            cout<< i+1 << " --- " << game.getTitulo() << " --- "<< endl;
+        }
     }
     cout << endl <<"Ingrese el ID de videojuego que desea modificar: ";
     cin >> idJuego;
@@ -1720,7 +1887,8 @@ void deshabilitarCuentaUsuario()
                     cout << "El usuario ha sido deshabilitado correctamente." << endl;
                     system("pause");
                     system("cls");
-                } else
+                }
+                else
                 {
                     cout << "No se puede deshabilitar una cuenta de administrador." << endl;
                     system("pause");
@@ -1835,7 +2003,8 @@ void otorgarAdmin()
                     cout << "El usuario ya contenía rango admin." << endl;
                     system("pause");
                     system("cls");
-                } else if (usu.getActivo()==false)
+                }
+                else if (usu.getActivo()==false)
                 {
                     cout << endl << "El usuario esta deshabilitado actualmente. No puede otorgarle permisos de administrador." << endl;
                     cout << endl <<"Habilite este usuario primero." << endl;
@@ -1983,15 +2152,15 @@ void listarAdmins()
 
 bool hayUnAdmin()
 {
-Admin admin;
-archivoAdmin arcA("archivos/admin.dat");
-int tam = arcA.contarRegistros();
-for (int i = 0; i < tam; i++)
-{
-    admin = arcA.leerRegistros(i);
-    if (admin.getAdmin()) return true;
-}
-return false;
+    Admin admin;
+    archivoAdmin arcA("archivos/admin.dat");
+    int tam = arcA.contarRegistros();
+    for (int i = 0; i < tam; i++)
+    {
+        admin = arcA.leerRegistros(i);
+        if (admin.getAdmin()) return true;
+    }
+    return false;
 }
 
 void mostrarArchivoAdmin()
@@ -2000,7 +2169,7 @@ void mostrarArchivoAdmin()
     Admin adm;
     int tam = arcA.contarRegistros();
     system("cls");
-    for (int i = 0;i<tam ;i++ )
+    for (int i = 0; i<tam ; i++ )
     {
         cout << "============== REGISTRO: "<< i <<" ============" << endl;
         adm= arcA.leerRegistros(i);
@@ -2018,7 +2187,7 @@ void grabarRegistroadmin(int idCuentaHabilitar)
     archivoUsuario arcU("archivos/usuario.dat");
     usuario usu;
     int tam = arcU.contarRegistros();
-    for (int i = 0;i<tam ; i++)
+    for (int i = 0; i<tam ; i++)
     {
         usu = arcU.leerRegistros(i);
         if(usu.getID() == idCuentaHabilitar)
@@ -2032,58 +2201,70 @@ void grabarRegistroadmin(int idCuentaHabilitar)
             adm.setAdmin(true);
             cout << endl << "TEXTOS PARA VERIFICAR QUE TODO FUNCIONE CORRECTAMENTE XD" << endl  << "Datos a grabar:" << endl;
             adm.mostrarDatos();
-            if (arcA.grabarRegistros(adm)){cout << "CUENTA REGISTRADA EN ARCHIVO DE ADMINISTRADORES"<<endl;} //El metodo de grabar registros retorna bool
+            if (arcA.grabarRegistros(adm))
+            {
+                cout << "CUENTA REGISTRADA EN ARCHIVO DE ADMINISTRADORES"<<endl;   //El metodo de grabar registros retorna bool
+            }
         }
     }
 }
 
 void estadisticasJuegosMasComprados()
 {
-archivoVideoJuego arcV("archivos/videoJuego.dat");
-videoJuego game;
-archivoBiblioteca arcB ("archivos/biblioteca.dat");
-Biblioteca libro;
+    archivoVideoJuego arcV("archivos/videoJuego.dat");
+    videoJuego game;
+    archivoBiblioteca arcB ("archivos/biblioteca.dat");
+    Biblioteca libro;
 
-int juegosMasComprados[150]={};
-int tam = arcB.contarRegistros();
-int maxi =0;
-for (int l =0 ;l<tam ; l++ ){
-    libro = arcB.leerBiblioteca(l);
-    for (int j=0;j<150 ; j++ ){
-        if (libro.getIdVideojuego(j) != 0){
-            juegosMasComprados[j]++;
+    int juegosMasComprados[150]= {};
+    int tam = arcB.contarRegistros();
+    int maxi =0;
+    for (int l =0 ; l<tam ; l++ )
+    {
+        libro = arcB.leerBiblioteca(l);
+        for (int j=0; j<150 ; j++ )
+        {
+            if (libro.getIdVideojuego(j) != 0)
+            {
+                juegosMasComprados[j]++;
+            }
+        }
+    }
+    int pos=0;
+
+    for (int i=0; i<150 ; i++ )
+    {
+
+        if (juegosMasComprados[i]> maxi)
+        {
+
+            maxi = juegosMasComprados[i];
+            pos= i;
+        }
+    }
+
+    int cantreg= arcV.contarRegistros();
+    for (int i = 0; i<cantreg ; i++ )
+    {
+        game = arcV.leerRegistros(i);
+        if (  pos+1 == game.getidVideojuego())
+        {
+
+            cout<<"el juego mas comprado es-----> "<< game.getTitulo() << " con un precio de : "<< game.getPrecio() << "$ <-- con un total de: "<<juegosMasComprados[pos] << " compras"<<endl;
+
+            system("PAUSE");
+            return;
         }
     }
 }
-int pos=0;
-
-for (int i=0;i<150 ;i++ ){
-
-if (juegosMasComprados[i]> maxi){
-
-    maxi = juegosMasComprados[i];
-    pos= i;
-}
-}
-
-int cantreg= arcV.contarRegistros();
-for (int i = 0; i<cantreg ;i++ ){
-        game = arcV.leerRegistros(i);
-    if (  pos+1 == game.getidVideojuego()){
-
-        cout<<"el juego mas comprado es-----> "<< game.getTitulo() << " con un precio de : "<< game.getPrecio() << "$ <-- con un total de: "<<juegosMasComprados[pos] << " compras"<<endl;
-
-system("PAUSE");
-return;
-}
-}
-}
 
 
-void puntoRestauracion(){
+void puntoRestauracion()
+{
     system("cls");
     int opcion;
-    while (true){
+    while (true)
+    {
         cout << "================================" << endl;
         cout << "     PUNTOS DE RESTAURACION     " << endl;
         cout << "================================" << endl;
@@ -2099,15 +2280,18 @@ void puntoRestauracion(){
             crearPuntoRestauracion();
             break;
         case 2:
-            {
+        {
             int opcion2;
             cout << "Estas seguro de que quieres restaurar al ultimo punto creado?"<<endl;
             cout << "(1) Si" << endl;
             cout << "(2) No" << endl;
             cin >> opcion2;
-            if (opcion2 == 1){cargarPuntoRestauracion();}
+            if (opcion2 == 1)
+            {
+                cargarPuntoRestauracion();
             }
-            break;
+        }
+        break;
         case 0:
             return;
         default:
@@ -2119,7 +2303,8 @@ void puntoRestauracion(){
     }
 }
 
-void crearPuntoRestauracion(){
+void crearPuntoRestauracion()
+{
     archivoAdmin registroAdmin("archivos/admin.dat");
     archivoVideoJuego registroVideojuego("archivos/videoJuego.dat");
     archivoUsuario registroUsuario("archivos/Usuario.dat");
@@ -2140,25 +2325,29 @@ void crearPuntoRestauracion(){
     registroUsuarioBackup.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
     registroBibliotecaBackup.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
     int tam = registroAdmin.contarRegistros();
-    for (int i = 0 ; i < tam ; i++){
+    for (int i = 0 ; i < tam ; i++)
+    {
         admin = registroAdmin.leerRegistros(i);
         registroAdminBackup.grabarRegistros(admin);
     }
 
     tam = registroVideojuego.contarRegistros();
-    for (int i = 0 ; i < tam ; i++){
+    for (int i = 0 ; i < tam ; i++)
+    {
         juego = registroVideojuego.leerRegistros(i);
         registroVideojuegoBackup.grabarRegistros(juego);
     }
 
     tam = registroUsuario.contarRegistros();
-    for (int i = 0 ; i < tam ; i++){
+    for (int i = 0 ; i < tam ; i++)
+    {
         usu = registroUsuario.leerRegistros(i);
         registroUsuarioBackup.grabarRegistros(usu);
     }
 
     tam = registroBiblioteca.contarRegistros();
-    for (int i = 0 ; i < tam ; i++){
+    for (int i = 0 ; i < tam ; i++)
+    {
         lib = registroBiblioteca.leerBiblioteca(i);
         registroBibliotecaBackup.grabarRegistros(lib);
     }
@@ -2170,7 +2359,8 @@ void crearPuntoRestauracion(){
 
 
 
-void cargarPuntoRestauracion(){
+void cargarPuntoRestauracion()
+{
     archivoAdmin registroAdmin("archivos/admin.dat");
     archivoVideoJuego registroVideojuego("archivos/videoJuego.dat");
     archivoUsuario registroUsuario("archivos/Usuario.dat");
@@ -2191,25 +2381,29 @@ void cargarPuntoRestauracion(){
     registroUsuario.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
     registroBiblioteca.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
     int tam = registroAdminBackup.contarRegistros();
-    for (int i = 0 ; i < tam ; i++){
+    for (int i = 0 ; i < tam ; i++)
+    {
         admin = registroAdminBackup.leerRegistros(i);
         registroAdmin.grabarRegistros(admin);
     }
 
     tam = registroVideojuegoBackup.contarRegistros();
-    for (int i = 0 ; i < tam ; i++){
+    for (int i = 0 ; i < tam ; i++)
+    {
         juego = registroVideojuegoBackup.leerRegistros(i);
         registroVideojuego.grabarRegistros(juego);
     }
 
     tam = registroUsuarioBackup.contarRegistros();
-    for (int i = 0 ; i < tam ; i++){
+    for (int i = 0 ; i < tam ; i++)
+    {
         usu = registroUsuarioBackup.leerRegistros(i);
         registroUsuario.grabarRegistros(usu);
     }
 
     tam = registroBibliotecaBackup.contarRegistros();
-    for (int i = 0 ; i < tam ; i++){
+    for (int i = 0 ; i < tam ; i++)
+    {
         lib = registroBibliotecaBackup.leerBiblioteca(i);
         registroBiblioteca.grabarRegistros(lib);
     }

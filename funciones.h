@@ -49,7 +49,9 @@ void menuBiblioteca();
 void bibliotecaXgenero(int idIniciada);
 void bibliotecaXdesarrollador(int idIniciada);
 void bibliotecaXanio(int idIniciada);
+void registroCompras();
 ///ADMINISTRADOR
+void juegosVendidos();
 void listarVideojuegosAdmin();
 void listarUsuariosAdmin();
 void listarAdmins();
