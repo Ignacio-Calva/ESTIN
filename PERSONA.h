@@ -68,6 +68,7 @@ class Persona
         {
             nombrePais.setNombrePais(p);
         }
+        const char* getPais(){return nombrePais.getNombrePais();}
         const char* getNombre(){return NombreUsuario;}
         const char* getContrasenia(){return Contrasenia;}
         int getEdad(){return Edad;}

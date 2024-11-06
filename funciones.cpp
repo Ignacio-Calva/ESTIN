@@ -2539,7 +2539,8 @@ void grabarRegistroadmin(int idCuentaHabilitar)
             adm.setNombre(usu.getNombre());
             adm.setDNI(usu.getDNI());
             adm.setEdad(usu.getEdad());
-            ///FALTA AGREGARLE EL GET PAIS JAJASSS
+            ///Creo que ahi funciona XD
+            adm.setPais(usu.getPais());
             adm.setMail(usu.getMail());
             adm.setAdmin(true);
             cout << endl << "TEXTOS PARA VERIFICAR QUE TODO FUNCIONE CORRECTAMENTE XD" << endl  << "Datos a grabar:" << endl;
