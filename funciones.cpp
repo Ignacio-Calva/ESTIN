@@ -702,7 +702,7 @@ void grabarRegistroUsuario()
     int edad;
     int dni;
     char mail[30];
-    int idPais;
+    char pais[30];
     int tam=archivo.contarRegistros();
     if (tam > 0)
     {
@@ -797,6 +797,8 @@ void grabarRegistroUsuario()
     obj.setIDPais(idPais);
     cout << "ID actual: " << obj.getID();
     system("pause");
+    cout<< "INGRESE SU PAIS (SOLO LATAM) : ";
+    cargarCadena(pais,29);
     int IdBiblioteca = designarBiblioteca(obj.getID());
     cout<< "ID de biblioteca seteada como: "<< IdBiblioteca<<endl;
     cout << "ID DEL NUEVO USUARIO SETEADA COMO: " << obj.getID() << endl;
@@ -2530,6 +2532,7 @@ void grabarRegistroadmin(int idCuentaHabilitar)
     Admin adm;
     archivoUsuario arcU("archivos/usuario.dat");
     usuario usu;
+
     int tam = arcU.contarRegistros();
     for (int i = 0; i<tam ; i++)
     {
@@ -2540,7 +2543,7 @@ void grabarRegistroadmin(int idCuentaHabilitar)
             adm.setNombre(usu.getNombre());
             adm.setDNI(usu.getDNI());
             adm.setEdad(usu.getEdad());
-            adm.setIDPais(usu.getIDPais());
+            ///FALTA AGREGARLE EL GET PAIS JAJASSS
             adm.setMail(usu.getMail());
             adm.setAdmin(true);
             cout << endl << "TEXTOS PARA VERIFICAR QUE TODO FUNCIONE CORRECTAMENTE XD" << endl  << "Datos a grabar:" << endl;
@@ -2755,4 +2758,20 @@ void cargarPuntoRestauracion()
     cout << "Registros cargados al punto de restauracion correctamente!" << endl;
     system("pause");
     system("cls");
+}
+
+
+
+void cargarPaises(){
+
+archivoPais arcP("archivos/pais");
+Pais obj;
+int tam = arcP.contarRegistros();
+for (int i= 0; i<150;i++ ){
+
+
+
+}
+
+
 }
