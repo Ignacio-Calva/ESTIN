@@ -485,10 +485,17 @@ void inicioSesion()
 
 void grabarRegistroUsuario()
 {
+    system("cls");
+    cout << "         REGISTRO USUARIO       " << endl;
+    cout << "================================" << endl;
     usuario obj, objAux;
     archivoUsuario archivo("archivos/Usuario.dat");
-    bool existe = false;
-    obj.cargarDatos();
+    char nombre[30];
+    char contra[20];
+    int edad;
+    int dni;
+    char mail[30];
+    int idPais;
     int tam=archivo.contarRegistros();
     if (tam > 0)
     {
@@ -499,30 +506,70 @@ void grabarRegistroUsuario()
     {
         obj.setID(1);
     }
-    if (tam > 0)
+    cout << "INGRESE EL NOMBRE DE USUARIO: ";
+    cargarCadena(nombre, 29);
+    for (int i=0 ; i < tam ; i++)
     {
-        for (int i = 0 ; i < tam ; i++)
+        objAux = archivo.leerRegistros(i);
+        if (strcmp(nombre,objAux.getNombre())==0 || strcmp(nombre,"admin")==0)
         {
-            objAux = archivo.leerRegistros(i);
-            if (strcmp(obj.getNombre(),objAux.getNombre())==0)
-            {
-                existe = true;
-                break;
-            }
-            else
-            {
-                existe = false;
-            }
+            cout << "El nombre de usuario ya esta en uso." << endl;
+            system("pause");
+            system("cls");
+            return;
+        }
+        else if (strcmp(nombre,"")==0)
+        {
+            cout << "No puede dejar este campo vacio." << endl;
+            system("pause");
+            system("cls");
+            return;
         }
     }
-
-    if (existe)
+    obj.setNombre(nombre);
+    cout << "INGRESE LA CONTRASENIA DEL USUARIO: ";
+    cargarCadena(contra, 19);
+    if (strcmp(contra,"")==0)
     {
-        cout << "USUARIO EXISTENTE." << endl;
+        cout << "No puede dejar este campo vacio." << endl;
         system("pause");
+        system("cls");
         return;
     }
-
+    obj.setContrasenia(contra);
+    cout<< "INGRESE SU EDAD: ";
+    cin>> edad;
+    if (edad <= 0)
+    {
+        cout << "La edad debe ser mayor a 0." << endl;
+        system("pause");
+        system("cls");
+        return;
+    }
+    obj.setEdad(edad);
+    cout<< "INGRESE SU DNI: ";
+    cin>> dni;
+    if (dni < 0)
+    {
+        cout << "El DNI debe ser mayor a 0." << endl;
+        system("pause");
+        system("cls");
+        return;
+    }
+    obj.setDNI(dni);
+    cout<< "INGRESE SU MAIL: ";
+    cargarCadena(mail, 29);
+    if (strcmp(mail,"")==0)
+    {
+        cout << "No puede dejar este campo vacio." << endl;
+        system("pause");
+        system("cls");
+        return;
+    }
+    obj.setMail(mail);
+    cout<< "INGRESE EL ID DE SU PAIS: ";
+    cin>> idPais;
+    obj.setIDPais(idPais);
     int IdBiblioteca = designarBiblioteca(obj.getID());
     cout<< "ID de biblioteca seteada como: "<< IdBiblioteca<<endl;
     cout << "ID DEL NUEVO USUARIO SETEADA COMO: " << obj.getID() << endl;
