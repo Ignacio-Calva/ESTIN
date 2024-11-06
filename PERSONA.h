@@ -3,7 +3,7 @@
 #include "funciones.h"
 #include "PAIS.h"
 
-class Persona : public Fecha
+class Persona //: public Fecha
 {
     private:
         char NombreUsuario[30] = {};

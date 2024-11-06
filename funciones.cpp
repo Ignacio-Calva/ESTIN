@@ -750,7 +750,6 @@ void grabarRegistroUsuario()
     obj.setEdad(edad);
     cout<< "TU EDAD ES: " << edad << endl;
     system("pause");
-
     cout<< "INGRESE SU DNI: ";
     cin>> dni;
     if (dni < 0)
@@ -762,8 +761,8 @@ void grabarRegistroUsuario()
     }
     for (int i = 0; i < tam; i++)
     {
-        obj = archivo.leerRegistros(i);
-        if (dni == obj.getDNI())
+        objAux = archivo.leerRegistros(i);
+        if (dni == objAux.getDNI())
         {
             cout<< "Ya existe una cuenta con dicho DNI." << endl;
             system("pause");
@@ -783,8 +782,8 @@ void grabarRegistroUsuario()
     }
     for (int i = 0; i < tam; i++)
     {
-        obj = archivo.leerRegistros(i);
-        if (strcmp(mail, obj.getMail()))
+        objAux = archivo.leerRegistros(i);
+        if (strcmp(mail, objAux.getMail())==0)
         {
             cout<< "Ya existe una cuenta con dicho mail." << endl;
             system("pause");
@@ -796,6 +795,8 @@ void grabarRegistroUsuario()
     cout<< "INGRESE EL ID DE SU PAIS: ";
     cin>> idPais;
     obj.setIDPais(idPais);
+    cout << "ID actual: " << obj.getID();
+    system("pause");
     int IdBiblioteca = designarBiblioteca(obj.getID());
     cout<< "ID de biblioteca seteada como: "<< IdBiblioteca<<endl;
     cout << "ID DEL NUEVO USUARIO SETEADA COMO: " << obj.getID() << endl;
