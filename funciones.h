@@ -59,6 +59,8 @@ void menuAdministrador();
 void modificarVideojuego();
 void deshabilitarVideojuego();
 void habilitarVideojuego();
+void listarVideojuegosMod();
+bool menuModificarVideojuego(int idJuego);
 void deshabilitarCuentaUsuario();
 void habilitarCuentaUsuario();
 void otorgarAdmin();
