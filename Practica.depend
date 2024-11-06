@@ -42,7 +42,11 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\funciones.cpp
 
+<<<<<<< Updated upstream
 1730472741 source:c:\users\admin\documents\github\estin\funciones.cpp
+=======
+1730918757 source:c:\users\admin\documents\github\estin\funciones.cpp
+>>>>>>> Stashed changes
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -83,7 +87,11 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\valeam.cpp
 
+<<<<<<< Updated upstream
 1730422607 c:\users\admin\documents\github\estin\funciones.h
+=======
+1730917514 c:\users\admin\documents\github\estin\funciones.h
+>>>>>>> Stashed changes
 	<cstring>
 
 1728148751 c:\users\admin\documents\github\estin\clases.h
@@ -117,7 +125,11 @@
 	"USUARIO.h"
 	"funciones.h"
 
+<<<<<<< Updated upstream
 1730472741 c:\users\admin\documents\github\estin\videojuego.h
+=======
+1730915264 c:\users\admin\documents\github\estin\videojuego.h
+>>>>>>> Stashed changes
 	"funciones.h"
 
 1730422486 c:\users\admin\documents\github\estin\biblioteca.h
