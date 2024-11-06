@@ -385,14 +385,16 @@ bool menuModificarVideojuego(int idJuego)
             return true;
             break;
         case 10:
-            cout<<"nombre: ";
+            cout<< "---- ID: " << idJuego << " ----"<<endl<<endl;
+            cout<<"Ingrese el nuevo nombre: ";
             cargarCadena(pal, 29);
+
             for (int i = 0; i < tam; i++)
             {
                 game = arcV.leerRegistros(i);
-                if (pal==game.getTitulo())
+                if (strcmp(pal, game.getTitulo())==0)
                 {
-                   cout<<"Ya existe un videojuego con ese nombre.";
+                    cout<<"Ya existe un videojuego con ese nombre.";
                     system("pause");
                     system("cls");
                     return false;
@@ -400,28 +402,28 @@ bool menuModificarVideojuego(int idJuego)
             }
             game = arcV.leerRegistros(idJuego-1);
             game.setTitulo(pal);
-            cout<<"genero: ";
+            cout<<"Ingrese el nuevo genero: ";
             cargarCadena(pal, 29);
             game.setGenero(pal);
-            cout<<"precio: ";
+            cout<<"Ingrese el nuevo precio: ";
             cin>>num2;
             game.setPrecio(num2);
-            cout<<"calificacion: ";
+            cout<<"Ingrese la nueva calificacion: ";
             cin>>num2;
             game.setCalificacion(num2);
-            cout<<"idioma: ";
+            cout<<"Ingrese el nuevo idioma: ";
             cargarCadena(pal, 29);
             game.setIdioma(pal);
-            cout<<"desarrollador: ";
+            cout<<"Ingrese el nuevo desarrollador: ";
             cargarCadena(pal, 29);
             game.setDesarrollador(pal);
-            cout<<"peso: ";
+            cout<<"Ingrese el nuevo peso: ";
             cin>>num1;
             game.setPeso(num1);
-            cout<<"restriccion: ";
+            cout<<"Ingrese la nueva restriccion: ";
             cin>>num1;
             game.setRestriccionEdad(num1);
-            cout<<"anio: ";
+            cout<<"Ingrese el nuevo anio: ";
             cin>>num1;
             game.setAnio(num1);
             arcV.modificarVideojuego(game, idJuego-1);
