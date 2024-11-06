@@ -2,6 +2,7 @@
 #define ADMIN_H_INCLUDED
 #include "funciones.h"
 #include "PERSONA.h"
+#include "PAIS.h"
 
 class Admin : public Persona
 {

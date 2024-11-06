@@ -156,7 +156,7 @@
 	"ADMIN.h"
 	<windows.h>
 
-1730891031 c:\users\user\desktop\estin\funciones.h
+1730926933 c:\users\user\desktop\estin\funciones.h
 	<cstring>
 	"FECHA.h"
 	"VIDEOJUEGO.h"
@@ -177,7 +177,7 @@
 	"USUARIO.h"
 	"BIBLIOTECA.h"
 
-1730769860 c:\users\user\desktop\estin\biblioteca.h
+1730926933 c:\users\user\desktop\estin\biblioteca.h
 	"funciones.h"
 	"FECHA.h"
 
@@ -225,8 +225,9 @@
 1730668376 d:\facultad\tecnicatura programación\programación\estin\persona.h
 	"funciones.h"
 
-1730916813 c:\users\user\desktop\estin\persona.h
+1730931492 c:\users\user\desktop\estin\persona.h
 	"funciones.h"
+	"PAIS.h"
 
 1730538296 c:\users\user\desktop\facultad\estin-main\estin\persona.h
 	"funciones.h"
@@ -249,4 +250,6 @@
 1730680579 c:\users\user\desktop\facultad\estin-main\estin\admin.h
 	"funciones.h"
 	"PERSONA.h"
+
+1730930364 c:\users\user\desktop\estin\pais.h
 

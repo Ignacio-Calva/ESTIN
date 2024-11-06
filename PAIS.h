@@ -16,6 +16,9 @@ public:
     void mostrar(){
     cout<<"Su pais es: "<< nombrePais <<endl;
     }
+
+    void setNombrePais(const char * n){strcpy(nombrePais, n);}
+    const char * getNombrePais(){return nombrePais;}
 };
 
 class archivoPais{
