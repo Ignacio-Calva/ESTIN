@@ -8,7 +8,7 @@ private:
     int idVideojuego = 0;
     char titulo[30];
     char genero[30];
-    int precio;
+    float precio;
     float calificacion;
     char idioma[30];
     char desarrollador[30];
@@ -56,7 +56,7 @@ public:
 
     void setTitulo(char* _titulo){strcpy(titulo,_titulo);}
     void setGenero(char* _genero){strcpy(genero,_genero);}
-    void setPrecio(int _precio){precio = _precio;}
+    void setPrecio(float _precio){precio = _precio;}
     void setCalificacion(float _calificacion){calificacion = _calificacion;}
     void setIdioma(char* _idioma){strcpy(idioma,_idioma);}
     void setDesarrollador(char* _desarrollador){strcpy(desarrollador,_desarrollador);}
@@ -67,7 +67,7 @@ public:
     void setActivo(bool _activo){activo=_activo;}
     char* getTitulo(){return titulo;}
     char* getGenero(){return genero;}
-    int getPrecio(){return precio;}
+    float getPrecio(){return precio;}
     float getCalificacion(){return calificacion;}
     char* getIdioma(){return idioma;}
     char* getDesarrollador(){return desarrollador;}

@@ -323,7 +323,6 @@ void mostrarTitulo(const string &titulo)
     setConsoleColor(8, 0);
 }
 
-
 void inicioSesion()
 {
     while (true)
@@ -427,6 +426,43 @@ void inicioSesion()
     }
 }
 
+Fecha compararFecha(Fecha fecha1, Fecha fecha2) ///DEVUELVE LA FECHA MAS CHICA
+{
+    if(fecha1.getAnio() < fecha2.getAnio())
+    {
+        return fecha1;
+    }
+    else if(fecha2.getAnio() < fecha1.getAnio())
+    {
+        return fecha2;
+    }
+    else  //LOS DOS AÑOS SON IGUALES
+    {
+        if (fecha1.getMes() < fecha2.getMes())
+        {
+            return fecha1;
+        }
+        else if (fecha2.getMes() < fecha1.getMes())
+        {
+            return fecha2;
+        }
+        else //LOS DOS MESES SON IGUALES
+        {
+            if (fecha1.getDia() < fecha2.getDia())
+            {
+                return fecha1;
+            }
+            else if(fecha2.getDia() < fecha1.getDia())
+            {
+                return fecha2;
+            }
+            else
+            {
+                return fecha1;   //LAS DOS FECHAS SON IGUALES, RETORNA LA PRIMERA
+            }
+        }
+    }
+}
 
 
 ///FUNCIONES USUARIO
@@ -841,7 +877,6 @@ cargarCadena(genero, 29);
     }
 }
 
-
 void bibliotecaXdesarrollador(int idIniciada)
 {
 
@@ -925,7 +960,9 @@ cin>> anio;
     }
 }
 
+
 ///FUNCIONES VIDEOJUEGOS
+
 
 void comprarJuego(int idVideojuego)
 {
@@ -1108,8 +1145,8 @@ void mostrarPorPrecio()
     archivoUsuario arcU("archivos/Usuario.dat");
     usuario usu;
     int tam = arcV.contarRegistros();
-    int montoMax = 0;
-    int montoMin = 0;
+    float montoMax = 0;
+    float montoMin = 0;
     int contGame = 0;
     int juegosListados[150] = {};
     int tam2 = 0;
@@ -1134,6 +1171,7 @@ void mostrarPorPrecio()
             juegosListados[tam2] = game.getidVideojuego();
             tam2++;
             contGame++;
+
         } else if ((montoMin <= game.getPrecio()) && (game.getPrecio() <= montoMax) && !game.getActivo() && usu.getEdad() >= game.getRestriccion()) {
             cout << "*JUEGO DESHABILITADO" << endl;
             contGame++;
@@ -1142,12 +1180,13 @@ void mostrarPorPrecio()
             contGame++;
         }
     }
-
     if (contGame == 0) {
         system("CLS");
         setConsoleColor(4, 0);
         cout << "No hay ningun juego con ese monto." << endl;
         setConsoleColor(15, 0);
+         system("PAUSE");
+
     } else {
         comprarJuegosListados(juegosListados, tam2);
     }
@@ -1383,6 +1422,7 @@ void listarPorGratuito()
 
 
 ///FUNCIONES ADMIN
+
 
 void videojuegoMasVendidoGenero()
 {
@@ -1937,83 +1977,6 @@ void listarAdmins()
 
 }
 
-Fecha compararFecha(Fecha fecha1, Fecha fecha2) ///DEVUELVE LA FECHA MAS CHICA
-{
-    if(fecha1.getAnio() < fecha2.getAnio())
-    {
-        return fecha1;
-    }
-    else if(fecha2.getAnio() < fecha1.getAnio())
-    {
-        return fecha2;
-    }
-    else  //LOS DOS AÑOS SON IGUALES
-    {
-        if (fecha1.getMes() < fecha2.getMes())
-        {
-            return fecha1;
-        }
-        else if (fecha2.getMes() < fecha1.getMes())
-        {
-            return fecha2;
-        }
-        else //LOS DOS MESES SON IGUALES
-        {
-            if (fecha1.getDia() < fecha2.getDia())
-            {
-                return fecha1;
-            }
-            else if(fecha2.getDia() < fecha1.getDia())
-            {
-                return fecha2;
-            }
-            else
-            {
-                return fecha1;   //LAS DOS FECHAS SON IGUALES, RETORNA LA PRIMERA
-            }
-        }
-    }
-}
-
-//void listarPorOrdenes()
-//{
-//    int opcion = 1;
-//    archivoVideoJuego archivoTienda("archivos/videoJuego.dat");
-//    while (opcion!=0)
-//    {
-//        system("cls");
-//        cout << "===================================" << endl;
-//        cout << "   SELECCIONE EL FILTRO DESEADO"     << endl;
-//        cout << "===================================" << endl;
-//        cout << " (1) - Listar por anio"              << endl;
-//        cout << " (2) - Desarrollar"                  << endl;
-//        cout << " (3) - Desarrollar"                  << endl;
-//        cout << " (4) - Desarrollar"                  << endl;
-//        cout << " (0) - SALIR"                        << endl;
-//        cout << "===================================" << endl;
-//        cout << "Ingrese una opcion: ";
-//        cin >> opcion;
-//        switch (opcion)
-//        {
-//        case 1:
-//            listarOrdenAnio(archivoTienda);
-//            break;
-//        case 2:
-//            break;
-//        case 3:
-//            break;
-//        case 4:
-//            break;
-//        case 0:
-//            break;
-//        default:
-//            cout << "Opcion invalida. Por favor, elija una opcion valida" << endl;
-//            system("pause");
-//            break;
-//        }
-//    }
-//}
-
 bool hayUnAdmin()
 {
 Admin admin;
@@ -2113,3 +2076,41 @@ return;
 }
 
 
+//void listarPorOrdenes()
+//{
+//    int opcion = 1;
+//    archivoVideoJuego archivoTienda("archivos/videoJuego.dat");
+//    while (opcion!=0)
+//    {
+//        system("cls");
+//        cout << "===================================" << endl;
+//        cout << "   SELECCIONE EL FILTRO DESEADO"     << endl;
+//        cout << "===================================" << endl;
+//        cout << " (1) - Listar por anio"              << endl;
+//        cout << " (2) - Desarrollar"                  << endl;
+//        cout << " (3) - Desarrollar"                  << endl;
+//        cout << " (4) - Desarrollar"                  << endl;
+//        cout << " (0) - SALIR"                        << endl;
+//        cout << "===================================" << endl;
+//        cout << "Ingrese una opcion: ";
+//        cin >> opcion;
+//        switch (opcion)
+//        {
+//        case 1:
+//            listarOrdenAnio(archivoTienda);
+//            break;
+//        case 2:
+//            break;
+//        case 3:
+//            break;
+//        case 4:
+//            break;
+//        case 0:
+//            break;
+//        default:
+//            cout << "Opcion invalida. Por favor, elija una opcion valida" << endl;
+//            system("pause");
+//            break;
+//        }
+//    }
+//}
