@@ -18,15 +18,15 @@ public:
     }
 };
 
-class archivoPais(){
+class archivoPais{
 
 private:
-    const char nombre;
+    char nombre[30];
 
-public
-archivoPais(const char *n){strpy(nombre, n);}
+public:
+archivoPais(const char *n){strcpy(nombre, n);}
 
-leerRegistros(int pos)
+    Pais leerRegistros(int pos)
     {
         Pais obj;
         FILE *P=fopen(nombre, "rb");

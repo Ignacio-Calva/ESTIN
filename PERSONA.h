@@ -1,7 +1,7 @@
 #ifndef PERSONA_H_INCLUDED
 #define PERSONA_H_INCLUDED
 #include "funciones.h"
-
+#include "PAIS.h"
 class Persona : public Fecha
 {
     private:
@@ -34,7 +34,6 @@ class Persona : public Fecha
             numTarjeta = 0;
             admin = false;
         }
-
         void cargarDatosPersona()
         {
             cout << "INGRESE EL NOMBRE DE USUARIO: ";
