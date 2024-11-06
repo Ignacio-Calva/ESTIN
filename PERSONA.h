@@ -2,15 +2,17 @@
 #define PERSONA_H_INCLUDED
 #include "funciones.h"
 
-class Persona
+class Persona : public Fecha
 {
     private:
         char NombreUsuario[30] = {};
         char Contrasenia[20] = {};
-        int Edad; //agregué nuevas variables
+        Fecha fechaNacimiento;
         int DNI;
+        int Edad;
         char Mail[30] = {};
         int IDPais;
+        Pais nombrePais;
         int numTarjeta;
         bool admin = false;
     public:
@@ -19,7 +21,13 @@ class Persona
         {
             strcpy(NombreUsuario,_nombre);
             strcpy(Contrasenia,_contra);
-            Edad = 0;
+
+            fechaNacimiento.setAnio(0);
+            fechaNacimiento.setMes(0);
+            fechaNacimiento.setDia(0);
+
+            Edad=(2024 - fechaNacimiento.getAnio());
+
             DNI = 0;
             Mail[0] = 0;
             IDPais = 0;
@@ -33,8 +41,9 @@ class Persona
             cargarCadena(NombreUsuario, 29);
             cout << "INGRESE LA CONTRASENIA DEL USUARIO: ";
             cargarCadena(Contrasenia, 19);
-            cout<< "INGRESE SU EDAD: ";
-            cin>> Edad;
+            cout<< "INGRESE SU FECHA DE NACIMIENTO: ";
+            fechaNacimiento.cargar();
+            Edad = fechaNacimiento.getAnioActual() - fechaNacimiento.getAnio();
             cout<< "INGRESE SU DNI: ";
             cin>> DNI;
             cout<< "INGRESE SU MAIL: ";
@@ -55,7 +64,8 @@ class Persona
 
         void setNombre(const char *n){strcpy(NombreUsuario, n);}
         void setContrasenia(const char *c){strcpy(Contrasenia, c);}
-        void setEdad(int e){Edad=e;}
+        void setFechaNacimiento(Fecha f){ fechaNacimiento = f;}
+        void setEdad(int e){ Edad = e;}
         void setDNI(int d){DNI=d;}
         void setMail(const char *m){strcpy(Mail, m);}
         void setIDPais(int p){IDPais=p;}
