@@ -47,14 +47,16 @@ class Biblioteca{
     public:
         void mostrar()
         {
-            cout << "Videojuegos comprados: " << endl;
             for (int i = 0; i < 150; i++)
             {
                 if (idVideojuego[i]>0)
                 {
-                    cout<< "ID videojuego: " << idVideojuego[i] << "   comprado el: "; fechaCompra[i].mostrar();
+
+                    cout<< "ID videojuego: " << idVideojuego[i] << " --- comprado el: "; fechaCompra[i].mostrar();
+                    cout<< "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
                 }
             }
+            cout<<endl;
         }
 
         void setIdUsuario(int _mas){idUsuario = _mas;}

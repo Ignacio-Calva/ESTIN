@@ -328,7 +328,7 @@ bool menuModificarVideojuego(int idJuego)
             }
             if (num2 > 100)
             {
-               system("cls");
+                system("cls");
                 setConsoleColor(4,0);
                 cout<<"La calificacion no puede ser mayor que 100 .";
                 setConsoleColor(15,0);
@@ -839,6 +839,7 @@ void infoCuenta() //nueva funcion
                 {
                 case 1:
                     bajaUsuario(idIniciada);
+                    return;
                     break;
                 case 2:
                     aniadirTarjeta(idIniciada);
@@ -936,6 +937,7 @@ int designarBiblioteca(int idUsuario)
 
 void aniadirTarjeta(int idIniciada)
 {
+    system("cls");
     usuario obj;
     archivoUsuario arcU("archivos/Usuario.dat");
     int pos = buscarUsuarioPorID(idIniciada);
@@ -1104,11 +1106,16 @@ void bibliotecaXnombre(int idIniciada)
 
     int cantReg = arcV.contarRegistros();
     int tam = arcB.contarRegistros();
+    bool salir=false;
+
+    system("cls");
 
     char nombre [30];
-    cout<<"-----------------------------------------"<<endl;
-    cout<<" Ingrese el titulo que quiere buscar en su biblioteca : ---->"<<endl;
+    cout<<"-----------------------------------------------------------------------------------"<<endl;
+    cout<<"Ingrese el titulo que quiere buscar en su biblioteca: ";
     cargarCadena(nombre, 29);
+
+    system("cls");
 
     for (int j = 0; j<tam ; j++)
     {
@@ -1129,13 +1136,21 @@ void bibliotecaXnombre(int idIniciada)
                         if(game.getidVideojuego()== libro.getIdVideojuego(l))
                         {
                             setConsoleColor(15, 0);
-                            cout<< game.getidVideojuego()<< "---> " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
+                            cout<< "ID: " << game.getidVideojuego()<< " --- " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
                             setConsoleColor(8, 0);
-                            system("PAUSE");
+                            salir=true;
                         }
                     }
                 }
             }
+            if(salir==true)
+            {
+                system("PAUSE");
+                return;
+            }
+            setConsoleColor(15,0);
+            cout<<"No se encontro" << " ''" << nombre << "'' " << "en la biblioteca" <<endl;
+            system("pause");
         }
     }
 }
@@ -1151,11 +1166,16 @@ void bibliotecaXgenero(int idIniciada)
 
     int cantReg = arcV.contarRegistros();
     int tam = arcB.contarRegistros();
+    bool salir=false;
+
+    system("cls");
 
     char genero [30];
-    cout<<"-----------------------------------------"<<endl;
-    cout<<" Ingrese el genero que quiere buscar en su biblioteca : ---->"<<endl;
+    cout<<"-----------------------------------------------------------------------------------"<<endl;
+    cout<<"Ingrese el genero que quiere buscar en su biblioteca: ";
     cargarCadena(genero, 29);
+
+    system("cls");
 
     for (int j = 0; j<tam ; j++)
     {
@@ -1176,14 +1196,21 @@ void bibliotecaXgenero(int idIniciada)
                         if(game.getidVideojuego()== libro.getIdVideojuego(l))
                         {
                             setConsoleColor(15, 0);
-                            cout<< game.getidVideojuego()<< "---> " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
+                            cout<< "ID: " << game.getidVideojuego()<< " --- " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
                             setConsoleColor(8, 0);
-
+                            salir=true;
                         }
                     }
-                    system("PAUSE");
                 }
             }
+            if (salir==true)
+            {
+                system("PAUSE");
+                return;
+            }
+            setConsoleColor(15,0);
+            cout<<"No se encontro el genero" << " ''" << genero << "'' " << "en la biblioteca" <<endl;
+            system("pause");
         }
     }
 }
@@ -1199,11 +1226,16 @@ void bibliotecaXdesarrollador(int idIniciada)
 
     int cantReg = arcV.contarRegistros();
     int tam = arcB.contarRegistros();
+    bool salir=false;
+
+    system("cls");
 
     char desarrollador [30];
-    cout<<"-----------------------------------------"<<endl;
-    cout<<" Ingrese el desarrollador que quiere buscar en su biblioteca : ---->"<<endl;
+    cout<<"-----------------------------------------------------------------------------------"<<endl;
+    cout<<"Ingrese el desarrollador que quiere buscar en su biblioteca: ";
     cargarCadena(desarrollador, 29);
+
+    system("cls");
 
     for (int j = 0; j<tam ; j++)
     {
@@ -1224,14 +1256,21 @@ void bibliotecaXdesarrollador(int idIniciada)
                         if(game.getidVideojuego()== libro.getIdVideojuego(l))
                         {
                             setConsoleColor(15, 0);
-                            cout<< game.getidVideojuego()<< "---> " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
+                            cout<< "ID: " << game.getidVideojuego()<< " --- " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
                             setConsoleColor(8, 0);
-
+                            salir=true;
                         }
                     }
-                    system("PAUSE");
                 }
             }
+            if (salir==true)
+            {
+                system("PAUSE");
+                return;
+            }
+            setConsoleColor(15,0);
+            cout<<"No se encontro el desarrollador" << " ''" << desarrollador << "'' " << "en la biblioteca" <<endl;
+            system("pause");
         }
     }
 }
@@ -1296,6 +1335,8 @@ void registroCompras()
     int tam = arcB.contarRegistros();
     float totalGastado;
 
+    system("cls");
+
     cout<<"<<------------------COMPRAS TOTALES DE VIDEOJUEGOS----------------------->>"<<endl;
 
     for (int j = 0; j<tam ; j++)
@@ -1303,9 +1344,8 @@ void registroCompras()
         libro = arcB.leerBiblioteca(j);
         if(libro.getIdUsuario() == idIniciada)
         {
-            cout<<"BIBLIOTECA CON ID : "<< libro.getIdUsuario()<<endl;
-            cout<<"Juegos obtenidos : "<<endl;
-            cout<<"-------------------------------------------"<<endl;
+    cout<<"                            BIBLIOTECA CON ID: "<< libro.getIdUsuario()<<"                       "<<endl;
+    cout<<"<<----------------------------------------------------------------------->>"<<endl;
             for (int i = 0; i < cantReg; i++)
             {
                 game = arcV.leerRegistros(i);
@@ -1369,6 +1409,7 @@ void comprarJuego(int idVideojuego)
             }
             else if (usu.getTarjet() == 0)
             {
+                system("cls");
                 cout<<"No tienes alguna tarjeta asociada."<<endl;
                 cout<<"Desea aniadir una a su cuenta?"<<endl<<endl;
                 cout<<"1 - Si"<<endl;
@@ -1498,6 +1539,7 @@ void bajaUsuario(int idIniciada)
     usuario obj;
     archivoUsuario arcU("archivos/Usuario.dat");
     int pos = buscarUsuarioPorID(idIniciada);
+    system("cls");
     if(pos<0)
     {
         cout<<"Error al modificar usuario."<<endl;
@@ -2147,14 +2189,14 @@ void listarVideojuegosMod()
     videoJuego game;
 
     int tam = arcV.contarRegistros();
-system("cls");
+    system("cls");
     for (int i = 0; i < tam; i++)
-        {
-            game = arcV.leerRegistros(i);
-            cout<< endl << "----- ID: " << i+1 << " -----" << endl;
-            game.mostrar();
-        }
-        system("pause");
+    {
+        game = arcV.leerRegistros(i);
+        cout<< endl << "----- ID: " << i+1 << " -----" << endl;
+        game.mostrar();
+    }
+    system("pause");
 }
 
 void deshabilitarCuentaUsuario()
@@ -2184,12 +2226,14 @@ void deshabilitarCuentaUsuario()
                 {
                     usu.setActivo(false);
                     arcU.modificarUsuario(usu,i);
+                    system("cls");
                     cout << "El usuario ha sido deshabilitado correctamente." << endl;
                     system("pause");
                     system("cls");
                 }
                 else
                 {
+                    system("cls");
                     cout << "No se puede deshabilitar una cuenta de administrador." << endl;
                     system("pause");
                     system("cls");
