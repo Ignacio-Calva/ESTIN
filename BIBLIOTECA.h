@@ -3,42 +3,6 @@
 #include "funciones.h"
 #include "FECHA.h"
 
-//class biblioteca
-//{
-//private:
-//    int ID_Usuario;
-//    int idVideojuego;
-//    int idTrofeo;
-//    int cantVideojuegos = 0;
-//    float horasRegistradas;
-//public:
-//    void cargar()
-//    {
-//        cout << "INGRESE ID DE VIDEOJUEGO: " ;
-//        cin >> idVideojuego ;
-//        cout << "INGRESE ID DE TROFEO: " ;
-//        cin >> idTrofeo ;
-//        cout<< "INGRESE CANTIDAD DE VIDEOJUEGOS: ";
-//        cin>> cantVideojuegos;
-//        horasRegistradas = 0;
-//        cout << "JUEGO CARGADO EN LA BIBLIOTECA CORRECTAMENTE. " << endl;
-//    }
-//    void mostrar()
-//    {
-//        cout << "ID DE VIDEOJUEGO: " << idVideojuego << endl;
-//        cout << "ID DE TROFEO: " << idTrofeo << endl;
-//        cout<< "VIDEOJUEGOS: " << cantVideojuegos << endl;
-//        cout << "HORAS REGISTRADAS: " << horasRegistradas<< endl;
-//    }
-//    void setIdVideojuego(int id){idVideojuego = id;}
-//    void setIdTrofeo(int id){idTrofeo = id;}
-//    void setHorasRegistradas(float horas){horasRegistradas = horas;}
-//
-//    int getIdVideojuego(){return idVideojuego;}
-//    int getIdTrofeo(){return idTrofeo;}
-//    float getHorasRegistradas(){return horasRegistradas;}
-//};
-
 class Biblioteca{
     private:
         int idUsuario;

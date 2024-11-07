@@ -5,7 +5,9 @@ using namespace std;
 #include "VIDEOJUEGO.h"
 #include "BIBLIOTECA.h"
 #include "USUARIO.h"
+#include "DESARROLLADOR.h"
 #include "ADMIN.h"
+#include "GENERO.h"
 #include <windows.h>
 #include <conio.h>
 
@@ -991,7 +993,7 @@ int designarBiblioteca(int idUsuario)
 void aniadirTarjeta(int idIniciada)
 {
     system("cls");
-    setConsoleColor(1, 2);
+    setConsoleColor(0, 2);
         cout<<"==============================" << endl;
         cout<<"       ASIGNAR  TARJETA       "<<endl;
         cout<<"==============================" << endl<<endl;
@@ -1564,12 +1566,24 @@ void listarPorGenero()
     int juegosListados[150] = {};
     int tam = 0;
     int contgame=0;
+
+    archivoGenero arcG("archivos/genero.dat");
+    Genero obj;
+    int tamanio= arcG.contarRegistros();
+
     system("cls");
         setConsoleColor(15, 3);
         cout<<"==============================" << endl;
         cout<<"        FILTRO GENERO         "<<endl;
         cout<<"==============================" << endl<<endl;
         setConsoleColor(15,0);
+
+
+    for (int i = 0;i<tamanio;i++ ){
+    obj= arcG.leerRegistros(i);
+    obj.mostrar();
+    }
+
     usu = arcU.leerRegistros(datosUsuarioIniciado());
     cout << "--------------------------------------------------------------------------" << endl;
     cout << "Filtro aplicado: " << genero << endl;
@@ -1840,8 +1854,6 @@ void listarPorAnio()
 
 void cargarVideojuego()
 {
-
-
     system("CLS");
     archivoVideoJuego arcV("archivos/videoJuego.dat");
     videoJuego game;
@@ -1856,21 +1868,75 @@ void cargarVideojuego()
 
     int tam=arcV.contarRegistros();
     for (int i = 0; i < tam; i++)
+    {
+        game = arcV.leerRegistros(i);
+        if (strcmp(nombre, game.getTitulo())==0)
         {
-            game = arcV.leerRegistros(i);
-         if (strcmp(nombre, game.getTitulo())==0)
-             {
-                 cout<<"Dicho videojuego ya se encuentra en el sistema.";
-                 system("pause");
-                 return;
-             }
+            cout<<"Dicho videojuego ya se encuentra en el sistema.";
+            system("pause");
+            return;
         }
+    }
     game.setTitulo(nombre);
     game.cargar();
+        //if (game.getPrecio()<0  game.getCalificacion() < 0  game.getPeso() < 0 || game.getRestriccion() < 0)
+  //  {
+   //     return;
+ //   }
+    Genero gene, geneAux;
+    archivoGenero arcG("archivos/genero.dat");
+    bool existeG=false;
+    int tamG = arcG.contarRegistros();
+    gene.setNombre(game.getGenero());
+    for (int i = 0; i < tamG; i++)
+    {
+        geneAux = arcG.leerRegistros(i);
+        cout << "Registro N" << i << " Genero: " << geneAux.getNombre() << endl;
+        if (compararSinMayusculas(geneAux.getNombre(), gene.getNombre()))
+        {
+            existeG = true;
+            break;
+        }
+    }
+    if (existeG == false)
+    {
+        arcG.grabarRegistros(gene);
+        cout<<"se aniadio un nuevo genero al sistema." <<endl;
+    }
+
     gameAnt = arcV.leerRegistros(tam-1); //CARGA LOS DATOS DEL ULTIMO REGISTRO
     game.setidVideojuego(gameAnt.getidVideojuego()+1);
 
+
+    /////////////////////////////////////////////////////////////////////////////
+
+    char dev[30];
+    Desarrollador devAux;
+    Desarrollador objDev;
+    archivoDesarrollador archivoDev("archivos/desarrolladores.dat");
+    int tamDev = archivoDev.contarRegistros();
+    bool existe=false;
+    strcpy(dev,game.getDesarrollador());
+    cout << "Desarrollador a grabar: " << dev << endl;
+    objDev.setNombre(dev);
+    for (int i=0 ; i < tamDev ; i++)
+    {
+        devAux = archivoDev.leerRegistros(i);
+        cout << "Registro N" << i << ". Desarrollador: " << devAux.getNombre() << endl;
+        if (compararSinMayusculas(devAux.getNombre(),objDev.getNombre()))
+        {
+            existe = true;
+            break;
+        }
+    }
+    if (existe == false)
+    {
+        archivoDev.grabarRegistros(objDev);
+        cout << "Se aniadio un nuevo desarrollador al sistema. " << endl;
+    }
+
     cout << "ID del nuevo videojuego seteada como : " << game.getidVideojuego() << endl;
+
     arcV.grabarRegistros(game);
     system("pause");
 }
@@ -2953,3 +3019,31 @@ void cargarPuntoRestauracion()
     system("pause");
     system("cls");
 }
+
+
+/*
+void cargarGenerosLista(int ){
+
+archivoVideoJuego arcV ("archivos/videoJuego.dat");
+videoJuego game;
+
+archivoGenero arcG ("archivos/genero.dat");
+Genero gene;
+
+int tam = arcV.contarRegistros();
+bool existe;
+
+for (int i = 0; i<tam ;i++ ){
+
+    game = arcV.leerRegistros(i);
+
+    for (int i = 0; i < tam; i++)
+        {
+            if (strcmp())
+                ;
+        }
+
+
+
+}
+}*/
