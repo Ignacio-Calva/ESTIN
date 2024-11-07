@@ -23,12 +23,12 @@ int main()
 {
     int opcion1 = 1;
     while (opcion1 != 0)
-    {   setConsoleColor(15, 0);
-        system("CLS");
-        cout << "===============================" << endl;
-        cout << "         STIM                 " << endl;
-        cout << "===============================" << endl;
-        setConsoleColor(15, 0);
+    {   system("cls");
+        setConsoleColor(15, 1);
+        cout<<"==============================" << endl;
+        cout<<"            ESTIM             "<<endl;
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(15,0);
         cout << "1 - REGISTRARSE              " << endl;
         cout << "2 - INICIAR SESION           " << endl;
         cout << "0 - SALIR                    " << endl;

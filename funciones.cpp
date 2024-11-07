@@ -22,7 +22,7 @@ void menuPrincipal()
         setConsoleColor(15, 1);
         cout<<"==============================" << endl;
         cout<<"            ESTIM             "<<endl;
-        cout<<"==============================" << endl;
+        cout<<"==============================" << endl<<endl;
         setConsoleColor(3,0);
         cout<<"ID de cuenta iniciada: " << idIniciada<<endl;
         cout<<"1 - Listar VideoJuegos"<<endl;
@@ -30,6 +30,8 @@ void menuPrincipal()
         cout<<"3 - Biblioteca"<<endl;
         cout<<"4 - Cuenta"<<endl;
         cout<<"0 - cerrar"<<endl;
+        cout << "===================="<<endl<<endl;
+        cout << "Ingrese una opcion: ";
         cin>>opcion;
         switch (opcion)
         {
@@ -60,10 +62,10 @@ void menuBiblioteca()
     while (opcion!=0)
     {
         system("CLS");
-        setConsoleColor(15, 1);
+        setConsoleColor(15, 11);
         cout<<"==============================" << endl;
-        cout<<"      BIBLIOTECA ESTIM       "<<endl;
-        cout<<"==============================" << endl;
+        cout<<"      BIBLIOTECA ESTIM        "<<endl;
+        cout<<"==============================" << endl<<endl;
         setConsoleColor(3,0);
         cout<<"ID de cuenta iniciada: " << idIniciada<<endl;
         cout<<"1 - Listar biblioteca personal"<<endl;
@@ -448,7 +450,7 @@ void menuVideojuegosMasVendidos()
         cout << "(2) Videojuego mas vendido SEGUN GENERO" << endl;
         cout << "(3) Videojuego mas vendido SEGUN DESARROLLADOR" << endl;
         cout << "(4) Total vendido "<< endl;
-        cout << "=======================================" << endl;
+        cout << "=======================================" << endl<<endl;
         setConsoleColor(4,0);
         cout << "(0) SALIR." << endl;
         setConsoleColor(15,0);
@@ -824,7 +826,12 @@ void infoCuenta() //nueva funcion
         {
             while (opcion != 0)
             {
-                system("CLS");
+                system("cls");
+                setConsoleColor(15, 5);
+                cout<<"==============================" << endl;
+                cout<<"     INFO CUENTA PERSONAL     "<<endl;
+                cout<<"==============================" << endl<<endl;
+                setConsoleColor(15,0);
                 usu.mostrarDatos();
                 if (usu.getActivo() == false)
                 {
@@ -836,6 +843,8 @@ void infoCuenta() //nueva funcion
                 cout<<"1 - Deshabilitar cuenta"<<endl;
                 cout<<"2 - Asignar tarjeta"<<endl;
                 cout<<"0 - Salir"<<endl;
+                cout<<"======================="<<endl<<endl;
+                cout<<"Elija una opcion: ";
                 cin>>opcion;
                 switch (opcion)
                 {
@@ -940,6 +949,11 @@ int designarBiblioteca(int idUsuario)
 void aniadirTarjeta(int idIniciada)
 {
     system("cls");
+    setConsoleColor(1, 2);
+        cout<<"==============================" << endl;
+        cout<<"       ASIGNAR  TARJETA       "<<endl;
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(15,0);
     usuario obj;
     archivoUsuario arcU("archivos/Usuario.dat");
     int pos = buscarUsuarioPorID(idIniciada);
@@ -962,6 +976,12 @@ void aniadirTarjeta(int idIniciada)
     }
     cout<<"Ingrese el numero de tarjeta: ";
     cin>>num;
+    if (num < 0)
+        {
+            cout<<"Un numero de tarjeta JAMAS sera negativa." << endl;
+            system("pause");
+            return;
+        }
     obj.setTarjet(num);
     arcU.modificarUsuario(obj,pos);
     cout << "La tarjeta asignada a la cuenta es: " << obj.getTarjet() << endl;
@@ -1043,10 +1063,19 @@ void mostrarBibliotecaDeUsuario(int idIniciada)
         libro = arcB.leerBiblioteca(i);
         if(idIniciada == libro.getIdUsuario())
         {
-            system("cls");
+            system("CLS");
+        setConsoleColor(15, 11);
+        cout<<"==============================" << endl;
+        cout<<"      BIBLIOTECA ESTIM        "<<endl;
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(3,0);
+
             cout << "Mostrando biblioteca ID: " << libro.getIdUsuario() << endl;
-            cout << "Biblioteca del usuario ID: " << idIniciada << endl;
+            cout << "============================" << endl;
+            cout << "Biblioteca del usuario ID: " << idIniciada << endl << endl;
+            cout << "============================" << endl;
             libro.mostrar();
+            cout << "============================" << endl;
             cout << "Biblioteca del usuario ID: " << idIniciada << endl << endl;
             setConsoleColor(15,0);
             //libro.mostrar();
@@ -1110,14 +1139,24 @@ void bibliotecaXnombre(int idIniciada)
     int tam = arcB.contarRegistros();
     bool salir=false;
 
-    system("cls");
+    system("CLS");
+        setConsoleColor(15, 11);
+        cout<<"==============================" << endl;
+        cout<<"      BIBLIOTECA ESTIM        "<<endl;
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(3,0);
 
     char nombre [30];
     cout<<"-----------------------------------------------------------------------------------"<<endl;
     cout<<"Ingrese el titulo que quiere buscar en su biblioteca: ";
     cargarCadena(nombre, 29);
 
-    system("cls");
+   system("CLS");
+        setConsoleColor(15, 11);
+        cout<<"==============================" << endl;
+        cout<<"      BIBLIOTECA ESTIM        "<<endl;
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(3,0);
 
     for (int j = 0; j<tam ; j++)
     {
@@ -1170,14 +1209,24 @@ void bibliotecaXgenero(int idIniciada)
     int tam = arcB.contarRegistros();
     bool salir=false;
 
-    system("cls");
+    system("CLS");
+        setConsoleColor(15, 11);
+        cout<<"==============================" << endl;
+        cout<<"      BIBLIOTECA ESTIM        "<<endl;
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(3,0);
 
     char genero [30];
     cout<<"-----------------------------------------------------------------------------------"<<endl;
     cout<<"Ingrese el genero que quiere buscar en su biblioteca: ";
     cargarCadena(genero, 29);
 
-    system("cls");
+    system("CLS");
+        setConsoleColor(15, 11);
+        cout<<"==============================" << endl;
+        cout<<"      BIBLIOTECA ESTIM        "<<endl;
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(3,0);
 
     for (int j = 0; j<tam ; j++)
     {
@@ -1230,14 +1279,24 @@ void bibliotecaXdesarrollador(int idIniciada)
     int tam = arcB.contarRegistros();
     bool salir=false;
 
-    system("cls");
+    system("CLS");
+        setConsoleColor(15, 11);
+        cout<<"==============================" << endl;
+        cout<<"      BIBLIOTECA ESTIM        "<<endl;
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(3,0);
 
     char desarrollador [30];
     cout<<"-----------------------------------------------------------------------------------"<<endl;
     cout<<"Ingrese el desarrollador que quiere buscar en su biblioteca: ";
     cargarCadena(desarrollador, 29);
 
-    system("cls");
+    system("CLS");
+        setConsoleColor(15, 11);
+        cout<<"==============================" << endl;
+        cout<<"      BIBLIOTECA ESTIM        "<<endl;
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(3,0);
 
     for (int j = 0; j<tam ; j++)
     {
@@ -1443,7 +1502,12 @@ void comprarJuego(int idVideojuego)
 
 void listarPorGenero()
 {
-    system("CLS");
+    system("cls");
+        setConsoleColor(15, 3);
+        cout<<"==============================" << endl;
+        cout<<"        FILTRO GENERO         "<<endl;
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(15,0);
     archivoVideoJuego arcV("archivos/videojuego.dat");
     videoJuego game;
     archivoUsuario arcU("archivos/Usuario.dat");
@@ -1454,8 +1518,13 @@ void listarPorGenero()
     int cantReg = arcV.contarRegistros();
     int juegosListados[150] = {};
     int tam = 0;
-
-    system("CLS");
+    int contgame=0;
+    system("cls");
+        setConsoleColor(15, 3);
+        cout<<"==============================" << endl;
+        cout<<"        FILTRO GENERO         "<<endl;
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(15,0);
     usu = arcU.leerRegistros(datosUsuarioIniciado());
     cout << "--------------------------------------------------------------------------" << endl;
     cout << "Filtro aplicado: " << genero << endl;
@@ -1469,22 +1538,39 @@ void listarPorGenero()
             cout << tam + 1 << " - " << game.getTitulo() << "    -- precio: $ " << game.getPrecio() << endl;
             juegosListados[tam] = game.getidVideojuego();
             tam++;
+            contgame++;
         }
         else if (compararSinMayusculas(genero, game.getGenero()) && usu.getEdad() >= game.getRestriccion() && !game.getActivo())
         {
             cout << "*JUEGO DESHABILITADO" << endl;
+            contgame++;
         }
         else if (compararSinMayusculas(genero, game.getGenero()) && usu.getEdad() < game.getRestriccion() && game.getActivo())
         {
             cout << "No tienes edad suficiente para este videojuego" << endl;
+            contgame++;
         }
     }
-    comprarJuegosListados(juegosListados, tam);
+   if (contgame == 0)
+    {
+        setConsoleColor(4, 0);
+        cout << "No hay juegos con esa desarrolladora :(" << endl;
+        system("pause");
+    }
+    else
+    {
+        comprarJuegosListados(juegosListados, tam);
+    }
 }
 
 void listarPorCreador()
 {
-    system("CLS");
+    system("cls");
+        setConsoleColor(15, 3);
+        cout<<"==============================" << endl;
+        cout<<"       FILTRO  CREADOR        "<<endl;
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(15,0);
     archivoVideoJuego arcV("archivos/videojuego.dat");
     videoJuego game;
     archivoUsuario arcU("archivos/Usuario.dat");
@@ -1497,7 +1583,12 @@ void listarPorCreador()
 
     cout << "Ingrese la desarrolladora a buscar: ";
     cargarCadena(desarrolladora, 29);
-    system("CLS");
+    system("cls");
+        setConsoleColor(15, 3);
+        cout<<"==============================" << endl;
+        cout<<"       FILTRO  CREADOR        "<<endl;
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(15,0);
     usu = arcU.leerRegistros(datosUsuarioIniciado());
     cout << "--------------------------------------------------------------------------" << endl;
     cout << "Filtro aplicado: " << desarrolladora << endl;
@@ -1529,6 +1620,7 @@ void listarPorCreador()
     {
         setConsoleColor(4, 0);
         cout << "No hay juegos con esa desarrolladora :(" << endl;
+        system("pause");
     }
     else
     {
@@ -1577,13 +1669,23 @@ void mostrarPorPrecio()
     int juegosListados[150] = {};
     int tam2 = 0;
 
-    system("CLS");
-    setConsoleColor(15, 0);
+    system("cls");
+        setConsoleColor(15, 3);
+        cout<<"==============================" << endl;
+        cout<<"        FILTRO PRECIO         "<<endl;
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(15,0);
     cout << "Ingrese el monto maximo: ";
     cin >> montoMax;
     cout << "Ingrese el monto minimo: ";
     cin >> montoMin;
-    system("CLS");
+
+    system("cls");
+        setConsoleColor(15, 3);
+        cout<<"==============================" << endl;
+        cout<<"        FILTRO PRECIO         "<<endl;
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(15,0);
 
     usu = arcU.leerRegistros(datosUsuarioIniciado());
     cout << "------------------------------------------------------------------------------" << endl;
@@ -1614,8 +1716,6 @@ void mostrarPorPrecio()
     }
     if (contGame == 0)
     {
-        system("CLS");
-        setConsoleColor(4, 0);
         cout << "No hay ningun juego con ese monto." << endl;
         setConsoleColor(15, 0);
         system("PAUSE");
@@ -1639,10 +1739,21 @@ void listarPorAnio()
     int juegosListados[150] = {};
     int tam2 = 0;
 
-    system("CLS");
+    system("cls");
+        setConsoleColor(15, 3);
+        cout<<"==============================" << endl;
+        cout<<"         FILTRO ANIO          "<<endl;
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(15,0);
     cout << "Ingrese el anio con el cual filtrar: ";
     cin >> anio;
-    system("CLS");
+
+    system("cls");
+        setConsoleColor(15, 3);
+        cout<<"==============================" << endl;
+        cout<<"         FILTRO ANIO          "<<endl;
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(15,0);
 
     usu = arcU.leerRegistros(datosUsuarioIniciado());
     cout << "--------------------------------------------------------------------------" << endl;
@@ -1781,13 +1892,19 @@ void buscarPorNombre(const char *n)
     int cantReg = arcV.contarRegistros();
     for (int i = 0; i < cantReg; i++)
     {
+        system("CLS");
+        setConsoleColor(0, 6);
+        cout<<"==============================" << endl;
+        cout<<"   RESULTADO DE LA BUSQUEDA   "<<endl;
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(15,0);
         game = arcV.leerRegistros(i);
         if (compararSinMayusculas(n, game.getTitulo()))
         {
-            system("CLS");
             setConsoleColor(15, 0);
             game.mostrar();
             setConsoleColor(8, 0);
+            comprarJuego(game.getidVideojuego());
             return;
         }
     }
@@ -1836,8 +1953,12 @@ void buscarVideojuego()
 {
     system("CLS");
     char titJuego[50];
-    setConsoleColor(14, 0);
-    cout<< "BUSCADOR: ";
+    setConsoleColor(0, 6);
+    cout<<"==============================" << endl;
+    cout<<"            BUSCADOR          " << endl;
+    cout<<"==============================" << endl<<endl;
+    setConsoleColor(15,0);
+    cout<< "INGRESE NOMBRE DEL VIDEOJUEGO: ";
     setConsoleColor(8, 0);
     cargarCadena(titJuego, 49);
     buscarPorNombre(titJuego);
@@ -1855,7 +1976,12 @@ void listarPorGratuito()
     int juegosListados[150] = {};
     int tam2 = 0;
 
-    system("CLS");
+    system("cls");
+        setConsoleColor(0, 12);
+        cout<<"==============================" << endl;
+        cout<<"           GRATIS!            "<<endl;
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(15,0);
 
     usu = arcU.leerRegistros(datosUsuarioIniciado());
     cout << "--------------------------------------------------------------------------" << endl;
@@ -2621,7 +2747,6 @@ void estadisticasJuegosMasComprados()
     }
 }
 
-
 void puntoRestauracion()
 {
     system("cls");
@@ -2719,8 +2844,6 @@ void crearPuntoRestauracion()
     system("pause");
     system("cls");
 }
-
-
 
 void cargarPuntoRestauracion()
 {
