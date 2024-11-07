@@ -146,7 +146,7 @@
 1730927173 c:\users\admin\documents\github\estin\fecha.h
 	<string>
 
-1730913344 source:c:\users\user\desktop\estin\funciones.cpp
+1730952326 source:c:\users\user\desktop\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -155,20 +155,21 @@
 	"USUARIO.h"
 	"ADMIN.h"
 	<windows.h>
+	<conio.h>
 
-1730926933 c:\users\user\desktop\estin\funciones.h
+1730947489 c:\users\user\desktop\estin\funciones.h
 	<cstring>
 	"FECHA.h"
 	"VIDEOJUEGO.h"
 
-1730891031 c:\users\user\desktop\estin\videojuego.h
+1730936906 c:\users\user\desktop\estin\videojuego.h
 	"funciones.h"
 
 1730915998 c:\users\user\desktop\estin\usuario.h
 	"funciones.h"
 	"PERSONA.h"
 
-1730653638 source:c:\users\user\desktop\estin\valeam.cpp
+1730951969 source:c:\users\user\desktop\estin\valeam.cpp
 	<iostream>
 	<string.h>
 	<windows.h>
@@ -226,7 +227,7 @@
 	"funciones.h"
 	"PAIS.h"
 
-1730931492 c:\users\user\desktop\estin\persona.h
+1730936906 c:\users\user\desktop\estin\persona.h
 	"funciones.h"
 	"PAIS.h"
 
@@ -247,15 +248,16 @@
 	"PERSONA.h"
 	"PAIS.h"
 
-1730891031 c:\users\user\desktop\estin\admin.h
+1730931621 c:\users\user\desktop\estin\admin.h
 	"funciones.h"
 	"PERSONA.h"
+	"PAIS.h"
 
 1730680579 c:\users\user\desktop\facultad\estin-main\estin\admin.h
 	"funciones.h"
 	"PERSONA.h"
 
-1730930364 c:\users\user\desktop\estin\pais.h
+1730936906 c:\users\user\desktop\estin\pais.h
 
 1730933607 d:\facultad\tecnicatura programación\programación\estin\pais.h
 

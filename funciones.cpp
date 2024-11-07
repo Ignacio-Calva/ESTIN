@@ -7,6 +7,7 @@ using namespace std;
 #include "USUARIO.h"
 #include "ADMIN.h"
 #include <windows.h>
+#include <conio.h>
 
 int idIniciada;
 Admin cuentaAdmin("admin","password",0,true);
@@ -169,9 +170,11 @@ void menuAdministrador()
     {
         system("cls");
         int opcion;
+        setConsoleColor(11, 0);
         cout << "=======================================" << endl;
         cout << "        MENU DE ADMINISTRADOR          " << endl;
         cout << "=======================================" << endl;
+        setConsoleColor(15, 0);
         cout << "(1) Agregar juego a la tienda" << endl;
         cout << "(2) Modificar videojuego existente" << endl;
         cout << "(3) Deshabilitar juego de la tienda" << endl;
@@ -235,8 +238,32 @@ void menuAdministrador()
     }
 }
 
+
+void cargarContraseniaOculta(char* contrasenia, int maxLongitud)
+{
+int tam = 0;
+char ch;
+
+while (true) {
+    ch = _getch();
+
+    if (ch == 13) {  // Enter
+        contrasenia[tam] = '\0';
+        cout << endl;
+        break;
+    } else if (ch == 8 && tam > 0) {  // Backspace
+        cout << "\b \b";
+        tam--;
+    } else if (tam < maxLongitud && ch != 8) {  // Caracter válido
+        contrasenia[tam++] = ch;
+        cout << '*';
+    }
+}
+}
+
 bool menuModificarVideojuego(int idJuego)
 {
+    system("CLS");
     archivoVideoJuego arcV("archivos/videoJuego.dat");
     videoJuego game;
     int tam = arcV.contarRegistros();
@@ -271,6 +298,9 @@ bool menuModificarVideojuego(int idJuego)
         switch (opcion)
         {
         case 1:
+            cout<<"------------------------"<<endl;
+            cout<<"->Modificar Nombre"<<endl;
+            cout<<"------------------------"<<endl;
             cout<<"Ingrese el nuevo nombre: ";
             cargarCadena(pal, 29);
 
@@ -291,6 +321,9 @@ bool menuModificarVideojuego(int idJuego)
             return true;
             break;
         case 2:
+            cout<<"------------------------"<<endl;
+            cout<<"->Modificar Genero"<<endl;
+            cout<<"------------------------"<<endl;
             cout<<"Ingrese el nuevo genero: ";
             cargarCadena(pal, 29);
             game = arcV.leerRegistros(idJuego-1);
@@ -299,6 +332,9 @@ bool menuModificarVideojuego(int idJuego)
             return true;
             break;
         case 3:
+            cout<<"------------------------"<<endl;
+            cout<<"->Modificar Precio"<<endl;
+            cout<<"------------------------"<<endl;
             cout<<"Ingrese el nuevo precio: ";
             cin>>num2;
             if (num2 < 0)
@@ -551,8 +587,8 @@ void inicioSesion()
     while (true)
     {
         system("cls");
-        cout << "         INICIO DE SESION       " << endl;
-        cout << "================================" << endl;
+        cout << "       INICIO DE SESION      " << endl;
+        cout << "=============================" << endl << endl;
         archivoUsuario arcU("archivos/Usuario.dat");
         usuario usu;
 
@@ -580,16 +616,22 @@ void inicioSesion()
                 return;
             }///CONFIRMO QUE NO HAYA SIDO DESHABILITADA ANTERIORMENTE
             system("cls");
-        cout << "         INICIO DE SESION       " << endl;
-        cout << "              ADMIN             " << endl;
-        cout << "================================" << endl;
+
+        cout << "       INICIO DE SESION      " << endl;
+        cout << "        Administrador        " << endl;
+        cout << "=============================" << endl << endl;
             cout << "Usuario encontrado." << endl;
             cout << "Ingrese su contrasenia: " ;
-            cargarCadena(contrasenia, 19);
+            cargarContraseniaOculta(contrasenia, 19);
             if (strcmp(contrasenia,cuentaAdmin.getContrasenia()) == 0)
             {
-                cout<< endl <<"Contrasenia correcta. Se ha iniciado sesion con la cuenta de administrador principal. " << endl;
-                if (cuentaAdmin.getAdmin()) cout << endl << "Esta cuenta tiene permisos de administrador."<<endl;
+                cout<<"                             "<<endl;
+                setConsoleColor(9, 0);
+                cout<<"     !Contrasenia correcta! "<<endl;
+                cout<<" Se ha iniciado sesion con la cuenta de administrador principal. " << endl;
+                setConsoleColor(6, 0);
+                cout<<"                             "<<endl;
+                if (cuentaAdmin.getAdmin()) cout << "Esta cuenta tiene permisos de administrador."<<endl;
                 system("pause");
                 system("cls");
                 menuAdministrador(); //MODIFICAR EL MENU DE ADMINISTRADOR
@@ -606,9 +648,9 @@ void inicioSesion()
             if (buscarNombre(nombre, pos))
             {
                 system("cls");
-        cout << "         INICIO DE SESION       " << endl;
-        cout << "             USUARIO            " << endl;
-        cout << "================================" << endl;
+       cout << "       INICIO DE SESION      " << endl;
+       cout << "           Usuario            " << endl;
+        cout << "=============================" << endl << endl;
                 usu = arcU.leerRegistros(pos);
                 cout << "Usuario encontrado." << endl;
                 if (usu.getActivo() == false && usu.getAdmin()==false)
@@ -618,7 +660,7 @@ void inicioSesion()
                     return;
                 }
                 cout << "Ingrese su contrasenia: " ;
-                cargarCadena(contrasenia, 19);
+                cargarContraseniaOculta(contrasenia, 19);
                 if (strcmp(usu.getContrasenia(),contrasenia) == 0)
                 {
                     idIniciada = usu.getID(); //asignar ID iniciada
@@ -1031,6 +1073,9 @@ void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada)
     archivoBiblioteca arcB ("archivos/biblioteca.dat");
     Biblioteca libro;
     Fecha compra;
+    cout<<"----------------------------"<<endl;
+    cout<<"Cagando Videojuego nuevo: "<<endl;
+    cout<<"----------------------------"<<endl;
     int tam = arcB.contarRegistros();
     for (int i =0; i<tam ; i++)
     {
@@ -1795,10 +1840,16 @@ void listarPorAnio()
 
 void cargarVideojuego()
 {
+
+
+    system("CLS");
     archivoVideoJuego arcV("archivos/videoJuego.dat");
     videoJuego game;
     videoJuego gameAnt;
     char nombre[30];
+    cout<<"==============================" << endl;
+    cout<<"->  Cargar Videojuego nuevo      "<<endl;
+    cout<<"==============================" << endl<<endl;
 
     cout<<"Ingrese el nombre del videojuego: ";
     cargarCadena(nombre, 29);
@@ -1826,6 +1877,10 @@ void cargarVideojuego()
 
 void listarVideojuegos()
 {
+
+    cout<<"==============================" << endl;
+    cout<<"-> Listar videojuegos cargados      "<<endl;
+    cout<<"==============================" << endl<<endl;
     archivoVideoJuego arcV("archivos/videojuego.dat");
     videoJuego game;
 
@@ -2897,20 +2952,4 @@ void cargarPuntoRestauracion()
     cout << "Registros cargados al punto de restauracion correctamente!" << endl;
     system("pause");
     system("cls");
-}
-
-
-
-void cargarPaises(){
-
-archivoPais arcP("archivos/pais");
-Pais obj;
-int tam = arcP.contarRegistros();
-for (int i= 0; i<150;i++ ){
-
-
-
-}
-
-
 }
