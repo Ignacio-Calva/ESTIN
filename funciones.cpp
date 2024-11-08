@@ -172,6 +172,15 @@ void menuAdministrador()
 {
     while (true)
     {
+        archivoAdmin arcA("archivos/admin.dat");
+        Admin adm;
+        int tam = arcA.contarRegistros();
+        for (int i = 0; i < tam; i++)
+            {
+                adm = arcA.leerRegistros(i);
+                if (adm.getIdAdmin()==idIniciada && adm.getAdmin()==false){return;}
+            }
+            if (strcmp(adm.getNombre(), "admin")==0 && adm.getAdmin()==false){return;}
         system("cls");
         int opcion;
         setConsoleColor(11, 0);
@@ -2656,6 +2665,7 @@ void removerAdmin()
     Admin adm;
     char opcion;
     int idCuentaHabilitar;
+
     cout << "Desea listar los usuarios?" << endl;
     cout << "Respuesta (s/n): ";
     cin >> opcion;
