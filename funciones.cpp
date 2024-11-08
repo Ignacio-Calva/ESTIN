@@ -180,7 +180,6 @@ void menuAdministrador()
                 adm = arcA.leerRegistros(i);
                 if (adm.getIdAdmin()==idIniciada && adm.getAdmin()==false){return;}
             }
-            if (strcmp(adm.getNombre(), "admin")==0 && adm.getAdmin()==false){return;}
         system("cls");
         int opcion;
         setConsoleColor(11, 0);
