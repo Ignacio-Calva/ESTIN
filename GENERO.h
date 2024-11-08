@@ -12,7 +12,7 @@ public:
     cargarCadena(nombre, 29);
     }
     mostrar(){
-    cout<< nombre<<endl;
+    cout<< " - " << nombre << endl;
     }
 
     void setNombre(const char* _nombre){strcpy(nombre, _nombre);}

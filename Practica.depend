@@ -70,15 +70,18 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\funciones.cpp
 
-1730944850 source:c:\users\admin\documents\github\estin\funciones.cpp
+1731087674 source:c:\users\admin\documents\github\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
 	"VIDEOJUEGO.h"
 	"BIBLIOTECA.h"
 	"USUARIO.h"
+	"DESARROLLADOR.h"
 	"ADMIN.h"
+	"GENERO.h"
 	<windows.h>
+	<conio.h>
 
 1728078783 ent of 4d2d326 (Revert "SoluciÃ³n compilador")
 	<iostream>
@@ -97,7 +100,7 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\valeam.cpp
 
-1730920197 c:\users\admin\documents\github\estin\funciones.h
+1731082315 c:\users\admin\documents\github\estin\funciones.h
 	<cstring>
 	"FECHA.h"
 	"VIDEOJUEGO.h"
@@ -105,7 +108,7 @@
 1728148751 c:\users\admin\documents\github\estin\clases.h
 	"funciones.h"
 
-1730943860 source:c:\users\admin\documents\github\estin\valeam.cpp
+1731086679 source:c:\users\admin\documents\github\estin\valeam.cpp
 	<iostream>
 	<string.h>
 	<windows.h>
@@ -133,17 +136,17 @@
 	"USUARIO.h"
 	"funciones.h"
 
-1730936135 c:\users\admin\documents\github\estin\videojuego.h
+1731082315 c:\users\admin\documents\github\estin\videojuego.h
 	"funciones.h"
 
-1730942588 c:\users\admin\documents\github\estin\biblioteca.h
+1731083783 c:\users\admin\documents\github\estin\biblioteca.h
 	"funciones.h"
 	"FECHA.h"
 
 1730929947 d:\facultad\tecnicatura programación\programación\estin\fecha.h
 	<string>
 
-1730927173 c:\users\admin\documents\github\estin\fecha.h
+1731082315 c:\users\admin\documents\github\estin\fecha.h
 	<string>
 
 1730984928 source:c:\users\user\desktop\estin\funciones.cpp
@@ -236,7 +239,7 @@
 1730538296 c:\users\user\desktop\facultad\estin-main\estin\persona.h
 	"funciones.h"
 
-1730934671 c:\users\admin\documents\github\estin\persona.h
+1731082315 c:\users\admin\documents\github\estin\persona.h
 	"funciones.h"
 	"PAIS.h"
 
@@ -245,7 +248,7 @@
 	"PERSONA.h"
 	"PAIS.h"
 
-1730934671 c:\users\admin\documents\github\estin\admin.h
+1731082315 c:\users\admin\documents\github\estin\admin.h
 	"funciones.h"
 	"PERSONA.h"
 	"PAIS.h"
@@ -263,9 +266,13 @@
 
 1730933607 d:\facultad\tecnicatura programación\programación\estin\pais.h
 
-1730934671 c:\users\admin\documents\github\estin\pais.h
+1731082315 c:\users\admin\documents\github\estin\pais.h
 
 1730983174 c:\users\user\desktop\estin\genero.h
 
 1730986221 c:\users\user\desktop\estin\desarrollador.h
+
+1731084655 c:\users\admin\documents\github\estin\desarrollador.h
+
+1731084416 c:\users\admin\documents\github\estin\genero.h
 

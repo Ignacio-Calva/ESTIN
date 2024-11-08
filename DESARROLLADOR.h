@@ -6,6 +6,11 @@ class Desarrollador
     private:
         char nombre[30];
     public:
+        void mostrar()
+        {
+            cout<< " - " << nombre << endl;
+        }
+
         const char* getNombre(){return nombre;}
         void setNombre(const char* _nombre){strcpy(nombre,_nombre);}
 };
