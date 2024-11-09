@@ -41,12 +41,15 @@ void menuPrincipal()
         rlutil::locate(100,3);
         cout<<"ID: " << idIniciada<<endl;
 
-        rlutil::locate(40,5);
-        cout<< "==============================" << endl;
-        rlutil::locate(40,6);
+        rlutil::locate(30,5);
+
+        ponerChar(205,50);
+
+        rlutil::locate(30,6);
+
         cout<<"        MENU PRINCIPAL        "<<endl;
-        rlutil::locate(40,7);
-        cout<< "==============================" << endl;
+        rlutil::locate(30,7);
+        ponerChar(205,50);
         setConsoleColor(3,1);
         rlutil::locate(40,10);
         cout<<"1 - Listar VideoJuegos"<<endl;
@@ -60,8 +63,10 @@ void menuPrincipal()
         rlutil::locate(40,18);
         cout<<"0 - cerrar"<<endl;
         setConsoleColor(15,1);
-        rlutil::locate(40,20);
-        cout << "============================="<<endl;
+        rlutil::locate(30,20);
+
+        ponerChar(205,50);
+
         rlutil::locate(40,22);
         cout << "Ingrese una opcion: ";
         rlutil::locate(60,22);
@@ -765,7 +770,7 @@ void inicioSesion()
             {
                 rlutil::locate(55,15);
                 setConsoleColor(4, 3);
-                cout << "Contraseña incorrecta" << endl;
+                cout << "contrase"<< char(164) <<"a incorrecta" << endl;
                 rlutil::locate(42,18);
                 setConsoleColor(8, 3);
                 system("pause");
@@ -776,23 +781,33 @@ void inicioSesion()
         {
             if (buscarNombre(nombre, pos))
             {
-                system("cls");
-                rlutil::locate(30,10);
-                cout << "==============================================================" << endl;
-                rlutil::locate(30,11);
-                cout << "|                      INICIO DE SESION                      |" << endl;
-                rlutil::locate(30,12);
-                cout << "==============================================================" << endl;
-                rlutil::locate(30,13);
-                cout << "|                                                            |" ;
-                rlutil::locate(30,14);
-                cout << "|Ingrese su nombre de usuario:                               |" ;
-                rlutil::locate(61,14);
-                cout << nombre;
-                rlutil::locate(30,15);
-                cout << "|Ingrese su contraseña:                                      |" ;
-                rlutil::locate(30,16);
-                cout << "==============================================================" << endl;
+               system("cls");
+            rlutil::locate(30,10);
+            cout << char(201);
+            ponerChar(205,60);
+            cout << char(187);
+            rlutil::locate(30,11);
+            cout << char(186);
+            cout << "                      INICIO DE SESION                      ";
+            cout << char(186);
+            rlutil::locate(30,12);
+            cout << char(204);
+            ponerChar(205,60);
+            cout << char (185);
+            rlutil::locate(30,13);
+            cout << char (186) <<"                                                            " << char(186) ;
+            rlutil::locate(30,14);
+            cout << char(186) << "Ingrese su nombre de usuario:                               " << char(186) ;
+            rlutil::locate(61,14);
+            cout << nombre;
+            rlutil::locate(30,15);
+            cout << char(186) << "Ingrese su contrase"<< char(164) <<"a:                                      " << char(186) ;
+            rlutil::locate(30,16);
+            cout << char (186) <<"                                                            " << char(186) ;
+            rlutil::locate(30,17);
+            cout << char(200);
+            ponerChar(205,60);
+            cout << char(188);
                 usu = arcU.leerRegistros(pos);
                 rlutil::locate(30, 18);
 
@@ -803,8 +818,8 @@ void inicioSesion()
                     return;
                 }
                 rlutil::locate(30,15);
-                cout << "|Ingrese su contraseña:                                      |" ;
-                rlutil::locate(55,15);
+            cout << char(186) << "Ingrese su contrase"<< char(164) <<"a:                                      " << char(186) ;
+            rlutil::locate(54,15);
                 cargarContraseniaOculta(contrasenia, 19);
                 if (strcmp(usu.getContrasenia(),contrasenia) == 0)
                 {
@@ -812,7 +827,7 @@ void inicioSesion()
                     if (usu.getAdmin()==false)
                     {
                         rlutil::locate(30,18);
-                        cout << "                     ¡Contraseña correcta!                     " << endl;
+                        cout << "                     contrase"<< char(164) <<"a correcta!                     " << endl;
                         rlutil::locate(30,19);
                         cout << "                 Sesion iniciada correctamente!" << endl;
                         rlutil::locate(42,21);
@@ -823,7 +838,7 @@ void inicioSesion()
                     else
                     {
                         rlutil::locate(30,18);
-                        cout << "                     ¡Contraseña correcta!                     " << endl;
+                        cout << "                     contrase"<< char(164) <<"a correcta!                     " << endl;
                         setConsoleColor(15, 3);
                         rlutil::locate(40, 20);
                         if (cuentaAdmin.getAdmin()) cout << "Esta cuenta tiene permisos de administrador."<<endl;
@@ -840,7 +855,7 @@ void inicioSesion()
                 {
                     rlutil::locate(55,15);
                     setConsoleColor(4, 3);
-                    cout << "Contraseña incorrecta" << endl;
+                    cout << "contrase"<< char(164) <<"a incorrecta" << endl;
                     rlutil::locate(42,18);
                     setConsoleColor(8, 3);
                     system("pause");
