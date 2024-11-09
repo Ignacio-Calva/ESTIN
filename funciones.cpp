@@ -56,6 +56,7 @@ void menuPrincipal()
         cout<<"3 - Biblioteca"<<endl;
         rlutil::locate(40,16);
         cout<<"4 - Cuenta"<<endl;
+        setConsoleColor(4,1);
         rlutil::locate(40,18);
         cout<<"0 - cerrar"<<endl;
         setConsoleColor(15,1);
@@ -164,8 +165,7 @@ void menuFiltro()
         rlutil::locate(40,7);
         cout<< "==============================" << endl<<endl;
         setConsoleColor(3,1);
-        rlutil::locate(40,8);
-        cout << "-----------------------------" << endl;
+
         rlutil::locate(40,10);
         cout << "1. Listar todos los videojuegos" << endl;
         rlutil::locate(40,12);
@@ -181,10 +181,9 @@ void menuFiltro()
         setConsoleColor(4, 1);
         rlutil::locate(40,22);
         cout << "0. ATRAS" << endl;
-        setConsoleColor(8, 1);
-        rlutil::locate(40,24);
-        cout << "-----------------------------" << endl;
         setConsoleColor(15, 1);
+        rlutil::locate(40,24);
+        cout << "=============================" << endl;
         rlutil::locate(40,26);
         cout << "Ingrese una opcion: ";
         rlutil::locate(60,26);

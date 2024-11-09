@@ -23,23 +23,21 @@ int main()
     cout << "            ESTIM             " << endl;
     rlutil::locate(40,12);
     cout << "==============================" << endl;
-    rlutil::locate(40,13);
-    cout << "|      1 - REGISTRARSE       |" << endl;
     rlutil::locate(40,14);
-    cout << "|     2 - INICIAR SESION     |" << endl;
-    rlutil::locate(40,15);
-    cout << "|";
+    cout << "      1 - REGISTRARSE       " << endl;
+    rlutil::locate(40,16);
+    cout << "     2 - INICIAR SESION     " << endl;
+    rlutil::locate(40,18);
+    cout << "";
     setConsoleColor(4, 3);
     cout << "         0 - SALIR          ";
     setConsoleColor(15, 3);
-    cout << "|" << endl;
-    rlutil::locate(40,16);
+    cout << "" << endl;
+    rlutil::locate(40,20);
     cout << "==============================" << endl << endl;
-    rlutil::locate(40,17);
-    cout << "|INGRESE UNA OPCION:         |" << endl;
-    rlutil::locate(40,18);
-    cout << "==============================" << endl;
-    rlutil::locate(63,17);
+    rlutil::locate(40,22);
+    cout << "INGRESE UNA OPCION:         " << endl;
+    rlutil::locate(60,22);
     cin>>opcion1;
     switch (opcion1)
     {
