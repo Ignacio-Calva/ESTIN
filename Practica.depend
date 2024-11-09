@@ -76,7 +76,7 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\funciones.cpp
 
-1731088800 source:c:\users\admin\documents\github\estin\funciones.cpp
+1731181688 source:c:\users\admin\documents\github\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -86,6 +86,7 @@
 	"DESARROLLADOR.h"
 	"ADMIN.h"
 	"GENERO.h"
+	"rlutil.h"
 	<windows.h>
 	<conio.h>
 
@@ -114,7 +115,7 @@
 1728148751 c:\users\admin\documents\github\estin\clases.h
 	"funciones.h"
 
-1731086679 source:c:\users\admin\documents\github\estin\valeam.cpp
+1731179433 source:c:\users\admin\documents\github\estin\valeam.cpp
 	<iostream>
 	<string.h>
 	<windows.h>
@@ -122,6 +123,8 @@
 	"VIDEOJUEGO.h"
 	"USUARIO.h"
 	"BIBLIOTECA.h"
+	"rlutil.h"
+	<locale.h>
 
 1730414242 c:\users\admin\documents\github\estin\usuario.h
 	"funciones.h"
@@ -287,6 +290,20 @@
 1731173417 d:\facultad\tecnicatura programación\programación\estin\genero.h
 
 1571584339 d:\facultad\tecnicatura programación\programación\estin\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1731173744 c:\users\admin\documents\github\estin\rlutil.h
 	<iostream>
 	<string>
 	<cstdio>

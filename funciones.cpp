@@ -29,21 +29,41 @@ void menuPrincipal()
         {
             return;
         }
-        system("CLS");
+
         setConsoleColor(15, 1);
-        cout<<"==============================" << endl;
-        cout<<"            ESTIM             "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(3,0);
-        cout << "----------------------------------------------------------" << endl;
-        cout<<"ID de cuenta iniciada: " << idIniciada<<endl;
+        system("CLS");
+
+        rlutil::locate(3,2);
+        cout<< "ESTIM°";
+
+        rlutil::locate(100,2);
+        cout<<"Usuario: " << usu.getNombre()<<endl;
+        rlutil::locate(100,3);
+        cout<<"ID: " << idIniciada<<endl;
+
+        rlutil::locate(40,5);
+        cout<< "==============================" << endl;
+        rlutil::locate(40,6);
+        cout<<"        MENU PRINCIPAL        "<<endl;
+        rlutil::locate(40,7);
+        cout<< "==============================" << endl;
+        setConsoleColor(3,1);
+        rlutil::locate(40,10);
         cout<<"1 - Listar VideoJuegos"<<endl;
+        rlutil::locate(40,12);
         cout<<"2 - Buscar VideoJuego"<<endl;
+        rlutil::locate(40,14);
         cout<<"3 - Biblioteca"<<endl;
+        rlutil::locate(40,16);
         cout<<"4 - Cuenta"<<endl;
+        rlutil::locate(40,18);
         cout<<"0 - cerrar"<<endl;
-        cout << "===================="<<endl<<endl;
+        setConsoleColor(15,1);
+        rlutil::locate(40,20);
+        cout << "============================="<<endl;
+        rlutil::locate(40,22);
         cout << "Ingrese una opcion: ";
+        rlutil::locate(60,22);
         cin>>opcion;
         switch (opcion)
         {
@@ -122,27 +142,54 @@ void menuFiltro()
     int opcion = 1;
     while(opcion != 0)
     {
+        archivoUsuario arcU("archivos/Usuario.dat");
+        usuario usu;
+        usu = arcU.leerRegistros(idIniciada-1);
+
+    setConsoleColor(15, 1);
         system("CLS");
+
+        rlutil::locate(3,2);
+        cout<< "ESTIM°";
+
+        rlutil::locate(100,2);
+        cout<<"Usuario: " << usu.getNombre()<<endl;
+        rlutil::locate(100,3);
+        cout<<"ID: " << idIniciada<<endl;
+
+        rlutil::locate(40,5);
+        cout<< "==============================" << endl;
+        rlutil::locate(40,6);
+        cout<< "      LISTAR VIDEOJUEGOS      " << endl;
+        rlutil::locate(40,7);
+        cout<< "==============================" << endl<<endl;
+        setConsoleColor(3,1);
+        rlutil::locate(40,8);
+        cout << "-----------------------------" << endl;
+        rlutil::locate(40,10);
+        cout << "1. Listar todos los videojuegos" << endl;
+        rlutil::locate(40,12);
+        cout << "2. Listar por genero" << endl;
+        rlutil::locate(40,14);
+        cout << "3. Listar por creador" << endl;
+        rlutil::locate(40,16);
+        cout << "4. Listar por precio" << endl;
+        rlutil::locate(40,18);
+        cout << "5- Listar por anio"<<endl;
+        rlutil::locate(40,20);
+        cout << "6- Listar por gratuito"<<endl;
+        setConsoleColor(4, 1);
+        rlutil::locate(40,22);
+        cout << "0. ATRAS" << endl;
+        setConsoleColor(8, 1);
+        rlutil::locate(40,24);
+        cout << "-----------------------------" << endl;
         setConsoleColor(15, 1);
-        cout<<"==============================" << endl;
-        cout<<"      LISTAR VIDEOJUEGOS      " << endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(3,0);
-        cout << "----------------------------------------------------------" << endl;
-        cout << "     1. Listar todos los videojuegos                                         " << endl;
-        cout << "     2. Listar por genero                                                       " << endl;
-        cout << "     3. Listar por creador                                                       " << endl;
-        cout << "     4. Listar por precio                                                         " << endl;
-        cout << "     5- Listar por anio          "<<endl;
-        cout << "     6- Listar por gratuito    "<<endl;
-        setConsoleColor(4, 0);
-        cout << "     0. ATRAS                                                                     " << endl;
-        setConsoleColor(8, 0);
-        cout << "-----------------------------------------------------------" << endl;
-        setConsoleColor(15, 0);
-        cout << "Ingrese la opcion deseada: ";
+        rlutil::locate(40,26);
+        cout << "Ingrese una opcion: ";
+        rlutil::locate(60,26);
         cin>> opcion;
-        setConsoleColor(15, 0);
+        setConsoleColor(15, 1);
         switch (opcion)
         {
         case 1:
@@ -173,14 +220,18 @@ void menuAdministrador()
 {
     while (true)
     {
+        system("cls");
         archivoAdmin arcA("archivos/admin.dat");
         Admin adm;
         int tam = arcA.contarRegistros();
         for (int i = 0; i < tam; i++)
+        {
+            adm = arcA.leerRegistros(i);
+            if (adm.getIdAdmin()==idIniciada && adm.getAdmin()==false)
             {
-                adm = arcA.leerRegistros(i);
-                if (adm.getIdAdmin()==idIniciada && adm.getAdmin()==false){return;}
+                return;
             }
+        }
         system("cls");
         int opcion;
         setConsoleColor(11, 0);
@@ -255,24 +306,30 @@ void menuAdministrador()
 
 void cargarContraseniaOculta(char* contrasenia, int maxLongitud)
 {
-int tam = 0;
-char ch;
+    int tam = 0;
+    char ch;
 
-while (true) {
-    ch = _getch();
+    while (true)
+    {
+        ch = _getch();
 
-    if (ch == 13) {  // Enter
-        contrasenia[tam] = '\0';
-        cout << endl;
-        break;
-    } else if (ch == 8 && tam > 0) {  // Backspace
-        cout << "\b \b";
-        tam--;
-    } else if (tam < maxLongitud && ch != 8) {  // Caracter válido
-        contrasenia[tam++] = ch;
-        cout << '*';
+        if (ch == 13)    // Enter
+        {
+            contrasenia[tam] = '\0';
+            cout << endl;
+            break;
+        }
+        else if (ch == 8 && tam > 0)      // Backspace
+        {
+            cout << "\b \b";
+            tam--;
+        }
+        else if (tam < maxLongitud && ch != 8)      // Caracter válido
+        {
+            contrasenia[tam++] = ch;
+            cout << '*';
+        }
     }
-}
 }
 
 bool menuModificarVideojuego(int idJuego)
@@ -642,8 +699,11 @@ void inicioSesion()
         {
             if (hayUnAdmin()==true)
             {
-                rlutil::locate(30,16);
+                rlutil::locate(30,18);
+                setConsoleColor(4, 3);
                 cout << "La cuenta de administrador principal se encuentra deshabilitada." << endl;
+                rlutil::locate(42,19);
+                setConsoleColor(8, 3);
                 system("pause");
                 system("cls");
                 return;
@@ -675,19 +735,24 @@ void inicioSesion()
                 rlutil::locate(30,19);
                 cout << "Se ha iniciado sesion con la cuenta de administrador principal. " << endl;
                 setConsoleColor(15, 3);
-                rlutil::locate(40, 20);
-                if (cuentaAdmin.getAdmin()) cout << "Esta cuenta tiene permisos de administrador."<<endl;
+                /*rlutil::locate(40, 20);
+                if (cuentaAdmin.getAdmin()) cout << "Esta cuenta tiene permisos de administrador."<<endl;*/
                 rlutil::locate(42,21);
                 setConsoleColor(8,3);
                 system("pause");
                 system("cls");
-                menuAdministrador(); //MODIFICAR EL MENU DE ADMINISTRADOR
+                menuAdministrador();
                 break;
             }
             else
             {
-                cout<<"La contrasenia es incorrecta. Vuelva a intentarlo." << endl;
+                rlutil::locate(55,15);
+                setConsoleColor(4, 3);
+                cout << "Contraseña incorrecta" << endl;
+                rlutil::locate(42,18);
+                setConsoleColor(8, 3);
                 system("pause");
+                return;
             }
         }
         else///SI NO SE PUDO INICIAR COMO ADMIN MAIN, PRUEBA CON OTROS USUARIOS
@@ -695,47 +760,82 @@ void inicioSesion()
             if (buscarNombre(nombre, pos))
             {
                 system("cls");
-       cout << "       INICIO DE SESION      " << endl;
-       cout << "           Usuario            " << endl;
-        cout << "=============================" << endl << endl;
+                rlutil::locate(30,10);
+                cout << "==============================================================" << endl;
+                rlutil::locate(30,11);
+                cout << "|                      INICIO DE SESION                      |" << endl;
+                rlutil::locate(30,12);
+                cout << "==============================================================" << endl;
+                rlutil::locate(30,13);
+                cout << "|                                                            |" ;
+                rlutil::locate(30,14);
+                cout << "|Ingrese su nombre de usuario:                               |" ;
+                rlutil::locate(61,14);
+                cout << nombre;
+                rlutil::locate(30,15);
+                cout << "|Ingrese su contraseña:                                      |" ;
+                rlutil::locate(30,16);
+                cout << "==============================================================" << endl;
                 usu = arcU.leerRegistros(pos);
-                cout << "Usuario encontrado." << endl;
+                rlutil::locate(30, 18);
+
                 if (usu.getActivo() == false && usu.getAdmin()==false)
                 {
                     cout << "Esta cuenta esta deshabilitada"<< endl;
                     system("pause");
                     return;
                 }
-                cout << "Ingrese su contrasenia: " ;
+                rlutil::locate(30,15);
+                cout << "|Ingrese su contraseña:                                      |" ;
+                rlutil::locate(55,15);
                 cargarContraseniaOculta(contrasenia, 19);
                 if (strcmp(usu.getContrasenia(),contrasenia) == 0)
                 {
                     idIniciada = usu.getID(); //asignar ID iniciada
                     if (usu.getAdmin()==false)
                     {
-                        cout << "Sesion iniciada correctamente!" << endl;
+                        rlutil::locate(30,18);
+                        cout << "                     ¡Contraseña correcta!                     " << endl;
+                        rlutil::locate(30,19);
+                        cout << "                 Sesion iniciada correctamente!" << endl;
+                        rlutil::locate(42,21);
+                        setConsoleColor(8,3);
                         system("pause");
-                        system("cls");
                         menuPrincipal();
                     }
                     else
                     {
-                        cout << "Contrasenia correcta. Esta cuenta tiene permisos de administrador." << endl;
+                        rlutil::locate(30,18);
+                        cout << "                     ¡Contraseña correcta!                     " << endl;
+                        setConsoleColor(15, 3);
+                        rlutil::locate(40, 20);
+                        if (cuentaAdmin.getAdmin()) cout << "Esta cuenta tiene permisos de administrador."<<endl;
+                        rlutil::locate(42,21);
+                        setConsoleColor(8,3);
                         system("pause");
                         system("cls");
                         menuAdministrador();
+                        break;
                         break;
                     }
                 }
                 else
                 {
-                    cout << "La contrasenia es incorrecta. Vuelva a intentarlo." << endl;
+                    rlutil::locate(55,15);
+                    setConsoleColor(4, 3);
+                    cout << "Contraseña incorrecta" << endl;
+                    rlutil::locate(42,18);
+                    setConsoleColor(8, 3);
                     system("pause");
                 }
             }
             else
             {
-                cout << "Nombre de usuario no encontrado." << endl;
+                rlutil::locate(60,14);
+                setConsoleColor(4, 3);
+                cout << "Nombre de usuario no encontrado" << endl;
+                rlutil::locate(42,18);
+                setConsoleColor(8, 3);
                 system("pause");
             }
             return;
@@ -1040,10 +1140,10 @@ void aniadirTarjeta(int idIniciada)
 {
     system("cls");
     setConsoleColor(0, 2);
-        cout<<"==============================" << endl;
-        cout<<"       ASIGNAR  TARJETA       "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(15,0);
+    cout<<"==============================" << endl;
+    cout<<"       ASIGNAR  TARJETA       "<<endl;
+    cout<<"==============================" << endl<<endl;
+    setConsoleColor(15,0);
     usuario obj;
     archivoUsuario arcU("archivos/Usuario.dat");
     int pos = buscarUsuarioPorID(idIniciada);
@@ -1067,11 +1167,11 @@ void aniadirTarjeta(int idIniciada)
     cout<<"Ingrese el numero de tarjeta (0 para quitar la actual): ";
     cin>>num;
     if (num < 0)
-        {
-            cout<<"Un numero de tarjeta JAMAS sera negativa." << endl;
-            system("pause");
-            return;
-        }
+    {
+        cout<<"Un numero de tarjeta JAMAS sera negativa." << endl;
+        system("pause");
+        return;
+    }
     obj.setTarjet(num);
     arcU.modificarUsuario(obj,pos);
     cout << "La tarjeta asignada a la cuenta es: " << obj.getTarjet() << endl;
@@ -1157,11 +1257,11 @@ void mostrarBibliotecaDeUsuario(int idIniciada)
         if(idIniciada == libro.getIdUsuario())
         {
             system("CLS");
-        setConsoleColor(15, 11);
-        cout<<"==============================" << endl;
-        cout<<"      BIBLIOTECA ESTIM        "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(3,0);
+            setConsoleColor(15, 11);
+            cout<<"==============================" << endl;
+            cout<<"      BIBLIOTECA ESTIM        "<<endl;
+            cout<<"==============================" << endl<<endl;
+            setConsoleColor(3,0);
 
             cout << "Mostrando biblioteca ID: " << libro.getIdUsuario() << endl;
             cout << "============================" << endl;
@@ -1233,23 +1333,23 @@ void bibliotecaXnombre(int idIniciada)
     bool salir=false;
 
     system("CLS");
-        setConsoleColor(15, 11);
-        cout<<"==============================" << endl;
-        cout<<"      BIBLIOTECA ESTIM        "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(3,0);
+    setConsoleColor(15, 11);
+    cout<<"==============================" << endl;
+    cout<<"      BIBLIOTECA ESTIM        "<<endl;
+    cout<<"==============================" << endl<<endl;
+    setConsoleColor(3,0);
 
     char nombre [30];
     cout<<"-----------------------------------------------------------------------------------"<<endl;
     cout<<"Ingrese el titulo que quiere buscar en su biblioteca: ";
     cargarCadena(nombre, 29);
 
-   system("CLS");
-        setConsoleColor(15, 11);
-        cout<<"==============================" << endl;
-        cout<<"      BIBLIOTECA ESTIM        "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(3,0);
+    system("CLS");
+    setConsoleColor(15, 11);
+    cout<<"==============================" << endl;
+    cout<<"      BIBLIOTECA ESTIM        "<<endl;
+    cout<<"==============================" << endl<<endl;
+    setConsoleColor(3,0);
 
     for (int j = 0; j<tam ; j++)
     {
@@ -1305,11 +1405,11 @@ void bibliotecaXgenero(int idIniciada)
     bool salir=false;
 
     system("CLS");
-        setConsoleColor(15, 11);
-        cout<<"==============================" << endl;
-        cout<<"      BIBLIOTECA ESTIM        "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(3,0);
+    setConsoleColor(15, 11);
+    cout<<"==============================" << endl;
+    cout<<"      BIBLIOTECA ESTIM        "<<endl;
+    cout<<"==============================" << endl<<endl;
+    setConsoleColor(3,0);
 
     char genero [30];
     cout<<"-----------------------------------------------------------------------------------"<<endl;
@@ -1317,11 +1417,11 @@ void bibliotecaXgenero(int idIniciada)
     cargarCadena(genero, 29);
 
     system("CLS");
-        setConsoleColor(15, 11);
-        cout<<"==============================" << endl;
-        cout<<"      BIBLIOTECA ESTIM        "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(3,0);
+    setConsoleColor(15, 11);
+    cout<<"==============================" << endl;
+    cout<<"      BIBLIOTECA ESTIM        "<<endl;
+    cout<<"==============================" << endl<<endl;
+    setConsoleColor(3,0);
 
     for (int j = 0; j<tam ; j++)
     {
@@ -1376,11 +1476,11 @@ void bibliotecaXdesarrollador(int idIniciada)
     bool salir=false;
 
     system("CLS");
-        setConsoleColor(15, 11);
-        cout<<"==============================" << endl;
-        cout<<"      BIBLIOTECA ESTIM        "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(3,0);
+    setConsoleColor(15, 11);
+    cout<<"==============================" << endl;
+    cout<<"      BIBLIOTECA ESTIM        "<<endl;
+    cout<<"==============================" << endl<<endl;
+    setConsoleColor(3,0);
 
     char desarrollador [30];
     cout<<"-----------------------------------------------------------------------------------"<<endl;
@@ -1388,11 +1488,11 @@ void bibliotecaXdesarrollador(int idIniciada)
     cargarCadena(desarrollador, 29);
 
     system("CLS");
-        setConsoleColor(15, 11);
-        cout<<"==============================" << endl;
-        cout<<"      BIBLIOTECA ESTIM        "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(3,0);
+    setConsoleColor(15, 11);
+    cout<<"==============================" << endl;
+    cout<<"      BIBLIOTECA ESTIM        "<<endl;
+    cout<<"==============================" << endl<<endl;
+    setConsoleColor(3,0);
 
     for (int j = 0; j<tam ; j++)
     {
@@ -1494,7 +1594,7 @@ void registroCompras()
     float totalGastado;
 
     system("cls");
-libro = arcB.leerBiblioteca(idIniciada-1);
+    libro = arcB.leerBiblioteca(idIniciada-1);
     cout<<"<<------------------COMPRAS TOTALES DE VIDEOJUEGOS----------------------->>"<<endl;
     cout<<"                            BIBLIOTECA CON ID: "<< libro.getIdUsuario()<<"                       "<<endl;
     cout<<"<<----------------------------------------------------------------------->>"<<endl;
@@ -1601,11 +1701,11 @@ void comprarJuego(int idVideojuego)
 void listarPorGenero()
 {
     system("cls");
-        setConsoleColor(15, 3);
-        cout<<"==============================" << endl;
-        cout<<"        FILTRO GENERO         "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(15,0);
+    setConsoleColor(15, 3);
+    cout<<"==============================" << endl;
+    cout<<"        FILTRO GENERO         "<<endl;
+    cout<<"==============================" << endl<<endl;
+    setConsoleColor(15,0);
     archivoVideoJuego arcV("archivos/videojuego.dat");
     videoJuego game;
     archivoUsuario arcU("archivos/Usuario.dat");
@@ -1615,9 +1715,10 @@ void listarPorGenero()
     Genero obj;
     cout<<"Generos disponibles: "<< endl;
     int tamanio= arcG.contarRegistros();
-    for (int i = 0;i<tamanio;i++ ){
-    obj= arcG.leerRegistros(i);
-    obj.mostrar();
+    for (int i = 0; i<tamanio; i++ )
+    {
+        obj= arcG.leerRegistros(i);
+        obj.mostrar();
     }
 
     char genero[30];
@@ -1629,11 +1730,11 @@ void listarPorGenero()
     int contgame=0;
 
     system("cls");
-        setConsoleColor(15, 3);
-        cout<<"==============================" << endl;
-        cout<<"        FILTRO GENERO         "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(15,0);
+    setConsoleColor(15, 3);
+    cout<<"==============================" << endl;
+    cout<<"        FILTRO GENERO         "<<endl;
+    cout<<"==============================" << endl<<endl;
+    setConsoleColor(15,0);
 
     usu = arcU.leerRegistros(datosUsuarioIniciado());
     cout << "--------------------------------------------------------------------------" << endl;
@@ -1661,7 +1762,7 @@ void listarPorGenero()
             contgame++;
         }
     }
-   if (contgame == 0)
+    if (contgame == 0)
     {
         setConsoleColor(4, 0);
         cout << "No hay juegos con esa desarrolladora :(" << endl;
@@ -1676,11 +1777,11 @@ void listarPorGenero()
 void listarPorCreador()
 {
     system("cls");
-        setConsoleColor(15, 3);
-        cout<<"==============================" << endl;
-        cout<<"       FILTRO  CREADOR        "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(15,0);
+    setConsoleColor(15, 3);
+    cout<<"==============================" << endl;
+    cout<<"       FILTRO  CREADOR        "<<endl;
+    cout<<"==============================" << endl<<endl;
+    setConsoleColor(15,0);
     archivoVideoJuego arcV("archivos/videojuego.dat");
     videoJuego game;
     archivoUsuario arcU("archivos/Usuario.dat");
@@ -1690,9 +1791,10 @@ void listarPorCreador()
     Desarrollador obj;
     cout<<"Desarrolladores disponibles: "<< endl;
     int tamanio= arcD.contarRegistros();
-    for (int i = 0;i<tamanio;i++ ){
-    obj= arcD.leerRegistros(i);
-    obj.mostrar();
+    for (int i = 0; i<tamanio; i++ )
+    {
+        obj= arcD.leerRegistros(i);
+        obj.mostrar();
     }
 
     int tam = arcV.contarRegistros();
@@ -1704,11 +1806,11 @@ void listarPorCreador()
     cout << "Ingrese la desarrolladora a buscar: ";
     cargarCadena(desarrolladora, 29);
     system("cls");
-        setConsoleColor(15, 3);
-        cout<<"==============================" << endl;
-        cout<<"       FILTRO  CREADOR        "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(15,0);
+    setConsoleColor(15, 3);
+    cout<<"==============================" << endl;
+    cout<<"       FILTRO  CREADOR        "<<endl;
+    cout<<"==============================" << endl<<endl;
+    setConsoleColor(15,0);
     usu = arcU.leerRegistros(datosUsuarioIniciado());
     cout << "--------------------------------------------------------------------------" << endl;
     cout << "Filtro aplicado: " << desarrolladora << endl;
@@ -1773,8 +1875,8 @@ void bajaUsuario(int idIniciada)
     obj.setActivo(false);
     arcU.modificarUsuario(obj,pos);
     system("cls");
-            setConsoleColor(4,0);
-            cout<< "Su cuenta se ha deshabilitado.";
+    setConsoleColor(4,0);
+    cout<< "Su cuenta se ha deshabilitado.";
     system("pause");
 }
 
@@ -1792,22 +1894,22 @@ void mostrarPorPrecio()
     int tam2 = 0;
 
     system("cls");
-        setConsoleColor(15, 3);
-        cout<<"==============================" << endl;
-        cout<<"        FILTRO PRECIO         "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(15,0);
+    setConsoleColor(15, 3);
+    cout<<"==============================" << endl;
+    cout<<"        FILTRO PRECIO         "<<endl;
+    cout<<"==============================" << endl<<endl;
+    setConsoleColor(15,0);
     cout << "Ingrese el monto maximo: ";
     cin >> montoMax;
     cout << "Ingrese el monto minimo: ";
     cin >> montoMin;
 
     system("cls");
-        setConsoleColor(15, 3);
-        cout<<"==============================" << endl;
-        cout<<"        FILTRO PRECIO         "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(15,0);
+    setConsoleColor(15, 3);
+    cout<<"==============================" << endl;
+    cout<<"        FILTRO PRECIO         "<<endl;
+    cout<<"==============================" << endl<<endl;
+    setConsoleColor(15,0);
 
     usu = arcU.leerRegistros(datosUsuarioIniciado());
     cout << "------------------------------------------------------------------------------" << endl;
@@ -1862,20 +1964,20 @@ void listarPorAnio()
     int tam2 = 0;
 
     system("cls");
-        setConsoleColor(15, 3);
-        cout<<"==============================" << endl;
-        cout<<"         FILTRO ANIO          "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(15,0);
+    setConsoleColor(15, 3);
+    cout<<"==============================" << endl;
+    cout<<"         FILTRO ANIO          "<<endl;
+    cout<<"==============================" << endl<<endl;
+    setConsoleColor(15,0);
     cout << "Ingrese el anio con el cual filtrar: ";
     cin >> anio;
 
     system("cls");
-        setConsoleColor(15, 3);
-        cout<<"==============================" << endl;
-        cout<<"         FILTRO ANIO          "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(15,0);
+    setConsoleColor(15, 3);
+    cout<<"==============================" << endl;
+    cout<<"         FILTRO ANIO          "<<endl;
+    cout<<"==============================" << endl<<endl;
+    setConsoleColor(15,0);
 
     usu = arcU.leerRegistros(datosUsuarioIniciado());
     cout << "--------------------------------------------------------------------------" << endl;
@@ -1942,10 +2044,10 @@ void cargarVideojuego()
     }
     game.setTitulo(nombre);
     game.cargar();
-        //if (game.getPrecio()<0  game.getCalificacion() < 0  game.getPeso() < 0 || game.getRestriccion() < 0)
-  //  {
-   //     return;
- //   }
+    //if (game.getPrecio()<0  game.getCalificacion() < 0  game.getPeso() < 0 || game.getRestriccion() < 0)
+    //  {
+    //     return;
+//   }
     Genero gene, geneAux;
     archivoGenero arcG("archivos/genero.dat");
     bool existeG=false;
@@ -2161,11 +2263,11 @@ void listarPorGratuito()
     int tam2 = 0;
 
     system("cls");
-        setConsoleColor(0, 12);
-        cout<<"==============================" << endl;
-        cout<<"           GRATIS!            "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(15,0);
+    setConsoleColor(0, 12);
+    cout<<"==============================" << endl;
+    cout<<"           GRATIS!            "<<endl;
+    cout<<"==============================" << endl<<endl;
+    setConsoleColor(15,0);
 
     usu = arcU.leerRegistros(datosUsuarioIniciado());
     cout << "--------------------------------------------------------------------------" << endl;

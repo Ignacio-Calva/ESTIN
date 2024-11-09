@@ -15,38 +15,31 @@ int main()
     int opcion1 = 1;
     while (opcion1 != 0)
     {
+    setConsoleColor(15, 3);
     system("cls");
-    setConsoleColor(15, 1);
     rlutil::locate(40,10);
     cout << "==============================" << endl;
-    setConsoleColor(14, 1);
     rlutil::locate(40,11);
     cout << "            ESTIM             " << endl;
-    setConsoleColor(15, 1);
     rlutil::locate(40,12);
-    cout << "==============================" << endl << endl;
-    setConsoleColor(15, 0);
+    cout << "==============================" << endl;
     rlutil::locate(40,13);
-    cout << "==============================" << endl;
-    setConsoleColor(15, 0);
-    rlutil::locate(40,14);
     cout << "|      1 - REGISTRARSE       |" << endl;
-    setConsoleColor(15, 0);
-    rlutil::locate(40,15);
+    rlutil::locate(40,14);
     cout << "|     2 - INICIAR SESION     |" << endl;
-    rlutil::locate(40,16);
+    rlutil::locate(40,15);
     cout << "|";
-    setConsoleColor(12, 0);
+    setConsoleColor(4, 3);
     cout << "         0 - SALIR          ";
-    setConsoleColor(15, 0);
+    setConsoleColor(15, 3);
     cout << "|" << endl;
-    rlutil::locate(40,17);
+    rlutil::locate(40,16);
     cout << "==============================" << endl << endl;
-    rlutil::locate(40,18);
+    rlutil::locate(40,17);
     cout << "|INGRESE UNA OPCION:         |" << endl;
-    rlutil::locate(40,19);
+    rlutil::locate(40,18);
     cout << "==============================" << endl;
-    rlutil::locate(63,18);
+    rlutil::locate(63,17);
     cin>>opcion1;
     switch (opcion1)
     {
