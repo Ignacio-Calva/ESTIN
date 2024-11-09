@@ -603,7 +603,9 @@ void inicioSesion()
     while (true)
     {
         system("cls");
+        rlutil::locate(40,10);
         cout << "       INICIO DE SESION      " << endl;
+        rlutil::locate(40,11);
         cout << "=============================" << endl << endl;
         archivoUsuario arcU("archivos/Usuario.dat");
         usuario usu;
@@ -612,11 +614,23 @@ void inicioSesion()
 
         char nombre[30];
         char contrasenia[20];
+        setConsoleColor(15,3);
         system("cls");
-        cout << "       INICIO DE SESION      " << endl;
-        cout << "=============================" << endl << endl;
-
-        cout<<"Ingrese su nombre de usuario: " ;
+        rlutil::locate(30,10);
+        cout << "==============================================================" << endl;
+        rlutil::locate(30,11);
+        cout << "|                      INICIO DE SESION                      |" << endl;
+        rlutil::locate(30,12);
+        cout << "==============================================================" << endl;
+        rlutil::locate(30,13);
+        cout << "|                                                            |" ;
+        rlutil::locate(30,14);
+        cout << "|Ingrese su nombre de usuario:                               |" ;
+        rlutil::locate(30,15);
+        cout << "|                                                            |" ;
+        rlutil::locate(30,16);
+        cout << "==============================================================" << endl;
+        rlutil::locate(61,14);
         cargarCadena(nombre, 29);
 
         int pos=0; ///USADA POR REFERENCIA PARA GUARDAR DONDE FUE ENCONTRADO EL NOMBRE EN LA FUNCION buscarNombre()
@@ -628,23 +642,33 @@ void inicioSesion()
         {
             if (hayUnAdmin()==true)
             {
+                rlutil::locate(30,16);
                 cout << "La cuenta de administrador principal se encuentra deshabilitada." << endl;
                 system("pause");
                 system("cls");
                 return;
             }///CONFIRMO QUE NO HAYA SIDO DESHABILITADA ANTERIORMENTE
             system("cls");
-        cout << "       INICIO DE SESION      " << endl;
-        cout << "        Administrador        " << endl;
-        cout << "=============================" << endl << endl;
+            rlutil::locate(40,10);
+            cout << "===============================================" << endl;
+            cout << "       INICIO DE SESION      " << endl;
+            rlutil::locate(40,11);
+            cout << "        Administrador        " << endl;
+            rlutil::locate(40,12);
+            cout << "=============================" << endl << endl;
+            rlutil::locate(40,13);
             cout << "Usuario encontrado." << endl;
+            rlutil::locate(40,14);
             cout << "Ingrese su contrasenia: " ;
+            rlutil::locate(64,14);
             cargarContraseniaOculta(contrasenia, 19);
             if (strcmp(contrasenia,cuentaAdmin.getContrasenia()) == 0)
             {
                 cout<<"                             "<<endl;
                 setConsoleColor(9, 0);
+                rlutil::locate(30,16);
                 cout<<"     !Contrasenia correcta! "<<endl;
+                rlutil::locate(30,16);
                 cout<<" Se ha iniciado sesion con la cuenta de administrador principal. " << endl;
                 setConsoleColor(6, 0);
                 cout<<"                             "<<endl;
