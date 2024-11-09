@@ -627,7 +627,7 @@ void inicioSesion()
         rlutil::locate(30,14);
         cout << "|Ingrese su nombre de usuario:                               |" ;
         rlutil::locate(30,15);
-        cout << "|                                                            |" ;
+        cout << "|Ingrese su contraseña:                                      |" ;
         rlutil::locate(30,16);
         cout << "==============================================================" << endl;
         rlutil::locate(61,14);
@@ -649,30 +649,36 @@ void inicioSesion()
                 return;
             }///CONFIRMO QUE NO HAYA SIDO DESHABILITADA ANTERIORMENTE
             system("cls");
-            rlutil::locate(40,10);
-            cout << "===============================================" << endl;
-            cout << "       INICIO DE SESION      " << endl;
-            rlutil::locate(40,11);
-            cout << "        Administrador        " << endl;
-            rlutil::locate(40,12);
-            cout << "=============================" << endl << endl;
-            rlutil::locate(40,13);
-            cout << "Usuario encontrado." << endl;
-            rlutil::locate(40,14);
-            cout << "Ingrese su contrasenia: " ;
-            rlutil::locate(64,14);
-            cargarContraseniaOculta(contrasenia, 19);
+            rlutil::locate(30,10);
+            cout << "==============================================================" << endl;
+            rlutil::locate(30,11);
+            cout << "|                      INICIO DE SESION                      |" << endl;
+            rlutil::locate(30,12);
+            cout << "==============================================================" << endl;
+            rlutil::locate(30,13);
+            cout << "|                                                            |" ;
+            rlutil::locate(30,14);
+            cout << "|Ingrese su nombre de usuario:                               |" ;
+            rlutil::locate(61,14);
+            cout << nombre;
+            rlutil::locate(30,15);
+            cout << "|Ingrese su contraseña:                                      |" ;
+            rlutil::locate(30,16);
+            cout << "==============================================================" << endl;
+            rlutil::locate(55,15);
+            cargarContraseniaOculta(contrasenia,19);
+
             if (strcmp(contrasenia,cuentaAdmin.getContrasenia()) == 0)
             {
-                cout<<"                             "<<endl;
-                setConsoleColor(9, 0);
-                rlutil::locate(30,16);
-                cout<<"     !Contrasenia correcta! "<<endl;
-                rlutil::locate(30,16);
-                cout<<" Se ha iniciado sesion con la cuenta de administrador principal. " << endl;
-                setConsoleColor(6, 0);
-                cout<<"                             "<<endl;
+                rlutil::locate(30,18);
+                cout << "                     ¡Contraseña correcta!                     " << endl;
+                rlutil::locate(30,19);
+                cout << "Se ha iniciado sesion con la cuenta de administrador principal. " << endl;
+                setConsoleColor(15, 3);
+                rlutil::locate(40, 20);
                 if (cuentaAdmin.getAdmin()) cout << "Esta cuenta tiene permisos de administrador."<<endl;
+                rlutil::locate(42,21);
+                setConsoleColor(8,3);
                 system("pause");
                 system("cls");
                 menuAdministrador(); //MODIFICAR EL MENU DE ADMINISTRADOR

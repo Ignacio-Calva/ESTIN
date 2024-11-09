@@ -7,9 +7,11 @@ using namespace std;
 #include "USUARIO.h"
 #include "BIBLIOTECA.h"
 #include "rlutil.h"
+#include <locale.h>
 
 int main()
 {
+    setlocale(LC_ALL, "");
     int opcion1 = 1;
     while (opcion1 != 0)
     {
