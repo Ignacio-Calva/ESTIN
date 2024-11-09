@@ -75,6 +75,7 @@ void listarPorGratuito();
 void puntoRestauracion();
 void crearPuntoRestauracion();
 void cargarPuntoRestauracion();
+void ponerChar(int caracter, int largo);
 
 bool hayUnAdmin();
 #endif // FUNCIONES_H_INCLUDED
