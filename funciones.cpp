@@ -8,6 +8,7 @@ using namespace std;
 #include "DESARROLLADOR.h"
 #include "ADMIN.h"
 #include "GENERO.h"
+#include "rlutil.h"
 #include <windows.h>
 #include <conio.h>
 

@@ -9,7 +9,7 @@
 
 1730846126 ated upstream
 
-1730654776 source:d:\facultad\tecnicatura programación\programación\estin\valeam.cpp
+1731173417 source:d:\facultad\tecnicatura programación\programación\estin\valeam.cpp
 	<iostream>
 	<string.h>
 	<windows.h>
@@ -53,15 +53,19 @@
 	"BIBLIOTECA.h"
 	"funciones.h"
 
-1730933323 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
+1731173459 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
 	"VIDEOJUEGO.h"
 	"BIBLIOTECA.h"
 	"USUARIO.h"
+	"DESARROLLADOR.h"
 	"ADMIN.h"
+	"GENERO.h"
+	"rlutil.h"
 	<windows.h>
+	<conio.h>
 
 1728069614 d:\facultad\tecnicatura programación\programación\estin\clases.h
 	"funciones.h"
@@ -125,10 +129,10 @@
 	"funciones.h"
 	"PERSONA.h"
 
-1730855009 d:\facultad\tecnicatura programación\programación\estin\videojuego.h
+1730937440 d:\facultad\tecnicatura programación\programación\estin\videojuego.h
 	"funciones.h"
 
-1730929947 d:\facultad\tecnicatura programación\programación\estin\biblioteca.h
+1731173417 d:\facultad\tecnicatura programación\programación\estin\biblioteca.h
 	"funciones.h"
 	"FECHA.h"
 
@@ -228,7 +232,7 @@
 1730538296 c:\users\user\desktop\facultad\estin-main\estin\fecha.h
 	<string>
 
-1730934314 d:\facultad\tecnicatura programación\programación\estin\persona.h
+1730937437 d:\facultad\tecnicatura programación\programación\estin\persona.h
 	"funciones.h"
 	"PAIS.h"
 
@@ -275,4 +279,22 @@
 1731084655 c:\users\admin\documents\github\estin\desarrollador.h
 
 1731084416 c:\users\admin\documents\github\estin\genero.h
+
+1731173417 d:\facultad\tecnicatura programación\programación\estin\desarrollador.h
+
+1731173417 d:\facultad\tecnicatura programación\programación\estin\genero.h
+
+1571584339 d:\facultad\tecnicatura programación\programación\estin\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
 
