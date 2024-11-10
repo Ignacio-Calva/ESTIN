@@ -75,7 +75,7 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\funciones.cpp
 
-1731187057 source:c:\users\admin\documents\github\estin\funciones.cpp
+1731261644 source:c:\users\admin\documents\github\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -143,8 +143,9 @@
 	"USUARIO.h"
 	"funciones.h"
 
-1731082315 c:\users\admin\documents\github\estin\videojuego.h
+1731259780 c:\users\admin\documents\github\estin\videojuego.h
 	"funciones.h"
+	"rlutil.h"
 
 1731083783 c:\users\admin\documents\github\estin\biblioteca.h
 	"funciones.h"

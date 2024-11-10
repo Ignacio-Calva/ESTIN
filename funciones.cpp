@@ -34,7 +34,7 @@ void menuPrincipal()
         system("CLS");
 
         rlutil::locate(3,2);
-        cout<< "ESTIM°";
+        cout<< "ESTIM.";
 
         rlutil::locate(100,2);
         cout<<"Usuario: " << usu.getNombre()<<endl;
@@ -152,11 +152,11 @@ void menuFiltro()
         usuario usu;
         usu = arcU.leerRegistros(idIniciada-1);
 
-    setConsoleColor(15, 1);
+        setConsoleColor(15, 1);
         system("CLS");
 
         rlutil::locate(3,2);
-        cout<< "ESTIM°";
+        cout<< "ESTIM.";
 
         rlutil::locate(100,2);
         cout<<"Usuario: " << usu.getNombre()<<endl;
@@ -768,7 +768,7 @@ void inicioSesion()
             }
             else
             {
-                rlutil::locate(55,15);
+                rlutil::locate(54,15);
                 setConsoleColor(4, 3);
                 cout << "contrase"<< char(164) <<"a incorrecta" << endl;
                 rlutil::locate(42,18);
@@ -853,7 +853,7 @@ void inicioSesion()
                 }
                 else
                 {
-                    rlutil::locate(55,15);
+                    rlutil::locate(54,15);
                     setConsoleColor(4, 3);
                     cout << "contrase"<< char(164) <<"a incorrecta" << endl;
                     rlutil::locate(42,18);
@@ -1170,43 +1170,60 @@ int designarBiblioteca(int idUsuario)
 
 void aniadirTarjeta(int idIniciada)
 {
+    setConsoleColor(0,2);
     system("cls");
-    setConsoleColor(0, 2);
-    cout<<"==============================" << endl;
-    cout<<"       ASIGNAR  TARJETA       "<<endl;
-    cout<<"==============================" << endl<<endl;
-    setConsoleColor(15,0);
+    rlutil::locate(40,5);
+    cout<< "==============================" << endl;
+    rlutil::locate(40,7);
+    cout<< "        ASIGNAR TARJETA       " << endl;
+    rlutil::locate(40,9);
+    cout<< "==============================" << endl<<endl;
+    setConsoleColor(0,2);
     usuario obj;
     archivoUsuario arcU("archivos/Usuario.dat");
     int pos = buscarUsuarioPorID(idIniciada);
     int num;
     if(pos<0)
     {
+        rlutil::locate(40,11);
         cout<<"Error al aniadir tarjeta."<<endl;
+        rlutil::locate(40,12);
         cout << "Codigo de error: " << pos << endl;
         system("pause");
         return;
     }
+    rlutil::locate(40,11);
     cout << "REGISTRO: " << pos << endl;
+    rlutil::locate(40,12);
     cout << "ID SELECCIONADA: " << idIniciada << endl;
     obj = arcU.leerRegistros(pos);
     if(obj.getActivo()==false)
     {
+        setConsoleColor(0,2);
+        rlutil::locate(40,11);
         cout<<"El usuario se encontraba deshabilitado" << endl;
         system("pause");
         return;
     }
+    rlutil::locate(25,14);
     cout<<"Ingrese el numero de tarjeta (0 para quitar la actual): ";
+rlutil::locate(81,14);
     cin>>num;
     if (num < 0)
     {
-        cout<<"Un numero de tarjeta JAMAS sera negativa." << endl;
+        rlutil::locate(81,14);
+        setConsoleColor(4,2);
+        cout<<"Un numero de tarjeta JAMAS sera negativo" << endl;
+        setConsoleColor(0,2);
         system("pause");
         return;
     }
     obj.setTarjet(num);
     arcU.modificarUsuario(obj,pos);
+
+    rlutil::locate(35,16);
     cout << "La tarjeta asignada a la cuenta es: " << obj.getTarjet() << endl;
+    rlutil::locate(40,17);
     system("pause");
 }
 
@@ -1326,11 +1343,16 @@ void comprarJuegosListados(int juegosListados[], int tam)
     archivoVideoJuego arcV("archivos/videoJuego.dat");
     int numJuego;
 
-    cout << endl << "0 - ATRAS" << endl;
-    setConsoleColor(8, 0);
-    cout << "-------------------------------------------------------------------" << endl;
-    setConsoleColor(4, 0);
-    cout << endl << "Ingrese el numero del juego deseado (0 Para cancelar): " << endl;
+    rlutil::locate(35,20);
+    setConsoleColor(4, 1);
+    cout << "0 - ATRAS" << endl;
+    setConsoleColor(3, 1);
+    rlutil::locate(30,21);
+    cout << "---------------------------------------" << endl;
+    setConsoleColor(15, 1);
+    rlutil::locate(30,22);
+    cout << "Ingrese una opcion: ";
+    rlutil::locate(50,22);
     cin >> numJuego;
 
     if (numJuego == 0)
@@ -1340,6 +1362,8 @@ void comprarJuegosListados(int juegosListados[], int tam)
 
     if (numJuego < 1 || numJuego > tam)
     {
+        rlutil::locate(50,22);
+        setConsoleColor(4,1);
         cout << "Numero de juego no encontrado." << endl;
         system("pause");
         return;
@@ -1672,11 +1696,19 @@ void comprarJuego(int idVideojuego)
     while (true)
     {
         int opcion2 = 1;
-        setConsoleColor(4,0);
+        setConsoleColor(15,1);
+        rlutil::locate(45,23);
         cout<<"1 - Comprar"<<endl;
+        setConsoleColor(4,1);
+        rlutil::locate(45,24);
         cout<<"0 - Salir"<<endl;
-        cout<<"-----------"<<endl;
-        setConsoleColor(15,0);
+        setConsoleColor(15,1);
+        rlutil::locate(45,25);
+        cout << "---------------------------------------" << endl;
+        rlutil::locate(45,26);
+    cout << "Ingrese una opcion: ";
+    rlutil::locate(65,26);
+        setConsoleColor(15,1);
         cin>>opcion;
         switch (opcion)
         {
@@ -1689,9 +1721,10 @@ void comprarJuego(int idVideojuego)
                 {
                     if (bib.getIdVideojuego(i)==idVideojuego)
                     {
-                        setConsoleColor(4,0);
+                        setConsoleColor(4,1);
+                        rlutil::locate(45,26);
                         cout << "Ya tienes el juego en tu biblioteca. " << endl;
-                        setConsoleColor(15,0);
+                        setConsoleColor(15,1);
                         return;
                     }
                 }
@@ -1701,10 +1734,15 @@ void comprarJuego(int idVideojuego)
             else if (usu.getTarjet() == 0)
             {
                 system("cls");
+                rlutil::locate(40, 10);
                 cout<<"No tienes alguna tarjeta asociada."<<endl;
+                rlutil::locate(40, 11);
                 cout<<"Desea aniadir una a su cuenta?"<<endl<<endl;
+                rlutil::locate(40, 12);
                 cout<<"1 - Si"<<endl;
+                rlutil::locate(40, 13);
                 cout<<"2 - No"<<endl;
+                rlutil::locate(40, 14);
                 cin>>opcion2;
                 switch (opcion2)
                 {
@@ -2197,9 +2235,9 @@ void caracteristicasVideojuego(int j)
     videoJuego game;
     game = arcV.leerRegistros(j-1);
     system("CLS");
-    setConsoleColor(15, 0);
+    setConsoleColor(15, 1);
     game.mostrar();
-    setConsoleColor(8, 0);
+    setConsoleColor(8, 1);
     return;
 }
 
@@ -2233,7 +2271,7 @@ void buscarPorNombre(const char *n)
 
 void elegirVideojuego()
 {
-    system("CLS");
+
     archivoVideoJuego arcV("archivos/videojuego.dat");
     videoJuego game;
     archivoUsuario arcU("archivos/Usuario.dat");
@@ -2243,15 +2281,36 @@ void elegirVideojuego()
     int juegosListados[150] = {};
     int tam = 0;
 
-    system("CLS");
+    usu = arcU.leerRegistros(idIniciada-1);
+    setConsoleColor(15, 1);
+        system("CLS");
+
+        rlutil::locate(3,2);
+        cout<< "ESTIM.";
+
+        rlutil::locate(100,2);
+        cout<<"Usuario: " << usu.getNombre()<<endl;
+        rlutil::locate(100,3);
+        cout<<"ID: " << idIniciada<<endl;
     usu = arcU.leerRegistros(datosUsuarioIniciado());
+
+    rlutil::locate(40,5);
+        cout<< "==============================" << endl;
+        rlutil::locate(40,7);
+        cout<< "    TODOS LOS VIDEOJUEGOS!    " << endl;
+        rlutil::locate(40,9);
+        cout<< "==============================" << endl<<endl;
+        setConsoleColor(3,1);
 
     for (int i = 0; i < cantReg; i++)
     {
+        rlutil::locate(35, 11+(i));
         game = arcV.leerRegistros(i);
         if (usu.getEdad() >= game.getRestriccion() && game.getActivo())
         {
-            cout << tam + 1 << " - " << game.getTitulo() << "    -- precio: $ " << game.getPrecio() << endl;
+            cout << tam + 1 << " - " << game.getTitulo();
+            rlutil::locate(64, 11+(i));
+            cout << " --- precio: $ " << game.getPrecio() << endl;
             juegosListados[tam] = game.getidVideojuego();
             tam++;
         }
