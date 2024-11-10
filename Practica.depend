@@ -157,7 +157,7 @@
 1731082315 c:\users\admin\documents\github\estin\fecha.h
 	<string>
 
-1730984928 source:c:\users\user\desktop\estin\funciones.cpp
+1731271202 source:c:\users\user\desktop\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -167,22 +167,24 @@
 	"DESARROLLADOR.h"
 	"ADMIN.h"
 	"GENERO.h"
+	"rlutil.h"
 	<windows.h>
 	<conio.h>
 
-1730947489 c:\users\user\desktop\estin\funciones.h
+1731268700 c:\users\user\desktop\estin\funciones.h
 	<cstring>
 	"FECHA.h"
 	"VIDEOJUEGO.h"
 
-1730936906 c:\users\user\desktop\estin\videojuego.h
+1731268700 c:\users\user\desktop\estin\videojuego.h
 	"funciones.h"
+	"rlutil.h"
 
 1730915998 c:\users\user\desktop\estin\usuario.h
 	"funciones.h"
 	"PERSONA.h"
 
-1730951969 source:c:\users\user\desktop\estin\valeam.cpp
+1731268700 source:c:\users\user\desktop\estin\valeam.cpp
 	<iostream>
 	<string.h>
 	<windows.h>
@@ -190,12 +192,13 @@
 	"VIDEOJUEGO.h"
 	"USUARIO.h"
 	"BIBLIOTECA.h"
+	"rlutil.h"
 
-1730978795 c:\users\user\desktop\estin\biblioteca.h
+1731268700 c:\users\user\desktop\estin\biblioteca.h
 	"funciones.h"
 	"FECHA.h"
 
-1730916766 c:\users\user\desktop\estin\fecha.h
+1731268700 c:\users\user\desktop\estin\fecha.h
 	<string>
 
 1730864587 source:c:\users\user\desktop\facultad\estin-main\estin\funciones.cpp
@@ -240,7 +243,7 @@
 	"funciones.h"
 	"PAIS.h"
 
-1730936906 c:\users\user\desktop\estin\persona.h
+1731268700 c:\users\user\desktop\estin\persona.h
 	"funciones.h"
 	"PAIS.h"
 
@@ -261,7 +264,7 @@
 	"PERSONA.h"
 	"PAIS.h"
 
-1730931621 c:\users\user\desktop\estin\admin.h
+1731268700 c:\users\user\desktop\estin\admin.h
 	"funciones.h"
 	"PERSONA.h"
 	"PAIS.h"
@@ -270,15 +273,15 @@
 	"funciones.h"
 	"PERSONA.h"
 
-1730979951 c:\users\user\desktop\estin\pais.h
+1731268700 c:\users\user\desktop\estin\pais.h
 
 1730933607 d:\facultad\tecnicatura programación\programación\estin\pais.h
 
 1731082315 c:\users\admin\documents\github\estin\pais.h
 
-1730983174 c:\users\user\desktop\estin\genero.h
+1731268700 c:\users\user\desktop\estin\genero.h
 
-1730986221 c:\users\user\desktop\estin\desarrollador.h
+1731268700 c:\users\user\desktop\estin\desarrollador.h
 
 1731084655 c:\users\admin\documents\github\estin\desarrollador.h
 
@@ -303,6 +306,20 @@
 	<sys/time.h>
 
 1731173744 c:\users\admin\documents\github\estin\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1731268701 c:\users\user\desktop\estin\rlutil.h
 	<iostream>
 	<string>
 	<cstdio>

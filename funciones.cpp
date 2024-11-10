@@ -84,7 +84,7 @@ void menuPrincipal()
             break;
         case 4:
             infoCuenta();
-            break; //AGREGO LA FUNCION AL MENU
+            break;
         case 0:
             break;
         default:
@@ -99,22 +99,44 @@ void menuBiblioteca()
     int opcion = 1;
     while (opcion!=0)
     {
-        system("CLS");
-        setConsoleColor(15, 11);
-        cout<<"==============================" << endl;
-        cout<<"      BIBLIOTECA ESTIM        "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(3,0);
-        cout << "----------------------------------------------------------" << endl;
-        cout<<"ID de cuenta iniciada: " << idIniciada<<endl;
-        cout<<"1 - Listar biblioteca personal"<<endl;
-        cout<<"2 - Listar biblioteca por nombre"<<endl;
-        cout<<"3 - Listar biblioteca por genero"<<endl;
-        cout<<"4 - Listar biblioteca por desarrollador"<<endl;
-        cout<<"5 - registro de compras"<<endl;
+        setConsoleColor(15, 3);
 
+        system("CLS");
+
+        setConsoleColor(15, 3);
+
+        rlutil::locate(40,3);
+        cout<<"==============================" << endl;
+        rlutil::locate(40,4);
+        cout<<"      BIBLIOTECA ESTIM        "<<endl;
+        rlutil::locate(40,5);
+        cout<<"==============================" << endl<<endl;
+        setConsoleColor(15,3);
+        rlutil::locate(6,3);
+        cout<<"ID de cuenta iniciada: " << idIniciada<<endl;
+
+        rlutil::locate(40,10);
+        cout<<"1) - Listar biblioteca personal"<<endl;
+        rlutil::locate(40,12);
+        cout<<"2) - Listar biblioteca por nombre"<<endl;
+        rlutil::locate(40,14);
+        cout<<"3) - Listar biblioteca por genero"<<endl;
+        rlutil::locate(40,16);
+        cout<<"4) - Listar biblioteca por desarrollador"<<endl;
+        rlutil::locate(40,18);
+        cout<<"5) - registro de compras"<<endl;
+
+        rlutil::locate(45,20);
+        setConsoleColor(4,3);
         cout<<"0 - cerrar"<<endl;
+
+        setConsoleColor(15, 3);
+
+        rlutil::locate(10,26);
+        cout<<"Ingrese su opcion :"<<endl;
+        rlutil::locate(25,26);
         cin>>opcion;
+
         switch (opcion)
         {
         case 1:
@@ -875,45 +897,6 @@ void inicioSesion()
     }
 }
 
-/*Fecha compararFecha(Fecha fecha1, Fecha fecha2) ///DEVUELVE LA FECHA MAS CHICA
-{
-    if(fecha1.getAnio() < fecha2.getAnio())
-    {
-        return fecha1;
-    }
-    else if(fecha2.getAnio() < fecha1.getAnio())
-    {
-        return fecha2;
-    }
-    else  //LOS DOS AÑOS SON IGUALES
-    {
-        if (fecha1.getMes() < fecha2.getMes())
-        {
-            return fecha1;
-        }
-        else if (fecha2.getMes() < fecha1.getMes())
-        {
-            return fecha2;
-        }
-        else //LOS DOS MESES SON IGUALES
-        {
-            if (fecha1.getDia() < fecha2.getDia())
-            {
-                return fecha1;
-            }
-            else if(fecha2.getDia() < fecha1.getDia())
-            {
-                return fecha2;
-            }
-            else
-            {
-                return fecha1;   //LAS DOS FECHAS SON IGUALES, RETORNA LA PRIMERA
-            }
-        }
-    }
-}*/
-
-
 ///FUNCIONES USUARIO
 
 void grabarRegistroUsuario()
@@ -1306,20 +1289,21 @@ void mostrarBibliotecaDeUsuario(int idIniciada)
         if(idIniciada == libro.getIdUsuario())
         {
             system("CLS");
-            setConsoleColor(15, 11);
-            cout<<"==============================" << endl;
-            cout<<"      BIBLIOTECA ESTIM        "<<endl;
-            cout<<"==============================" << endl<<endl;
-            setConsoleColor(3,0);
-
+            setConsoleColor(15, 3);
+            rlutil :: locate(40, 3);
+            cout<<"              BIBLIOTECA ESTIM        "<<endl;
+            rlutil :: locate(40, 4);
+            cout<<"=============================================" << endl<<endl;
+            setConsoleColor(15, 3);
+            rlutil::locate(10,3);
             cout << "Mostrando biblioteca ID: " << libro.getIdUsuario() << endl;
-            cout << "============================" << endl;
+            rlutil::locate(10,4);
             cout << "Biblioteca del usuario ID: " << idIniciada << endl << endl;
             cout << "============================" << endl;
             libro.mostrar();
             cout << "============================" << endl;
             cout << "Biblioteca del usuario ID: " << idIniciada << endl << endl;
-            setConsoleColor(15,0);
+
             //libro.mostrar();
             for (int j=0 ; j<150 ; j++)
             {
