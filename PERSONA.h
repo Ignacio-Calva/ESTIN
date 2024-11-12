@@ -60,7 +60,16 @@ class Persona
             cout<< "Mail: " << Mail << endl;
             rlutil::locate(40,13);
             cout<< "Numero de tarjeta: " << numTarjeta << endl;
+        }
 
+        mostrarDatosSinLocate()
+        {
+            cout<< "Nombre usuario: " << NombreUsuario << endl;
+            cout<< "Edad: " << Edad << endl;
+            cout<< "DNI:  " << DNI << endl;
+            cout<< "Pais: " << nombrePais.getNombrePais() << endl;
+            cout<< "Mail: " << Mail << endl;
+            cout<< "Numero de tarjeta: " << numTarjeta << endl;
         }
 
         void setNombre(const char *n){strcpy(NombreUsuario, n);}

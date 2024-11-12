@@ -66,6 +66,32 @@ public:
         cout<< "----------------------------------";
     }
 
+    void mostrarPorLocate(int x, int y)
+    {
+        rlutil::locate(x,y);
+        cout<< "- " << titulo << " -" <<endl;
+        rlutil::locate(x,y+1);
+        cout<< "----------------------------------";
+        rlutil::locate(x,y+2);
+        cout<< ".Genero: " << genero <<endl;
+        rlutil::locate(x,y+3);
+        cout<< ".Precio: " << "$" <<precio <<endl;
+        rlutil::locate(x,y+4);
+        cout<< ".Calificacion: " << calificacion << "/100" <<endl;
+        rlutil::locate(x,y+5);
+        cout<< ".Idioma: " << idioma << endl;
+        rlutil::locate(x,y+6);
+        cout<< ".Desarrolladora: " << desarrollador <<endl;
+        rlutil::locate(x,y+7);
+        cout<< ".Almacenamiento requerido: " << peso << "GB" <<endl;
+        rlutil::locate(x,y+8);
+        cout<< ".Edad: " << "+" << restriccionEdad <<endl;
+        rlutil::locate(x,y+9);
+        cout<< ".Anio de lanzamiento: " << anio <<endl << endl;
+        rlutil::locate(x,y+10);
+        cout<< "----------------------------------";
+    }
+
     void setTitulo(char* _titulo)
     {
         strcpy(titulo,_titulo);

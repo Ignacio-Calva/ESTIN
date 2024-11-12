@@ -54,7 +54,7 @@
 	"BIBLIOTECA.h"
 	"funciones.h"
 
-1731185143 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
+1731438146 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -128,14 +128,15 @@
 	"funciones.h"
 	"PERSONA.h"
 
-1730657882 d:\facultad\tecnicatura programación\programación\estin\usuario.h
+1731433718 d:\facultad\tecnicatura programación\programación\estin\usuario.h
 	"funciones.h"
 	"PERSONA.h"
 
-1730937440 d:\facultad\tecnicatura programación\programación\estin\videojuego.h
+1731435626 d:\facultad\tecnicatura programación\programación\estin\videojuego.h
 	"funciones.h"
+	"rlutil.h"
 
-1731173417 d:\facultad\tecnicatura programación\programación\estin\biblioteca.h
+1731433718 d:\facultad\tecnicatura programación\programación\estin\biblioteca.h
 	"funciones.h"
 	"FECHA.h"
 
@@ -239,7 +240,7 @@
 1730538296 c:\users\user\desktop\facultad\estin-main\estin\fecha.h
 	<string>
 
-1730937437 d:\facultad\tecnicatura programación\programación\estin\persona.h
+1731436976 d:\facultad\tecnicatura programación\programación\estin\persona.h
 	"funciones.h"
 	"PAIS.h"
 
@@ -254,7 +255,7 @@
 	"funciones.h"
 	"PAIS.h"
 
-1730933226 d:\facultad\tecnicatura programación\programación\estin\admin.h
+1731436983 d:\facultad\tecnicatura programación\programación\estin\admin.h
 	"funciones.h"
 	"PERSONA.h"
 	"PAIS.h"

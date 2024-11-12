@@ -246,6 +246,7 @@ void menuAdministrador()
 {
     while (true)
     {
+        setConsoleColor(11, 1);
         system("cls");
         archivoAdmin arcA("archivos/admin.dat");
         Admin adm;
@@ -260,12 +261,12 @@ void menuAdministrador()
         }
         system("cls");
         int opcion;
-        setConsoleColor(11, 0);
-        cout << "=======================================" << endl;
-        cout << "        MENU DE ADMINISTRADOR          " << endl;
-        cout << "=======================================" << endl;
-        setConsoleColor(15, 0);
-        cout << "----------------------------------------------------------" << endl;
+        setConsoleColor(11, 1);
+        cout << "============================================" << endl;
+        cout << "            MENU DE ADMINISTRADOR           " << endl;
+        cout << "============================================" << endl;
+        setConsoleColor(15, 1);
+        cout << "============================================" << endl;
         cout << "(1) Agregar juego a la tienda" << endl;
         cout << "(2) Modificar videojuego existente" << endl;
         cout << "(3) Deshabilitar juego de la tienda" << endl;
@@ -278,10 +279,10 @@ void menuAdministrador()
         cout << "(10) Listar admins registrados" << endl;
         cout << "(11) Videojuegos mas vendidos" << endl;
         cout << "(12) Puntos de restauracion del sistema" << endl;
-        cout << "=======================================" << endl;
-        setConsoleColor(4,0);
+        cout << "============================================" << endl;
+        setConsoleColor(4,1);
         cout << "(0) SALIR." << endl;
-        setConsoleColor(15,0);
+        setConsoleColor(15,1);
         cin >> opcion;
         switch (opcion)
         {
@@ -586,23 +587,27 @@ void menuVideojuegosMasVendidos()
         cout << "(3) Videojuego mas vendido SEGUN DESARROLLADOR" << endl;
         cout << "(4) Total vendido "<< endl;
         cout << "=======================================" << endl<<endl;
-        setConsoleColor(4,0);
+        setConsoleColor(4,1);
         cout << "(0) SALIR." << endl;
-        setConsoleColor(15,0);
+        setConsoleColor(15,1);
         cout << "Ingrese una opcion: ";
         cin >> opcion;
         switch (opcion)
         {
         case 1:
+            system("cls");
             estadisticasJuegosMasComprados();
             break;
         case 2:
+            system("cls");
             videojuegoMasVendidoGenero();
             break;
         case 3:
+            system("cls");
             videojuegoMasVendidoDesarrollador();
             break;
         case 4:
+            system("cls");
             juegosVendidos();
             break;
         case 0:
@@ -1788,10 +1793,15 @@ void listarPorGenero()
     }
 
     char genero[30];
-    rlutil::locate(30,22);
-    cout << "Ingrese una opcion: ";
-    rlutil::locate(50,22);
-    cargarCadena(genero, 29);
+    ///CODIGO PARA BUSCADOR
+    rlutil::locate(40,22);
+    cout << "Ingrese el genero que desea buscar: " ;
+    rlutil::locate(42,23); cout << char(201); ponerChar(205,30); cout << char(187);
+    rlutil::locate(42,24);
+    cout << char(186); rlutil::locate(73,24); cout << char(186);
+    rlutil::locate(42,25); cout << char(200); ponerChar(205,30); cout << char(188);
+    rlutil::locate(44,24);cargarCadena(genero,29);
+    ///
     int cantReg = arcV.contarRegistros();
     int juegosListados[150] = {};
     int tam = 0;
@@ -1888,10 +1898,13 @@ void listarPorCreador()
     int juegosListados[150] = {};
     int tam2 = 0;
 
-    rlutil::locate(30,22);
-    cout << "Ingrese una opcion: ";
-    rlutil::locate(50,22);
-    cargarCadena(desarrolladora, 29);
+    rlutil::locate(40,22);
+    cout << "Ingrese el desarrollador que desea buscar: " ;
+    rlutil::locate(42,23); cout << char(201); ponerChar(205,30); cout << char(187);
+    rlutil::locate(42,24);
+    cout << char(186); rlutil::locate(73,24); cout << char(186);
+    rlutil::locate(42,25); cout << char(200); ponerChar(205,30); cout << char(188);
+    rlutil::locate(44,24);cargarCadena(desarrolladora,29);
     system("cls");
     rlutil::locate(40,5);
     cout<< "==============================" << endl;
@@ -1906,7 +1919,7 @@ void listarPorCreador()
         game = arcV.leerRegistros(i);
         if (compararSinMayusculas(desarrolladora, game.getDesarrollador()) && usu.getEdad() >= game.getRestriccion() && game.getActivo())
         {
-            cout << i + 1 << " - " << game.getTitulo();
+            cout << tam2 + 1 << " - " << game.getTitulo();
             rlutil::locate(64, 9+(contgame));
             cout << " --- precio: $ " << game.getPrecio() << endl;
             juegosListados[tam2] = game.getidVideojuego();
@@ -2500,11 +2513,30 @@ void juegosVendidos()
 void videojuegoMasVendidoGenero()
 {
     system("cls");
+    archivoGenero arcG("archivos/genero.dat");
     char genero[30];
+    rlutil::locate(40,8);
     cout << "Videojuego mas vendido segun GENERO" << endl;
+    rlutil::locate(40,9);
     cout << "===================================" << endl;
+    rlutil::locate(40,10);
+    cout<<"Generos disponibles: "<< endl;
+    int tamanio= arcG.contarRegistros();
+    for (int i = 0; i<tamanio; i++ )
+    {
+        Genero obj;
+        rlutil::locate(40,11+i);
+        obj= arcG.leerRegistros(i);
+        obj.mostrar();
+    }
+
+    rlutil::locate(40,22);
     cout << "Ingrese el genero que desea buscar: " ;
-    cargarCadena(genero,29);
+    rlutil::locate(42,23); cout << char(201); ponerChar(205,30); cout << char(187);
+    rlutil::locate(42,24);
+    cout << char(186); rlutil::locate(73,24); cout << char(186);
+    rlutil::locate(42,25); cout << char(200); ponerChar(205,30); cout << char(188);
+    rlutil::locate(44,24);cargarCadena(genero,29);
     archivoVideoJuego arcV("archivos/videoJuego.dat");
     videoJuego game;
     archivoBiblioteca arcB ("archivos/biblioteca.dat");
@@ -2577,13 +2609,36 @@ void videojuegoMasVendidoDesarrollador()
     char dev[30];
     cout << "Videojuego mas vendido segun DESARROLLADOR" << endl;
     cout << "===================================" << endl;
-    cout << "Ingrese el desarrollador que desea buscar: " ;
-    cargarCadena(dev,29);
     archivoVideoJuego arcV("archivos/videoJuego.dat");
     videoJuego game;
     archivoBiblioteca arcB ("archivos/biblioteca.dat");
     Biblioteca libro;
+    archivoDesarrollador arcD("archivos/desarrolladores.dat");
     //REVISO QUE EXISTA
+
+    rlutil::locate(40,9);
+    cout<<"Desarrolladores disponibles: "<< endl;
+    int tamanio= arcD.contarRegistros();
+    for (int i = 0; i<tamanio; i++ )
+    {
+        Desarrollador obj;
+        rlutil::locate(40,11+i);
+        obj= arcD.leerRegistros(i);
+        obj.mostrar();
+    }
+
+    int juegosListados[150] = {};
+
+    rlutil::locate(40,22);
+    cout << "Ingrese el desarrollador que desea buscar: " ;
+    rlutil::locate(42,23); cout << char(201); ponerChar(205,30); cout << char(187);
+    rlutil::locate(42,24);
+    cout << char(186); rlutil::locate(73,24); cout << char(186);
+    rlutil::locate(42,25); cout << char(200); ponerChar(205,30); cout << char(188);
+    rlutil::locate(44,24);cargarCadena(dev,29);
+
+    //
+
     int tamanioCatalogo = arcV.contarRegistros();
     for (int i = 0 ; i < tamanioCatalogo ; i++)
     {
@@ -2665,6 +2720,8 @@ void modificarVideojuego()
             cout<< i+1 << " --- " << game.getTitulo() << " --- "<< endl;
         }
     }
+    cout << "=================================================" << endl;
+    cout << "(0 Para salir)" << endl;
     cout << endl <<"Ingrese el ID de videojuego que desea modificar: ";
     cin >> idJuego;
     if (idJuego<0)
@@ -2777,12 +2834,17 @@ void listarVideojuegosMod()
 
     int tam = arcV.contarRegistros();
     system("cls");
+    int y = 6;
     for (int i = 0; i < tam; i++)
     {
+
         game = arcV.leerRegistros(i);
-        cout<< endl << "----- ID: " << i+1 << " -----" << endl;
-        game.mostrar();
+        rlutil::locate(1, y);
+        cout<< "----- ID: " << game.getidVideojuego() << " -----";
+        game.mostrarPorLocate(30, y-5);
+        y+=11;
     }
+    cout << endl;
     system("pause");
 }
 
@@ -3011,12 +3073,12 @@ void listarVideojuegosAdmin()///LISTA LOS JUEGOS, PERO CON DESHABILITADOS INCLUI
     archivoUsuario arcU("archivos/Usuario.dat");
     usu = arcU.leerRegistros(datosUsuarioIniciado());
     int cantReg = arcV.contarRegistros();
-    setConsoleColor(11, 0);
+    setConsoleColor(11, 1);
     cout<<"VideoJuegos: " << endl << endl;
     for (int i = 0; i < cantReg; i++)
     {
         game = arcV.leerRegistros(i);
-        setConsoleColor(15, 0);
+        setConsoleColor(15, 1);
         cout<< i+1 << " - " << game.getTitulo();
         cout << " -----  Estado en la tienda: " ;
         if (game.getActivo())
@@ -3036,12 +3098,12 @@ void listarUsuariosAdmin()
     archivoUsuario arcU("archivos/Usuario.dat");
     usu = arcU.leerRegistros(datosUsuarioIniciado());
     int cantReg = arcU.contarRegistros();
-    setConsoleColor(11, 0);
+    setConsoleColor(11, 1);
     cout<<"Usuarios: " << endl << endl;
     for (int i = 0; i < cantReg; i++)
     {
         usu = arcU.leerRegistros(i);
-        setConsoleColor(15, 0);
+        setConsoleColor(15, 1);
         cout<< i+1 << " - " << usu.getNombre();
         cout << " -----  Estado de la cuenta: " ;
         if (usu.getActivo())
@@ -3061,12 +3123,12 @@ void listarAdmins()
     archivoUsuario arcU("archivos/Usuario.dat");
     usu = arcU.leerRegistros(datosUsuarioIniciado());
     int cantReg = arcU.contarRegistros();
-    setConsoleColor(11, 0);
+    setConsoleColor(11, 1);
     cout<<"Usuarios: " << endl << endl;
     for (int i = 0; i < cantReg; i++)
     {
         usu = arcU.leerRegistros(i);
-        setConsoleColor(15, 0);
+        setConsoleColor(15, 1);
         cout<< i+1 << " - " << usu.getNombre();
         cout << " -----  Estado de la cuenta: " ;
         if (usu.getAdmin()==true)
@@ -3100,6 +3162,7 @@ void mostrarArchivoAdmin()
     archivoAdmin arcA ("archivos/admin.dat");
     Admin adm;
     int tam = arcA.contarRegistros();
+    rlutil::locate(0,0);
     system("cls");
     for (int i = 0; i<tam ; i++ )
     {
@@ -3184,7 +3247,7 @@ void estadisticasJuegosMasComprados()
         if (  pos+1 == game.getidVideojuego())
         {
 
-            cout<<"el juego mas comprado es-----> "<< game.getTitulo() << " con un precio de : "<< game.getPrecio() << "$ <-- con un total de: "<<juegosMasComprados[pos] << " compras"<<endl;
+            cout<<"El juego mas comprado es-----> "<< game.getTitulo() << " con un precio de : "<< game.getPrecio() << "$ <-- con un total de: "<<juegosMasComprados[pos] << " compras"<<endl;
 
             system("PAUSE");
             return;

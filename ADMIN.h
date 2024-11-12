@@ -26,7 +26,7 @@ class Admin : public Persona
 
         void mostrarDatos()
         {
-            mostrarDatosPersona();
+            mostrarDatosSinLocate();
             cout << "ID de Admin: " << idAdmin << endl;
             cout << "Juegos cargados: " << juegosCargados << endl;
             cout << "Activo: ";
