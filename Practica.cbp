@@ -35,6 +35,7 @@
 		<Unit filename="BIBLIOTECA.h" />
 		<Unit filename="DESARROLLADOR.h" />
 		<Unit filename="FECHA.h" />
+		<Unit filename="GENERO.h" />
 		<Unit filename="PAIS.h" />
 		<Unit filename="PERSONA.h" />
 		<Unit filename="USUARIO.h" />

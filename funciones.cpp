@@ -1754,29 +1754,45 @@ void comprarJuego(int idVideojuego)
 
 void listarPorGenero()
 {
-    system("cls");
-    setConsoleColor(15, 3);
-    cout<<"==============================" << endl;
-    cout<<"        FILTRO GENERO         "<<endl;
-    cout<<"==============================" << endl<<endl;
-    setConsoleColor(15,0);
-    archivoVideoJuego arcV("archivos/videojuego.dat");
-    videoJuego game;
     archivoUsuario arcU("archivos/Usuario.dat");
     usuario usu;
-
+    usu = arcU.leerRegistros(idIniciada-1);
+    archivoVideoJuego arcV("archivos/videojuego.dat");
+    videoJuego game;
     archivoGenero arcG("archivos/genero.dat");
     Genero obj;
+
+    setConsoleColor(15, 1);
+    system("CLS");
+
+    rlutil::locate(3,2);
+    cout<< "ESTIM.";
+
+    rlutil::locate(100,2);
+    cout<<"Usuario: " << usu.getNombre()<<endl;
+    rlutil::locate(100,3);
+    cout<<"ID: " << idIniciada<<endl;
+
+    rlutil::locate(40,5);
+    cout<< "==============================" << endl;
+    rlutil::locate(40,6);
+    cout<< "        LISTAR x GENERO       " << endl;
+    rlutil::locate(40,7);
+    cout<< "==============================" << endl;
+    rlutil::locate(40,9);
     cout<<"Generos disponibles: "<< endl;
     int tamanio= arcG.contarRegistros();
     for (int i = 0; i<tamanio; i++ )
     {
+        rlutil::locate(40,11+i);
         obj= arcG.leerRegistros(i);
         obj.mostrar();
     }
 
     char genero[30];
-    cout << endl << "INGRESE EL GENERO QUE DESEA BUSCAR" << endl;
+    rlutil::locate(30,22);
+    cout << "Ingrese una opcion: ";
+    rlutil::locate(50,22);
     cargarCadena(genero, 29);
     int cantReg = arcV.contarRegistros();
     int juegosListados[150] = {};
@@ -1784,23 +1800,24 @@ void listarPorGenero()
     int contgame=0;
 
     system("cls");
-    setConsoleColor(15, 3);
-    cout<<"==============================" << endl;
-    cout<<"        FILTRO GENERO         "<<endl;
-    cout<<"==============================" << endl<<endl;
-    setConsoleColor(15,0);
+    rlutil::locate(40,5);
+    cout<< "==============================" << endl;
+    rlutil::locate(40,6);
+    cout<< "   Filtro aplicado: " << genero << endl;
+    rlutil::locate(40,7);
+    cout<< "==============================" << endl;
 
     usu = arcU.leerRegistros(datosUsuarioIniciado());
-    cout << "--------------------------------------------------------------------------" << endl;
-    cout << "Filtro aplicado: " << genero << endl;
-    cout << "--------------------------------------------------------------------------" << endl;
 
     for (int i = 0; i < cantReg; i++)
     {
+        rlutil::locate(30, 11+(contgame));
         game = arcV.leerRegistros(i);
         if (compararSinMayusculas(genero, game.getGenero()) && usu.getEdad() >= game.getRestriccion() && game.getActivo())
         {
-            cout << tam + 1 << " - " << game.getTitulo() << "    -- precio: $ " << game.getPrecio() << endl;
+            cout << tam + 1 << " - " << game.getTitulo();
+            rlutil::locate(64, 11+(contgame));
+            cout << " --- precio: $ " << game.getPrecio() << endl;
             juegosListados[tam] = game.getidVideojuego();
             tam++;
             contgame++;
@@ -1818,8 +1835,10 @@ void listarPorGenero()
     }
     if (contgame == 0)
     {
-        setConsoleColor(4, 0);
+        rlutil::locate(38,15);
+        setConsoleColor(4, 1);
         cout << "No hay juegos con esa desarrolladora :(" << endl;
+        rlutil::locate(38,16);
         system("pause");
     }
     else
@@ -1830,23 +1849,37 @@ void listarPorGenero()
 
 void listarPorCreador()
 {
-    system("cls");
-    setConsoleColor(15, 3);
-    cout<<"==============================" << endl;
-    cout<<"       FILTRO  CREADOR        "<<endl;
-    cout<<"==============================" << endl<<endl;
-    setConsoleColor(15,0);
-    archivoVideoJuego arcV("archivos/videojuego.dat");
-    videoJuego game;
     archivoUsuario arcU("archivos/Usuario.dat");
     usuario usu;
-
+    usu = arcU.leerRegistros(idIniciada-1);
+    archivoVideoJuego arcV("archivos/videojuego.dat");
+    videoJuego game;
     archivoDesarrollador arcD("archivos/desarrolladores.dat");
     Desarrollador obj;
+
+    setConsoleColor(15, 1);
+    system("CLS");
+
+    rlutil::locate(3,2);
+    cout<< "ESTIM.";
+
+    rlutil::locate(100,2);
+    cout<<"Usuario: " << usu.getNombre()<<endl;
+    rlutil::locate(100,3);
+    cout<<"ID: " << idIniciada<<endl;
+
+    rlutil::locate(40,5);
+    cout<< "==============================" << endl;
+    rlutil::locate(40,6);
+    cout<< "       LISTAR x CREADOR       " << endl;
+    rlutil::locate(40,7);
+    cout<< "==============================" << endl;
+    rlutil::locate(40,9);
     cout<<"Desarrolladores disponibles: "<< endl;
     int tamanio= arcD.contarRegistros();
     for (int i = 0; i<tamanio; i++ )
     {
+        rlutil::locate(40,11+i);
         obj= arcD.leerRegistros(i);
         obj.mostrar();
     }
@@ -1857,25 +1890,27 @@ void listarPorCreador()
     int juegosListados[150] = {};
     int tam2 = 0;
 
-    cout << "Ingrese la desarrolladora a buscar: ";
+    rlutil::locate(30,22);
+    cout << "Ingrese una opcion: ";
+    rlutil::locate(50,22);
     cargarCadena(desarrolladora, 29);
     system("cls");
-    setConsoleColor(15, 3);
-    cout<<"==============================" << endl;
-    cout<<"       FILTRO  CREADOR        "<<endl;
-    cout<<"==============================" << endl<<endl;
-    setConsoleColor(15,0);
-    usu = arcU.leerRegistros(datosUsuarioIniciado());
-    cout << "--------------------------------------------------------------------------" << endl;
-    cout << "Filtro aplicado: " << desarrolladora << endl;
-    cout << "--------------------------------------------------------------------------" << endl;
+    rlutil::locate(40,5);
+    cout<< "==============================" << endl;
+    rlutil::locate(40,6);
+    cout<< "   Filtro aplicado: " << desarrolladora << endl;
+    rlutil::locate(40,7);
+    cout<< "==============================" << endl;
 
     for (int i = 0; i < tam; i++)
     {
+        rlutil::locate(30,9+contgame);
         game = arcV.leerRegistros(i);
         if (compararSinMayusculas(desarrolladora, game.getDesarrollador()) && usu.getEdad() >= game.getRestriccion() && game.getActivo())
         {
-            cout << tam2 + 1 << " - " << game.getTitulo() << "    -- precio: $ " << game.getPrecio() << endl;
+            cout << tam + 1 << " - " << game.getTitulo();
+            rlutil::locate(64, 9+(contgame));
+            cout << " --- precio: $ " << game.getPrecio() << endl;
             juegosListados[tam2] = game.getidVideojuego();
             tam2++;
             contgame++;
@@ -1894,8 +1929,10 @@ void listarPorCreador()
 
     if (contgame == 0)
     {
-        setConsoleColor(4, 0);
+        rlutil::locate(38,15);
+        setConsoleColor(4, 1);
         cout << "No hay juegos con esa desarrolladora :(" << endl;
+        rlutil::locate(38,16);
         system("pause");
     }
     else
@@ -1936,10 +1973,14 @@ void bajaUsuario(int idIniciada)
 
 void mostrarPorPrecio()
 {
-    archivoVideoJuego arcV("archivos/videojuego.dat");
-    videoJuego game;
     archivoUsuario arcU("archivos/Usuario.dat");
     usuario usu;
+    usu = arcU.leerRegistros(idIniciada-1);
+    archivoVideoJuego arcV("archivos/videojuego.dat");
+    videoJuego game;
+    archivoDesarrollador arcD("archivos/desarrolladores.dat");
+    Desarrollador obj;
+
     int tam = arcV.contarRegistros();
     float montoMax = 0;
     float montoMin = 0;
@@ -1947,35 +1988,49 @@ void mostrarPorPrecio()
     int juegosListados[150] = {};
     int tam2 = 0;
 
-    system("cls");
-    setConsoleColor(15, 3);
-    cout<<"==============================" << endl;
-    cout<<"        FILTRO PRECIO         "<<endl;
-    cout<<"==============================" << endl<<endl;
-    setConsoleColor(15,0);
+    setConsoleColor(15, 1);
+    system("CLS");
+
+    rlutil::locate(3,2);
+    cout<< "ESTIM.";
+
+    rlutil::locate(100,2);
+    cout<<"Usuario: " << usu.getNombre()<<endl;
+    rlutil::locate(100,3);
+    cout<<"ID: " << idIniciada<<endl;
+
+    rlutil::locate(40,5);
+    cout<< "==============================" << endl;
+    rlutil::locate(40,6);
+    cout<< "        LISTAR x PRECIO       " << endl;
+    rlutil::locate(40,7);
+    cout<< "==============================" << endl;
+    rlutil::locate(40,9);
     cout << "Ingrese el monto maximo: ";
+    rlutil::locate(65,9);
     cin >> montoMax;
+    rlutil::locate(40,10);
     cout << "Ingrese el monto minimo: ";
+    rlutil::locate(65,10);
     cin >> montoMin;
 
     system("cls");
-    setConsoleColor(15, 3);
-    cout<<"==============================" << endl;
-    cout<<"        FILTRO PRECIO         "<<endl;
-    cout<<"==============================" << endl<<endl;
-    setConsoleColor(15,0);
-
-    usu = arcU.leerRegistros(datosUsuarioIniciado());
-    cout << "------------------------------------------------------------------------------" << endl;
+    rlutil::locate(30,5);
+    cout<< "=====================================================" << endl;
+    rlutil::locate(30,6);
     cout << "El filtro aplicado es: desde $" << montoMin << " hasta $" << montoMax << endl;
-    cout << "------------------------------------------------------------------------------" << endl;
+    rlutil::locate(30,7);
+    cout<< "=====================================================" << endl;
 
     for (int i = 0; i < tam; i++)
     {
+        rlutil::locate(30,9+contGame);
         game = arcV.leerRegistros(i);
         if ((montoMin <= game.getPrecio()) && (game.getPrecio() <= montoMax) && game.getActivo() && usu.getEdad() >= game.getRestriccion())
         {
-            cout << tam2 + 1 << " - " << game.getTitulo() << "    -- precio: $ " << game.getPrecio() << endl;
+            cout << tam + 1 << " - " << game.getTitulo();
+            rlutil::locate(64, 9+(contGame));
+            cout << " --- precio: $ " << game.getPrecio() << endl;
             juegosListados[tam2] = game.getidVideojuego();
             tam2++;
             contGame++;
@@ -1994,10 +2049,11 @@ void mostrarPorPrecio()
     }
     if (contGame == 0)
     {
-        cout << "No hay ningun juego con ese monto." << endl;
-        setConsoleColor(15, 0);
-        system("PAUSE");
-
+        rlutil::locate(38,15);
+        setConsoleColor(4, 1);
+        cout << "No hay juegos entre esos precios :(" << endl;
+        rlutil::locate(38,16);
+        system("pause");
     }
     else
     {
@@ -2011,39 +2067,51 @@ void listarPorAnio()
     videoJuego game;
     archivoUsuario arcU("archivos/Usuario.dat");
     usuario usu;
+
     int tam = arcV.contarRegistros();
     int anio;
     int contGame = 0;
     int juegosListados[150] = {};
     int tam2 = 0;
 
-    system("cls");
-    setConsoleColor(15, 3);
-    cout<<"==============================" << endl;
-    cout<<"         FILTRO ANIO          "<<endl;
-    cout<<"==============================" << endl<<endl;
-    setConsoleColor(15,0);
+    system("CLS");
+
+    rlutil::locate(3,2);
+    cout<< "ESTIM.";
+
+    rlutil::locate(100,2);
+    cout<<"Usuario: " << usu.getNombre()<<endl;
+    rlutil::locate(100,3);
+    cout<<"ID: " << idIniciada<<endl;
+
+    rlutil::locate(40,5);
+    cout<< "==============================" << endl;
+    rlutil::locate(40,6);
+    cout<< "         LISTAR x ANIO        " << endl;
+    rlutil::locate(40,7);
+    cout<< "==============================" << endl;
+    rlutil::locate(40,9);
     cout << "Ingrese el anio con el cual filtrar: ";
     cin >> anio;
 
     system("cls");
-    setConsoleColor(15, 3);
-    cout<<"==============================" << endl;
-    cout<<"         FILTRO ANIO          "<<endl;
-    cout<<"==============================" << endl<<endl;
-    setConsoleColor(15,0);
-
     usu = arcU.leerRegistros(datosUsuarioIniciado());
-    cout << "--------------------------------------------------------------------------" << endl;
-    cout << "Filtro aplicado: " << anio << endl;
-    cout << "--------------------------------------------------------------------------" << endl;
+    rlutil::locate(40,5);
+    cout<< "============================" << endl;
+    rlutil::locate(40,6);
+    cout << "El filtro aplicado es: " << anio << endl;
+    rlutil::locate(40,7);
+    cout<< "============================" << endl;
 
     for (int i = 0; i < tam; i++)
     {
+        rlutil::locate(30,9+contGame);
         game = arcV.leerRegistros(i);
         if (game.getAnio() == anio && usu.getEdad() >= game.getRestriccion() && game.getActivo())
         {
-            cout << tam2 + 1 << " - " << game.getTitulo() << "   -- Precio: $ " << game.getPrecio() << endl;
+            cout << tam2 + 1 << " - " << game.getTitulo();
+            rlutil::locate(64, 9+(contGame));
+            cout << " --- precio: $ " << game.getPrecio() << endl;
             juegosListados[tam2] = game.getidVideojuego();
             tam2++;
             contGame++;
@@ -2062,8 +2130,11 @@ void listarPorAnio()
 
     if (contGame == 0)
     {
-        cout << "NO HAY VIDEOJUEGOS CON ESE ANIO" << endl;
-        system("PAUSE");
+        rlutil::locate(38,15);
+        setConsoleColor(4, 1);
+        cout << "No hay juegos de ese anio :(" << endl;
+        rlutil::locate(38,16);
+        system("pause");
     }
     else
     {
@@ -2288,7 +2359,7 @@ void elegirVideojuego()
 
     for (int i = 0; i < cantReg; i++)
     {
-        rlutil::locate(35, 11+(i));
+        rlutil::locate(30, 11+(i));
         game = arcV.leerRegistros(i);
         if (usu.getEdad() >= game.getRestriccion() && game.getActivo())
         {

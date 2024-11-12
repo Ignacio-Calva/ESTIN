@@ -42,7 +42,7 @@ public:
 
     void mostrar()
     {
-        rlutil::locate(55,5);
+        rlutil::locate(44,5);
         cout<< "- " << titulo << " -" <<endl;
         rlutil::locate(44,6);
         cout<< "----------------------------------";
