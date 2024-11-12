@@ -377,16 +377,16 @@ bool menuModificarVideojuego(int idJuego)
         cout << "     MODIFICACION JUEGO: " << game.getTitulo() << endl;
         cout << "=======================================" << endl;
         cout << "----------------------------------------------------------" << endl;
-        cout << "(1) modificar nombre" << endl;
-        cout << "(2) modificar genero" << endl;
-        cout << "(3) modificar precio" << endl;
-        cout << "(4) modificar calificacion"<< endl;
-        cout << "(5) modificar idioma"<< endl;
-        cout << "(6) modificar desarrollador"<< endl;
-        cout << "(7) modificar peso"<< endl;
-        cout << "(8) modificar restriccion anio"<< endl;
-        cout << "(9) modificar anio"<< endl;
-        cout << "(10) modificar todo" << endl;
+        cout << "(1) Modificar nombre" << endl;
+        cout << "(2) Modificar genero" << endl;
+        cout << "(3) Modificar precio" << endl;
+        cout << "(4) Modificar calificacion"<< endl;
+        cout << "(5) Modificar idioma"<< endl;
+        cout << "(6) Modificar desarrollador"<< endl;
+        cout << "(7) Modificar peso"<< endl;
+        cout << "(8) Modificar restriccion anio"<< endl;
+        cout << "(9) Modificar anio"<< endl;
+        cout << "(10) Modificar todo" << endl;
         cout << "=======================================" << endl;
         setConsoleColor(4,0);
         cout << "(0) SALIR." << endl;
@@ -960,7 +960,7 @@ void grabarRegistroUsuario()
     }
     obj.setContrasenia(contra);
     cout<< "INGRESE SU FECHA DE NACIMIENTO..." << endl;
-    obj2.cargar();
+    if (obj2.cargar() == false){system("pause");return;}
     edad = 2024 - obj2.getAnio();
     obj.setEdad(edad);
     cout<< "TU EDAD ES: " << edad << endl;
@@ -1266,11 +1266,15 @@ void listarOrdenAnio(archivoVideoJuego archivo)
 
 void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada)
 {
+    system("cls");
     archivoBiblioteca arcB ("archivos/biblioteca.dat");
     Biblioteca libro;
     Fecha compra;
+    rlutil::locate(45,8);
     cout<<"----------------------------"<<endl;
+    rlutil::locate(45,9);
     cout<<"Cagando Videojuego nuevo: "<<endl;
+    rlutil::locate(45,10);
     cout<<"----------------------------"<<endl;
     int tam = arcB.contarRegistros();
     for (int i =0; i<tam ; i++)
@@ -1278,14 +1282,19 @@ void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada)
         libro= arcB.leerBiblioteca(i);
         if(idIniciada == libro.getIdUsuario())
         {
+            rlutil::locate(75, 1);
             cout << "Numero de registro de biblioteca cargado: " << i << endl;
+            rlutil::locate(80,2);
             cout << "ID de Biblioteca de usuario cargada: " << libro.getIdUsuario() << endl;
-            compra.cargar();
+            compra.cargarPorLocate(40,12);
             libro.setFechaCompra(compra,idVideojuego-1);
             libro.setIdVideojuego(idVideojuego-1, idVideojuego);
             arcB.modificarBiblioteca(i,libro);
             //arcB.grabarRegistros(libro);
-            cout<<"El videojuego ha sido agregado a tu biblioteca con exito, disfruta!! " << endl;
+            rlutil::locate(30,18);
+            cout<<"El videojuego ha sido agregado a tu biblioteca con exito, Disfruta!!" << endl;
+            rlutil::locate(45,20);
+            system("pause");
             return;
         }
     }
@@ -1315,7 +1324,13 @@ void mostrarBibliotecaDeUsuario(int idIniciada)
             cout << "Mostrando biblioteca ID: " << libro.getIdUsuario() << endl;
             rlutil::locate(3,4);
             cout << "=====================" << endl;
+            int cantJuegosBiblioteca; ///Para posicionar locate al final de la lista
+            for (int j=0 ; j<150 ; j++)
+            {
+                if (libro.getIdVideojuego(j) != 0){cantJuegosBiblioteca++;}
+            }
             libro.mostrar();
+            rlutil::locate(43,cantJuegosBiblioteca+6);
             system("PAUSE");
             return;
         }
@@ -1349,9 +1364,10 @@ void comprarJuegosListados(int juegosListados[], int tam)
 
     if (numJuego < 1 || numJuego > tam)
     {
-        rlutil::locate(50,22);
+        rlutil::locate(40,22);
         setConsoleColor(4,1);
         cout << "Numero de juego no encontrado." << endl;
+        rlutil::locate(37,23);
         system("pause");
         return;
     }
@@ -1359,7 +1375,6 @@ void comprarJuegosListados(int juegosListados[], int tam)
     int idJuegoSeleccionado = juegosListados[numJuego - 1];
     caracteristicasVideojuego(idJuegoSeleccionado);
     comprarJuego(idJuegoSeleccionado);
-    system("PAUSE");
 }
 
 void bibliotecaXnombre(int idIniciada)
@@ -1376,11 +1391,11 @@ void bibliotecaXnombre(int idIniciada)
     bool salir=false;
 
     system("CLS");
-    setConsoleColor(15, 11);
+    setConsoleColor(15, 3);
     cout<<"==============================" << endl;
     cout<<"      BIBLIOTECA ESTIM        "<<endl;
     cout<<"==============================" << endl<<endl;
-    setConsoleColor(3,0);
+    setConsoleColor(15,3);
 
     char nombre [30];
     cout<<"-----------------------------------------------------------------------------------"<<endl;
@@ -1388,11 +1403,11 @@ void bibliotecaXnombre(int idIniciada)
     cargarCadena(nombre, 29);
 
     system("CLS");
-    setConsoleColor(15, 11);
+    setConsoleColor(15, 3);
     cout<<"==============================" << endl;
     cout<<"      BIBLIOTECA ESTIM        "<<endl;
     cout<<"==============================" << endl<<endl;
-    setConsoleColor(3,0);
+    setConsoleColor(15,3);
 
     for (int j = 0; j<tam ; j++)
     {
@@ -1412,9 +1427,9 @@ void bibliotecaXnombre(int idIniciada)
                     {
                         if(game.getidVideojuego()== libro.getIdVideojuego(l))
                         {
-                            setConsoleColor(15, 0);
+                            setConsoleColor(15, 3);
                             cout<< "ID: " << game.getidVideojuego()<< " --- " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
-                            setConsoleColor(8, 0);
+                            setConsoleColor(8, 3);
                             salir=true;
                         }
                     }
@@ -1426,7 +1441,7 @@ void bibliotecaXnombre(int idIniciada)
                 system("PAUSE");
                 return;
             }
-            setConsoleColor(15,0);
+            setConsoleColor(15,3);
             cout<<"No se encontro" << " ''" << nombre << "'' " << "en la biblioteca" <<endl;
             system("pause");
             return;
@@ -1448,11 +1463,11 @@ void bibliotecaXgenero(int idIniciada)
     bool salir=false;
 
     system("CLS");
-    setConsoleColor(15, 11);
+    setConsoleColor(15, 3);
     cout<<"==============================" << endl;
     cout<<"      BIBLIOTECA ESTIM        "<<endl;
     cout<<"==============================" << endl<<endl;
-    setConsoleColor(3,0);
+    setConsoleColor(15,3);
 
     char genero [30];
     cout<<"-----------------------------------------------------------------------------------"<<endl;
@@ -1460,11 +1475,11 @@ void bibliotecaXgenero(int idIniciada)
     cargarCadena(genero, 29);
 
     system("CLS");
-    setConsoleColor(15, 11);
+    setConsoleColor(15, 3);
     cout<<"==============================" << endl;
     cout<<"      BIBLIOTECA ESTIM        "<<endl;
     cout<<"==============================" << endl<<endl;
-    setConsoleColor(3,0);
+    setConsoleColor(15,3);
 
     for (int j = 0; j<tam ; j++)
     {
@@ -1484,9 +1499,9 @@ void bibliotecaXgenero(int idIniciada)
                     {
                         if(game.getidVideojuego()== libro.getIdVideojuego(l))
                         {
-                            setConsoleColor(15, 0);
+                            setConsoleColor(15, 3);
                             cout<< "ID: " << game.getidVideojuego()<< " --- " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
-                            setConsoleColor(8, 0);
+                            setConsoleColor(8, 3);
                             salir=true;
                         }
                     }
@@ -1497,7 +1512,7 @@ void bibliotecaXgenero(int idIniciada)
                 system("PAUSE");
                 return;
             }
-            setConsoleColor(15,0);
+            setConsoleColor(15,3);
             cout<<"No se encontro el genero" << " ''" << genero << "'' " << "en la biblioteca" <<endl;
             system("pause");
             return;
@@ -1519,11 +1534,11 @@ void bibliotecaXdesarrollador(int idIniciada)
     bool salir=false;
 
     system("CLS");
-    setConsoleColor(15, 11);
+    setConsoleColor(15, 3);
     cout<<"==============================" << endl;
     cout<<"      BIBLIOTECA ESTIM        "<<endl;
     cout<<"==============================" << endl<<endl;
-    setConsoleColor(3,0);
+    setConsoleColor(15,3);
 
     char desarrollador [30];
     cout<<"-----------------------------------------------------------------------------------"<<endl;
@@ -1531,11 +1546,11 @@ void bibliotecaXdesarrollador(int idIniciada)
     cargarCadena(desarrollador, 29);
 
     system("CLS");
-    setConsoleColor(15, 11);
+    setConsoleColor(15, 3);
     cout<<"==============================" << endl;
     cout<<"      BIBLIOTECA ESTIM        "<<endl;
     cout<<"==============================" << endl<<endl;
-    setConsoleColor(3,0);
+    setConsoleColor(15,3);
 
     for (int j = 0; j<tam ; j++)
     {
@@ -1555,9 +1570,9 @@ void bibliotecaXdesarrollador(int idIniciada)
                     {
                         if(game.getidVideojuego()== libro.getIdVideojuego(l))
                         {
-                            setConsoleColor(15, 0);
+                            setConsoleColor(15, 3);
                             cout<< "ID: " << game.getidVideojuego()<< " --- " << game.getTitulo()<<" $ "<< game.getPrecio() <<endl;
-                            setConsoleColor(8, 0);
+                            setConsoleColor(8, 3);
                             salir=true;
                         }
                     }
@@ -1568,7 +1583,7 @@ void bibliotecaXdesarrollador(int idIniciada)
                 system("PAUSE");
                 return;
             }
-            setConsoleColor(15,0);
+            setConsoleColor(15,3);
             cout<<"No se encontro el desarrollador" << " ''" << desarrollador << "'' " << "en la biblioteca" <<endl;
             system("pause");
             return;
@@ -2242,58 +2257,58 @@ void cargarVideojuego()
     system("pause");
 }
 
-void listarVideojuegos()
-{
-
-    cout<<"==============================" << endl;
-    cout<<"-> Listar videojuegos cargados      "<<endl;
-    cout<<"==============================" << endl<<endl;
-    archivoVideoJuego arcV("archivos/videojuego.dat");
-    videoJuego game;
-
-    usuario usu;
-    archivoUsuario arcU("archivos/Usuario.dat");
-
-    archivoBiblioteca arcB("archivos/biblioteca.dat");
-    Biblioteca bib;
-    usu = arcU.leerRegistros(datosUsuarioIniciado());
-    bib = arcB.leerBiblioteca(idIniciada-1);
-    int cantReg = arcV.contarRegistros();
-    setConsoleColor(11, 0);
-    cout<<"VideoJuegos: " << endl << endl;
-    for (int i = 0; i < cantReg; i++)
-    {
-        game = arcV.leerRegistros(i);
-        if (game.getActivo() && usu.getEdad() >= game.getRestriccion())
-        {
-            setConsoleColor(15, 0);
-            cout<< i+1 << " - " << game.getTitulo() << " <-------> PRECIO: ";
-            if (bib.getIdVideojuego(game.getidVideojuego()-1) == 0)
-            {
-                cout << "$" << game.getPrecio();
-            }
-            else
-            {
-                setConsoleColor(4,0);
-                cout << "*JUEGO ADQUIRIDO*" ;
-                setConsoleColor(15,0);
-            }
-            cout << " <-------> PESO (GB): " << game.getPeso() << " GB." << endl;
-        }
-        else if (game.getActivo()==false)
-        {
-            setConsoleColor(4,0);
-            cout << "*JUEGO DESHABILITADO" << endl;
-            setConsoleColor(15,0);
-        }
-        else
-        {
-            setConsoleColor(4,0);
-            cout << "No tienes edad suficiente para este videojuego" << endl;
-            setConsoleColor(15,0);
-        }
-    }
-}
+//void listarVideojuegos()
+//{
+//
+//    cout<<"==============================" << endl;
+//    cout<<"-> Listar videojuegos cargados      "<<endl;
+//    cout<<"==============================" << endl<<endl;
+//    archivoVideoJuego arcV("archivos/videojuego.dat");
+//    videoJuego game;
+//
+//    usuario usu;
+//    archivoUsuario arcU("archivos/Usuario.dat");
+//
+//    archivoBiblioteca arcB("archivos/biblioteca.dat");
+//    Biblioteca bib;
+//    usu = arcU.leerRegistros(datosUsuarioIniciado());
+//    bib = arcB.leerBiblioteca(idIniciada-1);
+//    int cantReg = arcV.contarRegistros();
+//    setConsoleColor(11, 0);
+//    cout<<"VideoJuegos: " << endl << endl;
+//    for (int i = 0; i < cantReg; i++)
+//    {
+//        game = arcV.leerRegistros(i);
+//        if (game.getActivo() && usu.getEdad() >= game.getRestriccion())
+//        {
+//            setConsoleColor(15, 0);
+//            cout<< i+1 << " - " << game.getTitulo() << " <-------> PRECIO: ";
+//            if (bib.getIdVideojuego(game.getidVideojuego()-1) == 0)
+//            {
+//                cout << "$" << game.getPrecio();
+//            }
+//            else
+//            {
+//                setConsoleColor(4,0);
+//                cout << "*JUEGO ADQUIRIDO*" ;
+//                setConsoleColor(15,0);
+//            }
+//            cout << " <-------> PESO (GB): " << game.getPeso() << " GB." << endl;
+//        }
+//        else if (game.getActivo()==false)
+//        {
+//            setConsoleColor(4,0);
+//            cout << "*JUEGO DESHABILITADO" << endl;
+//            setConsoleColor(15,0);
+//        }
+//        else
+//        {
+//            setConsoleColor(4,0);
+//            cout << "No tienes edad suficiente para este videojuego" << endl;
+//            setConsoleColor(15,0);
+//        }
+//    }
+//}
 
 void caracteristicasVideojuego(int j)
 {
@@ -2381,7 +2396,7 @@ void elegirVideojuego()
         {
             cout << tam + 1 << " - " << game.getTitulo();
             rlutil::locate(64, 11+(i));
-            cout << " --- precio: $ " << game.getPrecio() << endl;
+            cout << " --- Precio: $" << game.getPrecio() << endl;
             juegosListados[tam] = game.getidVideojuego();
             tam++;
         }
@@ -2839,6 +2854,8 @@ void listarVideojuegosMod()
     {
 
         game = arcV.leerRegistros(i);
+        rlutil::locate(1, y-5);
+        cout << "----------------------------|";
         rlutil::locate(1, y);
         cout<< "----- ID: " << game.getidVideojuego() << " -----";
         game.mostrarPorLocate(30, y-5);

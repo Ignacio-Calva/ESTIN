@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "rlutil.h"
 
 class Fecha{
     private:
@@ -10,16 +11,47 @@ class Fecha{
     public:
 
         Fecha(){anioActual = 2024;}
-    void cargar()
+    bool cargar()
     {
+        int dia,mes,anio;
         cout << "Ingrese el dia: ";
-        cin >> _dia;
+        cin >> dia;
+        if (dia <= 31){_dia = dia;}
+        else{cout << "Ingrese un dia valido."<<endl; return false;}
         cout << "Ingrese el mes: ";
-        cin >> _mes;
+        cin >> mes;
+        if (mes <= 12){_mes = mes;}
+        else{cout << "Ingrese un mes valido."<<endl; return false;}
         cout << "Ingrese el anio: ";
-        cin >> _anio;
+        cin >> anio;
+        if (anio <= 2024){_anio = anio;}
+        else{cout << "Ingrese un anio valido."<<endl; return false;}
+        cout << "FECHA CARGADA" << endl;
+        return true;
+    }
+
+    bool cargarPorLocate(int x, int y)
+    {
+        int dia,mes,anio;
+        rlutil::locate(x,y);
+        cout << "Ingrese el dia: ";
+        cin >> dia;
+        if (dia <= 31){_dia = dia;}
+        else{rlutil::locate(x,y+1);cout << "Ingrese un dia valido."<<endl; return false;}
+        rlutil::locate(x,y+1);
+        cout << "Ingrese el mes: ";
+        cin >> mes;
+        if (mes <= 12){_mes = mes;}
+        else{rlutil::locate(x,y+2);cout << "Ingrese un mes valido."<<endl; return false;}
+        rlutil::locate(x,y+2);
+        cout << "Ingrese el anio: ";
+        cin >> anio;
+        if (anio <= 2024){_anio = anio;}
+        else{rlutil::locate(x,y+3);cout << "Ingrese un anio valido."<<endl; return false;}
+        rlutil::locate(x,y+3);
         cout << "FECHA CARGADA" << endl;
     }
+
 
     void mostrar()
     {
