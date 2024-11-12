@@ -85,10 +85,12 @@ void menuPrincipal()
         case 4:
             infoCuenta();
             break;
-        case 0:
+        case 0: return;
             break;
         default:
+            rlutil::locate(60,22);
             cout<< "Opcion invalida.";
+            system("pause");
             break;
         }
     }
@@ -158,7 +160,9 @@ void menuBiblioteca()
 
             break;
         default:
+            rlutil::locate(30,26);
             cout<< "Opcion invalida.";
+            system("pause");
             break;
         }
     }
@@ -235,8 +239,12 @@ void menuFiltro()
             break;
         case 6:
             listarPorGratuito();
+        case 0:
+            break;
         default:
+            rlutil::locate(60,26);
             cout<< "Opcion invalida.";
+            system("pause");
             break;
         }
     }
@@ -1359,7 +1367,7 @@ void comprarJuegosListados(int juegosListados[], int tam)
 
     if (numJuego < 1 || numJuego > tam)
     {
-        rlutil::locate(50,22);
+        rlutil::locate(50,29);
         setConsoleColor(4,1);
         cout << "Numero de juego no encontrado." << endl;
         system("pause");
@@ -2150,7 +2158,7 @@ void listarPorAnio()
 
     if (contGame == 0)
     {
-        rlutil::locate(38,15);
+       rlutil::locate(38,15);
         setConsoleColor(4, 1);
         cout << "No hay juegos de ese anio :(" << endl;
         rlutil::locate(38,16);
@@ -2418,10 +2426,10 @@ void buscarVideojuego()
         rlutil::locate(40,9);
         cout<< "==============================" << endl;
     setConsoleColor(15,6);
-    rlutil::locate(40,12);
+    rlutil::locate(35,12);
     cout<< "INGRESE NOMBRE DEL VIDEOJUEGO: ";
     setConsoleColor(8, 6);
-    rlutil::locate(70,12);
+    rlutil::locate(65,12);
     cargarCadena(titJuego, 49);
     buscarPorNombre(titJuego);
     system("PAUSE");
