@@ -1030,25 +1030,35 @@ void infoCuenta() //nueva funcion
         {
             while (opcion != 0)
             {
+                setConsoleColor(15,5);
                 system("cls");
-                setConsoleColor(15, 5);
-                cout<<"==============================" << endl;
-                cout<<"     INFO CUENTA PERSONAL     "<<endl;
-                cout<<"==============================" << endl<<endl;
-                setConsoleColor(15,0);
+                rlutil::locate(40,3);
+        cout<<"==============================" << endl;
+        rlutil::locate(40,4);
+        cout<<"      BIBLIOTECA ESTIM        "<<endl;
+        rlutil::locate(40,5);
+        cout<<"==============================" << endl;
+        setConsoleColor(15,5);
+        rlutil::locate(40,5);
                 usu.mostrarDatos();
                 if (usu.getActivo() == false)
                 {
-                    setConsoleColor(4, 0);
+                    rlutil::locate(40,7);
+                    setConsoleColor(4, 5);
                     cout << "-----------CUENTA DESHABILITADA-----------" << endl;
                 }
-                cout << endl;
-                setConsoleColor(15, 0);
+                setConsoleColor(15, 5);
+                rlutil::locate(40,15);
                 cout<<"1 - Deshabilitar cuenta"<<endl;
+                rlutil::locate(40,17);
                 cout<<"2 - Asignar tarjeta"<<endl;
+                rlutil::locate(40,19);
                 cout<<"0 - Salir"<<endl;
+                rlutil::locate(40,21);
                 cout<<"======================="<<endl<<endl;
+                rlutil::locate(40,23);
                 cout<<"Elija una opcion: ";
+                rlutil::locate(62,23);
                 cin>>opcion;
                 switch (opcion)
                 {
@@ -1065,6 +1075,7 @@ void infoCuenta() //nueva funcion
                 default:
                     system("CLS");
                     setConsoleColor(4, 0);
+
                     cout<<"Opcion invalida" <<endl;
                     system("PAUSE");
                     setConsoleColor(15, 0);
@@ -1327,16 +1338,16 @@ void comprarJuegosListados(int juegosListados[], int tam)
     archivoVideoJuego arcV("archivos/videoJuego.dat");
     int numJuego;
 
-    rlutil::locate(35,20);
+    rlutil::locate(35,27);
     setConsoleColor(4, 1);
     cout << "0 - ATRAS" << endl;
     setConsoleColor(3, 1);
-    rlutil::locate(30,21);
+    rlutil::locate(30,28);
     cout << "---------------------------------------" << endl;
     setConsoleColor(15, 1);
-    rlutil::locate(30,22);
+    rlutil::locate(30,29);
     cout << "Ingrese una opcion: ";
-    rlutil::locate(50,22);
+    rlutil::locate(50,29);
     cin >> numJuego;
 
     if (numJuego == 0)
@@ -1837,7 +1848,7 @@ void listarPorGenero()
     {
         rlutil::locate(38,15);
         setConsoleColor(4, 1);
-        cout << "No hay juegos con esa desarrolladora :(" << endl;
+        cout << "No hay juegos con ese genero :(" << endl;
         rlutil::locate(38,16);
         system("pause");
     }
@@ -2095,7 +2106,6 @@ void listarPorAnio()
     cin >> anio;
 
     system("cls");
-    usu = arcU.leerRegistros(datosUsuarioIniciado());
     rlutil::locate(40,5);
     cout<< "============================" << endl;
     rlutil::locate(40,6);
@@ -2103,6 +2113,7 @@ void listarPorAnio()
     rlutil::locate(40,7);
     cout<< "============================" << endl;
 
+    usu = arcU.leerRegistros(datosUsuarioIniciado());
     for (int i = 0; i < tam; i++)
     {
         rlutil::locate(30,9+contGame);
@@ -2305,23 +2316,28 @@ void buscarPorNombre(const char *n)
     {
         system("CLS");
         setConsoleColor(0, 6);
-        cout<<"==============================" << endl;
-        cout<<"   RESULTADO DE LA BUSQUEDA   "<<endl;
-        cout<<"==============================" << endl<<endl;
-        setConsoleColor(15,0);
+
+        rlutil::locate(40,5);
+        cout<< "==============================" << endl;
+        rlutil::locate(40,7);
+        cout<< "   RESULTADO DE LA BUSQUEDA   " << endl;
+        rlutil::locate(40,9);
+        cout<< "==============================" << endl;
+        setConsoleColor(15,6);
         game = arcV.leerRegistros(i);
         if (compararSinMayusculas(n, game.getTitulo()))
         {
-            setConsoleColor(15, 0);
+            setConsoleColor(15, 1);
+            system("cls");
             game.mostrar();
-            setConsoleColor(8, 0);
             comprarJuego(game.getidVideojuego());
             return;
         }
     }
-    setConsoleColor(12, 0);
-    cout<<"Titulo no encontrado, intente nuevamente." << endl;
-    setConsoleColor(8, 0);
+        rlutil::locate(38,15);
+        setConsoleColor(4, 6);
+        cout << "Videojuego no encontrado :(" << endl;
+        rlutil::locate(38,16);
 }
 
 void elegirVideojuego()
@@ -2383,15 +2399,20 @@ void elegirVideojuego()
 
 void buscarVideojuego()
 {
+    setConsoleColor(0, 6);
     system("CLS");
     char titJuego[50];
-    setConsoleColor(0, 6);
-    cout<<"==============================" << endl;
-    cout<<"            BUSCADOR          " << endl;
-    cout<<"==============================" << endl<<endl;
-    setConsoleColor(15,0);
+   rlutil::locate(40,5);
+        cout<< "==============================" << endl;
+        rlutil::locate(40,7);
+        cout<< "      BUSCAR VIDEOJUEGOS!     " << endl;
+        rlutil::locate(40,9);
+        cout<< "==============================" << endl;
+    setConsoleColor(15,6);
+    rlutil::locate(40,12);
     cout<< "INGRESE NOMBRE DEL VIDEOJUEGO: ";
-    setConsoleColor(8, 0);
+    setConsoleColor(8, 6);
+    rlutil::locate(70,12);
     cargarCadena(titJuego, 49);
     buscarPorNombre(titJuego);
     system("PAUSE");
@@ -2409,23 +2430,24 @@ void listarPorGratuito()
     int tam2 = 0;
 
     system("cls");
-    setConsoleColor(0, 12);
-    cout<<"==============================" << endl;
-    cout<<"           GRATIS!            "<<endl;
-    cout<<"==============================" << endl<<endl;
-    setConsoleColor(15,0);
+    rlutil::locate(40,5);
+    cout<< "============================" << endl;
+    rlutil::locate(40,6);
+    cout<< "   VIDEOJUEGOS  GRATUITOS   " << endl;
+    rlutil::locate(40,7);
+    cout<< "============================" << endl;
 
     usu = arcU.leerRegistros(datosUsuarioIniciado());
-    cout << "--------------------------------------------------------------------------" << endl;
-    cout << "Filtro aplicado: Precio $0" << endl;
-    cout << "--------------------------------------------------------------------------" << endl;
 
     for (int i = 0; i < tam; i++)
     {
+        rlutil::locate(30,9+contGame);
         game = arcV.leerRegistros(i);
         if (game.getPrecio() == 0 && usu.getEdad() >= game.getRestriccion() && game.getActivo())
         {
-            cout << tam2 + 1 << " - " << game.getTitulo() << "   -- Precio: $ " << game.getPrecio() << endl;
+            cout << tam2 + 1 << " - " << game.getTitulo();
+            rlutil::locate(64, 9+(contGame));
+            cout << " --- precio: $ " << game.getPrecio() << endl;
             juegosListados[tam2] = game.getidVideojuego();
             tam2++;
             contGame++;
@@ -2444,8 +2466,11 @@ void listarPorGratuito()
 
     if (contGame == 0)
     {
-        cout << "NO HAY VIDEOJUEGOS GRATIS" << endl;
-        system("PAUSE");
+        rlutil::locate(38,15);
+        setConsoleColor(4, 1);
+        cout << "No hay juegos gratis :(" << endl;
+        rlutil::locate(38,16);
+        system("pause");
     }
     else
     {

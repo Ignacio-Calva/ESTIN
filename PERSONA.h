@@ -48,12 +48,19 @@ class Persona
 
         void mostrarDatosPersona() ///ACLARO QUE ES DE LA CLASE PERSONA PARA PODER IMPLEMENTARLA DENTRO DE LAS CLASES HEREDADAS
         {
+            rlutil::locate(40,8);
             cout<< "Nombre usuario: " << NombreUsuario << endl;
+            rlutil::locate(40,9);
             cout<< "Edad: " << Edad << endl;
+            rlutil::locate(40,10);
             cout<< "DNI:  " << DNI << endl;
+            rlutil::locate(40,11);
             cout<< "Pais: " << nombrePais.getNombrePais() << endl;
+            rlutil::locate(40,12);
             cout<< "Mail: " << Mail << endl;
+            rlutil::locate(40,13);
             cout<< "Numero de tarjeta: " << numTarjeta << endl;
+
         }
 
         void setNombre(const char *n){strcpy(NombreUsuario, n);}

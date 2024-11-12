@@ -75,7 +75,7 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\funciones.cpp
 
-1731375566 source:c:\users\admin\documents\github\estin\funciones.cpp
+1731421806 source:c:\users\admin\documents\github\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -124,7 +124,7 @@
 	"BIBLIOTECA.h"
 	"rlutil.h"
 
-1730414242 c:\users\admin\documents\github\estin\usuario.h
+1731421776 c:\users\admin\documents\github\estin\usuario.h
 	"funciones.h"
 	"PERSONA.h"
 
@@ -250,7 +250,7 @@
 1730538296 c:\users\user\desktop\facultad\estin-main\estin\persona.h
 	"funciones.h"
 
-1731082315 c:\users\admin\documents\github\estin\persona.h
+1731421776 c:\users\admin\documents\github\estin\persona.h
 	"funciones.h"
 	"PAIS.h"
 

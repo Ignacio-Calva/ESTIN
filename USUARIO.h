@@ -25,7 +25,7 @@ public:
         activo = true;
     }
 
-    void mostrarDatos(){mostrarDatosPersona(); cout<< "ID Usuario: " << ID_Usuario << endl;}
+    void mostrarDatos(){mostrarDatosPersona();rlutil::locate(40,7); cout<< "ID Usuario: " << ID_Usuario << endl;}
     void setID(int id){ID_Usuario=id;}
     void setActivo(bool esActivo){activo = esActivo;}
     int getID (){return ID_Usuario;}
