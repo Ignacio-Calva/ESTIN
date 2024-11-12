@@ -915,8 +915,12 @@ void inicioSesion()
 void grabarRegistroUsuario()
 {
     system("cls");
-    cout << "         REGISTRO USUARIO       " << endl;
-    cout << "================================" << endl;
+    rlutil::locate(40,5);
+        cout<< "==============================" << endl;
+        rlutil::locate(40,6);
+        cout<< "      REGISTRAR USUARIO      " << endl;
+        rlutil::locate(40,7);
+        cout<< "==============================" << endl<<endl;
     usuario obj, objAux;
     archivoUsuario archivo("archivos/Usuario.dat");
     char nombre[30];
@@ -936,52 +940,81 @@ void grabarRegistroUsuario()
     {
         obj.setID(1);
     }
+    rlutil::locate(40,9);
     cout << "INGRESE EL NOMBRE DE USUARIO: ";
+    rlutil::locate(69,9);
     cargarCadena(nombre, 29);
     for (int i=0 ; i < tam ; i++)
     {
         objAux = archivo.leerRegistros(i);
         if (strcmp(nombre,objAux.getNombre())==0 || strcmp(nombre,"admin")==0)
         {
+            rlutil::locate(69,9);
+            setConsoleColor(4,3);
             cout << "El nombre de usuario ya esta en uso." << endl;
+            rlutil::locate(40,10);
+            setConsoleColor(8,3);
             system("pause");
             system("cls");
             return;
         }
         else if (strcmp(nombre,"")==0)
         {
+            rlutil::locate(69,9);
+            setConsoleColor(4,3);
             cout << "No puede dejar este campo vacio." << endl;
+            rlutil::locate(40,10);
+            setConsoleColor(8,3);
             system("pause");
             system("cls");
             return;
         }
     }
     obj.setNombre(nombre);
+    rlutil::locate(40,10);
     cout << "INGRESE LA CONTRASENIA DEL USUARIO: ";
+    rlutil::locate(75,10);
     cargarCadena(contra, 19);
     if (strcmp(contra,"")==0)
     {
-        cout << "No puede dejar este campo vacio." << endl;
-        system("pause");
-        system("cls");
+        rlutil::locate(75,10);
+            setConsoleColor(4,3);
+            cout << "No puede dejar este campo vacio." << endl;
+            rlutil::locate(40,11);
+            setConsoleColor(8,3);
+            system("pause");
+            system("cls");
         return;
     }
     obj.setContrasenia(contra);
+    rlutil::locate(40,11);
     cout<< "INGRESE SU FECHA DE NACIMIENTO..." << endl;
+    setConsoleColor(1,5);
     obj2.cargar();
-    if(obj2.getAnio()>2024 || obj2.getMes()>12 || obj2.getDia()>31){
-        cout << "No puede colocar una fecha invalida, intentalo nuevamente." << endl;
+    setConsoleColor(15,3);
+    if(obj2.getAnio()>2024 || obj2.getMes()>12 || obj2.getDia()>31 || obj2.getAnio()<0 || obj2.getMes()<0 || obj2.getDia()<0){
+        rlutil::locate(40,15);
+        cout << "No puede colocar una fecha invalida, intentelo nuevamente." << endl;
         system("PAUSE");
         return;
     }
     edad = 2024 - obj2.getAnio();
     obj.setEdad(edad);
+    rlutil::locate(1,12);
+    cout<< "                            ";
+    rlutil::locate(1,13);
+    cout<< "                            ";
+    rlutil::locate(1,14);
+    cout<< "                            ";
+    rlutil::locate(40,12);
     cout<< "TU EDAD ES: " << edad << endl;
-    system("pause");
+rlutil::locate(40,13);
     cout<< "INGRESE SU DNI: ";
+rlutil::locate(55,13);
     cin>> dni;
     if (dni < 0)
     {
+rlutil::locate(55,13);
         cout << "El DNI debe ser mayor a 0." << endl;
         system("pause");
         system("cls");
@@ -992,6 +1025,7 @@ void grabarRegistroUsuario()
         objAux = archivo.leerRegistros(i);
         if (dni == objAux.getDNI())
         {
+           rlutil::locate(55,13);
             cout<< "Ya existe una cuenta con dicho DNI." << endl;
             system("pause");
             system("cls");
@@ -999,10 +1033,13 @@ void grabarRegistroUsuario()
         }
     }
     obj.setDNI(dni);
+rlutil::locate(40,14);
     cout<< "INGRESE SU MAIL: ";
+rlutil::locate(56,14);
     cargarCadena(mail, 29);
     if (strcmp(mail,"")==0)
     {
+rlutil::locate(56,14);
         cout << "No puede dejar este campo vacio." << endl;
         system("pause");
         system("cls");
@@ -1013,6 +1050,7 @@ void grabarRegistroUsuario()
         objAux = archivo.leerRegistros(i);
         if (strcmp(mail, objAux.getMail())==0)
         {
+rlutil::locate(56,14);
             cout<< "Ya existe una cuenta con dicho mail." << endl;
             system("pause");
             system("cls");
@@ -1020,11 +1058,15 @@ void grabarRegistroUsuario()
         }
     }
     obj.setMail(mail);
+rlutil::locate(40,15);
     cout<< "INGRESE SU PAIS (SOLO LATAM): ";
+rlutil::locate(69,15);
     cargarCadena(pais,29);
     obj.setPais(pais);
     int IdBiblioteca = designarBiblioteca(obj.getID());
+rlutil::locate(40,17);
     cout<< "ID de biblioteca seteada como: "<< IdBiblioteca<<endl;
+rlutil::locate(40,18);
     cout << "ID DEL NUEVO USUARIO SETEADA COMO: " << obj.getID() << endl;
     obj.setTarjet(0);
     system("pause");
