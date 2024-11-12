@@ -526,7 +526,6 @@ bool menuModificarVideojuego(int idJuego)
                 cout<<"La calificacion no puede ser negativa.";
                 setConsoleColor(11, 1);
                 rlutil::locate(65,10);
-                system("pause");
                 return false;
             }
             if (num2 > 100)
@@ -674,42 +673,79 @@ bool menuModificarVideojuego(int idJuego)
             game.setTitulo(pal);
             rlutil::locate(40,11);
             cout<<"Ingrese el nuevo genero: ";
-
             cargarCadena(pal, 29);
             game.setGenero(pal);
             rlutil::locate(40,12);
             cout<<"Ingrese el nuevo precio: ";
-            rlutil::locate(66,12);
             cin>>num2;
+            if (num2 < 0)
+            {
+                setConsoleColor(4,1);
+                rlutil::locate(65,12);
+                cout<<"El precio no puede ser negativo.";
+                setConsoleColor(11, 1);
+                rlutil::locate(65,13);
+                return false;
+            }
             game.setPrecio(num2);
             rlutil::locate(40,13);
             cout<<"Ingrese la nueva calificacion: ";
-            rlutil::locate(72,13);
             cin>>num2;
+            if (num2 < 0)
+            {
+                setConsoleColor(4,1);
+                rlutil::locate(70,13);
+                cout<<"La calificacion no puede ser negativa.";
+                setConsoleColor(11, 1);
+                rlutil::locate(65,14);
+                return false;
+            }
+            if (num2 > 100)
+            {
+
+                setConsoleColor(4,1);
+                rlutil::locate(65, 13);
+                cout<<"La calificacion no puede ser mayor que 100 .";
+                setConsoleColor(11, 14);
+                return false;
+            }
             game.setCalificacion(num2);
             rlutil::locate(40,14);
             cout<<"Ingrese el nuevo idioma: ";
-            rlutil::locate(66,14);
             cargarCadena(pal, 29);
             game.setIdioma(pal);
             rlutil::locate(40,15);
             cout<<"Ingrese el nuevo desarrollador: ";
-            rlutil::locate(73,15);
             cargarCadena(pal, 29);
             game.setDesarrollador(pal);
             rlutil::locate(40,16);
             cout<<"Ingrese el nuevo peso: ";
-            rlutil::locate(63,16);
             cin>>num1;
+            if (num1 < 0)
+            {
+                setConsoleColor(4,1);
+                rlutil::locate(63,16);
+                cout<<"El peso no puede ser negativo.";
+                setConsoleColor(11, 1);
+                rlutil::locate(63,17);
+                return false;
+            }
             game.setPeso(num1);
             rlutil::locate(40,17);
             cout<<"Ingrese la nueva restriccion: ";
-            rlutil::locate(72,17);
             cin>>num1;
+            if (num1 < 0)
+            {
+                setConsoleColor(4,1);
+                rlutil::locate(69,17);
+                cout<<"La restriccion no puede ser negativa.";
+                setConsoleColor(11, 1);
+                rlutil::locate(69,18);
+                return false;
+            }
             game.setRestriccionEdad(num1);
             rlutil::locate(40,18);
             cout<<"Ingrese el nuevo anio: ";
-            rlutil::locate(63,18);
             cin>>num1;
             game.setAnio(num1);
             arcV.modificarVideojuego(game, idJuego-1);
@@ -2391,7 +2427,10 @@ void cargarVideojuego()
         if (strcmp(nombre, game.getTitulo())==0)
         {
             rlutil::locate(74,9);
+            setConsoleColor(4, 1);
             cout<<"Dicho videojuego ya se encuentra en el sistema.";
+            rlutil::locate(60,10);
+            setConsoleColor(8, 1);
             system("pause");
             return;
         }
