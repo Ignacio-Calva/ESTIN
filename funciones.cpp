@@ -134,7 +134,7 @@ void menuBiblioteca()
 
         rlutil::locate(10,26);
         cout<<"Ingrese su opcion :"<<endl;
-        rlutil::locate(25,26);
+        rlutil::locate(30,26);
         cin>>opcion;
 
         switch (opcion)
@@ -1302,28 +1302,15 @@ void mostrarBibliotecaDeUsuario(int idIniciada)
             system("CLS");
             setConsoleColor(15, 3);
             rlutil :: locate(40, 3);
-            cout<<"              BIBLIOTECA ESTIM        "<<endl;
+            cout<<"           BIBLIOTECA ESTIM        "<<endl;
             rlutil :: locate(40, 4);
-            cout<<"=============================================" << endl<<endl;
+            cout<<"=======================================" << endl<<endl;
             setConsoleColor(15, 3);
-            rlutil::locate(10,3);
+            rlutil::locate(3,3);
             cout << "Mostrando biblioteca ID: " << libro.getIdUsuario() << endl;
-            rlutil::locate(10,4);
-            cout << "Biblioteca del usuario ID: " << idIniciada << endl << endl;
-            cout << "============================" << endl;
+            rlutil::locate(3,4);
+            cout << "=====================" << endl;
             libro.mostrar();
-            cout << "============================" << endl;
-            cout << "Biblioteca del usuario ID: " << idIniciada << endl << endl;
-
-            //libro.mostrar();
-            for (int j=0 ; j<150 ; j++)
-            {
-                if (libro.getIdVideojuego(j)!=0)
-                {
-                    juego = arcV.leerRegistros(j);
-                    juego.mostrar();
-                }
-            }
             system("PAUSE");
             return;
         }
@@ -1919,7 +1906,7 @@ void listarPorCreador()
         game = arcV.leerRegistros(i);
         if (compararSinMayusculas(desarrolladora, game.getDesarrollador()) && usu.getEdad() >= game.getRestriccion() && game.getActivo())
         {
-            cout << tam + 1 << " - " << game.getTitulo();
+            cout << i + 1 << " - " << game.getTitulo();
             rlutil::locate(64, 9+(contgame));
             cout << " --- precio: $ " << game.getPrecio() << endl;
             juegosListados[tam2] = game.getidVideojuego();

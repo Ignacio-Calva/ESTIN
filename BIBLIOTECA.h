@@ -15,9 +15,8 @@ class Biblioteca{
             {
                 if (idVideojuego[i]>0)
                 {
-
+                    rlutil :: locate(40, i+6);
                     cout<< "ID videojuego: " << idVideojuego[i] << " --- comprado el: "; fechaCompra[i].mostrar();
-                    cout<< "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
                 }
             }
             cout<<endl;
