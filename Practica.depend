@@ -54,7 +54,7 @@
 	"BIBLIOTECA.h"
 	"funciones.h"
 
-1731438146 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
+1731449193 source:d:\facultad\tecnicatura programación\programación\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -152,8 +152,9 @@
 	"funciones.h"
 	"FECHA.h"
 
-1730929947 d:\facultad\tecnicatura programación\programación\estin\fecha.h
+1731449247 d:\facultad\tecnicatura programación\programación\estin\fecha.h
 	<string>
+	"rlutil.h"
 
 1731442112 c:\users\admin\documents\github\estin\fecha.h
 	<string>
