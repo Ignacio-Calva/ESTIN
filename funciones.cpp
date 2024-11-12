@@ -961,6 +961,11 @@ void grabarRegistroUsuario()
     obj.setContrasenia(contra);
     cout<< "INGRESE SU FECHA DE NACIMIENTO..." << endl;
     obj2.cargar();
+    if(obj2.getAnio()>2024 || obj2.getMes()>12 || obj2.getDia()>31){
+        cout << "No puede colocar una fecha invalida, intentalo nuevamente." << endl;
+        system("PAUSE");
+        return;
+    }
     edad = 2024 - obj2.getAnio();
     obj.setEdad(edad);
     cout<< "TU EDAD ES: " << edad << endl;
@@ -1281,6 +1286,11 @@ void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada)
             cout << "Numero de registro de biblioteca cargado: " << i << endl;
             cout << "ID de Biblioteca de usuario cargada: " << libro.getIdUsuario() << endl;
             compra.cargar();
+            if(compra.getAnio()>2024 || compra.getMes()>12 || compra.getDia()>31){
+        cout << "No puede colocar una fecha invalida, intentalo nuevamente." << endl;
+        system("PAUSE");
+        return;
+    }
             libro.setFechaCompra(compra,idVideojuego-1);
             libro.setIdVideojuego(idVideojuego-1, idVideojuego);
             arcB.modificarBiblioteca(i,libro);
@@ -1735,7 +1745,6 @@ void comprarJuego(int idVideojuego)
                 {
                 case 1:
                     aniadirTarjeta(idIniciada);
-                    system("CLS");
                     return;
                 case 2:
                     return;

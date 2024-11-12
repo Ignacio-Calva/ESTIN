@@ -18,7 +18,6 @@ class Fecha{
         cin >> _mes;
         cout << "Ingrese el anio: ";
         cin >> _anio;
-        cout << "FECHA CARGADA" << endl;
     }
 
     void mostrar()
