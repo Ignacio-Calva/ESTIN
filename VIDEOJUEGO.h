@@ -31,9 +31,9 @@ public:
         cin>>precio;
         if (precio < 0)
         {
-            system("cls");
             rlutil::locate(48,11);
             cout<<"El precio no puede ser negativo.";
+            rlutil::locate(60,12);
             system("pause");
             return;
         }
@@ -43,9 +43,9 @@ public:
         cin>>calificacion;
         if (calificacion < 0)
         {
-            system("cls");
             rlutil::locate(54,12);
             cout<<"La calificacion no puede ser negativa.";
+            rlutil::locate(60,13);
             system("pause");
             return;
         }
@@ -63,9 +63,9 @@ public:
         cin>>peso;
         if (peso < 0)
         {
-            system("cls");
-            rlutil::locate(60,16);
+            rlutil::locate(52,15);
             cout<<"El peso no puede ser negativo.";
+            rlutil::locate(60,16);
             system("pause");
             return;
         }
@@ -75,9 +75,9 @@ public:
         cin>>restriccionEdad;
         if (restriccionEdad < 0)
         {
-            system("cls");
             rlutil::locate(60,16);
             cout<<"La restriccion no puede tener numeros negativos.";
+            rlutil::locate(60,17);
             system("pause");
             return;
         }
