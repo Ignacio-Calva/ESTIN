@@ -1166,14 +1166,14 @@ void grabarRegistroUsuario()
     cout<< "INGRESE SU FECHA DE NACIMIENTO..." << endl;
     if (obj2.cargarPorLocate(40,12) == false){system("pause");return;}
     fechaActual.cargarFechaActual();
-    if(fechaActual.getMes() < obj2.getMes()){
-        edad =  fechaActual.getAnio() - obj2.getAnio()-1;
+    if(fechaActual.getMes() > obj2.getMes()){
+        edad =  fechaActual.getAnio() - obj2.getAnio();
     } else if (fechaActual.getMes() == obj2.getMes()){
-        if (fechaActual.getDia() <= obj2.getDia()){
-            edad = fechaActual.getAnio() - obj2.getAnio()-1;
+        if (fechaActual.getDia() >= obj2.getDia()){
+            edad = fechaActual.getAnio() - obj2.getAnio();
         }
         else {edad = fechaActual.getAnio() - obj2.getAnio()-1;}
-    } else if (fechaActual.getMes() > obj2.getMes()){
+    } else if (fechaActual.getMes() < obj2.getMes()){
             edad = fechaActual.getAnio() - obj2.getAnio() -1;
     }
 
@@ -1560,15 +1560,16 @@ void mostrarBibliotecaDeUsuario(int idIniciada)
         {
             system("CLS");
             setConsoleColor(15, 3);
-            rlutil :: locate(40, 3);
-            cout<<"           BIBLIOTECA ESTIM        "<<endl;
-            rlutil :: locate(40, 4);
-            cout<<"=======================================" << endl<<endl;
-            setConsoleColor(15, 3);
+
             rlutil::locate(3,3);
             cout << "Mostrando biblioteca ID: " << libro.getIdUsuario() << endl;
+            rlutil :: locate(40, 3);
+            cout<<"           BIBLIOTECA ESTIM        "<<endl;
             rlutil::locate(3,4);
-            cout << "=====================" << endl;
+            cout << "===============================================================================================================" << endl;
+
+            setConsoleColor(15, 3);
+
             int cantJuegosBiblioteca; ///Para posicionar locate al final de la lista
             for (int j=0 ; j<150 ; j++)
             {
@@ -1619,7 +1620,6 @@ void comprarJuegosListados(int juegosListados[], int tam)
     }
 
     int idJuegoSeleccionado = juegosListados[numJuego - 1];
-    caracteristicasVideojuego(idJuegoSeleccionado);
     comprarJuego(idJuegoSeleccionado);
 }
 
@@ -1973,15 +1973,19 @@ void registroCompras()
 
 void comprarJuego(int idVideojuego)
 {
-    int opcion;
     archivoVideoJuego arcV("archivos/videoJuego.dat");
     usuario usu;
     archivoUsuario arcU("archivos/Usuario.dat");
     archivoBiblioteca arcB("archivos/biblioteca.dat");
     Biblioteca bib;
 
-    while (true)
+    int opcion = 1;
+
+    while (opcion!=0)
     {
+        setConsoleColor(15,1);
+        system("cls");
+        caracteristicasVideojuego(idVideojuego);
         int opcion2 = 1;
         setConsoleColor(15,1);
         rlutil::locate(45,23);
@@ -1993,8 +1997,8 @@ void comprarJuego(int idVideojuego)
         rlutil::locate(45,25);
         cout << "---------------------------------------" << endl;
         rlutil::locate(45,26);
-    cout << "Ingrese una opcion: ";
-    rlutil::locate(65,26);
+        cout << "Ingrese una opcion: ";
+        rlutil::locate(65,26);
         setConsoleColor(15,1);
         cin>>opcion;
         switch (opcion)
@@ -2037,7 +2041,13 @@ void comprarJuego(int idVideojuego)
                 {
                 case 1:
                     aniadirTarjeta(idIniciada);
-                    return;
+                    usu = arcU.leerRegistros(idIniciada-1);
+                    if (usu.getTarjet() > 0)
+                        {
+                           agregarVideojuegoBiblioteca(idVideojuego,idIniciada);
+                           return;
+                        }
+                    break;
                 case 2:
                     return;
                 default:
@@ -2049,9 +2059,15 @@ void comprarJuego(int idVideojuego)
                     break;
                 }
             }
-            return;
         case 0:
-            return;
+            break;
+        default:
+            setConsoleColor(4, 0);
+            cout << "Opcion Invalida." << endl;
+            setConsoleColor(15, 0);
+            system("pause");
+            system("cls");
+            break;
         }
     }
 }

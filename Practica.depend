@@ -75,7 +75,7 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\funciones.cpp
 
-1731421806 source:c:\users\admin\documents\github\estin\funciones.cpp
+1731534973 source:c:\users\admin\documents\github\estin\funciones.cpp
 	<iostream>
 	<cstring>
 	"funciones.h"
@@ -106,7 +106,7 @@
 
 1728091878 source:c:\users\user\desktop\estin-main\estin\valeam.cpp
 
-1731185586 c:\users\admin\documents\github\estin\funciones.h
+1731531632 c:\users\admin\documents\github\estin\funciones.h
 	<cstring>
 	"FECHA.h"
 	"VIDEOJUEGO.h"
@@ -114,17 +114,18 @@
 1728148751 c:\users\admin\documents\github\estin\clases.h
 	"funciones.h"
 
-1731185990 source:c:\users\admin\documents\github\estin\valeam.cpp
+1731531632 source:c:\users\admin\documents\github\estin\valeam.cpp
 	<iostream>
 	<string.h>
 	<windows.h>
+	<ctime>
 	"funciones.h"
 	"VIDEOJUEGO.h"
 	"USUARIO.h"
 	"BIBLIOTECA.h"
 	"rlutil.h"
 
-1731421776 c:\users\admin\documents\github\estin\usuario.h
+1731529159 c:\users\admin\documents\github\estin\usuario.h
 	"funciones.h"
 	"PERSONA.h"
 
@@ -145,20 +146,23 @@
 	"USUARIO.h"
 	"funciones.h"
 
-1731373520 c:\users\admin\documents\github\estin\videojuego.h
+1731531632 c:\users\admin\documents\github\estin\videojuego.h
 	"funciones.h"
 	"rlutil.h"
 
-1731083783 c:\users\admin\documents\github\estin\biblioteca.h
+1731531632 c:\users\admin\documents\github\estin\biblioteca.h
 	"funciones.h"
 	"FECHA.h"
+	"VIDEOJUEGO.h"
 
 1731463394 d:\facultad\tecnicatura programación\programación\estin\fecha.h
 	<string>
 	"rlutil.h"
 
-1731082315 c:\users\admin\documents\github\estin\fecha.h
+1731531632 c:\users\admin\documents\github\estin\fecha.h
 	<string>
+	"rlutil.h"
+	<ctime>
 
 1731496290 source:c:\users\user\desktop\estin\funciones.cpp
 	<iostream>
@@ -255,7 +259,7 @@
 1730538296 c:\users\user\desktop\facultad\estin-main\estin\persona.h
 	"funciones.h"
 
-1731421776 c:\users\admin\documents\github\estin\persona.h
+1731531632 c:\users\admin\documents\github\estin\persona.h
 	"funciones.h"
 	"PAIS.h"
 
@@ -264,7 +268,7 @@
 	"PERSONA.h"
 	"PAIS.h"
 
-1731082315 c:\users\admin\documents\github\estin\admin.h
+1731529159 c:\users\admin\documents\github\estin\admin.h
 	"funciones.h"
 	"PERSONA.h"
 	"PAIS.h"
@@ -282,15 +286,15 @@
 
 1730933607 d:\facultad\tecnicatura programación\programación\estin\pais.h
 
-1731082315 c:\users\admin\documents\github\estin\pais.h
+1731529159 c:\users\admin\documents\github\estin\pais.h
 
 1731268700 c:\users\user\desktop\estin\genero.h
 
 1731268700 c:\users\user\desktop\estin\desarrollador.h
 
-1731374180 c:\users\admin\documents\github\estin\desarrollador.h
+1731531632 c:\users\admin\documents\github\estin\desarrollador.h
 
-1731084416 c:\users\admin\documents\github\estin\genero.h
+1731531632 c:\users\admin\documents\github\estin\genero.h
 
 1731173417 d:\facultad\tecnicatura programación\programación\estin\desarrollador.h
 
@@ -310,7 +314,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1731173744 c:\users\admin\documents\github\estin\rlutil.h
+1731529159 c:\users\admin\documents\github\estin\rlutil.h
 	<iostream>
 	<string>
 	<cstdio>
