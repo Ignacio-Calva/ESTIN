@@ -2028,7 +2028,7 @@ void comprarJuego(int idVideojuego)
             {
                 system("cls");
                 rlutil::locate(40, 10);
-                cout<<"No tienes alguna tarjeta asociada."<<endl;
+                cout<<"No tienes ninguna tarjeta asociada."<<endl;
                 rlutil::locate(40, 11);
                 cout<<"Desea aniadir una a su cuenta?"<<endl<<endl;
                 rlutil::locate(40, 12);
@@ -2036,6 +2036,8 @@ void comprarJuego(int idVideojuego)
                 rlutil::locate(40, 13);
                 cout<<"2 - No"<<endl;
                 rlutil::locate(40, 14);
+                cout<<"Ingrese una opcion: ";
+                rlutil::locate(60,14);
                 cin>>opcion2;
                 switch (opcion2)
                 {
@@ -3065,6 +3067,7 @@ void deshabilitarVideojuego()
     videoJuego game;
     char opcion;
     int idJuegoDeshabilitar;
+    system("cls");
     cout << "Desea listar los videojuegos?" << endl;
     cout << "Respuesta (s/n): ";
     cin >> opcion;
@@ -3104,6 +3107,7 @@ void habilitarVideojuego()
     videoJuego game;
     char opcion;
     int idJuegoHabilitar;
+    system("cls");
     cout << "Desea listar los videojuegos?" << endl;
     cout << "Respuesta (s/n): ";
     cin >> opcion;
@@ -3166,6 +3170,7 @@ void deshabilitarCuentaUsuario()
     usuario usu;
     char opcion;
     int idCuentaDeshabilitar;
+    system("cls");
     cout << "Desea listar los usuarios?" << endl;
     cout << "Respuesta (s/n): ";
     cin >> opcion;
@@ -3217,6 +3222,7 @@ void habilitarCuentaUsuario()
     usuario usu;
     char opcion;
     int idCuentaHabilitar;
+    system("cls");
     cout << "Desea listar los usuarios?" << endl;
     cout << "Respuesta (s/n): ";
     cin >> opcion;
@@ -3259,6 +3265,7 @@ void otorgarAdmin()
     int tamArchivoAdmin = arcA.contarRegistros();
     char opcion;
     int idCuentaHabilitar;
+    system("cls");
     cout << "Desea listar los usuarios?" << endl;
     cout << "Respuesta (s/n): ";
     cin >> opcion;
