@@ -2456,7 +2456,7 @@ void cargarVideojuego()
     for (int i = 0; i < tamG; i++)
     {
         geneAux = arcG.leerRegistros(i);
-        cout << "Registro N" << i << " Genero: " << geneAux.getNombre() << endl;
+        //cout << "Registro N" << i << " Genero: " << geneAux.getNombre() << endl;
         if (compararSinMayusculas(geneAux.getNombre(), gene.getNombre()))
         {
             existeG = true;
@@ -2466,7 +2466,7 @@ void cargarVideojuego()
     if (existeG == false)
     {
         arcG.grabarRegistros(gene);
-        cout<<"se aniadio un nuevo genero al sistema." <<endl;
+        //cout<<"se aniadio un nuevo genero al sistema." <<endl;
     }
 
     gameAnt = arcV.leerRegistros(tam-1); //CARGA LOS DATOS DEL ULTIMO REGISTRO
@@ -2482,12 +2482,12 @@ void cargarVideojuego()
     int tamDev = archivoDev.contarRegistros();
     bool existe=false;
     strcpy(dev,game.getDesarrollador());
-    cout << "Desarrollador a grabar: " << dev << endl;
+    //cout << "Desarrollador a grabar: " << dev << endl;
     objDev.setNombre(dev);
     for (int i=0 ; i < tamDev ; i++)
     {
         devAux = archivoDev.leerRegistros(i);
-        cout << "Registro N" << i << ". Desarrollador: " << devAux.getNombre() << endl;
+        //cout << "Registro N" << i << ". Desarrollador: " << devAux.getNombre() << endl;
         if (compararSinMayusculas(devAux.getNombre(),objDev.getNombre()))
         {
             existe = true;
@@ -2497,67 +2497,16 @@ void cargarVideojuego()
     if (existe == false)
     {
         archivoDev.grabarRegistros(objDev);
-        cout << "Se aniadio un nuevo desarrollador al sistema. " << endl;
+        //cout << "Se aniadio un nuevo desarrollador al sistema. " << endl;
     }
 
-    cout << "ID del nuevo videojuego seteada como : " << game.getidVideojuego() << endl;
+    //cout << "ID del nuevo videojuego seteada como : " << game.getidVideojuego() << endl;
 
     arcV.grabarRegistros(game);
+    rlutil::locate(40,18);
     system("pause");
 }
 
-//void listarVideojuegos()
-//{
-//
-//    cout<<"==============================" << endl;
-//    cout<<"-> Listar videojuegos cargados      "<<endl;
-//    cout<<"==============================" << endl<<endl;
-//    archivoVideoJuego arcV("archivos/videojuego.dat");
-//    videoJuego game;
-//
-//    usuario usu;
-//    archivoUsuario arcU("archivos/Usuario.dat");
-//
-//    archivoBiblioteca arcB("archivos/biblioteca.dat");
-//    Biblioteca bib;
-//    usu = arcU.leerRegistros(datosUsuarioIniciado());
-//    bib = arcB.leerBiblioteca(idIniciada-1);
-//    int cantReg = arcV.contarRegistros();
-//    setConsoleColor(11, 0);
-//    cout<<"VideoJuegos: " << endl << endl;
-//    for (int i = 0; i < cantReg; i++)
-//    {
-//        game = arcV.leerRegistros(i);
-//        if (game.getActivo() && usu.getEdad() >= game.getRestriccion())
-//        {
-//            setConsoleColor(15, 0);
-//            cout<< i+1 << " - " << game.getTitulo() << " <-------> PRECIO: ";
-//            if (bib.getIdVideojuego(game.getidVideojuego()-1) == 0)
-//            {
-//                cout << "$" << game.getPrecio();
-//            }
-//            else
-//            {
-//                setConsoleColor(4,0);
-//                cout << "*JUEGO ADQUIRIDO*" ;
-//                setConsoleColor(15,0);
-//            }
-//            cout << " <-------> PESO (GB): " << game.getPeso() << " GB." << endl;
-//        }
-//        else if (game.getActivo()==false)
-//        {
-//            setConsoleColor(4,0);
-//            cout << "*JUEGO DESHABILITADO" << endl;
-//            setConsoleColor(15,0);
-//        }
-//        else
-//        {
-//            setConsoleColor(4,0);
-//            cout << "No tienes edad suficiente para este videojuego" << endl;
-//            setConsoleColor(15,0);
-//        }
-//    }
-//}
 
 void caracteristicasVideojuego(int j)
 {
@@ -3001,15 +2950,18 @@ void modificarVideojuego()
     {
         return;
     }
+      if (idJuego > tam)
+    {
+        cout<<"id de videojuego no encontrada." << endl;
+
+        return;
+    }
 
     if (menuModificarVideojuego(idJuego)==1)
     {
         return;
     }
-    if (idJuego > tam)
-    {
-        cout<<"id de videojuego no encontrada." << endl;
-    }
+
     system("PAUSE");
 }
 
@@ -3462,8 +3414,8 @@ void grabarRegistroadmin(int idCuentaHabilitar)
             adm.setPais(usu.getPais());
             adm.setMail(usu.getMail());
             adm.setAdmin(true);
-            cout << endl << "TEXTOS PARA VERIFICAR QUE TODO FUNCIONE CORRECTAMENTE XD" << endl  << "Datos a grabar:" << endl;
-            adm.mostrarDatos();
+            //cout << endl << "TEXTOS PARA VERIFICAR QUE TODO FUNCIONE CORRECTAMENTE XD" << endl  << "Datos a grabar:" << endl;
+            //adm.mostrarDatos();
             if (arcA.grabarRegistros(adm))
             {
                 cout << "CUENTA REGISTRADA EN ARCHIVO DE ADMINISTRADORES"<<endl;   //El metodo de grabar registros retorna bool

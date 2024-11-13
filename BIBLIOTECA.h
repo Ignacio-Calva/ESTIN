@@ -15,6 +15,7 @@ class Biblioteca{
             int y = locatey;
             videoJuego obj;
             archivoVideoJuego archivoJuegos("archivos/videoJuego.dat");
+
             for (int i = 0; i < 150; i++)
             {
                 if (idVideojuego[i]>0)
