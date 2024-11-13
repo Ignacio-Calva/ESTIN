@@ -1915,9 +1915,11 @@ void registroCompras()
             libro.mostrar(4); //USO 4 PARA QUE ARRANQUE UN PAR DE LINEAS ABAJO
         }
     }
-    rlutil::locate(40,contadorJuegosListados+4); //SUMO ESAS LINEAS A LOS JUEGOS YA LISTADOS
+    setConsoleColor(4,3);
+    rlutil::locate(5,contadorJuegosListados+6); //SUMO ESAS LINEAS A LOS JUEGOS YA LISTADOS
     cout<<"El total gastado es : "<< totalGastado<<endl;
-    rlutil::locate(35,contadorJuegosListados+5);
+    setConsoleColor(15,3);
+    rlutil::locate(5,contadorJuegosListados+7);
     system("PAUSE");
 }
 
