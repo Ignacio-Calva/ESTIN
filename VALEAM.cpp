@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include <windows.h>
+#include <ctime>
 using namespace std;
 #include "funciones.h"
 #include "VIDEOJUEGO.h"
@@ -11,6 +12,8 @@ using namespace std;
 
 int main()
 {
+
+
     //setlocale(LC_ALL, "");
     int opcion1 = 1;
     while (opcion1 != 0)

@@ -8,10 +8,10 @@ private:
 
 public:
 
-    cargar(){
+    void cargar(){
     cargarCadena(nombre, 29);
     }
-    mostrar(){
+    void mostrar(){
     cout<< " - " << nombre << endl;
     }
 
@@ -23,7 +23,7 @@ public:
 class archivoGenero{
 
 private:
-char nombre[30];
+char nombre[50];
 public:
    archivoGenero(const char *n){strcpy(nombre, n);}
 

@@ -1,6 +1,9 @@
 #pragma once
 #include <string>
 #include "rlutil.h"
+#include <ctime>
+
+
 
 class Fecha{
     private:
@@ -11,6 +14,19 @@ class Fecha{
     public:
 
         Fecha(){anioActual = 2024;}
+
+        void cargarFechaActual (){
+
+        std::time_t t = std::time(nullptr);
+        std::tm* now = std::localtime(&t);
+
+        _dia = now -> tm_mday;
+        _mes = now -> tm_mon +1;
+        _anio = now -> tm_year+1900;
+        }
+
+
+
     bool cargar()
     {
         int dia,mes,anio;

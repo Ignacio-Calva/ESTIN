@@ -61,7 +61,7 @@ void menuPrincipal()
         cout<<"4 - Cuenta"<<endl;
         setConsoleColor(4,1);
         rlutil::locate(40,18);
-        cout<<"0 - cerrar"<<endl;
+        cout<<"0 - Cerrar"<<endl;
         setConsoleColor(15,1);
         rlutil::locate(30,20);
 
@@ -126,11 +126,11 @@ void menuBiblioteca()
         rlutil::locate(40,16);
         cout<<"4) - Listar biblioteca por desarrollador"<<endl;
         rlutil::locate(40,18);
-        cout<<"5) - registro de compras"<<endl;
+        cout<<"5) - Registro de compras"<<endl;
 
         rlutil::locate(45,20);
         setConsoleColor(4,3);
-        cout<<"0 - cerrar"<<endl;
+        cout<<"0 - Cerrar"<<endl;
 
         setConsoleColor(15, 3);
 
@@ -523,17 +523,16 @@ bool menuModificarVideojuego(int idJuego)
             {
                 setConsoleColor(4,1);
                 rlutil::locate(70,9);
-                cout<<"La calificacion no puede ser negativa.";
+                cout<<"La calificacion no puede ser negativa." << endl;
                 setConsoleColor(11, 1);
                 rlutil::locate(65,10);
                 return false;
             }
             if (num2 > 100)
             {
-
                 setConsoleColor(4,1);
-                rlutil::locate(65,9);
-                cout<<"La calificacion no puede ser mayor que 100 .";
+                rlutil::locate(70,9);
+                cout<<"La calificacion no puede ser mayor que 100 ." << endl;
                 setConsoleColor(11, 1);
                 return false;
             }
@@ -1040,7 +1039,7 @@ void inicioSesion()
                     if (usu.getAdmin()==false)
                     {
                         rlutil::locate(30,18);
-                        cout << "                     contrase"<< char(164) <<"a correcta!                     " << endl;
+                        cout << "                     Contrase"<< char(164) <<"a correcta!                     " << endl;
                         rlutil::locate(30,19);
                         cout << "                 Sesion iniciada correctamente!" << endl;
                         rlutil::locate(42,21);
@@ -1103,7 +1102,7 @@ void grabarRegistroUsuario()
     archivoUsuario archivo("archivos/Usuario.dat");
     char nombre[30];
     char contra[20];
-    Fecha obj2;
+    Fecha obj2,fechaActual;
     int edad;
     int dni;
     char mail[30];
@@ -1166,7 +1165,19 @@ void grabarRegistroUsuario()
     rlutil::locate(40,11);
     cout<< "INGRESE SU FECHA DE NACIMIENTO..." << endl;
     if (obj2.cargarPorLocate(40,12) == false){system("pause");return;}
-    edad = 2024 - obj2.getAnio();
+    fechaActual.cargarFechaActual();
+    if(fechaActual.getMes() < obj2.getMes()){
+        edad =  fechaActual.getAnio() - obj2.getAnio()-1;
+    } else if (fechaActual.getMes() == obj2.getMes()){
+        if (fechaActual.getDia() <= obj2.getDia()){
+            edad = fechaActual.getAnio() - obj2.getAnio()-1;
+        }
+        else {edad = fechaActual.getAnio() - obj2.getAnio()-1;}
+    } else if (fechaActual.getMes() > obj2.getMes()){
+            edad = fechaActual.getAnio() - obj2.getAnio() -1;
+    }
+
+
     obj.setEdad(edad);
 //    rlutil::locate(1,12);
 //    cout<< "                            ";
@@ -1175,6 +1186,7 @@ void grabarRegistroUsuario()
 //    rlutil::locate(1,14);
 //    cout<< "                            ";
     rlutil::locate(40,16);
+
     cout<< "TU EDAD ES: " << edad << endl;
     rlutil::locate(40,17);
     cout<< "INGRESE SU DNI: ";
@@ -1387,7 +1399,7 @@ int designarBiblioteca(int idUsuario)
     }
     //arcB.modificarBiblioteca(pos, libro);
     arcB.grabarRegistros(libro);
-    cout<<"Tu biblioteca asignada tiene ID: "<< libro.getIdUsuario()<<endl;
+    //cout<<"Tu biblioteca asignada tiene ID: "<< libro.getIdUsuario()<<endl;
     int idBibloteca = libro.getIdUsuario();
     return idBibloteca;
 }
@@ -1518,7 +1530,8 @@ void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada)
 //            system("PAUSE");
 //            return;
 //        }
-            if (compra.cargarPorLocate(40,12) == false) {system("pause");return;}
+           /// if (compra.cargarPorLocate(40,12) == false) {system("pause");return;}
+            compra.cargarFechaActual();
             libro.setFechaCompra(compra,idVideojuego-1);
             libro.setIdVideojuego(idVideojuego-1, idVideojuego);
             arcB.modificarBiblioteca(i,libro);
@@ -1691,16 +1704,32 @@ void bibliotecaXgenero(int idIniciada)
     archivoVideoJuego arcV ("archivos/videojuego.dat");
     videoJuego game;
 
+    archivoGenero arcG("archivos/genero.dat");
+    Genero obj;
+
     int cantReg = arcV.contarRegistros();
     int tam = arcB.contarRegistros();
     bool salir=false;
 
     system("CLS");
     setConsoleColor(15, 3);
+    rlutil::locate(40,1);
     cout<<"==============================" << endl;
+    rlutil::locate(40,2);
     cout<<"      BIBLIOTECA ESTIM        "<<endl;
+    rlutil::locate(40,3);
     cout<<"==============================" << endl<<endl;
     setConsoleColor(15,3);
+
+    rlutil::locate(40,5);
+    cout<<"Generos disponibles: "<< endl;
+    int tamanio= arcG.contarRegistros();
+    for (int i = 0; i<tamanio; i++ )
+    {
+        rlutil::locate(40,8+i);
+        obj= arcG.leerRegistros(i);
+        obj.mostrar();
+    }
 
     char genero [30];
     cout<<"-----------------------------------------------------------------------------------"<<endl;
@@ -1762,16 +1791,32 @@ void bibliotecaXdesarrollador(int idIniciada)
     archivoVideoJuego arcV ("archivos/videojuego.dat");
     videoJuego game;
 
+    archivoDesarrollador arcD("archivos/desarrolladores.dat");
+    Desarrollador obj;
+
     int cantReg = arcV.contarRegistros();
     int tam = arcB.contarRegistros();
     bool salir=false;
 
     system("CLS");
     setConsoleColor(15, 3);
+    rlutil::locate(40,1);
     cout<<"==============================" << endl;
+    rlutil::locate(40,2);
     cout<<"      BIBLIOTECA ESTIM        "<<endl;
+    rlutil::locate(40,3);
     cout<<"==============================" << endl<<endl;
     setConsoleColor(15,3);
+
+    rlutil::locate(40,5);
+    cout<<"Generos disponibles: "<< endl;
+    int tamanio= arcD.contarRegistros();
+    for (int i = 0; i<tamanio; i++ )
+    {
+        rlutil::locate(40,8+i);
+        obj= arcD.leerRegistros(i);
+        obj.mostrar();
+    }
 
     char desarrollador [30];
     cout<<"-----------------------------------------------------------------------------------"<<endl;
@@ -1887,11 +1932,11 @@ void registroCompras()
 
     system("cls");
     libro = arcB.leerBiblioteca(idIniciada-1);
-    rlutil::locate(30,1);
+    rlutil::locate(20,5);
     cout<<"<<------------------COMPRAS TOTALES DE VIDEOJUEGOS----------------------->>"<<endl;
-    rlutil::locate(30,2);
+    rlutil::locate(20,6);
     cout<<"                            BIBLIOTECA CON ID: "<< libro.getIdUsuario()<<"                       "<<endl;
-    rlutil::locate(30,3);
+    rlutil::locate(20,7);
     cout<<"<<----------------------------------------------------------------------->>"<<endl;
 
     for (int j = 0; j<tam ; j++)
@@ -1912,14 +1957,14 @@ void registroCompras()
                 }
             }
             setConsoleColor(15, 3);
-            libro.mostrar(4); //USO 4 PARA QUE ARRANQUE UN PAR DE LINEAS ABAJO
+            libro.mostrar(9); //USO 9 PARA QUE ARRANQUE UN PAR DE LINEAS ABAJO
         }
     }
-    setConsoleColor(4,3);
-    rlutil::locate(5,contadorJuegosListados+6); //SUMO ESAS LINEAS A LOS JUEGOS YA LISTADOS
+    setConsoleColor(5,3);
+    rlutil::locate(20,contadorJuegosListados+11); //SUMO ESAS LINEAS A LOS JUEGOS YA LISTADOS
     cout<<"El total gastado es : "<< totalGastado<<endl;
     setConsoleColor(15,3);
-    rlutil::locate(5,contadorJuegosListados+7);
+    rlutil::locate(20,contadorJuegosListados+12);
     system("PAUSE");
 }
 
@@ -2456,7 +2501,7 @@ void cargarVideojuego()
     for (int i = 0; i < tamG; i++)
     {
         geneAux = arcG.leerRegistros(i);
-        cout << "Registro N" << i << " Genero: " << geneAux.getNombre() << endl;
+        //cout << "Registro N" << i << " Genero: " << geneAux.getNombre() << endl;
         if (compararSinMayusculas(geneAux.getNombre(), gene.getNombre()))
         {
             existeG = true;
@@ -2466,7 +2511,7 @@ void cargarVideojuego()
     if (existeG == false)
     {
         arcG.grabarRegistros(gene);
-        cout<<"se aniadio un nuevo genero al sistema." <<endl;
+        //cout<<"se aniadio un nuevo genero al sistema." <<endl;
     }
 
     gameAnt = arcV.leerRegistros(tam-1); //CARGA LOS DATOS DEL ULTIMO REGISTRO
@@ -2482,12 +2527,12 @@ void cargarVideojuego()
     int tamDev = archivoDev.contarRegistros();
     bool existe=false;
     strcpy(dev,game.getDesarrollador());
-    cout << "Desarrollador a grabar: " << dev << endl;
+    //cout << "Desarrollador a grabar: " << dev << endl;
     objDev.setNombre(dev);
     for (int i=0 ; i < tamDev ; i++)
     {
         devAux = archivoDev.leerRegistros(i);
-        cout << "Registro N" << i << ". Desarrollador: " << devAux.getNombre() << endl;
+        //cout << "Registro N" << i << ". Desarrollador: " << devAux.getNombre() << endl;
         if (compararSinMayusculas(devAux.getNombre(),objDev.getNombre()))
         {
             existe = true;
@@ -2497,67 +2542,16 @@ void cargarVideojuego()
     if (existe == false)
     {
         archivoDev.grabarRegistros(objDev);
-        cout << "Se aniadio un nuevo desarrollador al sistema. " << endl;
+        //cout << "Se aniadio un nuevo desarrollador al sistema. " << endl;
     }
 
-    cout << "ID del nuevo videojuego seteada como : " << game.getidVideojuego() << endl;
+    //cout << "ID del nuevo videojuego seteada como : " << game.getidVideojuego() << endl;
 
     arcV.grabarRegistros(game);
+    rlutil::locate(40,18);
     system("pause");
 }
 
-//void listarVideojuegos()
-//{
-//
-//    cout<<"==============================" << endl;
-//    cout<<"-> Listar videojuegos cargados      "<<endl;
-//    cout<<"==============================" << endl<<endl;
-//    archivoVideoJuego arcV("archivos/videojuego.dat");
-//    videoJuego game;
-//
-//    usuario usu;
-//    archivoUsuario arcU("archivos/Usuario.dat");
-//
-//    archivoBiblioteca arcB("archivos/biblioteca.dat");
-//    Biblioteca bib;
-//    usu = arcU.leerRegistros(datosUsuarioIniciado());
-//    bib = arcB.leerBiblioteca(idIniciada-1);
-//    int cantReg = arcV.contarRegistros();
-//    setConsoleColor(11, 0);
-//    cout<<"VideoJuegos: " << endl << endl;
-//    for (int i = 0; i < cantReg; i++)
-//    {
-//        game = arcV.leerRegistros(i);
-//        if (game.getActivo() && usu.getEdad() >= game.getRestriccion())
-//        {
-//            setConsoleColor(15, 0);
-//            cout<< i+1 << " - " << game.getTitulo() << " <-------> PRECIO: ";
-//            if (bib.getIdVideojuego(game.getidVideojuego()-1) == 0)
-//            {
-//                cout << "$" << game.getPrecio();
-//            }
-//            else
-//            {
-//                setConsoleColor(4,0);
-//                cout << "*JUEGO ADQUIRIDO*" ;
-//                setConsoleColor(15,0);
-//            }
-//            cout << " <-------> PESO (GB): " << game.getPeso() << " GB." << endl;
-//        }
-//        else if (game.getActivo()==false)
-//        {
-//            setConsoleColor(4,0);
-//            cout << "*JUEGO DESHABILITADO" << endl;
-//            setConsoleColor(15,0);
-//        }
-//        else
-//        {
-//            setConsoleColor(4,0);
-//            cout << "No tienes edad suficiente para este videojuego" << endl;
-//            setConsoleColor(15,0);
-//        }
-//    }
-//}
 
 void caracteristicasVideojuego(int j)
 {
@@ -2576,9 +2570,8 @@ void buscarPorNombre(const char *n)
     archivoVideoJuego arcV("archivos/videoJuego.dat");
     videoJuego game;
     int cantReg = arcV.contarRegistros();
-    for (int i = 0; i < cantReg; i++)
-    {
-        system("CLS");
+
+    system("CLS");
         setConsoleColor(0, 6);
 
         rlutil::locate(40,5);
@@ -2588,8 +2581,12 @@ void buscarPorNombre(const char *n)
         rlutil::locate(40,9);
         cout<< "==============================" << endl;
         setConsoleColor(15,6);
+
+    for (int i = 0; i < cantReg; i++)
+    {
+
         game = arcV.leerRegistros(i);
-        if (compararSinMayusculas(n, game.getTitulo()))
+        if (compararSinMayusculas(n, game.getTitulo())&&game.getActivo())
         {
             setConsoleColor(15, 1);
             system("cls");
@@ -2850,6 +2847,17 @@ void videojuegoMasVendidoGenero()
             pos= i;
         }
     }
+
+    if (maxi == 0)
+    {
+        system("cls");
+        rlutil::locate(40,15);
+        cout << "No se han realizado compras de este genero." << endl;
+        rlutil::locate(40,21);
+        system("pause");
+        return;
+    }
+
     int cantreg= arcV.contarRegistros();
     for (int i = 0; i<cantreg ; i++ )
     {
@@ -2857,9 +2865,13 @@ void videojuegoMasVendidoGenero()
         if (pos+1 == game.getidVideojuego())
         {
             system("cls");
+            rlutil::locate(35,10);
             cout << "Videojuego mas vendido de "<< genero << " es: " << game.getTitulo() << endl;
+            rlutil::locate(54,11);
             cout << "Precio: $" << game.getPrecio() << endl;
+            rlutil::locate(51,12);
             cout << "Copias vendidas: " << juegosMasComprados[pos] << endl;
+            rlutil::locate(40,13);
             system("PAUSE");
             system("cls");
             return;
@@ -2871,7 +2883,9 @@ void videojuegoMasVendidoDesarrollador()
 {
     system("cls");
     char dev[30];
+    rlutil::locate(40,8);
     cout << "Videojuego mas vendido segun DESARROLLADOR" << endl;
+    rlutil::locate(40,9);
     cout << "===================================" << endl;
     archivoVideoJuego arcV("archivos/videoJuego.dat");
     videoJuego game;
@@ -2880,7 +2894,7 @@ void videojuegoMasVendidoDesarrollador()
     archivoDesarrollador arcD("archivos/desarrolladores.dat");
     //REVISO QUE EXISTA
 
-    rlutil::locate(40,9);
+    rlutil::locate(40,10);
     cout<<"Desarrolladores disponibles: "<< endl;
     int tamanio= arcD.contarRegistros();
     for (int i = 0; i<tamanio; i++ )
@@ -2948,6 +2962,15 @@ void videojuegoMasVendidoDesarrollador()
             pos= i;
         }
     }
+    if (maxi == 0)
+    {
+        system("cls");
+        rlutil::locate(40,15);
+        cout << "No se han realizado compras de este desarrollador" << endl;
+        rlutil::locate(40,21);
+        system("pause");
+        return;
+    }
     int cantreg= arcV.contarRegistros();
     for (int i = 0; i<cantreg ; i++ )
     {
@@ -2955,9 +2978,13 @@ void videojuegoMasVendidoDesarrollador()
         if (pos+1 == game.getidVideojuego())
         {
             system("cls");
+            rlutil::locate(35,10);  //35 54 51 40
             cout << "Videojuego mas vendido de "<< dev << " es: " << game.getTitulo() << endl;
+            rlutil::locate(54,11);
             cout << "Precio: $" << game.getPrecio() << endl;
+            rlutil::locate(51,12);
             cout << "Copias vendidas: " << juegosMasComprados[pos] << endl;
+            rlutil::locate(40,13);
             system("PAUSE");
             system("cls");
             return;
@@ -3001,15 +3028,18 @@ void modificarVideojuego()
     {
         return;
     }
+      if (idJuego > tam)
+    {
+        cout<<"id de videojuego no encontrada." << endl;
+
+        return;
+    }
 
     if (menuModificarVideojuego(idJuego)==1)
     {
         return;
     }
-    if (idJuego > tam)
-    {
-        cout<<"id de videojuego no encontrada." << endl;
-    }
+
     system("PAUSE");
 }
 
@@ -3462,8 +3492,8 @@ void grabarRegistroadmin(int idCuentaHabilitar)
             adm.setPais(usu.getPais());
             adm.setMail(usu.getMail());
             adm.setAdmin(true);
-            cout << endl << "TEXTOS PARA VERIFICAR QUE TODO FUNCIONE CORRECTAMENTE XD" << endl  << "Datos a grabar:" << endl;
-            adm.mostrarDatos();
+            //cout << endl << "TEXTOS PARA VERIFICAR QUE TODO FUNCIONE CORRECTAMENTE XD" << endl  << "Datos a grabar:" << endl;
+            //adm.mostrarDatos();
             if (arcA.grabarRegistros(adm))
             {
                 cout << "CUENTA REGISTRADA EN ARCHIVO DE ADMINISTRADORES"<<endl;   //El metodo de grabar registros retorna bool
@@ -3512,9 +3542,9 @@ void estadisticasJuegosMasComprados()
         game = arcV.leerRegistros(i);
         if (  pos+1 == game.getidVideojuego())
         {
-
+            rlutil::locate(10,5);
             cout<<"El juego mas comprado es-----> "<< game.getTitulo() << " con un precio de : "<< game.getPrecio() << "$ <-- con un total de: "<<juegosMasComprados[pos] << " compras"<<endl;
-
+            rlutil::locate(40,6);
             system("PAUSE");
             return;
         }
@@ -3540,6 +3570,7 @@ void puntoRestauracion()
         {
         case 1:
             crearPuntoRestauracion();
+            return;
             break;
         case 2:
         {
@@ -3552,6 +3583,7 @@ void puntoRestauracion()
             {
                 cargarPuntoRestauracion();
             }
+            return;
         }
         break;
         case 0:
@@ -3571,21 +3603,29 @@ void crearPuntoRestauracion()
     archivoVideoJuego registroVideojuego("archivos/videoJuego.dat");
     archivoUsuario registroUsuario("archivos/Usuario.dat");
     archivoBiblioteca registroBiblioteca("archivos/biblioteca.dat");
+    archivoGenero registroGenero("archivos/genero.dat");
+    archivoDesarrollador registroDesarrollador("archivos/desarrolladores.dat");
     ///ARCHIVOS BACKUP
     archivoAdmin registroAdminBackup("archivos/backupadmin.dat");
     archivoVideoJuego registroVideojuegoBackup("archivos/backupvideoJuego.dat");
     archivoUsuario registroUsuarioBackup("archivos/backupUsuario.dat");
     archivoBiblioteca registroBibliotecaBackup("archivos/backupbiblioteca.dat");
+    archivoGenero registroGeneroBackup("archivos/backupGenero.dat");
+    archivoDesarrollador registroDesarrolladorBackup("archivos/backupDesarrolladores.dat");
     Admin admin;
     videoJuego juego;
     usuario usu;
     Biblioteca lib;
+    Desarrollador dev;
+    Genero gen;
 
     //CREACION DE ARCHIVOS // SOBREESCRITURA DE 0
     registroAdminBackup.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
     registroVideojuegoBackup.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
     registroUsuarioBackup.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
     registroBibliotecaBackup.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
+    registroGeneroBackup.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
+    registroDesarrolladorBackup.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
     int tam = registroAdmin.contarRegistros();
     for (int i = 0 ; i < tam ; i++)
     {
@@ -3613,8 +3653,25 @@ void crearPuntoRestauracion()
         lib = registroBiblioteca.leerBiblioteca(i);
         registroBibliotecaBackup.grabarRegistros(lib);
     }
+
+    tam = registroGenero.contarRegistros();
+    for (int i = 0 ; i < tam ; i++)
+    {
+        gen = registroGenero.leerRegistros(i);
+        registroGeneroBackup.grabarRegistros(gen);
+    }
+
+    tam = registroDesarrollador.contarRegistros();
+    for (int i = 0 ; i < tam ; i++)
+    {
+        dev = registroDesarrollador.leerRegistros(i);
+        registroDesarrolladorBackup.grabarRegistros(dev);
+    }
+
     system("cls");
+    rlutil::locate(35,14);
     cout << "Punto de restauracion creado correctamente!" << endl;
+    rlutil::locate(40,15);
     system("pause");
     system("cls");
 }
@@ -3625,21 +3682,30 @@ void cargarPuntoRestauracion()
     archivoVideoJuego registroVideojuego("archivos/videoJuego.dat");
     archivoUsuario registroUsuario("archivos/Usuario.dat");
     archivoBiblioteca registroBiblioteca("archivos/biblioteca.dat");
+    archivoGenero registroGenero("archivos/genero.dat");
+    archivoDesarrollador registroDesarrollador("archivos/desarrolladores.dat");
     ///ARCHIVOS BACKUP
     archivoAdmin registroAdminBackup("archivos/backupadmin.dat");
     archivoVideoJuego registroVideojuegoBackup("archivos/backupvideoJuego.dat");
     archivoUsuario registroUsuarioBackup("archivos/backupUsuario.dat");
     archivoBiblioteca registroBibliotecaBackup("archivos/backupbiblioteca.dat");
+    archivoGenero registroGeneroBackup("archivos/backupGenero.dat");
+    archivoDesarrollador registroDesarrolladorBackup("archivos/backupDesarrolladores.dat");
     Admin admin;
     videoJuego juego;
     usuario usu;
     Biblioteca lib;
+    Desarrollador dev;
+    Genero gen;
 
     //CREACION DE ARCHIVOS // SOBREESCRITURA DE 0
     registroAdmin.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
     registroVideojuego.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
     registroUsuario.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
     registroBiblioteca.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
+    registroDesarrollador.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
+    registroGenero.borrarArchivo(); ///LO ABRE EN WB (SI NO EXISTE LO CREA, SI EXISTE LO VACIA)
+
     int tam = registroAdminBackup.contarRegistros();
     for (int i = 0 ; i < tam ; i++)
     {
@@ -3667,8 +3733,25 @@ void cargarPuntoRestauracion()
         lib = registroBibliotecaBackup.leerBiblioteca(i);
         registroBiblioteca.grabarRegistros(lib);
     }
+
+    tam = registroDesarrolladorBackup.contarRegistros();
+    for (int i = 0 ; i < tam ; i++)
+    {
+        dev = registroDesarrolladorBackup.leerRegistros(i);
+        registroDesarrollador.grabarRegistros(dev);
+    }
+
+    tam = registroGeneroBackup.contarRegistros();
+    for (int i = 0 ; i < tam ; i++)
+    {
+        gen = registroGeneroBackup.leerRegistros(i);
+        registroGenero.grabarRegistros(gen);
+    }
+
     system("cls");
+    rlutil::locate(35,14);
     cout << "Registros cargados al punto de restauracion correctamente!" << endl;
+    rlutil::locate(40,15);
     system("pause");
     system("cls");
 }

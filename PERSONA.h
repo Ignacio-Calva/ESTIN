@@ -62,7 +62,7 @@ class Persona
             cout<< "Numero de tarjeta: " << numTarjeta << endl;
         }
 
-        mostrarDatosSinLocate()
+        void mostrarDatosSinLocate()
         {
             cout<< "Nombre usuario: " << NombreUsuario << endl;
             cout<< "Edad: " << Edad << endl;

@@ -43,12 +43,20 @@ public:
         cin>>calificacion;
         if (calificacion < 0)
         {
-            rlutil::locate(54,12);
+            rlutil::locate(58,12);
             cout<<"La calificacion no puede ser negativa.";
-            rlutil::locate(60,13);
+            rlutil::locate(60,14);
             system("pause");
             return;
         }
+        if (calificacion > 100)
+            {
+               rlutil::locate(58,12);
+            cout<<"La calificacion no puede ser mayor a 100.";
+            rlutil::locate(60,14);
+            system("pause");
+            return;
+            }
         rlutil::locate(40,13);
         cout<<"Idioma: ";
         rlutil::locate(48,13);

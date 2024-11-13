@@ -15,12 +15,13 @@ class Biblioteca{
             int y = locatey;
             videoJuego obj;
             archivoVideoJuego archivoJuegos("archivos/videoJuego.dat");
+
             for (int i = 0; i < 150; i++)
             {
                 if (idVideojuego[i]>0)
                 {
                     obj = archivoJuegos.leerRegistros(i);
-                    rlutil :: locate(30, y);
+                    rlutil :: locate(20, y);
                     cout<<"TITULO: " << obj.getTitulo() << " --- ID videojuego: " << idVideojuego[i] << " --- comprado el: "; fechaCompra[i].mostrar();
                     y++;
                 }

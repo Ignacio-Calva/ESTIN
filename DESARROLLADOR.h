@@ -19,7 +19,7 @@ class Desarrollador
 class archivoDesarrollador
 {
     private:
-        char nombre[30];
+        char nombre[50];
     public:
         archivoDesarrollador(const char *n){strcpy(nombre, n);}
         Desarrollador leerRegistros(int pos)
