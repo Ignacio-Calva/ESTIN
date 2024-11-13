@@ -21,21 +21,69 @@ private:
 public:
     void cargar()
     {
+        rlutil::locate(40,10);
         cout<<"Genero: ";
+        rlutil::locate(48,10);
         cargarCadena(genero, 29);
+        rlutil::locate(40,11);
         cout<<"Precio: ";
+        rlutil::locate(48,11);
         cin>>precio;
+        if (precio < 0)
+        {
+            rlutil::locate(48,11);
+            cout<<"El precio no puede ser negativo.";
+            rlutil::locate(60,12);
+            system("pause");
+            return;
+        }
+        rlutil::locate(40,12);
         cout<<"Calificacion: ";
+        rlutil::locate(54,12);
         cin>>calificacion;
+        if (calificacion < 0)
+        {
+            rlutil::locate(54,12);
+            cout<<"La calificacion no puede ser negativa.";
+            rlutil::locate(60,13);
+            system("pause");
+            return;
+        }
+        rlutil::locate(40,13);
         cout<<"Idioma: ";
+        rlutil::locate(48,13);
         cargarCadena(idioma, 29);
+        rlutil::locate(40,14);
         cout<<"Desarroladora: ";
+        rlutil::locate(56,14);
         cargarCadena(desarrollador, 29);
+        rlutil::locate(40,15);
         cout<<"Peso en GB: ";
+        rlutil::locate(52,15);
         cin>>peso;
+        if (peso < 0)
+        {
+            rlutil::locate(52,15);
+            cout<<"El peso no puede ser negativo.";
+            rlutil::locate(60,16);
+            system("pause");
+            return;
+        }
+        rlutil::locate(40,16);
         cout<<"Restriccion de edad: ";
+        rlutil::locate(60,16);
         cin>>restriccionEdad;
+        if (restriccionEdad < 0)
+        {
+            rlutil::locate(60,16);
+            cout<<"La restriccion no puede tener numeros negativos.";
+            rlutil::locate(60,17);
+            system("pause");
+            return;
+        }
+        rlutil::locate(40,17);
         cout<<"Anio de lanzamiento: ";
+        rlutil::locate(60,17);
         cin>>anio;
         activo = true;
     }

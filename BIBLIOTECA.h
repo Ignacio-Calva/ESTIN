@@ -2,6 +2,7 @@
 #define BIBLIOTECA_H_INCLUDED
 #include "funciones.h"
 #include "FECHA.h"
+#include "VIDEOJUEGO.h"
 
 class Biblioteca{
     private:
@@ -9,14 +10,19 @@ class Biblioteca{
         int idVideojuego[150]={};
         Fecha fechaCompra[150];
     public:
-        void mostrar()
+        void mostrar(int locatey)
         {
+            int y = locatey;
+            videoJuego obj;
+            archivoVideoJuego archivoJuegos("archivos/videoJuego.dat");
             for (int i = 0; i < 150; i++)
             {
                 if (idVideojuego[i]>0)
                 {
-                    rlutil :: locate(40, i+6);
-                    cout<< "ID videojuego: " << idVideojuego[i] << " --- comprado el: "; fechaCompra[i].mostrar();
+                    obj = archivoJuegos.leerRegistros(i);
+                    rlutil :: locate(30, y);
+                    cout<<"TITULO: " << obj.getTitulo() << " --- ID videojuego: " << idVideojuego[i] << " --- comprado el: "; fechaCompra[i].mostrar();
+                    y++;
                 }
             }
             cout<<endl;

@@ -85,10 +85,12 @@ void menuPrincipal()
         case 4:
             infoCuenta();
             break;
-        case 0:
+        case 0: return;
             break;
         default:
+            rlutil::locate(60,22);
             cout<< "Opcion invalida.";
+            system("pause");
             break;
         }
     }
@@ -158,7 +160,9 @@ void menuBiblioteca()
 
             break;
         default:
+            rlutil::locate(30,26);
             cout<< "Opcion invalida.";
+            system("pause");
             break;
         }
     }
@@ -235,8 +239,12 @@ void menuFiltro()
             break;
         case 6:
             listarPorGratuito();
+        case 0:
+            break;
         default:
+            rlutil::locate(60,26);
             cout<< "Opcion invalida.";
+            system("pause");
             break;
         }
     }
@@ -261,29 +269,47 @@ void menuAdministrador()
         }
         system("cls");
         int opcion;
-        setConsoleColor(11, 1);
-        cout << "============================================" << endl;
-        cout << "            MENU DE ADMINISTRADOR           " << endl;
-        cout << "============================================" << endl;
-        setConsoleColor(15, 1);
-        cout << "============================================" << endl;
+        rlutil::locate(40,5);
+        cout<< "==============================" << endl;
+        rlutil::locate(40,6);
+        cout<< "       MENU ADMINISTRADOR     " << endl;
+        rlutil::locate(40,7);
+        cout<< "==============================" << endl<<endl;
+        setConsoleColor(3,1);
+        rlutil::locate(40,9);
         cout << "(1) Agregar juego a la tienda" << endl;
+        rlutil::locate(40,10);
         cout << "(2) Modificar videojuego existente" << endl;
+        rlutil::locate(40,11);
         cout << "(3) Deshabilitar juego de la tienda" << endl;
+        rlutil::locate(40,12);
         cout << "(4) Habilitar juego de la tienda" << endl;
+        rlutil::locate(40,13);
         cout << "(5) Listar todos los videojuegos+info" << endl;
+        rlutil::locate(40,14);
         cout << "(6) Habilitar cuenta" << endl;
+        rlutil::locate(40,15);
         cout << "(7) Deshabilitar cuenta" << endl;
+        rlutil::locate(40,16);
         cout << "(8) Otorgar permisos de administrador" << endl;
+        rlutil::locate(40,17);
         cout << "(9) Remover permisos de administrador" << endl;
+        rlutil::locate(40,18);
         cout << "(10) Listar admins registrados" << endl;
+        rlutil::locate(40,19);
         cout << "(11) Videojuegos mas vendidos" << endl;
+        rlutil::locate(40,20);
         cout << "(12) Puntos de restauracion del sistema" << endl;
+        rlutil::locate(40,21);
         cout << "============================================" << endl;
         setConsoleColor(4,1);
+        rlutil::locate(40,22);
         cout << "(0) SALIR." << endl;
         setConsoleColor(15,1);
-        cin >> opcion;
+        rlutil::locate(40,26);
+        cout << "Ingrese una opcion: ";
+        rlutil::locate(60,26);
+        cin>> opcion;
         switch (opcion)
         {
         case 1:
@@ -361,7 +387,6 @@ void cargarContraseniaOculta(char* contrasenia, int maxLongitud)
 
 bool menuModificarVideojuego(int idJuego)
 {
-    system("CLS");
     archivoVideoJuego arcV("archivos/videoJuego.dat");
     videoJuego game;
     int tam = arcV.contarRegistros();
@@ -373,34 +398,55 @@ bool menuModificarVideojuego(int idJuego)
     {
         game = arcV.leerRegistros(idJuego-1);
         system("cls");
-        cout << "=======================================" << endl;
-        cout << "     MODIFICACION JUEGO: " << game.getTitulo() << endl;
-        cout << "=======================================" << endl;
-        cout << "----------------------------------------------------------" << endl;
+        rlutil::locate(40,5);
+        cout << "==================================================" << endl;
+        rlutil::locate(40,6);
+        cout << "MODIFICACION JUEGO: " << game.getTitulo() << endl;
+        rlutil::locate(40,7);
+        cout << "==================================================" << endl;
+        rlutil::locate(40,9);
         cout << "(1) Modificar nombre" << endl;
+        rlutil::locate(40,10);
         cout << "(2) Modificar genero" << endl;
+        rlutil::locate(40,11);
         cout << "(3) Modificar precio" << endl;
+        rlutil::locate(40,12);
         cout << "(4) Modificar calificacion"<< endl;
+        rlutil::locate(40,13);
         cout << "(5) Modificar idioma"<< endl;
+        rlutil::locate(40,14);
         cout << "(6) Modificar desarrollador"<< endl;
+        rlutil::locate(40,15);
         cout << "(7) Modificar peso"<< endl;
+        rlutil::locate(40,16);
         cout << "(8) Modificar restriccion anio"<< endl;
+        rlutil::locate(40,17);
         cout << "(9) Modificar anio"<< endl;
+        rlutil::locate(40,18);
         cout << "(10) Modificar todo" << endl;
+        rlutil::locate(40,19);
         cout << "=======================================" << endl;
-        setConsoleColor(4,0);
+        setConsoleColor(4,1);
+        rlutil::locate(40,20);
         cout << "(0) SALIR." << endl;
-        setConsoleColor(15,0);
+        setConsoleColor(11,1);
+        rlutil::locate(40,21);
         cout << "Ingrese una opcion: ";
+        rlutil::locate(60,21);
         cin >> opcion;
         system("cls");
         switch (opcion)
         {
         case 1:
+            rlutil::locate(40,5);
             cout<<"------------------------"<<endl;
-            cout<<"->Modificar Nombre"<<endl;
+            rlutil::locate(40,6);
+            cout<<"    Modificar Nombre    "<<endl;
+            rlutil::locate(40,7);
             cout<<"------------------------"<<endl;
+            rlutil::locate(40,9);
             cout<<"Ingrese el nuevo nombre: ";
+            rlutil::locate(65,9);
             cargarCadena(pal, 29);
 
             for (int i = 0; i < tam; i++)
@@ -408,9 +454,11 @@ bool menuModificarVideojuego(int idJuego)
                 game = arcV.leerRegistros(i);
                 if (strcmp(pal, game.getTitulo())==0)
                 {
+                    rlutil::locate(65,9);
+                    setConsoleColor(4, 1);
                     cout<<"Ya existe un videojuego con ese nombre.";
-                    system("pause");
-                    system("cls");
+                    rlutil::locate(40,10);
+                    setConsoleColor(11, 1);
                     return false;
                 }
             }
@@ -420,10 +468,15 @@ bool menuModificarVideojuego(int idJuego)
             return true;
             break;
         case 2:
+            rlutil::locate(40,5);
             cout<<"------------------------"<<endl;
-            cout<<"->Modificar Genero"<<endl;
+            rlutil::locate(40,6);
+            cout<<"    Modificar Genero    "<<endl;
+            rlutil::locate(40,7);
             cout<<"------------------------"<<endl;
+            rlutil::locate(40,9);
             cout<<"Ingrese el nuevo genero: ";
+            rlutil::locate(65,9);
             cargarCadena(pal, 29);
             game = arcV.leerRegistros(idJuego-1);
             game.setGenero(pal);
@@ -431,18 +484,23 @@ bool menuModificarVideojuego(int idJuego)
             return true;
             break;
         case 3:
+            rlutil::locate(40,5);
             cout<<"------------------------"<<endl;
-            cout<<"->Modificar Precio"<<endl;
+            rlutil::locate(40,6);
+            cout<<"    Modificar Precio    "<<endl;
+            rlutil::locate(40,7);
             cout<<"------------------------"<<endl;
+            rlutil::locate(40,9);
             cout<<"Ingrese el nuevo precio: ";
+            rlutil::locate(65,9);
             cin>>num2;
             if (num2 < 0)
             {
-                system("cls");
-                setConsoleColor(4,0);
+                setConsoleColor(4,1);
+                rlutil::locate(65,9);
                 cout<<"El precio no puede ser negativo.";
-                setConsoleColor(15,0);
-                system("pause");
+                setConsoleColor(11, 1);
+                rlutil::locate(65,10);
                 return false;
             }
             game = arcV.leerRegistros(idJuego-1);
@@ -451,24 +509,32 @@ bool menuModificarVideojuego(int idJuego)
             return true;
             break;
         case 4:
+            rlutil::locate(40,5);
+            cout<<"------------------------"<<endl;
+            rlutil::locate(40,6);
+            cout<<" Modificar calificacion "<<endl;
+            rlutil::locate(40,7);
+            cout<<"------------------------"<<endl;
+            rlutil::locate(40,9);
             cout<<"Ingrese la nueva calificacion: ";
+            rlutil::locate(70,9);
             cin>>num2;
             if (num2 < 0)
             {
-                system("cls");
-                setConsoleColor(4,0);
+                setConsoleColor(4,1);
+                rlutil::locate(70,9);
                 cout<<"La calificacion no puede ser negativa.";
-                setConsoleColor(15,0);
-                system("pause");
+                setConsoleColor(11, 1);
+                rlutil::locate(65,10);
                 return false;
             }
             if (num2 > 100)
             {
-                system("cls");
-                setConsoleColor(4,0);
+
+                setConsoleColor(4,1);
+                rlutil::locate(65,9);
                 cout<<"La calificacion no puede ser mayor que 100 .";
-                setConsoleColor(15,0);
-                system("pause");
+                setConsoleColor(11, 1);
                 return false;
             }
             game = arcV.leerRegistros(idJuego-1);
@@ -477,7 +543,15 @@ bool menuModificarVideojuego(int idJuego)
             return true;
             break;
         case 5:
+            rlutil::locate(40,5);
+            cout<<"------------------------"<<endl;
+            rlutil::locate(40,6);
+            cout<<"    Modificar Idioma    "<<endl;
+            rlutil::locate(40,7);
+            cout<<"------------------------"<<endl;
+            rlutil::locate(40,9);
             cout<<"Ingrese el nuevo idioma: ";
+            rlutil::locate(65,9);
             cargarCadena(pal, 29);
 
             game = arcV.leerRegistros(idJuego-1);
@@ -486,7 +560,15 @@ bool menuModificarVideojuego(int idJuego)
             return true;
             break;
         case 6:
+            rlutil::locate(40,5);
+            cout<<"------------------------"<<endl;
+            rlutil::locate(40,6);
+            cout<<"Modificar  Desarrollador"<<endl;
+            rlutil::locate(40,7);
+            cout<<"------------------------"<<endl;
+            rlutil::locate(40,9);
             cout<<"Ingrese el nuevo desarrollador: ";
+            rlutil::locate(65,9);
             cargarCadena(pal, 29);
 
             game = arcV.leerRegistros(idJuego-1);
@@ -495,25 +577,65 @@ bool menuModificarVideojuego(int idJuego)
             return true;
             break;
         case 7:
+            rlutil::locate(40,5);
+            cout<<"------------------------"<<endl;
+            rlutil::locate(40,6);
+            cout<<"     Modificar Peso     "<<endl;
+            rlutil::locate(40,7);
+            cout<<"------------------------"<<endl;
+            rlutil::locate(40,9);
             cout<<"Ingrese el nuevo peso: ";
+            rlutil::locate(63,9);
             cin>>num1;
-
+            if (num1 < 0)
+            {
+                setConsoleColor(4,1);
+                rlutil::locate(63,9);
+                cout<<"El peso no puede ser negativo.";
+                setConsoleColor(11, 1);
+                rlutil::locate(63,10);
+                return false;
+            }
             game = arcV.leerRegistros(idJuego-1);
             game.setPeso(num1);
             arcV.modificarVideojuego(game, idJuego-1);
             return true;
             break;
         case 8:
+            rlutil::locate(40,5);
+            cout<<"------------------------"<<endl;
+            rlutil::locate(40,6);
+            cout<<" Modificar  Restriccion "<<endl;
+            rlutil::locate(40,7);
+            cout<<"------------------------"<<endl;
+            rlutil::locate(40,9);
             cout<<"Ingrese la nueva restriccion de edad: ";
+            rlutil::locate(78,9);
             cin>>num1;
-
+            if (num1 < 0)
+            {
+                setConsoleColor(4,1);
+                rlutil::locate(78,9);
+                cout<<"La restriccion no puede ser negativa.";
+                setConsoleColor(11, 1);
+                rlutil::locate(78,10);
+                return false;
+            }
             game = arcV.leerRegistros(idJuego-1);
             game.setRestriccionEdad(num1);
             arcV.modificarVideojuego(game, idJuego-1);
             return true;
             break;
         case 9:
+            rlutil::locate(40,5);
+            cout<<"------------------------"<<endl;
+            rlutil::locate(40,6);
+            cout<<"     Modificar Anio     "<<endl;
+            rlutil::locate(40,7);
+            cout<<"------------------------"<<endl;
+            rlutil::locate(40,9);
             cout<<"Ingrese el nuevo anio de salida: ";
+            rlutil::locate(65,9);
             cin>>num1;
             game = arcV.leerRegistros(idJuego-1);
             game.setAnio(num1);
@@ -521,8 +643,17 @@ bool menuModificarVideojuego(int idJuego)
             return true;
             break;
         case 10:
-            cout<< "---- ID: " << idJuego << " ----"<<endl<<endl;
+            rlutil::locate(40,5);
+            cout<<"------------------------"<<endl;
+            rlutil::locate(40,6);
+            cout<<"    Modificar Nombre    "<<endl;
+            rlutil::locate(40,7);
+            cout<<"------------------------"<<endl;
+            rlutil::locate(40,9);
+            cout<< "---- ID: " << idJuego << " ----"<<endl;
+            rlutil::locate(40,10);
             cout<<"Ingrese el nuevo nombre: ";
+            rlutil::locate(65,10);
             cargarCadena(pal, 29);
 
             for (int i = 0; i < tam; i++)
@@ -530,35 +661,90 @@ bool menuModificarVideojuego(int idJuego)
                 game = arcV.leerRegistros(i);
                 if (strcmp(pal, game.getTitulo())==0)
                 {
+                    setConsoleColor(4, 1);
+                    rlutil::locate(65,10);
                     cout<<"Ya existe un videojuego con ese nombre.";
-                    system("pause");
-                    system("cls");
+                    setConsoleColor(11, 1);
+                    rlutil::locate(40, 11);
                     return false;
                 }
             }
             game = arcV.leerRegistros(idJuego-1);
             game.setTitulo(pal);
+            rlutil::locate(40,11);
             cout<<"Ingrese el nuevo genero: ";
             cargarCadena(pal, 29);
             game.setGenero(pal);
+            rlutil::locate(40,12);
             cout<<"Ingrese el nuevo precio: ";
             cin>>num2;
+            if (num2 < 0)
+            {
+                setConsoleColor(4,1);
+                rlutil::locate(65,12);
+                cout<<"El precio no puede ser negativo.";
+                setConsoleColor(11, 1);
+                rlutil::locate(65,13);
+                return false;
+            }
             game.setPrecio(num2);
+            rlutil::locate(40,13);
             cout<<"Ingrese la nueva calificacion: ";
             cin>>num2;
+            if (num2 < 0)
+            {
+                setConsoleColor(4,1);
+                rlutil::locate(70,13);
+                cout<<"La calificacion no puede ser negativa.";
+                setConsoleColor(11, 1);
+                rlutil::locate(65,14);
+                return false;
+            }
+            if (num2 > 100)
+            {
+
+                setConsoleColor(4,1);
+                rlutil::locate(65, 13);
+                cout<<"La calificacion no puede ser mayor que 100 .";
+                setConsoleColor(11, 14);
+                return false;
+            }
             game.setCalificacion(num2);
+            rlutil::locate(40,14);
             cout<<"Ingrese el nuevo idioma: ";
             cargarCadena(pal, 29);
             game.setIdioma(pal);
+            rlutil::locate(40,15);
             cout<<"Ingrese el nuevo desarrollador: ";
             cargarCadena(pal, 29);
             game.setDesarrollador(pal);
+            rlutil::locate(40,16);
             cout<<"Ingrese el nuevo peso: ";
             cin>>num1;
+            if (num1 < 0)
+            {
+                setConsoleColor(4,1);
+                rlutil::locate(63,16);
+                cout<<"El peso no puede ser negativo.";
+                setConsoleColor(11, 1);
+                rlutil::locate(63,17);
+                return false;
+            }
             game.setPeso(num1);
+            rlutil::locate(40,17);
             cout<<"Ingrese la nueva restriccion: ";
             cin>>num1;
+            if (num1 < 0)
+            {
+                setConsoleColor(4,1);
+                rlutil::locate(69,17);
+                cout<<"La restriccion no puede ser negativa.";
+                setConsoleColor(11, 1);
+                rlutil::locate(69,18);
+                return false;
+            }
             game.setRestriccionEdad(num1);
+            rlutil::locate(40,18);
             cout<<"Ingrese el nuevo anio: ";
             cin>>num1;
             game.setAnio(num1);
@@ -907,8 +1093,12 @@ void inicioSesion()
 void grabarRegistroUsuario()
 {
     system("cls");
-    cout << "         REGISTRO USUARIO       " << endl;
-    cout << "================================" << endl;
+    rlutil::locate(40,5);
+        cout<< "==============================" << endl;
+        rlutil::locate(40,6);
+        cout<< "      REGISTRAR USUARIO      " << endl;
+        rlutil::locate(40,7);
+        cout<< "==============================" << endl<<endl;
     usuario obj, objAux;
     archivoUsuario archivo("archivos/Usuario.dat");
     char nombre[30];
@@ -928,6 +1118,7 @@ void grabarRegistroUsuario()
     {
         obj.setID(1);
     }
+    rlutil::locate(40,9);
     cout << "INGRESE EL NOMBRE DE USUARIO: ";
     cargarCadena(nombre, 29);
     for (int i=0 ; i < tam ; i++)
@@ -935,41 +1126,64 @@ void grabarRegistroUsuario()
         objAux = archivo.leerRegistros(i);
         if (strcmp(nombre,objAux.getNombre())==0 || strcmp(nombre,"admin")==0)
         {
+            rlutil::locate(69,9);
+            setConsoleColor(4,3);
             cout << "El nombre de usuario ya esta en uso." << endl;
+            rlutil::locate(40,10);
+            setConsoleColor(8,3);
             system("pause");
             system("cls");
             return;
         }
         else if (strcmp(nombre,"")==0)
         {
+            rlutil::locate(69,9);
+            setConsoleColor(4,3);
             cout << "No puede dejar este campo vacio." << endl;
+            rlutil::locate(40,10);
+            setConsoleColor(8,3);
             system("pause");
             system("cls");
             return;
         }
     }
     obj.setNombre(nombre);
+    rlutil::locate(40,10);
     cout << "INGRESE LA CONTRASENIA DEL USUARIO: ";
     cargarCadena(contra, 19);
     if (strcmp(contra,"")==0)
     {
-        cout << "No puede dejar este campo vacio." << endl;
-        system("pause");
-        system("cls");
+        rlutil::locate(75,10);
+            setConsoleColor(4,3);
+            cout << "No puede dejar este campo vacio." << endl;
+            rlutil::locate(40,11);
+            setConsoleColor(8,3);
+            system("pause");
+            system("cls");
         return;
     }
     obj.setContrasenia(contra);
+    rlutil::locate(40,11);
     cout<< "INGRESE SU FECHA DE NACIMIENTO..." << endl;
-    if (obj2.cargar() == false){system("pause");return;}
+    if (obj2.cargarPorLocate(40,12) == false){system("pause");return;}
     edad = 2024 - obj2.getAnio();
     obj.setEdad(edad);
+//    rlutil::locate(1,12);
+//    cout<< "                            ";
+//    rlutil::locate(1,13);
+//    cout<< "                            ";
+//    rlutil::locate(1,14);
+//    cout<< "                            ";
+    rlutil::locate(40,16);
     cout<< "TU EDAD ES: " << edad << endl;
-    system("pause");
+    rlutil::locate(40,17);
     cout<< "INGRESE SU DNI: ";
     cin>> dni;
-    if (dni < 0)
+    if (dni <= 0)
     {
+        rlutil::locate(55,17);
         cout << "El DNI debe ser mayor a 0." << endl;
+        rlutil::locate(40,18);
         system("pause");
         system("cls");
         return;
@@ -979,18 +1193,23 @@ void grabarRegistroUsuario()
         objAux = archivo.leerRegistros(i);
         if (dni == objAux.getDNI())
         {
+            rlutil::locate(55,17);
             cout<< "Ya existe una cuenta con dicho DNI." << endl;
+            rlutil::locate(40,18);
             system("pause");
             system("cls");
             return;
         }
     }
     obj.setDNI(dni);
+    rlutil::locate(40,18);
     cout<< "INGRESE SU MAIL: ";
     cargarCadena(mail, 29);
     if (strcmp(mail,"")==0)
     {
+        rlutil::locate(56,18);
         cout << "No puede dejar este campo vacio." << endl;
+        rlutil::locate(40,19);
         system("pause");
         system("cls");
         return;
@@ -1000,20 +1219,26 @@ void grabarRegistroUsuario()
         objAux = archivo.leerRegistros(i);
         if (strcmp(mail, objAux.getMail())==0)
         {
+            rlutil::locate(56,18);
             cout<< "Ya existe una cuenta con dicho mail." << endl;
+            rlutil::locate(40,19);
             system("pause");
             system("cls");
             return;
         }
     }
     obj.setMail(mail);
-    cout<< "INGRESE SU PAIS (SOLO LATAM): ";
+    rlutil::locate(40,19);
+    cout<< "INGRESE SU PAIS: ";
     cargarCadena(pais,29);
     obj.setPais(pais);
     int IdBiblioteca = designarBiblioteca(obj.getID());
+    rlutil::locate(40,20);
     cout<< "ID de biblioteca seteada como: "<< IdBiblioteca<<endl;
+    rlutil::locate(40,21);
     cout << "ID DEL NUEVO USUARIO SETEADA COMO: " << obj.getID() << endl;
     obj.setTarjet(0);
+    rlutil::locate(40,22);
     system("pause");
     obj.setActivo(true);
     archivo.grabarRegistros(obj);
@@ -1273,7 +1498,7 @@ void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada)
     rlutil::locate(45,8);
     cout<<"----------------------------"<<endl;
     rlutil::locate(45,9);
-    cout<<"Cagando Videojuego nuevo: "<<endl;
+    cout<<"Cargando Videojuego nuevo: "<<endl;
     rlutil::locate(45,10);
     cout<<"----------------------------"<<endl;
     int tam = arcB.contarRegistros();
@@ -1286,7 +1511,14 @@ void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada)
             cout << "Numero de registro de biblioteca cargado: " << i << endl;
             rlutil::locate(80,2);
             cout << "ID de Biblioteca de usuario cargada: " << libro.getIdUsuario() << endl;
-            compra.cargarPorLocate(40,12);
+//<<<<<<< HEAD
+//            compra.cargar();
+//            if(compra.getAnio()>2024 || compra.getMes()>12 || compra.getDia()>31){
+//            cout << "No puede colocar una fecha invalida, intentalo nuevamente." << endl;
+//            system("PAUSE");
+//            return;
+//        }
+            if (compra.cargarPorLocate(40,12) == false) {system("pause");return;}
             libro.setFechaCompra(compra,idVideojuego-1);
             libro.setIdVideojuego(idVideojuego-1, idVideojuego);
             arcB.modificarBiblioteca(i,libro);
@@ -1329,7 +1561,7 @@ void mostrarBibliotecaDeUsuario(int idIniciada)
             {
                 if (libro.getIdVideojuego(j) != 0){cantJuegosBiblioteca++;}
             }
-            libro.mostrar();
+            libro.mostrar(5);
             rlutil::locate(43,cantJuegosBiblioteca+6);
             system("PAUSE");
             return;
@@ -1364,7 +1596,8 @@ void comprarJuegosListados(int juegosListados[], int tam)
 
     if (numJuego < 1 || numJuego > tam)
     {
-        rlutil::locate(40,22);
+
+        rlutil::locate(50,29);
         setConsoleColor(4,1);
         cout << "Numero de juego no encontrado." << endl;
         rlutil::locate(37,23);
@@ -1649,12 +1882,16 @@ void registroCompras()
 
     int cantReg = arcV.contarRegistros();
     int tam = arcB.contarRegistros();
-    float totalGastado;
+    float totalGastado=0;
+    int contadorJuegosListados=0;
 
     system("cls");
     libro = arcB.leerBiblioteca(idIniciada-1);
+    rlutil::locate(30,1);
     cout<<"<<------------------COMPRAS TOTALES DE VIDEOJUEGOS----------------------->>"<<endl;
+    rlutil::locate(30,2);
     cout<<"                            BIBLIOTECA CON ID: "<< libro.getIdUsuario()<<"                       "<<endl;
+    rlutil::locate(30,3);
     cout<<"<<----------------------------------------------------------------------->>"<<endl;
 
     for (int j = 0; j<tam ; j++)
@@ -1662,7 +1899,6 @@ void registroCompras()
         libro = arcB.leerBiblioteca(j);
         if(libro.getIdUsuario() == idIniciada)
         {
-
             for (int i = 0; i < cantReg; i++)
             {
                 game = arcV.leerRegistros(i);
@@ -1671,15 +1907,17 @@ void registroCompras()
                     if(game.getidVideojuego()== libro.getIdVideojuego(l))
                     {
                         totalGastado+=game.getPrecio();
-
+                        contadorJuegosListados++;
                     }
                 }
             }
-            setConsoleColor(15, 0);
-            libro.mostrar();
+            setConsoleColor(15, 3);
+            libro.mostrar(4); //USO 4 PARA QUE ARRANQUE UN PAR DE LINEAS ABAJO
         }
     }
+    rlutil::locate(40,contadorJuegosListados+4); //SUMO ESAS LINEAS A LOS JUEGOS YA LISTADOS
     cout<<"El total gastado es : "<< totalGastado<<endl;
+    rlutil::locate(35,contadorJuegosListados+5);
     system("PAUSE");
 }
 
@@ -1727,6 +1965,8 @@ void comprarJuego(int idVideojuego)
                         rlutil::locate(45,26);
                         cout << "Ya tienes el juego en tu biblioteca. " << endl;
                         setConsoleColor(15,1);
+                        rlutil::locate(45,27);
+                        system("pause");
                         return;
                     }
                 }
@@ -1750,7 +1990,6 @@ void comprarJuego(int idVideojuego)
                 {
                 case 1:
                     aniadirTarjeta(idIniciada);
-                    system("CLS");
                     return;
                 case 2:
                     return;
@@ -2054,7 +2293,7 @@ void mostrarPorPrecio()
         game = arcV.leerRegistros(i);
         if ((montoMin <= game.getPrecio()) && (game.getPrecio() <= montoMax) && game.getActivo() && usu.getEdad() >= game.getRestriccion())
         {
-            cout << tam + 1 << " - " << game.getTitulo();
+            cout << tam2 + 1 << " - " << game.getTitulo();
             rlutil::locate(64, 9+(contGame));
             cout << " --- precio: $ " << game.getPrecio() << endl;
             juegosListados[tam2] = game.getidVideojuego();
@@ -2156,7 +2395,7 @@ void listarPorAnio()
 
     if (contGame == 0)
     {
-        rlutil::locate(38,15);
+       rlutil::locate(38,15);
         setConsoleColor(4, 1);
         cout << "No hay juegos de ese anio :(" << endl;
         rlutil::locate(38,16);
@@ -2175,11 +2414,15 @@ void cargarVideojuego()
     videoJuego game;
     videoJuego gameAnt;
     char nombre[30];
-    cout<<"==============================" << endl;
-    cout<<"->  Cargar Videojuego nuevo      "<<endl;
-    cout<<"==============================" << endl<<endl;
-
+    rlutil::locate(40,5);
+    cout<< "==============================" << endl;
+    rlutil::locate(40,6);
+    cout<< "   CARGAR VIDEOJUEGO NUEVO!   " << endl;
+    rlutil::locate(40,7);
+    cout<< "==============================" << endl;
+    rlutil::locate(40,9);
     cout<<"Ingrese el nombre del videojuego: ";
+    rlutil::locate(74,9);
     cargarCadena(nombre, 29);
 
     int tam=arcV.contarRegistros();
@@ -2188,17 +2431,21 @@ void cargarVideojuego()
         game = arcV.leerRegistros(i);
         if (strcmp(nombre, game.getTitulo())==0)
         {
+            rlutil::locate(74,9);
+            setConsoleColor(4, 1);
             cout<<"Dicho videojuego ya se encuentra en el sistema.";
+            rlutil::locate(60,10);
+            setConsoleColor(8, 1);
             system("pause");
             return;
         }
     }
     game.setTitulo(nombre);
     game.cargar();
-    //if (game.getPrecio()<0  game.getCalificacion() < 0  game.getPeso() < 0 || game.getRestriccion() < 0)
-    //  {
-    //     return;
-//   }
+    if (game.getPrecio()<0 || game.getCalificacion() < 0 || game.getPeso() < 0 || game.getRestriccion() < 0)
+      {
+       return;
+    }
     Genero gene, geneAux;
     archivoGenero arcG("archivos/genero.dat");
     bool existeG=false;
@@ -2424,10 +2671,10 @@ void buscarVideojuego()
         rlutil::locate(40,9);
         cout<< "==============================" << endl;
     setConsoleColor(15,6);
-    rlutil::locate(40,12);
+    rlutil::locate(35,12);
     cout<< "INGRESE NOMBRE DEL VIDEOJUEGO: ";
     setConsoleColor(8, 6);
-    rlutil::locate(70,12);
+    rlutil::locate(65,12);
     cargarCadena(titJuego, 49);
     buscarPorNombre(titJuego);
     system("PAUSE");
@@ -2855,10 +3102,10 @@ void listarVideojuegosMod()
 
         game = arcV.leerRegistros(i);
         rlutil::locate(1, y-5);
-        cout << "----------------------------|";
+        cout << "----|";
         rlutil::locate(1, y);
-        cout<< "----- ID: " << game.getidVideojuego() << " -----";
-        game.mostrarPorLocate(30, y-5);
+        cout<< "-ID: " << game.getidVideojuego() << " -";
+        game.mostrarPorLocate(10, y-5);
         y+=11;
     }
     cout << endl;

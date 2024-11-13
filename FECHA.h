@@ -16,15 +16,15 @@ class Fecha{
         int dia,mes,anio;
         cout << "Ingrese el dia: ";
         cin >> dia;
-        if (dia <= 31){_dia = dia;}
+        if (dia <= 31 && dia > 0){_dia = dia;}
         else{cout << "Ingrese un dia valido."<<endl; return false;}
         cout << "Ingrese el mes: ";
         cin >> mes;
-        if (mes <= 12){_mes = mes;}
+        if (mes <= 12 && mes > 0){_mes = mes;}
         else{cout << "Ingrese un mes valido."<<endl; return false;}
         cout << "Ingrese el anio: ";
         cin >> anio;
-        if (anio <= 2024){_anio = anio;}
+        if (anio <= 2024 && anio > 0){_anio = anio;}
         else{cout << "Ingrese un anio valido."<<endl; return false;}
         cout << "FECHA CARGADA" << endl;
         return true;
@@ -36,20 +36,21 @@ class Fecha{
         rlutil::locate(x,y);
         cout << "Ingrese el dia: ";
         cin >> dia;
-        if (dia <= 31){_dia = dia;}
+        if (dia <= 31 && dia > 0){_dia = dia;}
         else{rlutil::locate(x,y+1);cout << "Ingrese un dia valido."<<endl; return false;}
         rlutil::locate(x,y+1);
         cout << "Ingrese el mes: ";
         cin >> mes;
-        if (mes <= 12){_mes = mes;}
+        if (mes <= 12 && dia > 0){_mes = mes;}
         else{rlutil::locate(x,y+2);cout << "Ingrese un mes valido."<<endl; return false;}
         rlutil::locate(x,y+2);
         cout << "Ingrese el anio: ";
         cin >> anio;
-        if (anio <= 2024){_anio = anio;}
+        if (anio <= 2024 && anio > 0){_anio = anio;}
         else{rlutil::locate(x,y+3);cout << "Ingrese un anio valido."<<endl; return false;}
         rlutil::locate(x,y+3);
         cout << "FECHA CARGADA" << endl;
+        return true;
     }
 
 

@@ -13,7 +13,7 @@ void setConsoleColor(int textColor, int backgroundColor);
 void elegirVideojuego();
 void buscarVideojuego();
 void mostrarTitulo(const string &titulo);
-void listarVideojuegos();
+//void listarVideojuegos();
 void caracteristicasVideojuego(int j);
 void buscarPorNombre(const char *n);
 ///MOVI LA FUNCION DE CARGAR CADENA PORQUE DABA PROBLEMAS
@@ -38,8 +38,8 @@ void aniadirTarjeta(int idIniciada);
 void comprarJuego();
 void comprarJuegosListados(int juegosListados[], int tam);
 Fecha compararFecha(Fecha fecha1, Fecha fecha2);
-void listarOrdenAnio(archivoVideoJuego archivo);
-void listarPorOrdenes();
+//void listarOrdenAnio(archivoVideoJuego archivo);
+//void listarPorOrdenes();
 
 void comprarJuego(int idVideojuego);
 void agregarVideojuegoBiblioteca(int idVideojuego, int idIniciada);
