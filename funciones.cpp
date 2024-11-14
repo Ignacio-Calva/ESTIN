@@ -468,21 +468,45 @@ bool menuModificarVideojuego(int idJuego)
             return true;
             break;
         case 2:
-            rlutil::locate(40,5);
-            cout<<"------------------------"<<endl;
-            rlutil::locate(40,6);
-            cout<<"    Modificar Genero    "<<endl;
-            rlutil::locate(40,7);
-            cout<<"------------------------"<<endl;
-            rlutil::locate(40,9);
-            cout<<"Ingrese el nuevo genero: ";
-            rlutil::locate(65,9);
-            cargarCadena(pal, 29);
-            game = arcV.leerRegistros(idJuego-1);
-            game.setGenero(pal);
-            arcV.modificarVideojuego(game, idJuego-1);
-            return true;
-            break;
+            {
+                rlutil::locate(40,5);
+                cout<<"------------------------"<<endl;
+                rlutil::locate(40,6);
+                cout<<"    Modificar Genero    "<<endl;
+                rlutil::locate(40,7);
+                cout<<"------------------------"<<endl;
+                rlutil::locate(40,9);
+                cout<<"Ingrese el nuevo genero: ";
+                rlutil::locate(65,9);
+                cargarCadena(pal, 29);
+                game = arcV.leerRegistros(idJuego-1);
+                game.setGenero(pal);
+                arcV.modificarVideojuego(game, idJuego-1);
+                /////////////ANIADIRLO AL ARCHIVO GENERO
+                Genero gene, geneAux;
+                archivoGenero arcG("archivos/genero.dat");
+                bool existeG=false;
+                int tamG = arcG.contarRegistros();
+                gene.setNombre(game.getGenero());
+                for (int i = 0; i < tamG; i++)
+                {
+                    geneAux = arcG.leerRegistros(i);
+                    //cout << "Registro N" << i << " Genero: " << geneAux.getNombre() << endl;
+                    if (compararSinMayusculas(geneAux.getNombre(), gene.getNombre()))
+                    {
+                        existeG = true;
+                        break;
+                    }
+                }
+                if (existeG == false)
+                {
+                    arcG.grabarRegistros(gene);
+                    //cout<<"se aniadio un nuevo genero al sistema." <<endl;
+                }
+
+                return true;
+                break;
+            }
         case 3:
             rlutil::locate(40,5);
             cout<<"------------------------"<<endl;
@@ -559,22 +583,51 @@ bool menuModificarVideojuego(int idJuego)
             return true;
             break;
         case 6:
-            rlutil::locate(40,5);
-            cout<<"------------------------"<<endl;
-            rlutil::locate(40,6);
-            cout<<"Modificar  Desarrollador"<<endl;
-            rlutil::locate(40,7);
-            cout<<"------------------------"<<endl;
-            rlutil::locate(40,9);
-            cout<<"Ingrese el nuevo desarrollador: ";
-            rlutil::locate(65,9);
-            cargarCadena(pal, 29);
+            {
+                rlutil::locate(40,5);
+                cout<<"------------------------"<<endl;
+                rlutil::locate(40,6);
+                cout<<"Modificar  Desarrollador"<<endl;
+                rlutil::locate(40,7);
+                cout<<"------------------------"<<endl;
+                rlutil::locate(40,9);
+                cout<<"Ingrese el nuevo desarrollador: ";
+                rlutil::locate(65,9);
+                cargarCadena(pal, 29);
 
-            game = arcV.leerRegistros(idJuego-1);
-            game.setDesarrollador(pal);
-            arcV.modificarVideojuego(game, idJuego-1);
-            return true;
-            break;
+                game = arcV.leerRegistros(idJuego-1);
+                game.setDesarrollador(pal);
+                arcV.modificarVideojuego(game, idJuego-1);
+                ///////ANIADIRLO AL ARCHIVO DESARROLLADORES
+                char dev[30];
+                Desarrollador devAux;
+                Desarrollador objDev;
+                archivoDesarrollador archivoDev("archivos/desarrolladores.dat");
+                int tamDev = archivoDev.contarRegistros();
+                bool existe=false;
+                strcpy(dev,game.getDesarrollador());
+                //cout << "Desarrollador a grabar: " << dev << endl;
+                objDev.setNombre(dev);
+                for (int i=0 ; i < tamDev ; i++)
+                {
+                    devAux = archivoDev.leerRegistros(i);
+                    //cout << "Registro N" << i << ". Desarrollador: " << devAux.getNombre() << endl;
+                    if (compararSinMayusculas(devAux.getNombre(),objDev.getNombre()))
+                    {
+                        existe = true;
+                        break;
+                    }
+                }
+                if (existe == false)
+                {
+                    archivoDev.grabarRegistros(objDev);
+                    //cout << "Se aniadio un nuevo desarrollador al sistema. " << endl;
+                }
+                //////
+
+                return true;
+                break;
+            }
         case 7:
             rlutil::locate(40,5);
             cout<<"------------------------"<<endl;
@@ -642,112 +695,162 @@ bool menuModificarVideojuego(int idJuego)
             return true;
             break;
         case 10:
-            rlutil::locate(40,5);
-            cout<<"------------------------"<<endl;
-            rlutil::locate(40,6);
-            cout<<"    Modificar Nombre    "<<endl;
-            rlutil::locate(40,7);
-            cout<<"------------------------"<<endl;
-            rlutil::locate(40,9);
-            cout<< "---- ID: " << idJuego << " ----"<<endl;
-            rlutil::locate(40,10);
-            cout<<"Ingrese el nuevo nombre: ";
-            rlutil::locate(65,10);
-            cargarCadena(pal, 29);
-
-            for (int i = 0; i < tam; i++)
             {
-                game = arcV.leerRegistros(i);
-                if (strcmp(pal, game.getTitulo())==0)
+                rlutil::locate(40,5);
+                cout<<"------------------------"<<endl;
+                rlutil::locate(40,6);
+                cout<<"    Modificar Nombre    "<<endl;
+                rlutil::locate(40,7);
+                cout<<"------------------------"<<endl;
+                rlutil::locate(40,9);
+                cout<< "---- ID: " << idJuego << " ----"<<endl;
+                rlutil::locate(40,10);
+                cout<<"Ingrese el nuevo nombre: ";
+                rlutil::locate(65,10);
+                cargarCadena(pal, 29);
+
+                for (int i = 0; i < tam; i++)
                 {
-                    setConsoleColor(4, 1);
-                    rlutil::locate(65,10);
-                    cout<<"Ya existe un videojuego con ese nombre.";
+                    game = arcV.leerRegistros(i);
+                    if (strcmp(pal, game.getTitulo())==0)
+                    {
+                        setConsoleColor(4, 1);
+                        rlutil::locate(65,10);
+                        cout<<"Ya existe un videojuego con ese nombre.";
+                        setConsoleColor(11, 1);
+                        rlutil::locate(40, 11);
+                        return false;
+                    }
+                }
+                game = arcV.leerRegistros(idJuego-1);
+                game.setTitulo(pal);
+                rlutil::locate(40,11);
+                cout<<"Ingrese el nuevo genero: ";
+                cargarCadena(pal, 29);
+                game.setGenero(pal);
+                ///LO ANIADO AL ARCHIVO GENERO
+                Genero gene, geneAux;
+                archivoGenero arcG("archivos/genero.dat");
+                bool existeG=false;
+                int tamG = arcG.contarRegistros();
+                gene.setNombre(game.getGenero());
+                for (int i = 0; i < tamG; i++)
+                {
+                    geneAux = arcG.leerRegistros(i);
+                    //cout << "Registro N" << i << " Genero: " << geneAux.getNombre() << endl;
+                    if (compararSinMayusculas(geneAux.getNombre(), gene.getNombre()))
+                    {
+                        existeG = true;
+                        break;
+                    }
+                }
+                if (existeG == false)
+                {
+                    arcG.grabarRegistros(gene);
+                    //cout<<"se aniadio un nuevo genero al sistema." <<endl;
+                }
+                /// ////////////
+                rlutil::locate(40,12);
+                cout<<"Ingrese el nuevo precio: ";
+                cin>>num2;
+                if (num2 < 0)
+                {
+                    setConsoleColor(4,1);
+                    rlutil::locate(65,12);
+                    cout<<"El precio no puede ser negativo.";
                     setConsoleColor(11, 1);
-                    rlutil::locate(40, 11);
+                    rlutil::locate(65,13);
                     return false;
                 }
-            }
-            game = arcV.leerRegistros(idJuego-1);
-            game.setTitulo(pal);
-            rlutil::locate(40,11);
-            cout<<"Ingrese el nuevo genero: ";
-            cargarCadena(pal, 29);
-            game.setGenero(pal);
-            rlutil::locate(40,12);
-            cout<<"Ingrese el nuevo precio: ";
-            cin>>num2;
-            if (num2 < 0)
-            {
-                setConsoleColor(4,1);
-                rlutil::locate(65,12);
-                cout<<"El precio no puede ser negativo.";
-                setConsoleColor(11, 1);
-                rlutil::locate(65,13);
-                return false;
-            }
-            game.setPrecio(num2);
-            rlutil::locate(40,13);
-            cout<<"Ingrese la nueva calificacion: ";
-            cin>>num2;
-            if (num2 < 0)
-            {
-                setConsoleColor(4,1);
-                rlutil::locate(70,13);
-                cout<<"La calificacion no puede ser negativa.";
-                setConsoleColor(11, 1);
-                rlutil::locate(65,14);
-                return false;
-            }
-            if (num2 > 100)
-            {
+                game.setPrecio(num2);
+                rlutil::locate(40,13);
+                cout<<"Ingrese la nueva calificacion: ";
+                cin>>num2;
+                if (num2 < 0)
+                {
+                    setConsoleColor(4,1);
+                    rlutil::locate(70,13);
+                    cout<<"La calificacion no puede ser negativa.";
+                    setConsoleColor(11, 1);
+                    rlutil::locate(65,14);
+                    return false;
+                }
+                if (num2 > 100)
+                {
 
-                setConsoleColor(4,1);
-                rlutil::locate(65, 13);
-                cout<<"La calificacion no puede ser mayor que 100 .";
-                setConsoleColor(11, 14);
-                return false;
+                    setConsoleColor(4,1);
+                    rlutil::locate(65, 13);
+                    cout<<"La calificacion no puede ser mayor que 100 .";
+                    setConsoleColor(11, 14);
+                    return false;
+                }
+                game.setCalificacion(num2);
+                rlutil::locate(40,14);
+                cout<<"Ingrese el nuevo idioma: ";
+                cargarCadena(pal, 29);
+                game.setIdioma(pal);
+                rlutil::locate(40,15);
+                cout<<"Ingrese el nuevo desarrollador: ";
+                cargarCadena(pal, 29);
+                game.setDesarrollador(pal);
+                ///LO ANIADO AL ARCHIVO DESARROLLADOR
+                char dev[30];
+                Desarrollador devAux;
+                Desarrollador objDev;
+                archivoDesarrollador archivoDev("archivos/desarrolladores.dat");
+                int tamDev = archivoDev.contarRegistros();
+                bool existe=false;
+                strcpy(dev,game.getDesarrollador());
+                //cout << "Desarrollador a grabar: " << dev << endl;
+                objDev.setNombre(dev);
+                for (int i=0 ; i < tamDev ; i++)
+                {
+                    devAux = archivoDev.leerRegistros(i);
+                    //cout << "Registro N" << i << ". Desarrollador: " << devAux.getNombre() << endl;
+                    if (compararSinMayusculas(devAux.getNombre(),objDev.getNombre()))
+                    {
+                        existe = true;
+                        break;
+                    }
+                }
+                if (existe == false)
+                {
+                    archivoDev.grabarRegistros(objDev);
+                    //cout << "Se aniadio un nuevo desarrollador al sistema. " << endl;
+                }
+                /// ///////
+                rlutil::locate(40,16);
+                cout<<"Ingrese el nuevo peso: ";
+                cin>>num1;
+                if (num1 < 0)
+                {
+                    setConsoleColor(4,1);
+                    rlutil::locate(63,16);
+                    cout<<"El peso no puede ser negativo.";
+                    setConsoleColor(11, 1);
+                    rlutil::locate(63,17);
+                    return false;
+                }
+                game.setPeso(num1);
+                rlutil::locate(40,17);
+                cout<<"Ingrese la nueva restriccion: ";
+                cin>>num1;
+                if (num1 < 0)
+                {
+                    setConsoleColor(4,1);
+                    rlutil::locate(69,17);
+                    cout<<"La restriccion no puede ser negativa.";
+                    setConsoleColor(11, 1);
+                    rlutil::locate(69,18);
+                    return false;
+                }
+                game.setRestriccionEdad(num1);
+                rlutil::locate(40,18);
+                cout<<"Ingrese el nuevo anio: ";
+                cin>>num1;
+                game.setAnio(num1);
+                arcV.modificarVideojuego(game, idJuego-1);
             }
-            game.setCalificacion(num2);
-            rlutil::locate(40,14);
-            cout<<"Ingrese el nuevo idioma: ";
-            cargarCadena(pal, 29);
-            game.setIdioma(pal);
-            rlutil::locate(40,15);
-            cout<<"Ingrese el nuevo desarrollador: ";
-            cargarCadena(pal, 29);
-            game.setDesarrollador(pal);
-            rlutil::locate(40,16);
-            cout<<"Ingrese el nuevo peso: ";
-            cin>>num1;
-            if (num1 < 0)
-            {
-                setConsoleColor(4,1);
-                rlutil::locate(63,16);
-                cout<<"El peso no puede ser negativo.";
-                setConsoleColor(11, 1);
-                rlutil::locate(63,17);
-                return false;
-            }
-            game.setPeso(num1);
-            rlutil::locate(40,17);
-            cout<<"Ingrese la nueva restriccion: ";
-            cin>>num1;
-            if (num1 < 0)
-            {
-                setConsoleColor(4,1);
-                rlutil::locate(69,17);
-                cout<<"La restriccion no puede ser negativa.";
-                setConsoleColor(11, 1);
-                rlutil::locate(69,18);
-                return false;
-            }
-            game.setRestriccionEdad(num1);
-            rlutil::locate(40,18);
-            cout<<"Ingrese el nuevo anio: ";
-            cin>>num1;
-            game.setAnio(num1);
-            arcV.modificarVideojuego(game, idJuego-1);
         case 0:
             return true;
         default:
