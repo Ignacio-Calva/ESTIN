@@ -2507,8 +2507,8 @@ void cargarVideojuego()
     }
     game.setTitulo(nombre);
     game.cargar();
-    if (game.getPrecio()<0 || game.getCalificacion() < 0 || game.getPeso() < 0 || game.getRestriccion() < 0)
-      {
+    if (game.getPrecio()<0 || game.getCalificacion() < 0 || game.getPeso() < 0 || game.getRestriccion() < 0 || game.getCalificacion() > 100)
+    {
        return;
     }
     Genero gene, geneAux;
@@ -3775,7 +3775,6 @@ void cargarPuntoRestauracion()
     rlutil::locate(35,14);
     cout << "Registros cargados al punto de restauracion correctamente!" << endl;
     rlutil::locate(40,15);
-    system("pause");
     system("cls");
 }
 
